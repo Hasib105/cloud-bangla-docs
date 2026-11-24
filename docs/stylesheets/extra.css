@@ -28,15 +28,17 @@
 .md-typeset h2 { font-weight: 600; border-bottom: 1px solid var(--md-default-fg-color--lightest); padding-bottom: .25em; }
 .md-typeset code { font-size: 0.82em; }
 
-/* Platform tabs: colour the active label per cloud (order is always AWS, GCP, Azure, OCI) */
-.md-typeset .tabbed-labels > label:nth-child(1) { --cb-tab: var(--cb-aws); }
-.md-typeset .tabbed-labels > label:nth-child(2) { --cb-tab: var(--cb-gcp); }
-.md-typeset .tabbed-labels > label:nth-child(3) { --cb-tab: var(--cb-azure); }
-.md-typeset .tabbed-labels > label:nth-child(4) { --cb-tab: var(--cb-oci); }
-.md-typeset .tabbed-set > input:checked + label,
-.md-typeset .tabbed-labels > label:hover { color: var(--cb-tab, var(--md-accent-fg-color)); }
-.md-typeset .tabbed-labels::before { background: var(--cb-tab, var(--md-accent-fg-color)); }
-.md-typeset .tabbed-alternate.tabbed-set .tabbed-labels > label { font-weight: 700; }
+/* Platform tabs: colour per cloud (order is always AWS, GCP, Azure, OCI) */
+.md-typeset .tabbed-set > input:nth-child(1):checked ~ .tabbed-labels { --cb-tab: var(--cb-aws); }
+.md-typeset .tabbed-set > input:nth-child(2):checked ~ .tabbed-labels { --cb-tab: var(--cb-gcp); }
+.md-typeset .tabbed-set > input:nth-child(3):checked ~ .tabbed-labels { --cb-tab: var(--cb-azure); }
+.md-typeset .tabbed-set > input:nth-child(4):checked ~ .tabbed-labels { --cb-tab: var(--cb-oci); }
+.md-typeset .tabbed-set > input:nth-child(1):checked ~ .tabbed-labels > label:nth-child(1),
+.md-typeset .tabbed-set > input:nth-child(2):checked ~ .tabbed-labels > label:nth-child(2),
+.md-typeset .tabbed-set > input:nth-child(3):checked ~ .tabbed-labels > label:nth-child(3),
+.md-typeset .tabbed-set > input:nth-child(4):checked ~ .tabbed-labels > label:nth-child(4) { color: var(--cb-tab); }
+.md-typeset .tabbed-labels::before { background: var(--cb-tab, var(--md-accent-fg-color)); height: 3px; }
+.md-typeset .tabbed-alternate .tabbed-labels > label { font-weight: 700; font-size: .78rem; }
 
 /* Comparison tables: full width, sticky header, zebra */
 .md-typeset table:not([class]) { font-size: 0.78rem; display: table; width: 100%; }
@@ -55,5 +57,11 @@
 .md-typeset .grid.cards > ul > li:hover { transform: translateY(-2px); }
 .cb-hero { padding: 1.2rem 1.4rem; border-radius: .8rem; margin-bottom: 1.2rem;
   background: linear-gradient(135deg, #0f4c5c 0%, #1b6f80 55%, #e36414 140%); color: #fff; }
-.cb-hero h1 { color: #fff; margin: 0 0 .3rem; }
+.md-typeset .cb-hero h1 { color: #fff; margin: 0 0 .3rem; }
 .cb-hero p { margin: .2rem 0; opacity: .95; }
+
+/* Headings in brand colour; tighter rows inside tables */
+.md-typeset h1 { color: var(--md-primary-fg-color); }
+[data-md-color-scheme="slate"] .md-typeset h1 { color: #e8f1f3; }
+.md-typeset table:not([class]) td, .md-typeset table:not([class]) th { line-height: 1.5; padding: .55em .9em; }
+.md-typeset .mermaid { text-align: center; }
