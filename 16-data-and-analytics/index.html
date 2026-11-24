@@ -1,0 +1,3467 @@
+
+<!doctype html>
+<html lang="bn" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="এক টপিক, চার cloud — AWS, Google Cloud, Microsoft Azure ও Oracle Cloud (OCI) শূন্য থেকে অ্যাডভান্স, পাশাপাশি তুলনাসহ সম্পূর্ণ বাংলা ডকুমেন্টেশন।">
+      
+      
+        <meta name="author" content="Hasib Ahmed">
+      
+      
+        <link rel="canonical" href="https://hasib105.github.io/cloud-bangla-docs/16-data-and-analytics/">
+      
+      
+        <link rel="prev" href="../15-cicd-devops/">
+      
+      
+        <link rel="next" href="../17-ai-ml/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>16 · Data ও Analytics - Cloud বাংলা — AWS · GCP · Azure · OCI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M6.5%2020q-2.28%200-3.89-1.57Q1%2016.85%201%2014.58q0-1.95%201.17-3.48%201.18-1.53%203.08-1.95.63-2.3%202.5-3.72Q9.63%204%2012%204q2.93%200%204.96%202.04Q19%208.07%2019%2011q1.73.2%202.86%201.5%201.14%201.28%201.14%203%200%201.88-1.31%203.19T18.5%2020m-12-2h12q1.05%200%201.77-.73.73-.72.73-1.77t-.73-1.77Q19.55%2013%2018.5%2013H17v-2q0-2.07-1.46-3.54Q14.08%206%2012%206%209.93%206%208.46%207.46%207%208.93%207%2011h-.5q-1.45%200-2.47%201.03Q3%2013.05%203%2014.5T4.03%2017q1.02%201%202.47%201m5.5-6%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind+Siliguri:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Hind Siliguri";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#16--data-ও-analytics" class="md-skip">
+          কনটেন্টে যান
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="হেডার">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-header__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud বাংলা — AWS · GCP · Azure · OCI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              16 · Data ও Analytics
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="ডার্ক মোড"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ডার্ক মোড" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="লাইট মোড"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="লাইট মোড" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="অনুসন্ধান করুন" placeholder="অনুসন্ধান করুন" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="অনুসন্ধান করুন">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="শেয়ার" aria-label="শেয়ার" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="রিসেট" aria-label="রিসেট" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            অনুসন্ধান শুরু করা হচ্ছে
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="ট্যাব" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  হোম
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01-cloud-fundamentals/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  মূল ধারণা
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../platforms/aws/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  প্ল্যাটফর্ম গাইড
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reference/service-map/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  রেফারেন্স
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ন্যাভিগেশন" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-nav__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    Cloud বাংলা — AWS · GCP · Azure · OCI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    হোম
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    মূল ধারণা
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    মূল ধারণা
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-cloud-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Cloud-এর ভিত্তি
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-accounts-and-hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Account ও Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-identity-and-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Identity ও Access (IAM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-compute-vms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Virtual Machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-networking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Networking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-containers-kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Container ও Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-serverless/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Serverless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-load-balancing-scaling-dns-cdn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Load Balancing, DNS ও CDN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-messaging-and-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Messaging ও Event
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Monitoring ও Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-infrastructure-as-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 · Infrastructure as Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-cicd-devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 · CI/CD ও DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 · Data ও Analytics
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 · Data ও Analytics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-data-র-দই-জগৎ-oltp-ও-olap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. Data-র দুই জগৎ: OLTP ও OLAP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. Data-র দুই জগৎ: OLTP ও OLAP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#warehouse-lake-ও-lakehouse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Warehouse, Lake ও Lakehouse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etl-বনম-elt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ETL বনাম ELT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shopbd-র-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shopbd-র pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-data-lake" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Data lake
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="২. Data lake">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#layer-medallion-নকশ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer (medallion) নকশা
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-format-csv-কন-নয-parquet-কন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File format: CSV কেন নয়, Parquet কেন
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partitioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partitioning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#catalog-ও-governance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Catalog ও Governance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lakehouse-table-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lakehouse table format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lake-bucket-তর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lake bucket তৈরি
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-query-on-lake-lake-এর-ফইল-সরসর-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Query-on-lake: lake-এর ফাইলে সরাসরি SQL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-data-warehouse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. Data warehouse
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. Data warehouse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#warehouse-তর-ও-data-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Warehouse তৈরি ও data load
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terraform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terraform
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-etl--elt-ও-orchestration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. ETL / ELT ও Orchestration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৫. ETL / ELT ও Orchestration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#একট-spark-etl--চর-জযগয-একই-কড" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        একটা Spark ETL — চার জায়গায় একই কোড
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#পলযটফরম-ধর-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        প্ল্যাটফর্ম ধরে pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orchestration-এ-য-থক-চই" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orchestration-এ যা থাকা চাই
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-business-intelligence-bi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Business Intelligence (BI)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-governance-security-ও-খরচ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. Governance, security ও খরচ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৭. Governance, security ও খরচ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#নরপতত-ও-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        নিরাপত্তা ও privacy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#খরচ-ক-ক-বডয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        খরচ কী কী বাড়ায়
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-ai-ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 · AI ও Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-cost-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 · Cost Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-architecture-ha-dr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 · Architecture ও HA/DR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/gcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Cloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/azure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microsoft Azure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/oci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle Cloud (OCI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    রেফারেন্স
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    রেফারেন্স
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/service-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli-cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Cheatsheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-data-র-দই-জগৎ-oltp-ও-olap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. Data-র দুই জগৎ: OLTP ও OLAP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. Data-র দুই জগৎ: OLTP ও OLAP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#warehouse-lake-ও-lakehouse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Warehouse, Lake ও Lakehouse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etl-বনম-elt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ETL বনাম ELT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shopbd-র-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shopbd-র pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-data-lake" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Data lake
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="২. Data lake">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#layer-medallion-নকশ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer (medallion) নকশা
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-format-csv-কন-নয-parquet-কন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File format: CSV কেন নয়, Parquet কেন
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partitioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partitioning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#catalog-ও-governance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Catalog ও Governance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lakehouse-table-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lakehouse table format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lake-bucket-তর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lake bucket তৈরি
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-query-on-lake-lake-এর-ফইল-সরসর-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Query-on-lake: lake-এর ফাইলে সরাসরি SQL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-data-warehouse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. Data warehouse
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. Data warehouse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#warehouse-তর-ও-data-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Warehouse তৈরি ও data load
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terraform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terraform
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-etl--elt-ও-orchestration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. ETL / ELT ও Orchestration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৫. ETL / ELT ও Orchestration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#একট-spark-etl--চর-জযগয-একই-কড" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        একটা Spark ETL — চার জায়গায় একই কোড
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#পলযটফরম-ধর-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        প্ল্যাটফর্ম ধরে pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orchestration-এ-য-থক-চই" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orchestration-এ যা থাকা চাই
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-business-intelligence-bi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Business Intelligence (BI)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-governance-security-ও-খরচ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. Governance, security ও খরচ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৭. Governance, security ও খরচ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#নরপতত-ও-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        নিরাপত্তা ও privacy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#খরচ-ক-ক-বডয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        খরচ কী কী বাড়ায়
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Hasib105/cloud-bangla-docs/edit/main/docs/16-data-and-analytics.md" title="এই পেজ এডিট করুন" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="16--data-ও-analytics">16 · Data ও Analytics<a class="headerlink" href="#16--data-ও-analytics" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>এই অধ্যায়ে কী শিখবেন</strong></p>
+<ul>
+<li>OLTP বনাম OLAP, data warehouse, data lake ও lakehouse — কোনটা কী</li>
+<li>Data lake: object storage + Parquet + partition + catalog</li>
+<li>Query-on-lake: Athena, BigQuery external table, Synapse serverless, Autonomous Database external table</li>
+<li>Warehouse: Redshift, BigQuery, Synapse / Microsoft Fabric, Autonomous Data Warehouse</li>
+<li>ETL / ELT ও orchestration: Glue, Dataflow / Dataproc, Data Factory, OCI Data Integration</li>
+<li>BI tool ও খরচ কমানোর কৌশল</li>
+</ul>
+</blockquote>
+<div class="admonition abstract">
+<p class="admonition-title">এক নজরে — কোন cloud-এ কী নাম</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data lake storage</td>
+<td>S3</td>
+<td>Cloud Storage</td>
+<td>ADLS Gen2 (Blob + hierarchical namespace), OneLake (Fabric)</td>
+<td>Object Storage</td>
+</tr>
+<tr>
+<td>Catalog / governance</td>
+<td>Glue Data Catalog, Lake Formation</td>
+<td>Dataplex Universal Catalog</td>
+<td>Microsoft Purview</td>
+<td>OCI Data Catalog</td>
+</tr>
+<tr>
+<td>Query on lake (serverless)</td>
+<td>Athena</td>
+<td>BigQuery external / BigLake tables</td>
+<td>Synapse serverless SQL, Fabric SQL endpoint</td>
+<td>Autonomous DB external tables</td>
+</tr>
+<tr>
+<td>Data warehouse</td>
+<td>Redshift (Provisioned / Serverless)</td>
+<td>BigQuery</td>
+<td>Synapse dedicated SQL pool → Microsoft Fabric Warehouse</td>
+<td>Autonomous Data Warehouse</td>
+</tr>
+<tr>
+<td>ETL / ELT (serverless)</td>
+<td>AWS Glue</td>
+<td>Dataflow, BigQuery SQL/Dataform</td>
+<td>Azure Data Factory / Fabric Data Factory</td>
+<td>OCI Data Integration</td>
+</tr>
+<tr>
+<td>Managed Spark / Hadoop</td>
+<td>EMR, Glue Spark</td>
+<td>Dataproc (Serverless for Apache Spark)</td>
+<td>Synapse Spark, Azure Databricks, HDInsight</td>
+<td>OCI Data Flow, Big Data Service</td>
+</tr>
+<tr>
+<td>CDC / replication</td>
+<td>DMS, zero-ETL</td>
+<td>Datastream</td>
+<td>Data Factory CDC, Fabric Mirroring</td>
+<td>OCI GoldenGate</td>
+</tr>
+<tr>
+<td>Orchestration</td>
+<td>Step Functions, MWAA (Airflow)</td>
+<td>Cloud Composer (Airflow), Workflows</td>
+<td>Data Factory pipelines</td>
+<td>Data Integration pipelines</td>
+</tr>
+<tr>
+<td>BI</td>
+<td>Amazon QuickSight (Quick Suite)</td>
+<td>Looker, Looker Studio</td>
+<td>Power BI</td>
+<td>Oracle Analytics Cloud</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="১-data-র-দই-জগৎ-oltp-ও-olap">১. Data-র দুই জগৎ: OLTP ও OLAP<a class="headerlink" href="#১-data-র-দই-জগৎ-oltp-ও-olap" title="Permanent link">&para;</a></h2>
+<p>আগের অধ্যায়ে (<a href="../07-databases/">Database</a>) আমরা যে PostgreSQL দেখেছি তা <strong>OLTP</strong> (Online Transaction Processing): অসংখ্য ছোট কাজ — একটা order বসানো, একটা stock কমানো। দ্রুত, row-ভিত্তিক।</p>
+<p>কিন্তু মালিক যখন জিজ্ঞেস করেন "গত ৩ মাসে কোন জেলায় কোন category সবচেয়ে বেশি বিক্রি হলো?" — সেটা <strong>OLAP</strong> (Online Analytical Processing): কয়েক কোটি row ঘেঁটে কয়েকটা কলামের যোগফল। এটা production DB-তে চালালে ধীর হয় ও customer-দের order আটকে যায়।</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>OLTP</th>
+<th>OLAP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>কাজ</td>
+<td>লেনদেন (insert/update)</td>
+<td>বিশ্লেষণ (aggregate)</td>
+</tr>
+<tr>
+<td>Query</td>
+<td>ছোট, একটা-দুটো row</td>
+<td>বড়, কোটি row, কয়েকটা কলাম</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Row-oriented</td>
+<td><strong>Column-oriented</strong></td>
+</tr>
+<tr>
+<td>Schema</td>
+<td>Normalized</td>
+<td>Denormalized (star schema)</td>
+</tr>
+<tr>
+<td>উদাহরণ</td>
+<td>RDS, Cloud SQL</td>
+<td>Redshift, BigQuery</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Analogy</p>
+<p>OLTP = দোকানের ক্যাশ কাউন্টার (প্রতিটি বিক্রি টুক টুক করে লেখা)। OLAP = মাস শেষে হিসাবরক্ষক পুরো খাতা নিয়ে বসে বিক্রির রিপোর্ট বানান। দুজনকে একই টেবিলে বসালে কাউন্টারের লাইন ধীর হয়।</p>
+</div>
+<h3 id="warehouse-lake-ও-lakehouse">Warehouse, Lake ও Lakehouse<a class="headerlink" href="#warehouse-lake-ও-lakehouse" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Data warehouse</th>
+<th>Data lake</th>
+<th>Lakehouse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>কী রাখে</td>
+<td>Structured, পরিষ্কার data</td>
+<td>যেকোনো কিছু (CSV, JSON, ছবি, log)</td>
+<td>Lake-এর data-র ওপর warehouse-এর মতো table/transaction</td>
+</tr>
+<tr>
+<td>Schema</td>
+<td>Write-এর সময় (schema-on-write)</td>
+<td>Read-এর সময় (schema-on-read)</td>
+<td>Table format (Iceberg/Delta) দিয়ে</td>
+</tr>
+<tr>
+<td>খরচ</td>
+<td>বেশি per TB</td>
+<td>সস্তা (object storage)</td>
+<td>সস্তা storage + কম্পিউট আলাদা</td>
+</tr>
+<tr>
+<td>উদাহরণ</td>
+<td>BigQuery, Redshift</td>
+<td>S3 + Parquet</td>
+<td>Iceberg on S3 / BigLake, Fabric OneLake (Delta)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="etl-বনম-elt">ETL বনাম ELT<a class="headerlink" href="#etl-বনম-elt" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>ETL</strong>: Extract → Transform → Load। আগে বাইরে পরিষ্কার করে তারপর warehouse-এ ঢোকানো।</li>
+<li><strong>ELT</strong>: Extract → Load → Transform। কাঁচা data আগে lake/warehouse-এ, তারপর SQL দিয়ে ভেতরেই রূপান্তর। আধুনিক cloud warehouse-এ কম্পিউট সস্তা ও scalable বলে ELT এখন বেশি প্রচলিত।</li>
+</ul>
+<h3 id="shopbd-র-pipeline">shopbd-র pipeline<a class="headerlink" href="#shopbd-র-pipeline" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart LR
+    DB[(shopbd-db&lt;br/&gt;PostgreSQL)] --&gt;|রাতে export / CDC| RAW[Lake: raw/]
+    LOGS[App log, clickstream] --&gt; RAW
+    RAW --&gt;|ETL: Spark / SQL| CUR[Lake: curated/ - Parquet]
+    CUR --&gt; WH[(Warehouse)]
+    CUR --&gt;|query-on-lake| Q[Athena / BigQuery / ...]
+    WH --&gt; BI[BI Dashboard]
+    Q --&gt; BI</code></pre>
+<h2 id="২-data-lake">২. Data lake<a class="headerlink" href="#২-data-lake" title="Permanent link">&para;</a></h2>
+<p>Data lake মানে <strong>object storage-এ ফাইল রাখা + তাদের ওপর query চালানোর ক্ষমতা</strong>। কারণ object storage সস্তা ও অসীম — <a href="../06-storage/">Storage</a> অধ্যায়ের সেই <code>shopbd-datalake</code> bucket।</p>
+<h3 id="layer-medallion-নকশ">Layer (medallion) নকশা<a class="headerlink" href="#layer-medallion-নকশ" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>কী থাকে</th>
+<th>shopbd-তে</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Raw / Bronze</strong></td>
+<td>যেমন এসেছে, অপরিবর্তিত</td>
+<td><code>raw/orders/2026-11-23.csv</code></td>
+</tr>
+<tr>
+<td><strong>Cleaned / Silver</strong></td>
+<td>ডুপ্লিকেট বাদ, type ঠিক, Parquet</td>
+<td><code>curated/orders/dt=2026-11-23/part-0.parquet</code></td>
+</tr>
+<tr>
+<td><strong>Business / Gold</strong></td>
+<td>রিপোর্টের জন্য aggregate</td>
+<td><code>marts/daily_sales/</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="file-format-csv-কন-নয-parquet-কন">File format: CSV কেন নয়, Parquet কেন<a class="headerlink" href="#file-format-csv-কন-নয-parquet-কন" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>ধরন</th>
+<th>কেমন</th>
+<th>কখন</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSV / JSON</td>
+<td>Row, text</td>
+<td>বড়, ধীর scan, type নেই</td>
+<td>ইনপুট/বিনিময়ের জন্য</td>
+</tr>
+<tr>
+<td><strong>Parquet</strong></td>
+<td>Column, compressed</td>
+<td>ছোট, দ্রুত, query-র জন্য শুধু দরকারি কলাম পড়ে</td>
+<td><strong>lake-এর default</strong></td>
+</tr>
+<tr>
+<td>ORC</td>
+<td>Column</td>
+<td>Parquet-এর মতো (Hive জগতে)</td>
+<td>Hadoop ecosystem</td>
+</tr>
+<tr>
+<td>Avro</td>
+<td>Row, schema সহ</td>
+<td>Streaming/ইভেন্টে ভালো</td>
+<td>Kafka/event data</td>
+</tr>
+</tbody>
+</table>
+<h3 id="partitioning">Partitioning<a class="headerlink" href="#partitioning" title="Permanent link">&para;</a></h3>
+<p>Partition মানে folder দিয়ে ভাগ করা — যেমন <code>dt=2026-11-23/</code>। "২৩ নভেম্বরের order" query করলে engine শুধু ওই folder পড়ে। এতে <strong>কম data scan = কম খরচ ও দ্রুত query</strong>।</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>s3://shopbd-datalake/curated/orders/dt=2026-11-22/part-0.parquet
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>s3://shopbd-datalake/curated/orders/dt=2026-11-23/part-0.parquet
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">বেশি partition-ও খারাপ</p>
+<p>প্রতিটা <code>customer_id</code> দিয়ে partition করলে কোটি ছোট folder হয় — metadata-র বোঝা বাড়ে। সাধারণত তারিখ (বা মাস) দিয়ে ভাগ করুন; partition প্রতি অন্তত কয়েকশ MB data ভালো।</p>
+</div>
+<h3 id="catalog-ও-governance">Catalog ও Governance<a class="headerlink" href="#catalog-ও-governance" title="Permanent link">&para;</a></h3>
+<p>Lake-এর ফাইলগুলো কোথায়, schema কী — এই তথ্য রাখে <strong>catalog</strong>। Query engine ও BI tool এখান থেকে "table" দেখে।</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Catalog</td>
+<td><strong>Glue Data Catalog</strong></td>
+<td><strong>Dataplex Universal Catalog</strong> (পুরোনো <em>Data Catalog</em> এর উত্তরসূরি)</td>
+<td><strong>Microsoft Purview</strong> (Unity/Fabric catalog-ও)</td>
+<td><strong>OCI Data Catalog</strong></td>
+</tr>
+<tr>
+<td>Access control</td>
+<td><strong>Lake Formation</strong> (table/column-level permission)</td>
+<td>Dataplex + IAM, BigQuery column policy</td>
+<td>Purview + Azure RBAC, Fabric workspace role</td>
+<td>IAM policy + Autonomous DB-র নিজস্ব নিয়ম</td>
+</tr>
+</tbody>
+</table>
+<h3 id="lakehouse-table-format">Lakehouse table format<a class="headerlink" href="#lakehouse-table-format" title="Permanent link">&para;</a></h3>
+<p><strong>Apache Iceberg</strong>, <strong>Delta Lake</strong>, <strong>Apache Hudi</strong> — Parquet ফাইলের ওপর metadata layer, যা দেয় ACID transaction, update/delete, টেবিলের পুরোনো অবস্থায় ফেরার (snapshot) সুবিধা। AWS-এ <strong>S3 Tables</strong> (Iceberg), GCP-তে <strong>BigLake</strong> (Iceberg), Fabric-এ <strong>OneLake</strong> (Delta), OCI-তে Autonomous Database ও Data Flow Iceberg/Delta পড়তে পারে। শুরুতে সাধারণ Parquet + partition যথেষ্ট; update/delete বেশি দরকার হলে table format ভাবুন।</p>
+<h3 id="lake-bucket-তর">Lake bucket তৈরি<a class="headerlink" href="#lake-bucket-তর" title="Permanent link">&para;</a></h3>
+<p>Lake-এর storage হলো <a href="../06-storage/">Storage</a>-এর মতোই object storage। Azure-তে আলাদা একটা switch আছে: <strong>hierarchical namespace (HNS)</strong> চালু করলে Blob account হয় <strong>ADLS Gen2</strong> — আসল folder, দ্রুত rename, ও ACL।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="aws" name="__tabbed_1" type="radio" /><input id="gcp" name="__tabbed_1" type="radio" /><input id="azure" name="__tabbed_1" type="radio" /><input id="oci" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="aws">AWS</label><label for="gcp">GCP</label><label for="azure">Azure</label><label for="oci">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>aws<span class="w"> </span>s3<span class="w"> </span>mb<span class="w"> </span>s3://shopbd-datalake<span class="w"> </span>--region<span class="w"> </span>ap-south-1
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>aws<span class="w"> </span>s3<span class="w"> </span>cp<span class="w"> </span>orders-2026-11-23.parquet<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>s3://shopbd-datalake/curated/orders/dt<span class="o">=</span><span class="m">2026</span>-11-23/part-0.parquet
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>create<span class="w"> </span>gs://shopbd-datalake<span class="w"> </span>--location<span class="o">=</span>asia-south1
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>cp<span class="w"> </span>orders-2026-11-23.parquet<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>gs://shopbd-datalake/curated/orders/dt<span class="o">=</span><span class="m">2026</span>-11-23/part-0.parquet
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>az<span class="w"> </span>storage<span class="w"> </span>account<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--name<span class="w"> </span>shopbddatalake<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-prod-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span>--location<span class="w"> </span>centralindia<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span>--sku<span class="w"> </span>Standard_LRS<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span>--kind<span class="w"> </span>StorageV2<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span>--enable-hierarchical-namespace<span class="w"> </span><span class="nb">true</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>az<span class="w"> </span>storage<span class="w"> </span>fs<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>curated<span class="w"> </span>--account-name<span class="w"> </span>shopbddatalake<span class="w"> </span>--auth-mode<span class="w"> </span>login
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>oci<span class="w"> </span>os<span class="w"> </span>bucket<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span>--namespace-name<span class="w"> </span>my-namespace<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-datalake
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>oci<span class="w"> </span>os<span class="w"> </span>object<span class="w"> </span>put<span class="w"> </span>--namespace-name<span class="w"> </span>my-namespace<span class="w"> </span>--bucket-name<span class="w"> </span>shopbd-datalake<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span>--name<span class="w"> </span>curated/orders/dt<span class="o">=</span><span class="m">2026</span>-11-23/part-0.parquet<span class="w"> </span>--file<span class="w"> </span>orders-2026-11-23.parquet
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="৩-query-on-lake-lake-এর-ফইল-সরসর-sql">৩. Query-on-lake: lake-এর ফাইলে সরাসরি SQL<a class="headerlink" href="#৩-query-on-lake-lake-এর-ফইল-সরসর-sql" title="Permanent link">&para;</a></h2>
+<p>Warehouse-এ data কপি না করেই lake-এর Parquet ফাইলের ওপর SQL চালানো যায়। Serverless — কোনো cluster চালু রাখতে হয় না; সাধারণত <strong>কত data scan হলো</strong> তার ওপর খরচ।</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AWS Athena</th>
+<th>BigQuery external / BigLake</th>
+<th>Synapse serverless / Fabric SQL endpoint</th>
+<th>OCI Autonomous DB external table</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Engine</td>
+<td>Trino/Presto-ভিত্তিক</td>
+<td>BigQuery</td>
+<td>T-SQL (<code>OPENROWSET</code>)</td>
+<td>Oracle SQL (<code>DBMS_CLOUD</code>)</td>
+</tr>
+<tr>
+<td>Cluster লাগে?</td>
+<td>না</td>
+<td>না</td>
+<td>না</td>
+<td>Autonomous DB instance লাগে</td>
+</tr>
+<tr>
+<td>খরচের একক</td>
+<td>Scanned data (TB)</td>
+<td>Scanned data বা slot</td>
+<td>Processed data (TB)</td>
+<td>Database compute (ECPU)</td>
+</tr>
+<tr>
+<td>Table-এর সংজ্ঞা</td>
+<td>Glue Catalog-এ</td>
+<td>BigQuery dataset-এ</td>
+<td>External table / view</td>
+<td>External table</td>
+</tr>
+</tbody>
+</table>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="aws_1" name="__tabbed_2" type="radio" /><input id="gcp_1" name="__tabbed_2" type="radio" /><input id="azure_1" name="__tabbed_2" type="radio" /><input id="oci_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="aws_1">AWS</label><label for="gcp_1">GCP</label><label for="azure_1">Azure</label><label for="oci_1">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Service: <strong>Amazon Athena</strong>। Console: Athena → Query editor। Result রাখার জন্য একটা S3 location দরকার।</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">EXTERNAL</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">shopbd_lake</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="n">order_id</span><span class="w">    </span><span class="n">string</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="n">customer_id</span><span class="w"> </span><span class="n">string</span><span class="p">,</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="n">district</span><span class="w">    </span><span class="n">string</span><span class="p">,</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="n">total_bdt</span><span class="w">   </span><span class="n">double</span><span class="p">,</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="n">status</span><span class="w">      </span><span class="n">string</span><span class="p">,</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="n">created_at</span><span class="w">  </span><span class="k">timestamp</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="p">)</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="n">PARTITIONED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="p">(</span><span class="n">dt</span><span class="w"> </span><span class="n">string</span><span class="p">)</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="n">STORED</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">PARQUET</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="k">LOCATION</span><span class="w"> </span><span class="s1">'s3://shopbd-datalake/curated/orders/'</span><span class="p">;</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="n">MSCK</span><span class="w"> </span><span class="n">REPAIR</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">shopbd_lake</span><span class="p">.</span><span class="n">orders</span><span class="p">;</span><span class="w">   </span><span class="c1">-- নতুন partition folder চিনিয়ে দেয়</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">district</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">total_bdt</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">sales</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="k">FROM</span><span class="w"> </span><span class="n">shopbd_lake</span><span class="p">.</span><span class="n">orders</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'2026-11-23'</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">district</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">sales</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>aws<span class="w"> </span>athena<span class="w"> </span>start-query-execution<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>--query-string<span class="w"> </span><span class="s2">"SELECT count(*) FROM shopbd_lake.orders WHERE dt='2026-11-23'"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>--work-group<span class="w"> </span>shopbd-analytics<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span>--result-configuration<span class="w"> </span><span class="nv">OutputLocation</span><span class="o">=</span>s3://shopbd-athena-results/
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>BigQuery</strong> (external table) / <strong>BigLake</strong>। Console: BigQuery → Explorer।</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">EXTERNAL</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">shopbd_analytics</span><span class="p">.</span><span class="n">orders_ext</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'PARQUET'</span><span class="p">,</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="n">uris</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">'gs://shopbd-datalake/curated/orders/*'</span><span class="p">]</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">);</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">district</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">total_bdt</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">sales</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="k">FROM</span><span class="w"> </span><span class="n">shopbd_analytics</span><span class="p">.</span><span class="n">orders_ext</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">district</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">sales</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Hive-style partition (<code>dt=...</code>) চেনাতে <code>hive_partition_uri_prefix</code> সহ external table definition লাগে। <strong>BigLake table</strong> নিলে column-level security ও caching পাওয়া যায়।</p>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Synapse serverless SQL pool</strong> (বা Fabric lakehouse-এর SQL analytics endpoint)।</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">TOP</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="n">district</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">total_bdt</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">sales</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">OPENROWSET</span><span class="p">(</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="n">BULK</span><span class="w"> </span><span class="s1">'https://shopbddatalake.dfs.core.windows.net/curated/orders/*/*.parquet'</span><span class="p">,</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="n">FORMAT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'PARQUET'</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">orders</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">district</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">sales</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Workspace-এর managed identity-কে storage account-এ <strong>Storage Blob Data Reader</strong> role দিতে হয়।</p>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Autonomous Database</strong>-এ <code>DBMS_CLOUD</code> package দিয়ে external table।</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">BEGIN</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="n">DBMS_CLOUD</span><span class="p">.</span><span class="n">CREATE_EXTERNAL_TABLE</span><span class="p">(</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="k">table_name</span><span class="w">    </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'ORDERS_EXT'</span><span class="p">,</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="n">credential_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'OBJ_STORE_CRED'</span><span class="p">,</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="n">file_uri_list</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://objectstorage.ap-mumbai-1.oraclecloud.com/n/my-namespace/b/shopbd-datalake/o/curated/orders/*.parquet'</span><span class="p">,</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="n">format</span><span class="w">        </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'{"type":"parquet","schema":"first"}'</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">  </span><span class="p">);</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="k">END</span><span class="p">;</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="o">/</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">district</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">total_bdt</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">sales</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ORDERS_EXT</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">district</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Credential হিসেবে resource principal বা auth token ব্যবহার করা যায়। বড় Spark কাজে <strong>OCI Data Flow</strong> আলাদা ভালো।</p>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Cost-এর প্রধান নিয়ম: কম scan করুন</p>
+<ul>
+<li>Parquet ব্যবহার করুন, শুধু দরকারি কলাম <code>SELECT</code> করুন (<code>SELECT *</code> নয়)।</li>
+<li>Partition filter (<code>WHERE dt = ...</code>) সবসময় দিন।</li>
+<li><strong>Athena workgroup</strong>-এ per-query data limit, <strong>BigQuery</strong>-তে <code>--dry_run</code> ও maximum bytes billed দিয়ে ভুলে বিশাল query ঠেকান।</li>
+</ul>
+</div>
+<h2 id="৪-data-warehouse">৪. Data warehouse<a class="headerlink" href="#৪-data-warehouse" title="Permanent link">&para;</a></h2>
+<p>Warehouse = OLAP-এর জন্য বানানো, column-ভিত্তিক, parallel (MPP) query engine।</p>
+<pre class="mermaid"><code>flowchart LR
+    CLIENT[BI / SQL client] --&gt; LEADER[Leader / Control node]
+    LEADER --&gt; W1[Worker 1]
+    LEADER --&gt; W2[Worker 2]
+    LEADER --&gt; W3[Worker 3]
+    W1 --- ST[(Columnar storage)]
+    W2 --- ST
+    W3 --- ST</code></pre>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AWS Redshift</th>
+<th>GCP BigQuery</th>
+<th>Azure Synapse / Fabric Warehouse</th>
+<th>OCI Autonomous Data Warehouse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>মডেল</td>
+<td>Provisioned (RA3 node) বা <strong>Serverless</strong></td>
+<td>সম্পূর্ণ serverless</td>
+<td>Synapse dedicated pool (DWU) / Fabric capacity (CU)</td>
+<td>Autonomous (ECPU, auto-tuning)</td>
+</tr>
+<tr>
+<td>Compute ও storage</td>
+<td>RA3-তে আলাদা</td>
+<td>আলাদা</td>
+<td>আলাদা</td>
+<td>আলাদা</td>
+</tr>
+<tr>
+<td>খরচের ধরন</td>
+<td>Node-hour বা RPU-hour</td>
+<td>On-demand (per TB scanned) অথবা capacity (slots)</td>
+<td>DWU-hour / Capacity Unit</td>
+<td>ECPU-hour + storage</td>
+</tr>
+<tr>
+<td>বিশেষত্ব</td>
+<td>Redshift Spectrum (S3 query), zero-ETL</td>
+<td>Partition + clustering, BI Engine, ML in SQL</td>
+<td>Power BI-এর সাথে গভীর মিল</td>
+<td>Oracle SQL, auto-index, ML</td>
+</tr>
+<tr>
+<td>Dataset/schema-র নাম</td>
+<td>Database → schema</td>
+<td>Project → <strong>dataset</strong> → table</td>
+<td>Database → schema</td>
+<td>Schema (user)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Azure: Synapse ও Fabric</p>
+<p>Microsoft-এর কৌশলগত দিক এখন <strong>Microsoft Fabric</strong> (OneLake + Warehouse + Lakehouse + Data Factory + Power BI একসাথে)। <strong>Azure Synapse Analytics</strong> এখনও চলছে ও সমর্থিত, কিন্তু নতুন প্রজেক্ট সাধারণত Fabric দিয়ে শুরু হয়। বর্তমান পরামর্শ শুরুর আগে <a href="https://learn.microsoft.com/fabric/">Microsoft Learn</a> দেখে নিন।</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">OCI-র নাম বদল</p>
+<p>Oracle ২০২৫-এ Autonomous Database-কে "Autonomous AI Database" নামেও ডাকতে শুরু করেছে। Workload type (Data Warehouse, Transaction Processing…) আগের মতোই; docs-এ দুই নামই দেখতে পাবেন।</p>
+</div>
+<h3 id="warehouse-তর-ও-data-load">Warehouse তৈরি ও data load<a class="headerlink" href="#warehouse-তর-ও-data-load" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="aws_2" name="__tabbed_3" type="radio" /><input id="gcp_2" name="__tabbed_3" type="radio" /><input id="azure_2" name="__tabbed_3" type="radio" /><input id="oci_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="aws_2">AWS</label><label for="gcp_2">GCP</label><label for="azure_2">Azure</label><label for="oci_2">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>aws<span class="w"> </span>redshift-serverless<span class="w"> </span>create-namespace<span class="w"> </span>--namespace-name<span class="w"> </span>shopbd-analytics
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>aws<span class="w"> </span>redshift-serverless<span class="w"> </span>create-workgroup<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span>--workgroup-name<span class="w"> </span>shopbd-wg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span>--namespace-name<span class="w"> </span>shopbd-analytics<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">  </span>--base-capacity<span class="w"> </span><span class="m">8</span>
+</span></code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="n">order_id</span><span class="w">    </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span><span class="n">customer_id</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span><span class="n">district</span><span class="w">    </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span><span class="n">total_bdt</span><span class="w">   </span><span class="n">double</span><span class="w"> </span><span class="k">precision</span><span class="p">,</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">  </span><span class="n">status</span><span class="w">      </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">  </span><span class="n">created_at</span><span class="w">  </span><span class="k">timestamp</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="p">);</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="k">COPY</span><span class="w"> </span><span class="n">orders</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="k">FROM</span><span class="w"> </span><span class="s1">'s3://shopbd-datalake/curated/orders/dt=2026-11-23/'</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="n">IAM_ROLE</span><span class="w"> </span><span class="s1">'arn:aws:iam::123456789012:role/shopbd-redshift-copy'</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="n">FORMAT</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">PARQUET</span><span class="p">;</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>bq<span class="w"> </span>mk<span class="w"> </span>--dataset<span class="w"> </span>--location<span class="o">=</span>asia-south1<span class="w"> </span>my-project-id:shopbd_analytics
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>bq<span class="w"> </span>load<span class="w"> </span>--source_format<span class="o">=</span>PARQUET<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span>shopbd_analytics.orders<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">  </span><span class="s2">"gs://shopbd-datalake/curated/orders/dt=2026-11-23/*.parquet"</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>bq<span class="w"> </span>query<span class="w"> </span>--use_legacy_sql<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">  </span><span class="s1">'SELECT district, SUM(total_bdt) AS sales FROM shopbd_analytics.orders GROUP BY district ORDER BY sales DESC'</span>
+</span></code></pre></div>
+<p>BigQuery-তে server নেই, cluster নেই — dataset বানিয়ে load করলেই হলো। বড় table-এ <strong>partition</strong> (তারিখ) ও <strong>clustering</strong> (যেমন <code>district</code>) যোগ করুন।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>az<span class="w"> </span>extension<span class="w"> </span>add<span class="w"> </span>--name<span class="w"> </span>synapse
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>az<span class="w"> </span>synapse<span class="w"> </span>sql<span class="w"> </span>pool<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span>--workspace-name<span class="w"> </span>shopbd-synapse<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-prod-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span>--name<span class="w"> </span>shopbd_dw<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">  </span>--performance-level<span class="w"> </span>DW100c
+</span></code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">COPY</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">orders</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">FROM</span><span class="w"> </span><span class="s1">'https://shopbddatalake.dfs.core.windows.net/curated/orders/dt=2026-11-23/*.parquet'</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">WITH</span><span class="w"> </span><span class="p">(</span><span class="n">FILE_TYPE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'PARQUET'</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Fabric Warehouse Portal/REST দিয়ে তৈরি হয় এবং একই T-SQL (<code>COPY INTO</code>) বোঝে।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>oci<span class="w"> </span>db<span class="w"> </span>autonomous-database<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span>--db-name<span class="w"> </span>shopbdadw<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">  </span>--display-name<span class="w"> </span>shopbd-adw<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">  </span>--db-workload<span class="w"> </span>DW<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">  </span>--compute-model<span class="w"> </span>ECPU<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">  </span>--compute-count<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">  </span>--data-storage-size-in-tbs<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">  </span>--admin-password<span class="w"> </span><span class="s1">'&lt;strong-password&gt;'</span>
+</span></code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">BEGIN</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span><span class="n">DBMS_CLOUD</span><span class="p">.</span><span class="n">COPY_DATA</span><span class="p">(</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="k">table_name</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'ORDERS'</span><span class="p">,</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="n">credential_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'OBJ_STORE_CRED'</span><span class="p">,</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="n">file_uri_list</span><span class="w">   </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'https://objectstorage.ap-mumbai-1.oraclecloud.com/n/my-namespace/b/shopbd-datalake/o/curated/orders/dt=2026-11-23/*.parquet'</span><span class="p">,</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span><span class="n">format</span><span class="w">          </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'{"type":"parquet","schema":"first"}'</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">  </span><span class="p">);</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="k">END</span><span class="p">;</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="o">/</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="terraform">Terraform<a class="headerlink" href="#terraform" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="aws_3" name="__tabbed_4" type="radio" /><input id="gcp_3" name="__tabbed_4" type="radio" /><input id="azure_3" name="__tabbed_4" type="radio" /><input id="oci_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="aws_3">AWS</label><label for="gcp_3">GCP</label><label for="azure_3">Azure</label><label for="oci_3">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_redshiftserverless_namespace"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span><span class="na">namespace_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-analytics"</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span><span class="na">db_name</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd"</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="p">}</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_redshiftserverless_workgroup"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">  </span><span class="na">namespace_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_redshiftserverless_namespace.shopbd.namespace_name</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">  </span><span class="na">workgroup_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-wg"</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">  </span><span class="na">base_capacity</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="m">8</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="p">}</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_glue_catalog_database"</span><span class="w"> </span><span class="nv">"lake"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd_lake"</span>
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="p">}</span>
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_athena_workgroup"</span><span class="w"> </span><span class="nv">"analytics"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-analytics"</span>
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>
+</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a><span class="w">  </span><span class="nb">configuration</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a><span class="w">    </span><span class="na">bytes_scanned_cutoff_per_query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10737418240</span><span class="c1">  # ১০ GB-র বেশি scan করলে query বন্ধ</span>
+</span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a><span class="w">    </span><span class="nb">result_configuration</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-22"><a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a><span class="w">      </span><span class="na">output_location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"s3://shopbd-athena-results/"</span>
+</span><span id="__span-17-23"><a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-17-24"><a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-17-25"><a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_bigquery_dataset"</span><span class="w"> </span><span class="nv">"analytics"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span><span class="na">dataset_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd_analytics"</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span><span class="na">location</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">"asia-south1"</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="p">}</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_bigquery_table"</span><span class="w"> </span><span class="nv">"orders"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">  </span><span class="na">dataset_id</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="nv">google_bigquery_dataset.analytics.dataset_id</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">  </span><span class="na">table_id</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">"orders"</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">  </span><span class="na">deletion_protection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="w">  </span><span class="nb">time_partitioning</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">    </span><span class="na">type</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"DAY"</span>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="w">    </span><span class="na">field</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"created_at"</span>
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="w">  </span><span class="na">clustering</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"district"</span><span class="p">]</span>
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_storage_account"</span><span class="w"> </span><span class="nv">"lake"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                     </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbddatalake"</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-prod-rg"</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span><span class="na">location</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s2">"centralindia"</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">  </span><span class="na">account_tier</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s2">"Standard"</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">  </span><span class="na">account_replication_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ZRS"</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">  </span><span class="na">is_hns_enabled</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="p">}</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_storage_data_lake_gen2_filesystem"</span><span class="w"> </span><span class="nv">"curated"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="w">  </span><span class="na">name</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">"curated"</span>
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="w">  </span><span class="na">storage_account_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_storage_account.lake.id</span>
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="p">}</span>
+</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>
+</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_data_factory"</span><span class="w"> </span><span class="nv">"etl"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-adf"</span>
+</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="w">  </span><span class="na">location</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">"centralindia"</span>
+</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-prod-rg"</span>
+</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>
+</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a><span class="w">  </span><span class="nb">identity</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a><span class="w">    </span><span class="na">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"SystemAssigned"</span>
+</span><span id="__span-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Warehouse-এর জন্য <code>azurerm_synapse_workspace</code> + <code>azurerm_synapse_sql_pool</code> অথবা Fabric capacity (<code>azurerm_fabric_capacity</code>) — দুটোতেই বেশ কয়েকটা required argument আছে, তাই provider docs দেখে নিন।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"oci_database_autonomous_database"</span><span class="w"> </span><span class="nv">"adw"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">  </span><span class="na">compartment_id</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="nv">var.compartment_id</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">  </span><span class="na">db_name</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbdadw"</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">  </span><span class="na">display_name</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-adw"</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">  </span><span class="na">db_workload</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s2">"DW"</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">  </span><span class="na">compute_model</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">"ECPU"</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">  </span><span class="na">compute_count</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">  </span><span class="na">data_storage_size_in_tbs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">  </span><span class="na">admin_password</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="nv">var.adw_admin_password</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="৫-etl--elt-ও-orchestration">৫. ETL / ELT ও Orchestration<a class="headerlink" href="#৫-etl--elt-ও-orchestration" title="Permanent link">&para;</a></h2>
+<p>Data কপি-করা, পরিষ্কার-করা ও সাজানো — এই pipeline-এর সরঞ্জাম:</p>
+<table>
+<thead>
+<tr>
+<th>কাজ</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Serverless ETL</td>
+<td><strong>AWS Glue</strong> (Spark job, crawler, DataBrew)</td>
+<td><strong>Dataflow</strong> (Apache Beam; batch+stream)</td>
+<td><strong>Azure Data Factory</strong> / Fabric Data Factory (pipeline + mapping data flow)</td>
+<td><strong>OCI Data Integration</strong> (visual, data flow)</td>
+</tr>
+<tr>
+<td>Managed Spark/Hadoop</td>
+<td><strong>EMR</strong></td>
+<td><strong>Dataproc</strong> (বা Serverless for Apache Spark)</td>
+<td><strong>Synapse Spark</strong>, <strong>Azure Databricks</strong>, HDInsight</td>
+<td><strong>OCI Data Flow</strong>, Big Data Service</td>
+</tr>
+<tr>
+<td>Schema খুঁজে বের করা</td>
+<td>Glue Crawler</td>
+<td>Dataplex discovery</td>
+<td>Purview scan</td>
+<td>Data Catalog harvest</td>
+</tr>
+<tr>
+<td>CDC (change data capture)</td>
+<td>DMS, Aurora→Redshift <strong>zero-ETL</strong></td>
+<td><strong>Datastream</strong></td>
+<td>Data Factory CDC, Fabric Mirroring</td>
+<td><strong>OCI GoldenGate</strong></td>
+</tr>
+<tr>
+<td>Orchestration (workflow/schedule)</td>
+<td>Step Functions, <strong>MWAA</strong> (Managed Airflow)</td>
+<td><strong>Cloud Composer</strong> (Airflow), Workflows</td>
+<td>Data Factory pipeline trigger</td>
+<td>Data Integration schedule / pipeline</td>
+</tr>
+<tr>
+<td>Streaming → lake</td>
+<td>Amazon Data Firehose → S3</td>
+<td>Dataflow / Pub/Sub → BigQuery subscription</td>
+<td>Event Hubs Capture / Stream Analytics</td>
+<td>OCI Streaming + GoldenGate</td>
+</tr>
+</tbody>
+</table>
+<p>Streaming-এর মূল ধারণা: <a href="../11-messaging-and-events/">Messaging ও Event</a>।</p>
+<h3 id="একট-spark-etl--চর-জযগয-একই-কড">একটা Spark ETL — চার জায়গায় একই কোড<a class="headerlink" href="#একট-spark-etl--চর-জযগয-একই-কড" title="Permanent link">&para;</a></h3>
+<p>PySpark কোড প্রায় অপরিবর্তিত চলে Glue, Dataproc, Synapse/Databricks ও OCI Data Flow-এ — শুধু path-এর scheme আলাদা (<code>s3://</code>, <code>gs://</code>, <code>abfss://</code>, <code>oci://</code>)।</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparkSession</span><span class="p">,</span> <span class="n">functions</span> <span class="k">as</span> <span class="n">F</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">"shopbd-orders-etl"</span><span class="p">)</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="n">raw</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">"header"</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s2">"s3://shopbd-datalake/raw/orders/2026-11-23.csv"</span><span class="p">)</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="n">clean</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>    <span class="n">raw</span><span class="o">.</span><span class="n">dropDuplicates</span><span class="p">([</span><span class="s2">"order_id"</span><span class="p">])</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>       <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">"total_bdt"</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"total_bdt"</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s2">"double"</span><span class="p">))</span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>       <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">"created_at"</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">to_timestamp</span><span class="p">(</span><span class="s2">"created_at"</span><span class="p">))</span>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>       <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">"dt"</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">date_format</span><span class="p">(</span><span class="s2">"created_at"</span><span class="p">,</span> <span class="s2">"yyyy-MM-dd"</span><span class="p">))</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>       <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"status"</span><span class="p">)</span><span class="o">.</span><span class="n">isNotNull</span><span class="p">())</span>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="p">)</span>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="n">clean</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s2">"overwrite"</span><span class="p">)</span><span class="o">.</span><span class="n">partitionBy</span><span class="p">(</span><span class="s2">"dt"</span><span class="p">)</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span>
+</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>    <span class="s2">"s3://shopbd-datalake/curated/orders/"</span>
+</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="পলযটফরম-ধর-pipeline">প্ল্যাটফর্ম ধরে pipeline<a class="headerlink" href="#পলযটফরম-ধর-pipeline" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:4"><input checked="checked" id="aws_4" name="__tabbed_5" type="radio" /><input id="gcp_4" name="__tabbed_5" type="radio" /><input id="azure_4" name="__tabbed_5" type="radio" /><input id="oci_4" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="aws_4">AWS</label><label for="gcp_4">GCP</label><label for="azure_4">Azure</label><label for="oci_4">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>AWS Glue</strong>: ETL job (Spark), crawler দিয়ে schema আবিষ্কার, Glue Data Catalog।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>aws<span class="w"> </span>glue<span class="w"> </span>create-database<span class="w"> </span>--database-input<span class="w"> </span><span class="nv">Name</span><span class="o">=</span>shopbd_lake
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>aws<span class="w"> </span>glue<span class="w"> </span>start-job-run<span class="w"> </span>--job-name<span class="w"> </span>shopbd-nightly-orders
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>aws<span class="w"> </span>glue<span class="w"> </span>get-job-runs<span class="w"> </span>--job-name<span class="w"> </span>shopbd-nightly-orders<span class="w"> </span>--max-items<span class="w"> </span><span class="m">5</span>
+</span></code></pre></div>
+<p>Orchestration: <strong>EventBridge Scheduler</strong> (রাত ২টা) → <strong>Step Functions</strong> → Glue job → Athena/Redshift। Production database থেকে Redshift-এ <strong>zero-ETL integration</strong> (Aurora/RDS) থাকলে আলাদা ETL pipeline কমানো যায়।</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Dataflow</strong> (Apache Beam, batch ও streaming), <strong>Dataproc</strong> (Spark/Hadoop), <strong>BigQuery Data Transfer Service</strong> (SaaS/GCS থেকে schedule করে load), <strong>Datastream</strong> (CDC)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>gcloud<span class="w"> </span>dataflow<span class="w"> </span><span class="nb">jobs</span><span class="w"> </span>list<span class="w"> </span>--region<span class="o">=</span>asia-south1
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>gcloud<span class="w"> </span>dataproc<span class="w"> </span>clusters<span class="w"> </span>create<span class="w"> </span>shopbd-spark<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">  </span>--region<span class="o">=</span>asia-south1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">  </span>--num-workers<span class="o">=</span><span class="m">2</span>
+</span></code></pre></div>
+<p>ELT-র ক্ষেত্রে অনেক সময় BigQuery-র ভেতরেই SQL (scheduled query / Dataform) যথেষ্ট — আলাদা ETL tool লাগে না। Orchestration: <strong>Cloud Composer</strong> (Airflow) বা সরল ক্ষেত্রে <strong>Cloud Scheduler + Workflows</strong>।</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Azure Data Factory</strong> — drag-and-drop pipeline, ১০০+ connector (copy activity), mapping data flow (Spark চালায় নিজে)। Fabric-এ <strong>Data Factory</strong> একই ধারণা।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>az<span class="w"> </span>extension<span class="w"> </span>add<span class="w"> </span>--name<span class="w"> </span>datafactory
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>az<span class="w"> </span>datafactory<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-prod-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="w">  </span>--factory-name<span class="w"> </span>shopbd-adf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="w">  </span>--location<span class="w"> </span>centralindia
+</span></code></pre></div>
+<p>Pipeline-এর ফর্ম সাধারণত JSON/Portal-এ ডিজাইন হয় ও Git-এ থাকে। Spark-ভিত্তিক বড় কাজে <strong>Azure Databricks</strong> বা Synapse/Fabric notebook।</p>
+</div>
+<div class="tabbed-block">
+<p><strong>OCI Data Integration</strong> (visual ETL ও pipeline), <strong>OCI Data Flow</strong> (managed Apache Spark — আপনি শুধু application দেন), <strong>GoldenGate</strong> (real-time replication)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>oci<span class="w"> </span>data-integration<span class="w"> </span>workspace<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">  </span>--display-name<span class="w"> </span>shopbd-di
+</span></code></pre></div>
+<p>Oracle Autonomous Database-এ <code>DBMS_CLOUD</code> ও scheduler দিয়ে ছোট ELT সরাসরি DB-র ভেতরেই করা যায়।</p>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">ছোট দলের জন্য সহজ শুরু</p>
+<p>প্রথমেই Spark/Airflow-র জটিলতায় যাবেন না। shopbd-র মতো ছোট অনলাইন শপে: <strong>রাতে একটা script</strong> → PostgreSQL থেকে Parquet export → lake → warehouse/Athena-তে SQL। ডেটা বাড়লে তখন managed ETL।</p>
+</div>
+<h3 id="orchestration-এ-য-থক-চই">Orchestration-এ যা থাকা চাই<a class="headerlink" href="#orchestration-এ-য-থক-চই" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Schedule</strong>: রাত ২টায় চালু (cron বা scheduler)।</li>
+<li><strong>Dependency</strong>: export শেষ হলে তবেই transform।</li>
+<li><strong>Retry ও alert</strong>: ব্যর্থ হলে <code>ops@example.com</code>-এ email — <a href="../12-observability/">Monitoring</a>।</li>
+<li><strong>Idempotent</strong>: একই দিনের job দুবার চালালে duplicate হবে না (<code>overwrite</code> partition বা <code>MERGE</code>)।</li>
+</ul>
+<h2 id="৬-business-intelligence-bi">৬. Business Intelligence (BI)<a class="headerlink" href="#৬-business-intelligence-bi" title="Permanent link">&para;</a></h2>
+<p>BI tool warehouse বা lake-এর table থেকে chart/dashboard বানায়।</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tool</td>
+<td><strong>Amazon QuickSight</strong> (এখন Amazon Quick Suite-এর অংশ)</td>
+<td><strong>Looker</strong> (enterprise, semantic layer), <strong>Looker Studio</strong> (বিনামূল্যের সহজ)</td>
+<td><strong>Power BI</strong> (Fabric-এর সাথে)</td>
+<td><strong>Oracle Analytics Cloud</strong></td>
+</tr>
+<tr>
+<td>Data source</td>
+<td>Athena, Redshift, RDS, S3</td>
+<td>BigQuery, Cloud SQL</td>
+<td>Fabric/Synapse, Azure SQL, Excel</td>
+<td>Autonomous DB, OCI sources</td>
+</tr>
+<tr>
+<td>বিশেষত্ব</td>
+<td>Pay-per-session, SPICE in-memory engine, embedded analytics</td>
+<td>LookML দিয়ে metric সংজ্ঞা এক জায়গায়</td>
+<td>Excel-এর মতো পরিচিত, Microsoft 365-এর সাথে মিল</td>
+<td>Oracle ecosystem-এর গভীর integration</td>
+</tr>
+</tbody>
+</table>
+<p>প্রতিটি BI tool-এ যা দেখতে হবে: <strong>row-level security</strong> (কে কোন ডেটা দেখবে), <strong>semantic layer</strong> ("revenue" মানে কী তা একবার সংজ্ঞায়িত), refresh schedule, ও কয়জন user-এর license — খরচের প্রধান factor। শুরুতে Looker Studio বা Power BI Desktop-এর মতো সহজ বিকল্পও চলে। Metabase/Superset-এর মতো open source tool-ও যেকোনো cloud-এর warehouse-এ জোড়া যায়।</p>
+<h2 id="৭-governance-security-ও-খরচ">৭. Governance, security ও খরচ<a class="headerlink" href="#৭-governance-security-ও-খরচ" title="Permanent link">&para;</a></h2>
+<h3 id="নরপতত-ও-privacy">নিরাপত্তা ও privacy<a class="headerlink" href="#নরপতত-ও-privacy" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>PII (ব্যক্তিগত তথ্য)</strong>: customer-এর ফোন নম্বর, ঠিকানা warehouse-এ আনার আগে <strong>masking/hashing</strong> করুন — analytics-এ আসল নম্বর লাগে না।</li>
+<li>Column-level permission (Lake Formation / BigQuery policy tags / Purview / Oracle Data Redaction)।</li>
+<li>Lake bucket private, encryption চালু (<a href="../13-security/">Security</a>)।</li>
+<li>Access log চালু (CloudTrail data events / Cloud Audit Logs / Storage logs)।</li>
+<li>ডেটা retention নীতি: raw data কতদিন রাখবেন (lifecycle — <a href="../06-storage/">Storage</a>)।</li>
+</ul>
+<h3 id="খরচ-ক-ক-বডয">খরচ কী কী বাড়ায়<a class="headerlink" href="#খরচ-ক-ক-বডয" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>কারণ</th>
+<th>কীভাবে নিয়ন্ত্রণ করবেন</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scan করা data (Athena, BigQuery on-demand, Synapse serverless)</td>
+<td>Parquet, partition, শুধু দরকারি কলাম, query limit</td>
+</tr>
+<tr>
+<td>Warehouse compute চালু থাকা (Redshift provisioned, Synapse dedicated, ADW)</td>
+<td>Serverless/pause/auto-scale; ব্যবহারহীন সময়ে বন্ধ</td>
+</tr>
+<tr>
+<td>ETL job-এর সময়</td>
+<td>ছোট ছোট ফাইল জুড়ে বড় ফাইল (কয়েকশ MB); incremental load</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Lifecycle, পুরোনো raw → cold/archive</td>
+</tr>
+<tr>
+<td>Cross-region/egress transfer</td>
+<td>Lake ও warehouse একই region-এ</td>
+</tr>
+<tr>
+<td>BI user license</td>
+<td>Viewer vs Author আলাদা করা</td>
+</tr>
+</tbody>
+</table>
+<p>দাম বাদ দিয়ে শুধু এই কারণগুলো মাথায় রাখুন; হিসাব করতে অফিসিয়াল calculator: <a href="https://calculator.aws/">AWS</a>, <a href="https://cloud.google.com/products/calculator">GCP</a>, <a href="https://azure.microsoft.com/pricing/calculator/">Azure</a>, <a href="https://www.oracle.com/cloud/costestimator.html">OCI</a>। বিস্তারিত: <a href="../18-cost-management/">Cost Management</a>।</p>
+<h2 id="মল-ও-অমল">মিল ও অমিল<a class="headerlink" href="#মল-ও-অমল" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Warehouse "serverless"?</td>
+<td>Redshift Serverless (RPU)</td>
+<td>BigQuery (মূলত serverless)</td>
+<td>Fabric / Synapse serverless (query-only)</td>
+<td>Autonomous (auto-scale, কিন্তু instance আছে)</td>
+</tr>
+<tr>
+<td>Query-on-lake-এর একক</td>
+<td>Athena (আলাদা service)</td>
+<td>BigQuery-র ভেতরেই external table</td>
+<td>Synapse serverless / Fabric endpoint</td>
+<td>Autonomous DB external table</td>
+</tr>
+<tr>
+<td>Catalog</td>
+<td>Glue (de-facto)</td>
+<td>Dataplex</td>
+<td>Purview</td>
+<td>OCI Data Catalog</td>
+</tr>
+<tr>
+<td>Orchestration</td>
+<td>Step Functions / MWAA</td>
+<td>Composer (Airflow)</td>
+<td>Data Factory</td>
+<td>Data Integration</td>
+</tr>
+<tr>
+<td>"Dataset" শব্দ</td>
+<td>Database/schema</td>
+<td><strong>Dataset</strong> (project-এর নিচে)</td>
+<td>Database/schema</td>
+<td>Schema</td>
+</tr>
+<tr>
+<td>মূল ভাষা</td>
+<td>Presto-SQL (Athena), Redshift SQL</td>
+<td>GoogleSQL (BigQuery)</td>
+<td>T-SQL</td>
+<td>Oracle SQL / PL-SQL</td>
+</tr>
+<tr>
+<td>Platform strategy</td>
+<td>আলাদা আলাদা service-এর সমষ্টি</td>
+<td>বেশিরভাগ BigQuery-কেন্দ্রিক</td>
+<td>Fabric-এ একত্রীকরণ</td>
+<td>Autonomous DB-কেন্দ্রিক</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gotcha</strong></p>
+<ul>
+<li><strong>SQL dialect আলাদা:</strong> Athena (Trino), BigQuery (GoogleSQL), Synapse (T-SQL), Oracle — date function ও <code>LIMIT</code>/<code>TOP</code> ভিন্ন। এক cloud-এর query অন্যটায় সরাসরি চলে না।</li>
+<li><strong>Region মেলানো:</strong> BigQuery dataset <code>asia-south1</code>-এ হলে GCS bucket-ও একই region/location-এ হওয়া ভালো — cross-location load/query-তে সমস্যা বা খরচ হয়।</li>
+<li><strong>Athena-তে নতুন partition ধরা পড়ে না</strong> <code>MSCK REPAIR TABLE</code> / partition projection ছাড়া।</li>
+<li><strong>Synapse dedicated pool চালু থাকলেই বিল</strong> — ব্যবহার না করলে pause করুন।</li>
+<li><strong>BigQuery on-demand-এ <code>SELECT *</code></strong> পুরো table-এর scan-এর বিল আনে — <code>LIMIT</code> খরচ কমায় না!</li>
+<li><strong>OCI Autonomous Database-এ external table-এর credential</strong> আগে <code>DBMS_CLOUD.CREATE_CREDENTIAL</code> দিয়ে বানাতে হয়।</li>
+<li><strong>Azure Data Factory-র pipeline থেকে storage access</strong> managed identity ও role assignment ছাড়া ব্যর্থ হয়।</li>
+</ul>
+<h2 id="real-world-shopbd">Real-world: shopbd<a class="headerlink" href="#real-world-shopbd" title="Permanent link">&para;</a></h2>
+<p>shopbd-র মালিকের প্রশ্ন: "প্রতিদিন কোন জেলায় কত বিক্রি? কোন product সবচেয়ে বেশি ফেরত আসছে?" — একটা ছোট কিন্তু সঠিক data pipeline:</p>
+<ol>
+<li><strong>Source</strong>: <code>shopbd-db</code> (PostgreSQL) — read replica থেকে (<a href="../07-databases/">Database</a>), production-এর ওপর চাপ ছাড়াই।</li>
+<li><strong>রাত ২টা</strong> একটা scheduled job: গতকালের order ও order_items Parquet-এ export করে <code>raw/</code> ও <code>curated/orders/dt=YYYY-MM-DD/</code>-এ লেখে (ফোন নম্বর hash করে)।</li>
+<li><strong>Query</strong>: প্রথমে lake-এর ওপর সরাসরি Athena / BigQuery external / Synapse serverless / ADB external table-এ SQL।</li>
+<li><strong>Warehouse</strong> (ঐচ্ছিক, ডেটা বাড়লে): orders, products, customers-এর star schema।</li>
+<li><strong>Dashboard</strong>: BI tool-এ "আজকের বিক্রি", "জেলাভিত্তিক বিক্রি", "ফেরতের হার" — সকাল ৯টায় refresh।</li>
+<li><strong>Alert</strong>: job ব্যর্থ হলে <code>ops@example.com</code>-এ email।</li>
+</ol>
+<p>সবচেয়ে সাধারণ রিপোর্ট query (ধারণা একই, dialect ভিন্ন):</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">SELECT</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">  </span><span class="n">district</span><span class="p">,</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">  </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w">        </span><span class="k">AS</span><span class="w"> </span><span class="n">orders</span><span class="p">,</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">  </span><span class="k">SUM</span><span class="p">(</span><span class="n">total_bdt</span><span class="p">)</span><span class="w">  </span><span class="k">AS</span><span class="w"> </span><span class="n">sales_bdt</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="s1">'2026-11-01'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="s1">'2026-11-30'</span>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'delivered'</span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">district</span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">sales_bdt</span><span class="w"> </span><span class="k">DESC</span>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>ধাপ</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lake</td>
+<td>S3 <code>shopbd-datalake</code></td>
+<td>GCS <code>shopbd-datalake</code></td>
+<td>ADLS Gen2 <code>shopbddatalake</code></td>
+<td>Object Storage <code>shopbd-datalake</code></td>
+</tr>
+<tr>
+<td>ETL</td>
+<td>Glue job (Spark) / cron script</td>
+<td>Dataflow বা BigQuery scheduled query</td>
+<td>Data Factory</td>
+<td>Data Integration / Data Flow</td>
+</tr>
+<tr>
+<td>Query</td>
+<td>Athena (+ Redshift Serverless)</td>
+<td>BigQuery</td>
+<td>Synapse serverless (+ Fabric)</td>
+<td>Autonomous DW</td>
+</tr>
+<tr>
+<td>Dashboard</td>
+<td>QuickSight</td>
+<td>Looker Studio</td>
+<td>Power BI</td>
+<td>Oracle Analytics Cloud</td>
+</tr>
+<tr>
+<td>Schedule</td>
+<td>EventBridge Scheduler</td>
+<td>Cloud Scheduler</td>
+<td>ADF trigger</td>
+<td>OCI Scheduler / Data Integration schedule</td>
+</tr>
+</tbody>
+</table>
+<p>ছোট শুরুর পরামর্শ: প্রথমে <strong>শুধু lake + serverless query + একটা বিনামূল্যের BI tool</strong> — warehouse তখনই, যখন query ধীর হচ্ছে বা অনেক মানুষ একসাথে dashboard দেখছে।</p>
+<h2 id="best-practices">Best practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>OLTP-তে analytics নয়</strong>: read replica বা আলাদা warehouse/lake ব্যবহার করুন।</li>
+<li><strong>Parquet + partition by date</strong> lake-এর default; ছোট ফাইলের বদলে কয়েকশ MB-র ফাইল।</li>
+<li><strong>Layer রাখুন</strong>: raw অপরিবর্তিত রাখুন — transform ভুল হলে আবার চালানো যায়।</li>
+<li><strong>ELT প্রাধান্য</strong>: কাঁচা data আগে আনুন, SQL দিয়ে ভেতরে transform; version-controlled SQL (Dataform/dbt)।</li>
+<li><strong>Idempotent pipeline</strong>: একই job দুবার চালালে ফল একই।</li>
+<li><strong>Catalog ও schema ডকুমেন্ট করুন</strong>; data owner ঠিক করুন।</li>
+<li><strong>PII mask/hash</strong>, column-level permission, least privilege (<a href="../03-identity-and-access/">Identity ও Access</a>)।</li>
+<li><strong>Cost guardrail</strong>: query bytes limit, budget alert, auto-pause।</li>
+<li><strong>Data quality check</strong>: row count, null check, duplicate check — pipeline-এর ধাপে।</li>
+<li><strong>Monitoring</strong>: job ব্যর্থতা, data freshness (আজকের partition এসেছে কি না)।</li>
+<li><strong>একই region-এ</strong> lake, warehouse ও compute।</li>
+</ul>
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ভুল</th>
+<th>ফল</th>
+<th>সমাধান</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Production DB-তে ভারী report query</td>
+<td>App ধীর, timeout</td>
+<td>Read replica / warehouse</td>
+</tr>
+<tr>
+<td>CSV-তে lake রাখা</td>
+<td>বড়, ধীর, দামি scan</td>
+<td>Parquet-এ রূপান্তর</td>
+</tr>
+<tr>
+<td>Partition ছাড়া বা অত্যধিক partition</td>
+<td>সব scan বা metadata-র বোঝা</td>
+<td>তারিখ-ভিত্তিক সঠিক granularity</td>
+</tr>
+<tr>
+<td><code>SELECT *</code></td>
+<td>অপ্রয়োজনীয় scan খরচ</td>
+<td>শুধু দরকারি কলাম</td>
+</tr>
+<tr>
+<td>Warehouse চালু রেখে ভুলে যাওয়া</td>
+<td>অকারণে বিল</td>
+<td>Serverless / auto-pause / schedule</td>
+</tr>
+<tr>
+<td>Raw data না রেখে শুধু transform-করা data রাখা</td>
+<td>ভুল হলে আর ঠিক করা যায় না</td>
+<td>Bronze/raw স্থায়ী রাখুন</td>
+</tr>
+<tr>
+<td>Non-idempotent job</td>
+<td>Retry-তে duplicate row</td>
+<td>Partition overwrite / MERGE</td>
+</tr>
+<tr>
+<td>PII (ফোন, ঠিকানা) সরাসরি analytics-এ</td>
+<td>Privacy ঝুঁকি</td>
+<td>Hash/mask, access control</td>
+</tr>
+<tr>
+<td>Lake ও warehouse ভিন্ন region-এ</td>
+<td>বাড়তি egress ও ধীর load</td>
+<td>একই region</td>
+</tr>
+<tr>
+<td>একটাই বিশাল "everything" Spark cluster</td>
+<td>খরচ ও জটিলতা</td>
+<td>Serverless job বা ছোট ছোট কাজ</td>
+</tr>
+<tr>
+<td>BI-তে সবাইকে সব data দেখানো</td>
+<td>তথ্য ফাঁস</td>
+<td>Row/column-level security</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ইনটরভউ--সরটফকশন-টপস">ইন্টারভিউ / সার্টিফিকেশন টিপস<a class="headerlink" href="#ইনটরভউ--সরটফকশন-টপস" title="Permanent link">&para;</a></h2>
+<details class="question">
+<summary>Data warehouse আর data lake-এর পার্থক্য কী?</summary>
+<p>Warehouse: structured, পরিষ্কার, schema-on-write, দ্রুত SQL (BigQuery, Redshift)। Lake: যেকোনো ধরনের কাঁচা data, সস্তা object storage, schema-on-read। Lakehouse দুটোর সুবিধা একত্র করে (Iceberg/Delta)।</p>
+</details>
+<details class="question">
+<summary>ETL আর ELT-এর পার্থক্য?</summary>
+<p>ETL-এ transform load-এর আগে (বাইরের engine-এ); ELT-এ কাঁচা data আগে load, তারপর warehouse-এর কম্পিউট দিয়ে transform। আধুনিক cloud-এ ELT বেশি প্রচলিত।</p>
+</details>
+<details class="question">
+<summary>Athena বা BigQuery-তে খরচ কমানোর উপায়?</summary>
+<p>Columnar format (Parquet), partition + partition filter, শুধু প্রয়োজনীয় কলাম, query-র সীমা (workgroup limit / max bytes billed), result caching।</p>
+</details>
+<details class="question">
+<summary>Redshift Serverless বনাম Provisioned কখন?</summary>
+<p>Workload অনিয়মিত/অজানা হলে Serverless (ব্যবহারের ভিত্তিতে)। স্থির, ভারী workload ও নিয়ন্ত্রণ/reserved-দামের সুবিধা চাইলে Provisioned RA3।</p>
+</details>
+<details class="question">
+<summary>BigQuery slot কী? On-demand ও capacity pricing-এর পার্থক্য?</summary>
+<p>Slot = BigQuery-র কম্পিউট একক। On-demand: scan করা data অনুযায়ী খরচ। Capacity: নির্দিষ্ট slot reserve করে স্থির খরচ — প্রচুর ও পূর্বানুমেয় query থাকলে সুবিধা।</p>
+</details>
+<details class="question">
+<summary>Parquet কেন দ্রুত?</summary>
+<p>Column-ভিত্তিক সংরক্ষণ — query শুধু দরকারি কলাম পড়ে; compression ভালো; metadata (min/max) দিয়ে row group বাদ দেওয়া যায় (predicate pushdown)।</p>
+</details>
+<details class="question">
+<summary>Synapse আর Fabric-এর সম্পর্ক?</summary>
+<p>Fabric হলো Microsoft-এর নতুন unified analytics platform (OneLake, Warehouse, Lakehouse, Data Factory, Power BI)। Synapse এখনও সমর্থিত, তবে নতুন কাজ সাধারণত Fabric-এ যায়।</p>
+</details>
+<details class="question">
+<summary>CDC কী এবং কেন দরকার?</summary>
+<p>Change Data Capture — source database-এর পরিবর্তন (insert/update/delete) প্রায় real-time ধরে অন্য জায়গায় পাঠানো। Batch export-এর চেয়ে নতুন, production-এ কম চাপ। Tool: DMS/zero-ETL, Datastream, Fabric Mirroring/Data Factory, GoldenGate।</p>
+</details>
+<h2 id="সরসকষপ">সারসংক্ষেপ<a class="headerlink" href="#সরসকষপ" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>OLTP ও OLAP আলাদা</strong> রাখুন; analytics production DB-তে নয়।</li>
+<li><strong>Data lake</strong> = object storage + <strong>Parquet</strong> + <strong>partition</strong> + <strong>catalog</strong>; লেয়ার: raw → curated → marts।</li>
+<li><strong>Query-on-lake</strong> (Athena / BigQuery external / Synapse serverless / ADB external) — warehouse ছাড়াই শুরু করার সহজ পথ; খরচ scan-এর ওপর।</li>
+<li><strong>Warehouse</strong>: Redshift, BigQuery, Synapse → Fabric, Autonomous Data Warehouse — column-ভিত্তিক MPP।</li>
+<li><strong>ETL/ELT</strong>: Glue, Dataflow/Dataproc, Data Factory, OCI Data Integration/Data Flow; PySpark কোড প্রায় সব জায়গায় চলে।</li>
+<li><strong>Orchestration ও idempotency</strong>, <strong>PII masking</strong> ও <strong>cost guardrail</strong> ছাড়া pipeline production-ready নয়।</li>
+<li><strong>BI</strong>: QuickSight, Looker/Looker Studio, Power BI, Oracle Analytics Cloud।</li>
+<li>shopbd: replica → রাতে Parquet → lake → serverless query → dashboard; warehouse পরে।</li>
+</ul>
+<p>পরের অধ্যায়: <a href="../17-ai-ml/">17 · AI ও Machine Learning</a>।</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  উপরে ফিরে যাও
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="ফুটার" >
+        
+          
+          <a href="../15-cicd-devops/" class="md-footer__link md-footer__link--prev" aria-label="পূর্ববর্তী: 15 · CI/CD ও DevOps">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পূর্ববর্তী
+              </span>
+              <div class="md-ellipsis">
+                15 · CI/CD ও DevOps
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../17-ai-ml/" class="md-footer__link md-footer__link--next" aria-label="পরে: 17 · AI ও Machine Learning">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পরে
+              </span>
+              <div class="md-ellipsis">
+                17 · AI ও Machine Learning
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Hasib Ahmed — Cloud বাংলা ডকুমেন্টেশন
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Hasib105/cloud-bangla-docs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u09b9\u09df\u09c7\u099b\u09c7", "clipboard.copy": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u0995\u09b0\u09c1\u09a8", "search.result.more.one": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 \u09e7\u099f\u09bf \u0986\u099b\u09c7", "search.result.more.other": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 #\u099f\u09bf \u0986\u099b\u09c7", "search.result.none": "\u0995\u09bf\u099b\u09c1 \u09aa\u09be\u0993\u09df\u09be \u09af\u09be\u09df\u09a8\u09bf", "search.result.one": "\u09e7 \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.other": "# \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.placeholder": "\u09b8\u09be\u09b0\u09cd\u099a \u099f\u09be\u0987\u09aa \u0995\u09b0\u09c1\u09a8", "search.result.term.missing": "\u0985\u09a8\u09c1\u09aa\u09b8\u09cd\u09a5\u09bf\u09a4", "select.version": "\u09b8\u0982\u09b8\u09cd\u0995\u09b0\u09a3 \u09a8\u09bf\u09b0\u09cd\u09ac\u09be\u099a\u09a8 \u0995\u09b0\u09c1\u09a3"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

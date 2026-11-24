@@ -1,0 +1,4200 @@
+
+<!doctype html>
+<html lang="bn" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="এক টপিক, চার cloud — AWS, Google Cloud, Microsoft Azure ও Oracle Cloud (OCI) শূন্য থেকে অ্যাডভান্স, পাশাপাশি তুলনাসহ সম্পূর্ণ বাংলা ডকুমেন্টেশন।">
+      
+      
+        <meta name="author" content="Hasib Ahmed">
+      
+      
+        <link rel="canonical" href="https://hasib105.github.io/cloud-bangla-docs/19-architecture-ha-dr/">
+      
+      
+        <link rel="prev" href="../18-cost-management/">
+      
+      
+        <link rel="next" href="../platforms/aws/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>19 · Architecture ও HA/DR - Cloud বাংলা — AWS · GCP · Azure · OCI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M6.5%2020q-2.28%200-3.89-1.57Q1%2016.85%201%2014.58q0-1.95%201.17-3.48%201.18-1.53%203.08-1.95.63-2.3%202.5-3.72Q9.63%204%2012%204q2.93%200%204.96%202.04Q19%208.07%2019%2011q1.73.2%202.86%201.5%201.14%201.28%201.14%203%200%201.88-1.31%203.19T18.5%2020m-12-2h12q1.05%200%201.77-.73.73-.72.73-1.77t-.73-1.77Q19.55%2013%2018.5%2013H17v-2q0-2.07-1.46-3.54Q14.08%206%2012%206%209.93%206%208.46%207.46%207%208.93%207%2011h-.5q-1.45%200-2.47%201.03Q3%2013.05%203%2014.5T4.03%2017q1.02%201%202.47%201m5.5-6%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind+Siliguri:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Hind Siliguri";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#19--architecture-hadr-ও-multi-cloud" class="md-skip">
+          কনটেন্টে যান
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="হেডার">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-header__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud বাংলা — AWS · GCP · Azure · OCI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              19 · Architecture ও HA/DR
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="ডার্ক মোড"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ডার্ক মোড" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="লাইট মোড"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="লাইট মোড" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="অনুসন্ধান করুন" placeholder="অনুসন্ধান করুন" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="অনুসন্ধান করুন">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="শেয়ার" aria-label="শেয়ার" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="রিসেট" aria-label="রিসেট" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            অনুসন্ধান শুরু করা হচ্ছে
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="ট্যাব" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  হোম
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01-cloud-fundamentals/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  মূল ধারণা
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../platforms/aws/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  প্ল্যাটফর্ম গাইড
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reference/service-map/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  রেফারেন্স
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ন্যাভিগেশন" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-nav__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    Cloud বাংলা — AWS · GCP · Azure · OCI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    হোম
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    মূল ধারণা
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    মূল ধারণা
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-cloud-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Cloud-এর ভিত্তি
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-accounts-and-hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Account ও Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-identity-and-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Identity ও Access (IAM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-compute-vms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Virtual Machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-networking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Networking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-containers-kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Container ও Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-serverless/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Serverless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-load-balancing-scaling-dns-cdn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Load Balancing, DNS ও CDN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-messaging-and-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Messaging ও Event
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Monitoring ও Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-infrastructure-as-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 · Infrastructure as Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-cicd-devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 · CI/CD ও DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-data-and-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 · Data ও Analytics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-ai-ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 · AI ও Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-cost-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 · Cost Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 · Architecture ও HA/DR
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 · Architecture ও HA/DR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-well-architected-framework--design-যচইযর-চকলসট" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. Well-Architected Framework — design যাচাইয়ের চেকলিস্ট
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. Well-Architected Framework — design যাচাইয়ের চেকলিস্ট">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#১১-চর-framework--ক-মল-ক-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১.১ চার framework — কী মিল, কী অমিল
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#১২-trade-off--pillar-গল-এক-অপরর-সথ-লড" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১.২ Trade-off — pillar-গুলো একে অপরের সাথে লড়ে
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-high-availability-ha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. High Availability (HA)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="২. High Availability (HA)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#২১-availability-র-হসব" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২.১ Availability-র হিসাব
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#২২-failure-domain--কতট-বড-ভঙন-সমলবন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২.২ Failure domain — কতটা বড় ভাঙন সামলাবেন?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#২৩-ha-র-মল-নকশ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২.৩ HA-র মূল নকশা
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#২৪-ha-database--চর-cloud-এ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২.৪ HA database — চার cloud-এ
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-disaster-recovery-dr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Disaster Recovery (DR)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Disaster Recovery (DR)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#৩১-rpo-ও-rto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.১ RPO ও RTO
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৩২-চর-dr-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.২ চার DR strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৩৩-চর-cloud-এর-dr-টল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.৩ চার cloud-এর DR টুল
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৩৪-region-জড--bangladesh-এর-জনয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.৪ Region জোড়া — Bangladesh-এর জন্য
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৩৫-কজ-হত--shopbd-র-dr-উপদন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.৫ কাজে হাত — shopbd-র DR উপাদান
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৩৬-dr-যদ-পরকষ-ন-করন-সট-dr-ন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.৬ DR যদি পরীক্ষা না করেন, সেটা DR না
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-multi-region-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. Multi-region architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-multi-cloud-ও-hybrid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. Multi-cloud ও Hybrid
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৫. Multi-cloud ও Hybrid">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#৫১-multi-cloud-মন-ক-কন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫.১ Multi-cloud মানে কী, কেন?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৫২-multi-cloud-এর-বসতব-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫.২ Multi-cloud-এর বাস্তব pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৫৩-hybrid--নজর-data-center--cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫.৩ Hybrid — নিজের data center + cloud
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-migration--অনয-জযগ-থক-cloud-এ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Migration — অন্য জায়গা থেকে cloud-এ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৬. Migration — অন্য জায়গা থেকে cloud-এ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#৬১-6r-কশল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬.১ 6R কৌশল
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৬২-ধপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬.২ ধাপ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৬৩-migration-টল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬.৩ Migration টুল
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-shopbd-reference-architecture--চর-cloud-এ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. shopbd reference architecture — চার cloud-এ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৭. shopbd reference architecture — চার cloud-এ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#৭১-আবশযকত-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭.১ আবশ্যকতা (requirements)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৭২-reference-architecture--পরত-cloud-এ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭.২ Reference architecture — প্রতি cloud-এ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৭৩-slo-ও-dr-runbook-সব-cloud-এ-পরযজয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭.৩ SLO ও DR runbook (সব cloud-এ প্রযোজ্য)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/gcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Cloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/azure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microsoft Azure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/oci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle Cloud (OCI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    রেফারেন্স
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    রেফারেন্স
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/service-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli-cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Cheatsheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-well-architected-framework--design-যচইযর-চকলসট" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. Well-Architected Framework — design যাচাইয়ের চেকলিস্ট
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. Well-Architected Framework — design যাচাইয়ের চেকলিস্ট">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#১১-চর-framework--ক-মল-ক-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১.১ চার framework — কী মিল, কী অমিল
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#১২-trade-off--pillar-গল-এক-অপরর-সথ-লড" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১.২ Trade-off — pillar-গুলো একে অপরের সাথে লড়ে
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-high-availability-ha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. High Availability (HA)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="২. High Availability (HA)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#২১-availability-র-হসব" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২.১ Availability-র হিসাব
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#২২-failure-domain--কতট-বড-ভঙন-সমলবন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২.২ Failure domain — কতটা বড় ভাঙন সামলাবেন?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#২৩-ha-র-মল-নকশ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২.৩ HA-র মূল নকশা
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#২৪-ha-database--চর-cloud-এ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২.৪ HA database — চার cloud-এ
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-disaster-recovery-dr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Disaster Recovery (DR)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Disaster Recovery (DR)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#৩১-rpo-ও-rto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.১ RPO ও RTO
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৩২-চর-dr-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.২ চার DR strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৩৩-চর-cloud-এর-dr-টল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.৩ চার cloud-এর DR টুল
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৩৪-region-জড--bangladesh-এর-জনয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.৪ Region জোড়া — Bangladesh-এর জন্য
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৩৫-কজ-হত--shopbd-র-dr-উপদন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.৫ কাজে হাত — shopbd-র DR উপাদান
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৩৬-dr-যদ-পরকষ-ন-করন-সট-dr-ন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.৬ DR যদি পরীক্ষা না করেন, সেটা DR না
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-multi-region-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. Multi-region architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-multi-cloud-ও-hybrid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. Multi-cloud ও Hybrid
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৫. Multi-cloud ও Hybrid">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#৫১-multi-cloud-মন-ক-কন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫.১ Multi-cloud মানে কী, কেন?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৫২-multi-cloud-এর-বসতব-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫.২ Multi-cloud-এর বাস্তব pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৫৩-hybrid--নজর-data-center--cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫.৩ Hybrid — নিজের data center + cloud
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-migration--অনয-জযগ-থক-cloud-এ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Migration — অন্য জায়গা থেকে cloud-এ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৬. Migration — অন্য জায়গা থেকে cloud-এ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#৬১-6r-কশল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬.১ 6R কৌশল
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৬২-ধপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬.২ ধাপ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৬৩-migration-টল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬.৩ Migration টুল
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-shopbd-reference-architecture--চর-cloud-এ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. shopbd reference architecture — চার cloud-এ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৭. shopbd reference architecture — চার cloud-এ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#৭১-আবশযকত-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭.১ আবশ্যকতা (requirements)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৭২-reference-architecture--পরত-cloud-এ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭.২ Reference architecture — প্রতি cloud-এ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৭৩-slo-ও-dr-runbook-সব-cloud-এ-পরযজয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭.৩ SLO ও DR runbook (সব cloud-এ প্রযোজ্য)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Hasib105/cloud-bangla-docs/edit/main/docs/19-architecture-ha-dr.md" title="এই পেজ এডিট করুন" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="19--architecture-hadr-ও-multi-cloud">19 · Architecture, HA/DR ও Multi-cloud<a class="headerlink" href="#19--architecture-hadr-ও-multi-cloud" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>এই অধ্যায়ে কী শিখবেন</p>
+<ul>
+<li>চার cloud-এর Well-Architected framework ও তাদের pillar দিয়ে নিজের design যাচাই করার পদ্ধতি</li>
+<li>High Availability: SLA-র হিসাব, AZ/zone/fault domain, single point of failure খোঁজা</li>
+<li>RPO/RTO ও চার DR strategy (Backup &amp; Restore, Pilot Light, Warm Standby, Active/Active) — চার cloud-এর টুলসহ</li>
+<li>Multi-region, multi-cloud ও hybrid (Outposts, Distributed Cloud, Arc, Cloud@Customer) — কখন লাভ, কখন লোকসান</li>
+<li>Migration-এর 6R ও চার cloud-এর migration টুল</li>
+<li><code>shopbd</code>-র সম্পূর্ণ reference architecture — চারটি cloud-এ, প্রতিটার mermaid diagram সহ</li>
+</ul>
+</blockquote>
+<p>এতক্ষণ আমরা আলাদা আলাদা ইট শিখেছি — VM, network, database, storage, security। এই অধ্যায়ে সেই ইট দিয়ে <strong>বাড়ি</strong> বানানো হবে।
+আর বাড়ি বানানোর আগের প্রশ্ন হলো: "ঝড়, আগুন বা বন্যা এলে বাড়ির কী হবে?" Architecture মানে আসলে এই "যদি" প্রশ্নগুলোর আগাম উত্তর।</p>
+<div class="admonition abstract">
+<p class="admonition-title">এক নজরে — কোন cloud-এ কী নাম</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Design যাচাইয়ের framework</td>
+<td>AWS Well-Architected Framework</td>
+<td>Google Cloud Well-Architected Framework (আগের নাম Architecture Framework)</td>
+<td>Azure Well-Architected Framework</td>
+<td>OCI Well-Architected Framework</td>
+</tr>
+<tr>
+<td>Review tool</td>
+<td>Well-Architected Tool</td>
+<td>Architecture Center + Recommender</td>
+<td>Azure Advisor, WAF assessment</td>
+<td>Cloud Advisor</td>
+</tr>
+<tr>
+<td>Region-এর ভেতরে isolation</td>
+<td>Availability Zone (AZ)</td>
+<td>Zone</td>
+<td>Availability Zone</td>
+<td>Availability Domain (AD) + Fault Domain (FD)</td>
+</tr>
+<tr>
+<td>Bangladesh-এর কাছের region</td>
+<td>ap-south-1 (Mumbai), ap-south-2 (Hyderabad)</td>
+<td>asia-south1 (Mumbai), asia-south2 (Delhi)</td>
+<td>Central India, South India</td>
+<td>ap-mumbai-1, ap-hyderabad-1</td>
+</tr>
+<tr>
+<td>Global traffic routing</td>
+<td>Route 53, Global Accelerator, CloudFront</td>
+<td>Global external Application LB, Cloud DNS</td>
+<td>Front Door, Traffic Manager</td>
+<td>Traffic Management Steering Policies, DNS</td>
+</tr>
+<tr>
+<td>DB-র HA</td>
+<td>RDS/Aurora Multi-AZ</td>
+<td>Cloud SQL HA (REGIONAL), Spanner</td>
+<td>Zone-redundant HA</td>
+<td>DB system HA, Data Guard</td>
+</tr>
+<tr>
+<td>DR orchestration</td>
+<td>Elastic Disaster Recovery, Route 53 ARC, AWS Backup</td>
+<td>Backup and DR Service</td>
+<td>Azure Site Recovery, Azure Backup</td>
+<td>Full Stack Disaster Recovery</td>
+</tr>
+<tr>
+<td>Hybrid</td>
+<td>Outposts, EKS Anywhere</td>
+<td>Google Distributed Cloud</td>
+<td>Azure Arc, Azure Local</td>
+<td>Cloud@Customer, Dedicated Region</td>
+</tr>
+<tr>
+<td>Migration</td>
+<td>Migration Hub, MGN, DMS</td>
+<td>Migrate to Virtual Machines, Database Migration Service</td>
+<td>Azure Migrate</td>
+<td>Cloud Migrations, ZDM</td>
+</tr>
+<tr>
+<td>IaC</td>
+<td>CloudFormation, CDK, Terraform</td>
+<td>Infrastructure Manager, Terraform</td>
+<td>Bicep/ARM, Terraform</td>
+<td>Resource Manager, Terraform</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="১-well-architected-framework--design-যচইযর-চকলসট">১. Well-Architected Framework — design যাচাইয়ের চেকলিস্ট<a class="headerlink" href="#১-well-architected-framework--design-যচইযর-চকলসট" title="Permanent link">&para;</a></h2>
+<p>প্রতিটি বড় cloud একটা <strong>Well-Architected Framework</strong> প্রকাশ করেছে। এটা কোনো service না — এটা <strong>প্রশ্নের তালিকা</strong> ও <strong>নীতিমালা</strong>, যা দিয়ে আপনি নিজের architecture যাচাই করেন।
+উপমা: বাড়ি বানানোর পর structural engineer-এর checklist — ভিত ঠিক আছে? আগুন লাগলে বেরোনোর পথ আছে? বিদ্যুৎ বিল কেমন?</p>
+<table>
+<thead>
+<tr>
+<th>Pillar (স্তম্ভ)</th>
+<th>মূল প্রশ্ন</th>
+<th>shopbd-র উদাহরণ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Operational Excellence</strong></td>
+<td>কীভাবে চালাই, দেখি ও উন্নত করি?</td>
+<td>সব infra Terraform-এ, deploy pipeline-এ, alert-এ <code>ops@example.com</code></td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>data ও access সুরক্ষিত?</td>
+<td>least privilege, encryption, private DB</td>
+</tr>
+<tr>
+<td><strong>Reliability</strong></td>
+<td>ভাঙলে নিজে সেরে ওঠে?</td>
+<td>Multi-AZ DB, health check, backup, DR</td>
+</tr>
+<tr>
+<td><strong>Performance Efficiency</strong></td>
+<td>সঠিক resource, সঠিক পরিমাণে?</td>
+<td>CDN-এ ছবি, cache, autoscaling</td>
+</tr>
+<tr>
+<td><strong>Cost Optimization</strong></td>
+<td>অপচয় নেই তো?</td>
+<td>right-size, commitment, lifecycle, budget</td>
+</tr>
+<tr>
+<td><strong>Sustainability / অন্যান্য</strong></td>
+<td>পরিবেশ ও ভবিষ্যৎ</td>
+<td>কম idle resource, efficient চিপ</td>
+</tr>
+</tbody>
+</table>
+<h3 id="১১-চর-framework--ক-মল-ক-অমল">১.১ চার framework — কী মিল, কী অমিল<a class="headerlink" href="#১১-চর-framework--ক-মল-ক-অমল" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>নাম</td>
+<td>AWS Well-Architected Framework</td>
+<td>Google Cloud Well-Architected Framework</td>
+<td>Azure Well-Architected Framework</td>
+<td>OCI Well-Architected Framework</td>
+</tr>
+<tr>
+<td>Pillar সংখ্যা</td>
+<td>৬ (Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, Sustainability)</td>
+<td>৫ (Operational excellence, Security/privacy/compliance, Reliability, Cost optimization, Performance optimization)</td>
+<td>৫ (Reliability, Security, Cost Optimization, Operational Excellence, Performance Efficiency)</td>
+<td>কয়েকটি স্তম্ভ (security &amp; compliance, reliability &amp; resilience, performance &amp; cost optimization, operational efficiency, distributed cloud)</td>
+</tr>
+<tr>
+<td>বাড়তি</td>
+<td>Lenses (Serverless, SaaS, ML/GenAI ইত্যাদি)</td>
+<td>Perspectives (AI/ML ইত্যাদি) ও Architecture Center-এর reference</td>
+<td>Workload ও service guides, trade-off নির্দেশিকা</td>
+<td>Reference architectures, best-practices framework</td>
+</tr>
+<tr>
+<td>Review tool</td>
+<td>Well-Architected Tool (console-এ প্রশ্নোত্তর → risk তালিকা)</td>
+<td>Recommender ও Active Assist</td>
+<td>Azure Advisor ও WAF assessment</td>
+<td>Cloud Advisor</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Pillar-এর সংখ্যা মুখস্থ নয়, বোঝা জরুরি</p>
+<p>পরীক্ষায় AWS-এর ৬টি pillar-এর নাম জিজ্ঞেস করা হতে পারে। কিন্তু বাস্তবে আসল কাজ হলো প্রতিটা pillar-এর প্রশ্ন নিজের architecture-এ প্রয়োগ করা। অন্য cloud-গুলোর pillar-এর তালিকা সময়ের সাথে একটু-আধটু বদলায়, তাই আপনার cloud-এর বর্তমান পাতা একবার দেখে নিন।</p>
+</div>
+<h3 id="১২-trade-off--pillar-গল-এক-অপরর-সথ-লড">১.২ Trade-off — pillar-গুলো একে অপরের সাথে লড়ে<a class="headerlink" href="#১২-trade-off--pillar-গল-এক-অপরর-সথ-লড" title="Permanent link">&para;</a></h3>
+<ul>
+<li>বেশি <strong>Reliability</strong> (multi-region) মানে বেশি <strong>Cost</strong> ও complexity।</li>
+<li>কড়া <strong>Security</strong> (সব private, সব approval) মানে ধীর <strong>Operational</strong> গতি।</li>
+<li>সবচেয়ে সস্তা <strong>Cost</strong> মানে কম redundancy — ঝুঁকি বেশি।</li>
+</ul>
+<p>ভালো architect সব pillar সর্বোচ্চ করেন না; তিনি <strong>business requirement</strong> দেখে সঠিক ভারসাম্য বেছে নেন। shopbd একটা ছোট দোকান — তাই তার জন্য multi-region active/active অতিরিক্ত, কিন্তু Multi-AZ database অপরিহার্য।</p>
+<h2 id="২-high-availability-ha">২. High Availability (HA)<a class="headerlink" href="#২-high-availability-ha" title="Permanent link">&para;</a></h2>
+<p><strong>High Availability</strong> মানে একটা component ভাঙলেও সিস্টেম চালু থাকা। এর মূল ধারণা একটাই: <strong>কোনো single point of failure (SPOF) রাখবেন না</strong>।
+উপমা: দোকানে একটাই বিদ্যুতের লাইন থাকলে লাইন গেলে সব অন্ধকার; জেনারেটর (দ্বিতীয় উৎস) থাকলে দোকান চলে।</p>
+<h3 id="২১-availability-র-হসব">২.১ Availability-র হিসাব<a class="headerlink" href="#২১-availability-র-হসব" title="Permanent link">&para;</a></h3>
+<p>Availability মাপা হয় শতকরায় — "কত শতাংশ সময় চালু"। ছোট ছোট দশমিক আসলে অনেক বড় পার্থক্য:</p>
+<table>
+<thead>
+<tr>
+<th>Availability</th>
+<th>বছরে সর্বোচ্চ downtime</th>
+<th>মাসে প্রায়</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>৯৯%</td>
+<td>৩.৬৫ দিন</td>
+<td>৭.২ ঘণ্টা</td>
+</tr>
+<tr>
+<td>৯৯.৯% ("three nines")</td>
+<td>৮.৭৬ ঘণ্টা</td>
+<td>৪৩.৮ মিনিট</td>
+</tr>
+<tr>
+<td>৯৯.৯৫%</td>
+<td>৪.৩৮ ঘণ্টা</td>
+<td>২১.৯ মিনিট</td>
+</tr>
+<tr>
+<td>৯৯.৯৯% ("four nines")</td>
+<td>৫২.৬ মিনিট</td>
+<td>৪.৩৮ মিনিট</td>
+</tr>
+<tr>
+<td>৯৯.৯৯৯% ("five nines")</td>
+<td>৫.২৬ মিনিট</td>
+<td>২৬ সেকেন্ড</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Composite SLA:</strong> একটা request যদি <strong>একের পর এক</strong> কয়েকটা component পার হয়, তাহলে availability <strong>গুণ</strong> হয় (খারাপ হয়):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Load Balancer 99.99%  x  API 99.95%  x  Database 99.95%
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  = 0.9999 x 0.9995 x 0.9995 = ~99.89%
+</span></code></pre></div>
+<p>আর <strong>সমান্তরাল (redundant)</strong> দুটি independent component থাকলে সম্ভাবনা ভালো হয়:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>দুটি AZ, প্রতিটি 99.9% -&gt; দুটোই একসাথে ভাঙার সম্ভাবনা = 0.001 x 0.001
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  -&gt; তাত্ত্বিক availability 99.9999%
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">তাত্ত্বিক আর বাস্তব এক না</p>
+<p>ওপরের সূত্র ধরে নেয় ব্যর্থতাগুলো <strong>independent</strong>। বাস্তবে একটা ভুল deploy, ভুল config বা shared dependency (যেমন একই DNS, একই identity service) দুই AZ-ই একসাথে ফেলে দিতে পারে। আর cloud provider-এর <strong>SLA</strong> হলো টাকা-ফেরতের চুক্তি, availability-র গ্যারান্টি না। SLA-র নির্দিষ্ট সংখ্যা প্রতিটা service-এর official SLA পাতায় দেখুন, এখানে মুখস্থ রাখার দরকার নেই।</p>
+</div>
+<h3 id="২২-failure-domain--কতট-বড-ভঙন-সমলবন">২.২ Failure domain — কতটা বড় ভাঙন সামলাবেন?<a class="headerlink" href="#২২-failure-domain--কতট-বড-ভঙন-সমলবন" title="Permanent link">&para;</a></h3>
+<p>ছোট থেকে বড়: <strong>process → server → rack → data center (AZ) → region → provider</strong>। যত বড় domain ঠেকাতে চান, তত খরচ ও জটিলতা।</p>
+<table>
+<thead>
+<tr>
+<th>Failure domain</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>একটা server/rack</td>
+<td>Placement groups (spread)</td>
+<td>Zone-এর ভেতরে spread policy</td>
+<td>Availability Set / VMSS fault domain</td>
+<td><strong>Fault Domain</strong> (AD-র ভেতরে ৩টি)</td>
+</tr>
+<tr>
+<td>একটা data center</td>
+<td><strong>AZ</strong></td>
+<td><strong>Zone</strong></td>
+<td><strong>Availability Zone</strong></td>
+<td><strong>Availability Domain</strong></td>
+</tr>
+<tr>
+<td>পুরো region</td>
+<td>Multi-Region</td>
+<td>Multi-region</td>
+<td>Region pair, multi-region</td>
+<td>Multi-region (cross-region)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">OCI-র Mumbai-তে মাত্র একটা AD</p>
+<p>OCI-র অনেক region (যেমন <code>ap-mumbai-1</code>, <code>ap-hyderabad-1</code>) <strong>single-AD region</strong>। সেখানে "আলাদা AD-তে রাখুন" সম্ভব না — HA-র জন্য <strong>Fault Domain</strong> (একই AD-র ভেতরে ৩টি আলাদা hardware ও power group) ব্যবহার করতে হয়।
+পুরো data center ডুবে গেলে বাঁচতে <strong>আরেকটি region</strong>-এ (যেমন Hyderabad) cross-region replica রাখুন। Multi-AD region-এ (যেমন Frankfurt, Phoenix) AD আলাদা করা যায়।</p>
+</div>
+<h3 id="২৩-ha-র-মল-নকশ">২.৩ HA-র মূল নকশা<a class="headerlink" href="#২৩-ha-র-মল-নকশ" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart TB
+    U["ব্যবহারকারী"] --&gt; LB["Load Balancer&lt;br/&gt;zone-redundant"]
+    subgraph ZA["Zone A"]
+        A1["API instance"]
+        D1[("DB primary")]
+    end
+    subgraph ZB["Zone B"]
+        A2["API instance"]
+        D2[("DB standby")]
+    end
+    LB --&gt; A1
+    LB --&gt; A2
+    D1 -- "synchronous replication" --&gt; D2
+    A1 --&gt; D1
+    A2 --&gt; D1</code></pre>
+<p><strong>তিনটি স্তরেই redundancy লাগে:</strong></p>
+<ol>
+<li><strong>Entry:</strong> zone-redundant load balancer (চার cloud-এর managed LB-ই default-এ একাধিক zone ছড়িয়ে থাকে)।</li>
+<li><strong>Compute:</strong> কমপক্ষে দুই zone-এ instance বা container; autoscaling group/MIG/VMSS/instance pool-এর <strong>health check</strong> দিয়ে ভাঙা instance বদলানো।</li>
+<li><strong>Data:</strong> synchronous replica অন্য zone-এ, failover automatic।</li>
+</ol>
+<p><a href="../04-compute-vms/">Compute</a>, <a href="../10-load-balancing-scaling-dns-cdn/">Load Balancing ও Scaling</a> ও <a href="../07-databases/">Database</a> অধ্যায়ে এগুলোর বিস্তারিত আছে।</p>
+<h3 id="২৪-ha-database--চর-cloud-এ">২.৪ HA database — চার cloud-এ<a class="headerlink" href="#২৪-ha-database--চর-cloud-এ" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="aws" name="__tabbed_1" type="radio" /><input id="gcp" name="__tabbed_1" type="radio" /><input id="azure" name="__tabbed_1" type="radio" /><input id="oci" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="aws">AWS</label><label for="gcp">GCP</label><label for="azure">Azure</label><label for="oci">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Service: <strong>Amazon RDS for PostgreSQL — Multi-AZ</strong>। Standby অন্য AZ-তে synchronous replica, primary ভাঙলে আপনা-আপনি failover (DNS endpoint একই থাকে)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>aws<span class="w"> </span>rds<span class="w"> </span>create-db-instance<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>--db-instance-identifier<span class="w"> </span>shopbd-db<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>--engine<span class="w"> </span>postgres<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>--db-instance-class<span class="w"> </span>db.m6g.large<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>--allocated-storage<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span>--master-username<span class="w"> </span>shopbd_admin<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span>--manage-master-user-password<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span>--multi-az<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span>--backup-retention-period<span class="w"> </span><span class="m">14</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span>--region<span class="w"> </span>ap-south-1
+</span></code></pre></div>
+<p>Aurora-তে storage ৩ AZ-তে ৬ কপি থাকে; reader instance অন্য AZ-তে বসালে failover দ্রুত হয়।</p>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Cloud SQL for PostgreSQL — High availability (REGIONAL)</strong>। Primary ও standby একই region-এর দুই zone-এ।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>gcloud<span class="w"> </span>sql<span class="w"> </span>instances<span class="w"> </span>create<span class="w"> </span>shopbd-db<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--database-version<span class="o">=</span>POSTGRES_16<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>--region<span class="o">=</span>asia-south1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span>--tier<span class="o">=</span>db-custom-2-8192<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span>--availability-type<span class="o">=</span>REGIONAL<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span>--backup-start-time<span class="o">=</span><span class="m">20</span>:00<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span>--enable-point-in-time-recovery
+</span></code></pre></div>
+<p>বিশ্বব্যাপী multi-region লাগলে <strong>Spanner</strong> বা <strong>AlloyDB</strong> (cross-region replica) দেখুন।</p>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Azure Database for PostgreSQL — Flexible Server, zone-redundant HA</strong>। Standby অন্য zone-এ।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>az<span class="w"> </span>postgres<span class="w"> </span>flexible-server<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-db<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-prod-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span>--location<span class="w"> </span>centralindia<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span>--tier<span class="w"> </span>GeneralPurpose<span class="w"> </span>--sku-name<span class="w"> </span>Standard_D2ds_v5<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span>--high-availability<span class="w"> </span>ZoneRedundant<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span>--backup-retention<span class="w"> </span><span class="m">14</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span>--geo-redundant-backup<span class="w"> </span>Enabled
+</span></code></pre></div>
+<p>Zone-redundant HA ও geo-redundant backup region ও SKU-অনুযায়ী পাওয়া যায় কি না আগে docs-এ দেখুন।</p>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>OCI Database with PostgreSQL</strong> (HA configuration) অথবা <strong>MySQL HeatWave</strong> (<code>is_highly_available</code>) অথবা Oracle <strong>Base Database/Autonomous Database</strong> (Data Guard)। Single-AD region-এ HA node-গুলো <strong>fault domain</strong>-এ ছড়ায়।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># MySQL HeatWave example: highly available DB system</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>oci<span class="w"> </span>mysql<span class="w"> </span>db-system<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>--shape-name<span class="w"> </span>MySQL.2<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>--subnet-id<span class="w"> </span>ocid1.subnet.oc1.ap-mumbai-1.example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span>--admin-username<span class="w"> </span>shopbd_admin<span class="w"> </span>--admin-password<span class="w"> </span><span class="s2">"</span><span class="nv">$DB_PASSWORD</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span>--is-highly-available<span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span>--display-name<span class="w"> </span>shopbd-db
+</span></code></pre></div>
+<p>PostgreSQL service-এর HA ও replica বিকল্প console বা Terraform-এ বেছে নিন; ঠিক flag-এর জন্য <code>oci psql db-system create --help</code>।</p>
+</div>
+</div>
+</div>
+<p><strong>Terraform-এ একই জিনিস:</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="aws_1" name="__tabbed_2" type="radio" /><input id="gcp_1" name="__tabbed_2" type="radio" /><input id="azure_1" name="__tabbed_2" type="radio" /><input id="oci_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="aws_1">AWS</label><label for="gcp_1">GCP</label><label for="azure_1">Azure</label><label for="oci_1">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_db_instance"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="na">identifier</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-db"</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="na">engine</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="s2">"postgres"</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="na">instance_class</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">"db.m6g.large"</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="na">allocated_storage</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="m">100</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span><span class="na">username</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd_admin"</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span><span class="na">manage_master_user_password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span><span class="na">multi_az</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">  </span><span class="na">backup_retention_period</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">  </span><span class="na">db_subnet_group_name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_db_subnet_group.private.name</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">  </span><span class="na">vpc_security_group_ids</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nv">aws_security_group.db.id</span><span class="p">]</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">  </span><span class="na">storage_encrypted</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">  </span><span class="na">deletion_protection</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_sql_database_instance"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-db"</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="na">region</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s2">"asia-south1"</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="na">database_version</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"POSTGRES_16"</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="na">deletion_protection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span><span class="nb">settings</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="na">tier</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s2">"db-custom-2-8192"</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="na">availability_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"REGIONAL"</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span><span class="nb">backup_configuration</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">      </span><span class="na">enabled</span><span class="w">                        </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">      </span><span class="na">point_in_time_recovery_enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">    </span><span class="nb">ip_configuration</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">      </span><span class="na">ipv4_enabled</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">      </span><span class="na">private_network</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">google_compute_network.shopbd.id</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_postgresql_flexible_server"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-db"</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.prod.name</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="na">location</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">"centralindia"</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="na">version</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">"16"</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span><span class="na">sku_name</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">"GP_Standard_D2ds_v5"</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">  </span><span class="na">storage_mb</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="m">131072</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">  </span><span class="na">administrator_login</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd_admin"</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">  </span><span class="na">administrator_password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.db_password</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">  </span><span class="na">delegated_subnet_id</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_subnet.db.id</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">  </span><span class="na">private_dns_zone_id</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_private_dns_zone.pg.id</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">  </span><span class="na">zone</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="s2">"1"</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">  </span><span class="nb">high_availability</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">    </span><span class="na">mode</span><span class="w">                      </span><span class="o">=</span><span class="w"> </span><span class="s2">"ZoneRedundant"</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">    </span><span class="na">standby_availability_zone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2"</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">  </span><span class="na">backup_retention_days</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="m">14</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">  </span><span class="na">geo_redundant_backup_enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"oci_mysql_mysql_db_system"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="na">compartment_id</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">var.compartment_id</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="na">shape_name</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">"MySQL.2"</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span><span class="na">subnet_id</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="nv">oci_core_subnet.db.id</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="na">availability_domain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.oci_identity_availability_domains.ads.availability_domains[0].name</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span><span class="na">admin_username</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd_admin"</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">  </span><span class="na">admin_password</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">var.db_password</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">  </span><span class="na">display_name</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-db"</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">  </span><span class="na">is_highly_available</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="৩-disaster-recovery-dr">৩. Disaster Recovery (DR)<a class="headerlink" href="#৩-disaster-recovery-dr" title="Permanent link">&para;</a></h2>
+<p>HA ছোটখাটো ব্যর্থতা (একটা server, একটা zone) সামলায়। <strong>DR</strong> হলো বড় বিপর্যয়ের পরিকল্পনা — পুরো region বন্ধ, ভুল করে সব data মুছে ফেলা, ransomware, বা অ্যাকাউন্ট compromise।</p>
+<div class="admonition danger">
+<p class="admonition-title">Replication ≠ backup</p>
+<p>Replica ভুল delete-ও সঙ্গে সঙ্গে কপি করে দেয়। কেউ ভুল করে <code>DROP TABLE orders</code> চালালে দুই region-এর database-ই খালি। তাই replica আর <strong>আলাদা, immutable, point-in-time backup</strong> — দুটোই লাগে।</p>
+</div>
+<h3 id="৩১-rpo-ও-rto">৩.১ RPO ও RTO<a class="headerlink" href="#৩১-rpo-ও-rto" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>RPO (Recovery Point Objective):</strong> কতটুকু data হারানো মেনে নেবেন? (শেষ কত মিনিট/ঘণ্টার অর্ডার)</li>
+<li><strong>RTO (Recovery Time Objective):</strong> কত সময়ের মধ্যে আবার চালু করতে হবে?</li>
+</ul>
+<p>উপমা: দোকানে আগুন লাগল। <strong>RTO</strong> = কত দিনে দোকান আবার খুলব। <strong>RPO</strong> = খাতার কত পাতা পুড়ল (শেষ কবে হিসাবের কপি রেখেছিলাম)।</p>
+<pre class="mermaid"><code>flowchart LR
+    A["শেষ backup/replica&lt;br/&gt;সময় T1"] -- "RPO: T1 থেকে&lt;br/&gt;বিপর্যয় পর্যন্ত data loss" --&gt; B["বিপর্যয়&lt;br/&gt;সময় T2"]
+    B -- "RTO: T2 থেকে&lt;br/&gt;চালু হওয়া পর্যন্ত downtime" --&gt; C["সেবা আবার চালু&lt;br/&gt;সময় T3"]</code></pre>
+<p><strong>শুরু করুন ব্যবসার প্রশ্ন দিয়ে, প্রযুক্তি দিয়ে না:</strong> "shopbd ৪ ঘণ্টা বন্ধ থাকলে কত লোকসান? ১ ঘণ্টার অর্ডার হারালে কত?" সেই সংখ্যা থেকেই RTO/RPO ঠিক হয়, আর সেটা থেকে strategy ও বাজেট।</p>
+<h3 id="৩২-চর-dr-strategy">৩.২ চার DR strategy<a class="headerlink" href="#৩২-চর-dr-strategy" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>RTO</th>
+<th>RPO</th>
+<th>খরচ</th>
+<th>কীভাবে কাজ করে</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Backup &amp; Restore</strong></td>
+<td>ঘণ্টা (বা বেশি)</td>
+<td>ঘণ্টা</td>
+<td>সবচেয়ে কম</td>
+<td>শুধু backup অন্য region-এ; বিপর্যয়ে IaC দিয়ে নতুন করে বানিয়ে restore</td>
+</tr>
+<tr>
+<td><strong>Pilot Light</strong></td>
+<td>দশ মিনিট থেকে ঘণ্টা</td>
+<td>মিনিট</td>
+<td>কম</td>
+<td>শুধু data layer (DB replica) সবসময় চালু; app বন্ধ, দরকারে চালু</td>
+</tr>
+<tr>
+<td><strong>Warm Standby</strong></td>
+<td>মিনিট</td>
+<td>সেকেন্ড-মিনিট</td>
+<td>মাঝারি</td>
+<td>ছোট আকারের পুরো সিস্টেম সবসময় চালু; দরকারে scale up</td>
+</tr>
+<tr>
+<td><strong>Active/Active (Multi-site)</strong></td>
+<td>প্রায় শূন্য</td>
+<td>প্রায় শূন্য</td>
+<td>সবচেয়ে বেশি</td>
+<td>দুই region-ই live traffic নেয়</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>flowchart LR
+    subgraph P["Primary region"]
+        PA["App"] --&gt; PD[("DB primary")]
+        PS[("shopbd-images")]
+    end
+    subgraph S["DR region"]
+        SA["App&lt;br/&gt;বন্ধ বা ছোট"] --&gt; SD[("DB replica")]
+        SS[("shopbd-images copy")]
+    end
+    PD -- "async replication" --&gt; SD
+    PS -- "object replication" --&gt; SS
+    DNS["DNS / Global LB"] --&gt; PA
+    DNS -. "failover" .-&gt; SA</code></pre>
+<p><strong>ক্রম:</strong> Backup &amp; Restore → Pilot Light → Warm Standby → Active/Active; ডানে গেলে RTO/RPO কমে, খরচ ও জটিলতা বাড়ে। ডান দিকে গেলে <strong>application-কেও</strong> multi-region-ready বানাতে হয় (data conflict, session, config)।</p>
+<h3 id="৩৩-চর-cloud-এর-dr-টল">৩.৩ চার cloud-এর DR টুল<a class="headerlink" href="#৩৩-চর-cloud-এর-dr-টল" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>প্রয়োজন</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Backup (কেন্দ্রীয়)</td>
+<td>AWS Backup (cross-region, cross-account copy)</td>
+<td>Backup and DR Service, Cloud SQL backups</td>
+<td>Azure Backup (Recovery Services vault/Backup vault)</td>
+<td>OCI Backup policies, Object Storage</td>
+</tr>
+<tr>
+<td>VM replication</td>
+<td>AWS Elastic Disaster Recovery (DRS)</td>
+<td>Backup and DR; Persistent Disk async replication</td>
+<td><strong>Azure Site Recovery (ASR)</strong></td>
+<td>Full Stack DR, Block Volume cross-region replication</td>
+</tr>
+<tr>
+<td>DB cross-region replica</td>
+<td>RDS cross-region read replica, Aurora Global Database</td>
+<td>Cloud SQL cross-region replica, AlloyDB secondary, Spanner multi-region</td>
+<td>PostgreSQL read replica (geo), Cosmos DB multi-region</td>
+<td>Data Guard, MySQL cross-region replica</td>
+</tr>
+<tr>
+<td>Object storage</td>
+<td>S3 Cross-Region Replication</td>
+<td>dual-/multi-region buckets, Storage Transfer</td>
+<td>GRS/GZRS/RA-GZRS, object replication</td>
+<td>Object Storage replication policy</td>
+</tr>
+<tr>
+<td>Traffic failover</td>
+<td>Route 53 failover/latency, Application Recovery Controller, Global Accelerator</td>
+<td>Global external Application LB, Cloud DNS</td>
+<td>Front Door, Traffic Manager</td>
+<td>Traffic Management Steering Policies</td>
+</tr>
+<tr>
+<td>Orchestration</td>
+<td>Route 53 ARC, Step Functions</td>
+<td>Workflows</td>
+<td>ASR Recovery Plans</td>
+<td><strong>Full Stack Disaster Recovery</strong> (DR plan)</td>
+</tr>
+<tr>
+<td>Chaos/DR test</td>
+<td>AWS Fault Injection Service</td>
+<td>(open-source/third-party)</td>
+<td>Azure Chaos Studio</td>
+<td>(open-source/third-party)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="৩৪-region-জড--bangladesh-এর-জনয">৩.৪ Region জোড়া — Bangladesh-এর জন্য<a class="headerlink" href="#৩৪-region-জড--bangladesh-এর-জনয" title="Permanent link">&para;</a></h3>
+<p>Bangladesh-এ কোনো hyperscaler region নেই; সবচেয়ে কাছের Mumbai/Hyderabad/Delhi/Singapore।</p>
+<table>
+<thead>
+<tr>
+<th>Cloud</th>
+<th>Primary (প্রস্তাবিত)</th>
+<th>DR region (প্রস্তাবিত)</th>
+<th>মন্তব্য</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AWS</td>
+<td>ap-south-1 (Mumbai)</td>
+<td>ap-south-2 (Hyderabad) বা ap-southeast-1 (Singapore)</td>
+<td>Hyderabad একই দেশে, কাছাকাছি latency; service-এর তালিকা কম হতে পারে</td>
+</tr>
+<tr>
+<td>GCP</td>
+<td>asia-south1 (Mumbai)</td>
+<td>asia-south2 (Delhi)</td>
+<td></td>
+</tr>
+<tr>
+<td>Azure</td>
+<td>Central India (Pune)</td>
+<td>South India (Chennai) — Central India-র paired region</td>
+<td>Azure-এ ঘোষিত region pair থাকে; replication-এর ডিফল্ট বিকল্প সাধারণত paired region</td>
+</tr>
+<tr>
+<td>OCI</td>
+<td>ap-mumbai-1</td>
+<td>ap-hyderabad-1</td>
+<td>দুটোই single-AD region</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Data residency ও নিয়ম</p>
+<p>ভারতে data রাখা আপনার আইনি/ক্লায়েন্ট শর্তে অনুমোদিত কি না আগে দেখুন (বিশেষ করে সরকারি বা আর্থিক কাজ)। কোন data কোন দেশে যাবে — এটা architecture-এর আগের সিদ্ধান্ত।</p>
+</div>
+<h3 id="৩৫-কজ-হত--shopbd-র-dr-উপদন">৩.৫ কাজে হাত — shopbd-র DR উপাদান<a class="headerlink" href="#৩৫-কজ-হত--shopbd-র-dr-উপদন" title="Permanent link">&para;</a></h3>
+<p><strong>(ক) Database cross-region replica ও promote</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="aws_2" name="__tabbed_3" type="radio" /><input id="gcp_2" name="__tabbed_3" type="radio" /><input id="azure_2" name="__tabbed_3" type="radio" /><input id="oci_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="aws_2">AWS</label><label for="gcp_2">GCP</label><label for="azure_2">Azure</label><label for="oci_2">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># cross-region read replica in Hyderabad (encrypted source needs --kms-key-id in the target region)</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>aws<span class="w"> </span>rds<span class="w"> </span>create-db-instance-read-replica<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span>--db-instance-identifier<span class="w"> </span>shopbd-db-dr<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span>--source-db-instance-identifier<span class="w"> </span>arn:aws:rds:ap-south-1:123456789012:db:shopbd-db<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">  </span>--region<span class="w"> </span>ap-south-2
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># during a disaster: promote the replica to a standalone primary</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>aws<span class="w"> </span>rds<span class="w"> </span>promote-read-replica<span class="w"> </span>--db-instance-identifier<span class="w"> </span>shopbd-db-dr<span class="w"> </span>--region<span class="w"> </span>ap-south-2
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>gcloud<span class="w"> </span>sql<span class="w"> </span>instances<span class="w"> </span>create<span class="w"> </span>shopbd-db-dr<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span>--master-instance-name<span class="o">=</span>shopbd-db<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span>--region<span class="o">=</span>asia-south2
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="c1"># during a disaster</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>gcloud<span class="w"> </span>sql<span class="w"> </span>instances<span class="w"> </span>promote-replica<span class="w"> </span>shopbd-db-dr
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>az<span class="w"> </span>postgres<span class="w"> </span>flexible-server<span class="w"> </span>replica<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span>--replica-name<span class="w"> </span>shopbd-db-dr<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-dr-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span>--source-server<span class="w"> </span>shopbd-db<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">  </span>--location<span class="w"> </span>southindia
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1"># during a disaster</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>az<span class="w"> </span>postgres<span class="w"> </span>flexible-server<span class="w"> </span>replica<span class="w"> </span>promote<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-db-dr<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-dr-rg
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Oracle Database-এ <strong>Data Guard</strong> (Console: Base Database → Data Guard associations, অন্য region বেছে নিন)। MySQL HeatWave ও PostgreSQL service-এর cross-region replica/backup-copy বিকল্প আছে কি না এবং সঠিক কমান্ড আপনার ব্যবহৃত service-এর docs-এ দেখুন। Console path: Databases → আপনার DB system → Replicas/Backups।</p>
+</div>
+</div>
+</div>
+<p><strong>(খ) ছবির bucket (<code>shopbd-images</code>) cross-region কপি</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="aws_3" name="__tabbed_4" type="radio" /><input id="gcp_3" name="__tabbed_4" type="radio" /><input id="azure_3" name="__tabbed_4" type="radio" /><input id="oci_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="aws_3">AWS</label><label for="gcp_3">GCP</label><label for="azure_3">Azure</label><label for="oci_3">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_s3_bucket_replication_configuration"</span><span class="w"> </span><span class="nv">"images"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.images.id</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="na">role</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_role.s3_replication.arn</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span><span class="nb">rule</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span><span class="na">id</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-images-dr"</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">    </span><span class="na">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Enabled"</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">    </span><span class="nb">destination</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">      </span><span class="na">bucket</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.images_dr.arn</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">      </span><span class="na">storage_class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"STANDARD_IA"</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="p">}</span>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="c1"># both buckets must have versioning enabled</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Dual-region বা multi-region bucket একটাই bucket, দুই জায়গায় কপি। Mumbai+Delhi জুড়ি আপনার location-এ আছে কি না যাচাই করে নিন; না থাকলে আলাদা bucket + <strong>Storage Transfer Service</strong>-এর নির্ধারিত সময়ের কপি।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>create<span class="w"> </span>gs://shopbd-images-dr<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span>--location<span class="o">=</span>asia-south2<span class="w"> </span>--uniform-bucket-level-access
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Storage account-এ redundancy <strong>GZRS / RA-GZRS</strong> (primary-তে zone-redundant + paired region-এ কপি)। বিকল্প: <strong>object replication</strong> (blob-level, অন্য account-এ)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>az<span class="w"> </span>storage<span class="w"> </span>account<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span>--name<span class="w"> </span>shopbdimages<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-prod-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span>--location<span class="w"> </span>centralindia<span class="w"> </span>--sku<span class="w"> </span>Standard_RAGZRS<span class="w"> </span>--kind<span class="w"> </span>StorageV2
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>oci<span class="w"> </span>os<span class="w"> </span>replication<span class="w"> </span>create-replication-policy<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span>--bucket-name<span class="w"> </span>shopbd-images<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-images-dr<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">  </span>--destination-region<span class="w"> </span>ap-hyderabad-1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">  </span>--destination-bucket<span class="w"> </span>shopbd-images-dr
+</span></code></pre></div>
+<p>Replication চালুর আগে destination bucket বানিয়ে রাখতে হয়।</p>
+</div>
+</div>
+</div>
+<p><strong>(গ) Backup-এর সময়সূচি ও retention (point-in-time recovery সহ)</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:4"><input checked="checked" id="aws_4" name="__tabbed_5" type="radio" /><input id="gcp_4" name="__tabbed_5" type="radio" /><input id="azure_4" name="__tabbed_5" type="radio" /><input id="oci_4" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="aws_4">AWS</label><label for="gcp_4">GCP</label><label for="azure_4">Azure</label><label for="oci_4">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_backup_plan"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-daily"</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span><span class="nb">rule</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">    </span><span class="na">rule_name</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">"daily-35d"</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">    </span><span class="na">target_vault_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_backup_vault.primary.name</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">    </span><span class="na">schedule</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">"cron(30 20 * * ? *)"</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">    </span><span class="nb">lifecycle</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">      </span><span class="na">delete_after</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">35</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">    </span><span class="nb">copy_action</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">      </span><span class="na">destination_vault_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_backup_vault.dr.arn</span>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">      </span><span class="nb">lifecycle</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">        </span><span class="na">delete_after</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">35</span>
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>gcloud<span class="w"> </span>sql<span class="w"> </span>instances<span class="w"> </span>patch<span class="w"> </span>shopbd-db<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span>--backup-start-time<span class="o">=</span><span class="m">20</span>:00<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span>--retained-backups-count<span class="o">=</span><span class="m">14</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">  </span>--enable-point-in-time-recovery
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>az<span class="w"> </span>postgres<span class="w"> </span>flexible-server<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-db<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-prod-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">  </span>--backup-retention<span class="w"> </span><span class="m">14</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Console: আপনার database service → Backups → automatic backup (retention period) চালু; Object Storage-এ backup নিজে cross-region কপি করা যায়। Vault-এর secret/key-ও backup-এর পরিকল্পনায় রাখুন।</p>
+</div>
+</div>
+</div>
+<p><strong>(ঘ) Traffic failover — DNS বা global LB</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:4"><input checked="checked" id="aws_5" name="__tabbed_6" type="radio" /><input id="gcp_5" name="__tabbed_6" type="radio" /><input id="azure_5" name="__tabbed_6" type="radio" /><input id="oci_5" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="aws_5">AWS</label><label for="gcp_5">GCP</label><label for="azure_5">Azure</label><label for="oci_5">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Route 53-এর <strong>failover routing</strong>: primary-র health check ব্যর্থ হলে DR-এর record সক্রিয়।</p>
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_route53_health_check"</span><span class="w"> </span><span class="nv">"primary"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">  </span><span class="na">fqdn</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s2">"api-primary.shopbd.example.com"</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">  </span><span class="na">port</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="m">443</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">  </span><span class="na">type</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s2">"HTTPS"</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">  </span><span class="na">resource_path</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"/health"</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">  </span><span class="na">request_interval</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="m">30</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">  </span><span class="na">failure_threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="p">}</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_route53_record"</span><span class="w"> </span><span class="nv">"api_primary"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="w">  </span><span class="na">zone_id</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="nv">var.zone_id</span>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="w">  </span><span class="na">name</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">"api.shopbd.example.com"</span>
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="w">  </span><span class="na">type</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">"CNAME"</span>
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="w">  </span><span class="na">ttl</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="m">60</span>
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="w">  </span><span class="na">set_identifier</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"primary"</span>
+</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="w">  </span><span class="na">records</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"api-primary.shopbd.example.com"</span><span class="p">]</span>
+</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a><span class="w">  </span><span class="na">health_check_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_route53_health_check.primary.id</span>
+</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>
+</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a><span class="w">  </span><span class="nb">failover_routing_policy</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a><span class="w">    </span><span class="na">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"PRIMARY"</span>
+</span><span id="__span-20-21"><a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-20-22"><a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a><span class="p">}</span>
+</span><span id="__span-20-23"><a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a><span class="c1"># a second record with failover type SECONDARY points at the DR endpoint</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><strong>Global external Application Load Balancer</strong> একটাই anycast IP দেয়। দুই region-এ backend রাখলে LB নিজেই নিকটতম <em>সুস্থ</em> backend-এ traffic পাঠায় — DNS বদলাতে হয় না। Backend-এ health check ব্যর্থ হলে সে region বাদ পড়ে।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>health-checks<span class="w"> </span>create<span class="w"> </span>https<span class="w"> </span>shopbd-api-hc<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">  </span>--port<span class="o">=</span><span class="m">443</span><span class="w"> </span>--request-path<span class="o">=</span>/health
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>backend-services<span class="w"> </span>create<span class="w"> </span>shopbd-api-bes<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="w">  </span>--global<span class="w"> </span>--protocol<span class="o">=</span>HTTPS<span class="w"> </span>--health-checks<span class="o">=</span>shopbd-api-hc<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="w">  </span>--load-balancing-scheme<span class="o">=</span>EXTERNAL_MANAGED
+</span></code></pre></div>
+<p>Cloud Run (serverless NEG) backend-এ LB-র health check ব্যবহার হয় না; সেখানে Cloud Run নিজে availability সামলায় — docs-এ সীমাবদ্ধতা দেখে নিন।</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Azure Front Door</strong> (global L7, WAF সহ) অথবা <strong>Traffic Manager</strong> (DNS-ভিত্তিক)। Priority routing-এ primary ব্যর্থ হলে DR endpoint।</p>
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_traffic_manager_profile"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-tm"</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.global.name</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">  </span><span class="na">traffic_routing_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Priority"</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">  </span><span class="nb">dns_config</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">    </span><span class="na">relative_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-tm"</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="w">    </span><span class="na">ttl</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="m">60</span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="w">  </span><span class="nb">monitor_config</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="w">    </span><span class="na">protocol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"HTTPS"</span>
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="w">    </span><span class="na">port</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="m">443</span>
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="w">    </span><span class="na">path</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"/health"</span>
+</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="p">}</span>
+</span><span id="__span-22-16"><a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a>
+</span><span id="__span-22-17"><a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_traffic_manager_external_endpoint"</span><span class="w"> </span><span class="nv">"primary"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-18"><a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a><span class="w">  </span><span class="na">name</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s2">"primary"</span>
+</span><span id="__span-22-19"><a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a><span class="w">  </span><span class="na">profile_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_traffic_manager_profile.shopbd.id</span>
+</span><span id="__span-22-20"><a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a><span class="w">  </span><span class="na">target</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"api-primary.shopbd.example.com"</span>
+</span><span id="__span-22-21"><a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a><span class="w">  </span><span class="na">priority</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+</span><span id="__span-22-22"><a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><strong>Traffic Management Steering Policy</strong>-র <strong>Failover</strong> template: primary-র health check ব্যর্থ হলে DNS answer DR endpoint-এ ঘোরে। Console: Networking → DNS Management → Traffic Management Steering Policies; সাথে <strong>Health Checks</strong> বানাতে হয়।</p>
+</div>
+</div>
+</div>
+<h3 id="৩৬-dr-যদ-পরকষ-ন-করন-সট-dr-ন">৩.৬ DR যদি পরীক্ষা না করেন, সেটা DR না<a class="headerlink" href="#৩৬-dr-যদ-পরকষ-ন-করন-সট-dr-ন" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Game day:</strong> নির্দিষ্ট দিনে ইচ্ছাকৃত failover চালিয়ে দেখুন — replica promote হয়? app নতুন DB-র সাথে জুড়ে? DNS বদলায়?</li>
+<li><strong>Restore test:</strong> backup আছে মানেই restore হবে না। প্রতি মাসে একটা backup থেকে আসলেই restore করে দেখুন।</li>
+<li><strong>Runbook:</strong> ধাপে ধাপে লেখা নির্দেশ (কে কী করবে, কোন কমান্ড) — বিপদের সময় মাথা ঠান্ডা থাকে না।</li>
+<li><strong>Failback:</strong> কাজ শেষে আবার primary-তে ফেরার পরিকল্পনা (প্রায়ই failover-এর চেয়ে কঠিন)।</li>
+<li><strong>৩-২-১ নিয়ম:</strong> ডেটার ৩ কপি, ২ ধরনের স্টোরেজে, ১ কপি অন্য জায়গায় (offsite/আলাদা account বা region)।</li>
+</ul>
+<h2 id="৪-multi-region-architecture">৪. Multi-region architecture<a class="headerlink" href="#৪-multi-region-architecture" title="Permanent link">&para;</a></h2>
+<p>DR-এ দ্বিতীয় region স্ট্যান্ডবাই; <strong>multi-region active/active</strong>-এ দুটোই কাজ করে। সুবিধা: কম latency (কাছের region-এ), প্রায় শূন্য RTO। কিন্তু <strong>data</strong> হলো আসল সমস্যা।</p>
+<pre class="mermaid"><code>flowchart TB
+    U["ক্রেতা"] --&gt; G["Global entry&lt;br/&gt;Anycast / DNS latency routing"]
+    G --&gt; R1["Region A&lt;br/&gt;app + DB"]
+    G --&gt; R2["Region B&lt;br/&gt;app + DB"]
+    R1 &lt;-- "data replication" --&gt; R2</code></pre>
+<table>
+<thead>
+<tr>
+<th>প্রশ্ন</th>
+<th>কেন কঠিন</th>
+<th>সাধারণ সমাধান</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>দুই region-এ একই row একসাথে লিখলে?</td>
+<td>write conflict</td>
+<td><strong>single-writer</strong> (একটা region-এ লেখা, অন্যটা পড়া) বা conflict resolution সহ global DB</td>
+</tr>
+<tr>
+<td>Replication lag</td>
+<td>অন্য region-এর data সামান্য পুরোনো</td>
+<td>eventual consistency মেনে নেওয়া বা সংবেদনশীল পড়া primary থেকে</td>
+</tr>
+<tr>
+<td>Session/state</td>
+<td>ব্যবহারকারী region বদলালে session হারায়</td>
+<td>stateless token, shared session store</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>দ্বিগুণ infra + inter-region data transfer</td>
+<td>কেবল যেখানে ব্যবসা দাবি করে</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Global database বিকল্প:</strong> AWS Aurora Global Database / DynamoDB Global Tables; GCP Spanner multi-region; Azure Cosmos DB multi-region; OCI Autonomous DB/Data Guard-ভিত্তিক সমাধান।
+প্রথম প্রশ্ন হওয়া উচিত: "আমার কি আদৌ active/active লাগে?" shopbd-র জন্য উত্তর সাধারণত <strong>না</strong> — Warm Standby যথেষ্ট।</p>
+<h2 id="৫-multi-cloud-ও-hybrid">৫. Multi-cloud ও Hybrid<a class="headerlink" href="#৫-multi-cloud-ও-hybrid" title="Permanent link">&para;</a></h2>
+<h3 id="৫১-multi-cloud-মন-ক-কন">৫.১ Multi-cloud মানে কী, কেন?<a class="headerlink" href="#৫১-multi-cloud-মন-ক-কন" title="Permanent link">&para;</a></h3>
+<p><strong>Multi-cloud</strong> = একাধিক provider ব্যবহার। কারণগুলো:</p>
+<table>
+<thead>
+<tr>
+<th>ভালো কারণ</th>
+<th>খারাপ কারণ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ক্লায়েন্ট/আইন নির্দিষ্ট cloud চায়</td>
+<td>"vendor lock-in ভয়" — অস্পষ্ট ভয়</td>
+</tr>
+<tr>
+<td>Best-of-breed (যেমন BigQuery, Oracle DB, Azure-এর Microsoft integration)</td>
+<td>"আরও নিরাপদ হবে" — আসলে দ্বিগুণ attack surface</td>
+</tr>
+<tr>
+<td>Provider-level outage থেকে বাঁচতে (খুব critical সিস্টেমে)</td>
+<td>"সবার সাথে দর-কষাকষি" — ছোট কোম্পানির জন্য অকার্যকর</td>
+</tr>
+<tr>
+<td>কোম্পানি অধিগ্রহণে দুই cloud পেয়েছে</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>দাম:</strong> দ্বিগুণ দক্ষতা, দ্বিগুণ IAM/network/security মডেল, cross-cloud <strong>egress খরচ</strong>, সবচেয়ে কম-সাধারণ-ভাজক সীমাবদ্ধতা (managed service-এর বিশেষ সুবিধা ছেড়ে দিতে হয়)।</p>
+<div class="admonition tip">
+<p class="admonition-title">Multi-cloud-কে ঘৃণা করার দরকার নেই, কিন্তু default বানাবেন না</p>
+<p>ছোট দল (shopbd-র মতো) একটা cloud ভালোভাবে শিখে ও সেটাতে multi-AZ/multi-region করলে বেশি নিরাপদ। Multi-cloud সত্যিই লাগে বড় সংস্থায়, বিশেষ প্রয়োজনে।</p>
+</div>
+<h3 id="৫২-multi-cloud-এর-বসতব-pattern">৫.২ Multi-cloud-এর বাস্তব pattern<a class="headerlink" href="#৫২-multi-cloud-এর-বসতব-pattern" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Workload-ভেদে cloud:</strong> analytics GCP-তে, ERP Azure-এ, web app AWS-এ। প্রতিটি workload একটা cloud-এই থাকে — সবচেয়ে সহজ ও সাধারণ।</li>
+<li><strong>DR অন্য cloud-এ:</strong> primary AWS, backup/DR Azure/OCI-তে। Object-level backup সহজ; পুরো app-কে DR cloud-এ চালানো কঠিন।</li>
+<li><strong>Cloud-agnostic stack:</strong> Kubernetes + PostgreSQL + Terraform + OpenTelemetry — যাতে যেকোনো cloud-এ চালানো যায়। দাম: managed service-এর সুবিধা কম।</li>
+<li><strong>Database-in-another-cloud:</strong> যেমন Oracle Database service অন্য cloud-এর data center-এর ভেতরে (Oracle Database@AWS/Azure/Google Cloud) — latency কম, কিন্তু অভ্যন্তরীণ ব্যবস্থাপনা Oracle-এর।</li>
+</ol>
+<p><strong>Portability-র হাতিয়ার:</strong> containers/Kubernetes (<a href="../08-containers-kubernetes/">08</a>), Terraform (<a href="../14-infrastructure-as-code/">14</a>), PostgreSQL (open-source engine), OpenTelemetry (<a href="../12-observability/">12</a>), OIDC federation (<a href="../03-identity-and-access/">03</a>), object storage-এর S3-compatible API (অনেক cloud-ই সমর্থন করে, কিন্তু পুরোপুরি এক নয়)।</p>
+<p><strong>Cross-cloud networking:</strong> site-to-site VPN (সহজ, ইন্টারনেটের ওপর দিয়ে), অথবা colocation/partner (Equinix, Megaport) দিয়ে private interconnect; কিছু জোড়ায় সরাসরি interconnect আছে (যেমন Oracle–Microsoft Azure)। Cross-cloud ট্রাফিকের <strong>egress খরচ</strong> ভুলে যাবেন না।</p>
+<h3 id="৫৩-hybrid--নজর-data-center--cloud">৫.৩ Hybrid — নিজের data center + cloud<a class="headerlink" href="#৫৩-hybrid--নজর-data-center--cloud" title="Permanent link">&para;</a></h3>
+<p><strong>Hybrid</strong> = on-premises (বা edge) + cloud একসাথে। কারণ: আইন, কম latency, আগের বিনিয়োগ, বিশেষ hardware।</p>
+<table>
+<thead>
+<tr>
+<th>সমাধান</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloud-এর hardware আপনার ঘরে</td>
+<td><strong>Outposts</strong></td>
+<td><strong>Google Distributed Cloud</strong> (connected, air-gapped)</td>
+<td><strong>Azure Local</strong> (আগের Azure Stack HCI), Azure Stack Hub</td>
+<td><strong>Cloud@Customer</strong>, <strong>Dedicated Region</strong>, Alloy</td>
+</tr>
+<tr>
+<td>নিজের server-এ cloud control plane</td>
+<td>EKS Anywhere, ECS Anywhere, Systems Manager hybrid</td>
+<td>GKE Enterprise (আগের Anthos)</td>
+<td><strong>Azure Arc</strong> (VM, K8s, DB যেকোনো জায়গায় manage)</td>
+<td>OKE/Compute Cloud@Customer</td>
+</tr>
+<tr>
+<td>Edge/বিচ্ছিন্ন পরিবেশ</td>
+<td>Snow family, Wavelength, Local Zones</td>
+<td>Distributed Cloud Edge</td>
+<td>Azure Stack Edge, Edge Zones</td>
+<td>Roving Edge Infrastructure</td>
+</tr>
+<tr>
+<td>Private connectivity</td>
+<td>Direct Connect, Site-to-Site VPN</td>
+<td>Cloud Interconnect, Cloud VPN</td>
+<td>ExpressRoute, VPN Gateway</td>
+<td>FastConnect, Site-to-Site VPN</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Azure Arc</strong> আলাদা করে উল্লেখযোগ্য: এটা অন্য cloud ও on-prem-এর server/Kubernetes-কেও Azure-এ "জুড়ে" এক জায়গা থেকে policy, monitoring, security প্রয়োগ করতে দেয় — তাই multi-cloud management-এও ব্যবহার হয়।</p>
+<h2 id="৬-migration--অনয-জযগ-থক-cloud-এ">৬. Migration — অন্য জায়গা থেকে cloud-এ<a class="headerlink" href="#৬-migration--অনয-জযগ-থক-cloud-এ" title="Permanent link">&para;</a></h2>
+<h3 id="৬১-6r-কশল">৬.১ 6R কৌশল<a class="headerlink" href="#৬১-6r-কশল" title="Permanent link">&para;</a></h3>
+<p>প্রতিটি application-এর জন্য ছয়টির একটি বেছে নিন (কিছু framework সপ্তম "Relocate" যোগ করে):</p>
+<table>
+<thead>
+<tr>
+<th>R</th>
+<th>বাংলায়</th>
+<th>কী করেন</th>
+<th>shopbd উদাহরণ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Rehost</strong> (lift &amp; shift)</td>
+<td>যেমন আছে তেমন সরানো</td>
+<td>VM যেমন, cloud-এ তোলা</td>
+<td>পুরোনো VPS-এর API সরাসরি VM-এ</td>
+</tr>
+<tr>
+<td><strong>Replatform</strong> (lift, tinker &amp; shift)</td>
+<td>সামান্য বদলে সরানো</td>
+<td>কোড একই, কিন্তু managed DB/storage ব্যবহার</td>
+<td>নিজের PostgreSQL-এর বদলে managed PostgreSQL</td>
+</tr>
+<tr>
+<td><strong>Repurchase</strong></td>
+<td>SaaS কিনে ফেলা</td>
+<td>নিজের tool ছেড়ে SaaS</td>
+<td>নিজের ইমেইল সার্ভারের বদলে managed email/marketing tool</td>
+</tr>
+<tr>
+<td><strong>Refactor / Re-architect</strong></td>
+<td>নতুন করে নকশা</td>
+<td>cloud-native (container/serverless)</td>
+<td>মনোলিথ ভেঙে container বা function</td>
+</tr>
+<tr>
+<td><strong>Retire</strong></td>
+<td>বন্ধ করে দেওয়া</td>
+<td>আর দরকার নেই</td>
+<td>পুরোনো অব্যবহৃত admin tool</td>
+</tr>
+<tr>
+<td><strong>Retain</strong></td>
+<td>আপাতত রেখে দেওয়া</td>
+<td>এখন সরানো লাভজনক নয়</td>
+<td>লাইসেন্স-বাঁধা হিসাবের software</td>
+</tr>
+</tbody>
+</table>
+<h3 id="৬২-ধপ">৬.২ ধাপ<a class="headerlink" href="#৬২-ধপ" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart LR
+    A["Assess&lt;br/&gt;inventory, dependency,&lt;br/&gt;6R সিদ্ধান্ত"] --&gt; B["Mobilize&lt;br/&gt;landing zone, network,&lt;br/&gt;identity, security"]
+    B --&gt; C["Migrate&lt;br/&gt;pilot, তারপর waves"]
+    C --&gt; D["Optimize&lt;br/&gt;right-size, cost,&lt;br/&gt;modernize"]</code></pre>
+<ul>
+<li><strong>Landing zone আগে</strong> (<a href="../02-accounts-and-hierarchy/">Account ও Hierarchy</a>): account/project/subscription কাঠামো, network, IAM, logging ঠিক না করে workload সরাবেন না।</li>
+<li><strong>Pilot</strong> — ছোট ও কম-ঝুঁকির workload দিয়ে শুরু; শিখুন, তারপর বড় wave।</li>
+<li><strong>Cutover পরিকল্পনা:</strong> data sync চালু রেখে কম traffic-এর সময় DNS বদল; rollback পথ খোলা।</li>
+<li><strong>TTL আগেই কমান:</strong> cutover-এর কয়েকদিন আগে DNS TTL কমিয়ে দিন।</li>
+</ul>
+<h3 id="৬৩-migration-টল">৬.৩ Migration টুল<a class="headerlink" href="#৬৩-migration-টল" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>কাজ</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Discovery/Assessment</td>
+<td>Migration Hub, Application Discovery Service</td>
+<td>Migration Center</td>
+<td><strong>Azure Migrate</strong></td>
+<td>OCI Cloud Migrations (discovery, assessment)</td>
+</tr>
+<tr>
+<td>Server (VM) migration</td>
+<td><strong>Application Migration Service (MGN)</strong></td>
+<td><strong>Migrate to Virtual Machines</strong></td>
+<td>Azure Migrate (server migration), Site Recovery</td>
+<td>OCI Cloud Migrations</td>
+</tr>
+<tr>
+<td>Database migration</td>
+<td><strong>DMS</strong> (Database Migration Service), Schema Conversion Tool</td>
+<td><strong>Database Migration Service</strong></td>
+<td><strong>Azure Database Migration Service</strong></td>
+<td><strong>Database Migration</strong>, <strong>Zero Downtime Migration (ZDM)</strong></td>
+</tr>
+<tr>
+<td>Storage/data</td>
+<td>DataSync, Transfer Family, Snowball</td>
+<td>Storage Transfer Service, Transfer Appliance</td>
+<td>AzCopy, Data Box, Storage Mover</td>
+<td>Storage Gateway, Data Transfer Appliance</td>
+</tr>
+<tr>
+<td>VMware workload</td>
+<td>VMware Cloud on AWS</td>
+<td>Google Cloud VMware Engine</td>
+<td>Azure VMware Solution</td>
+<td>Oracle Cloud VMware Solution</td>
+</tr>
+<tr>
+<td>Funding/প্রোগ্রাম</td>
+<td>Migration Acceleration Program</td>
+<td>— (partner/credit)</td>
+<td>Azure Migrate and Modernize</td>
+<td>— (partner/credit)</td>
+</tr>
+</tbody>
+</table>
+<p>শিপিং-এ অনেক data (টেরাবাইট) থাকলে ইন্টারনেটে পাঠানো ধীর ও ব্যয়বহুল হতে পারে; <strong>offline appliance</strong> (Snowball, Data Box ইত্যাদি) বিবেচনা করুন।</p>
+<h2 id="৭-shopbd-reference-architecture--চর-cloud-এ">৭. <code>shopbd</code> reference architecture — চার cloud-এ<a class="headerlink" href="#৭-shopbd-reference-architecture--চর-cloud-এ" title="Permanent link">&para;</a></h2>
+<h3 id="৭১-আবশযকত-requirements">৭.১ আবশ্যকতা (requirements)<a class="headerlink" href="#৭১-আবশযকত-requirements" title="Permanent link">&para;</a></h3>
+<p>shopbd একটা ছোট বাংলাদেশি অনলাইন শপ। প্রথমে requirement লিখি — architecture তার উত্তর:</p>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>শর্ত</th>
+<th>কেন</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ট্রাফিক</td>
+<td>সাধারণ দিনে কম; ঈদ/১১.১১ sale-এ ১০ গুণ</td>
+<td>autoscaling দরকার</td>
+</tr>
+<tr>
+<td>Availability</td>
+<td>৯৯.৯% লক্ষ্য (মাসে ~৪৪ মিনিট downtime)</td>
+<td>zone-redundant app ও DB</td>
+</tr>
+<tr>
+<td><strong>RTO / RPO</strong></td>
+<td>RTO ≤ ৪ ঘণ্টা, RPO ≤ ১৫ মিনিট</td>
+<td>Warm-standby-র নিচের স্তর: DB cross-region replica + IaC</td>
+</tr>
+<tr>
+<td>Security</td>
+<td>HTTPS, DB private, secret manager, WAF, least privilege</td>
+<td><a href="../13-security/">Security</a></td>
+</tr>
+<tr>
+<td>Data</td>
+<td>PostgreSQL (<code>shopbd-db</code>), ছবি (<code>shopbd-images</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>Async কাজ</td>
+<td>অর্ডার ইমেইল, রাতের sales report</td>
+<td>queue ও scheduler</td>
+</tr>
+<tr>
+<td>Region</td>
+<td>primary: Mumbai; DR: Hyderabad/Delhi/South India</td>
+<td></td>
+</tr>
+<tr>
+<td>বাজেট</td>
+<td>ছোট; idle খরচ কম</td>
+<td>managed/serverless ঝোঁক</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Strategy</strong> (প্রতিটি cloud-এ একই কাঠামো: edge → frontend → API → DB → images → async → secrets → monitoring → DR): Primary region-এ পুরো <strong>multi-zone</strong> HA; DR region-এ <strong>Pilot Light++</strong> — DB replica ও ছবির কপি সবসময় চালু, app বন্ধ (IaC দিয়ে মিনিটে চালু হয়)।</p>
+<h3 id="৭২-reference-architecture--পরত-cloud-এ">৭.২ Reference architecture — প্রতি cloud-এ<a class="headerlink" href="#৭২-reference-architecture--পরত-cloud-এ" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:4"><input checked="checked" id="aws_6" name="__tabbed_7" type="radio" /><input id="gcp_6" name="__tabbed_7" type="radio" /><input id="azure_6" name="__tabbed_7" type="radio" /><input id="oci_6" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="aws_6">AWS</label><label for="gcp_6">GCP</label><label for="azure_6">Azure</label><label for="oci_6">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>Primary:</strong> <code>ap-south-1</code> (Mumbai) · <strong>DR:</strong> <code>ap-south-2</code> (Hyderabad)</p>
+<pre class="mermaid"><code>flowchart TB
+    U["ক্রেতা"] --&gt; R53["Route 53&lt;br/&gt;shopbd.example.com"]
+    R53 --&gt; CF["CloudFront + AWS WAF"]
+    CF --&gt; S3W[("S3 shopbd-web&lt;br/&gt;static frontend")]
+    CF --&gt; ALB["Application Load Balancer&lt;br/&gt;public subnets"]
+    subgraph VPC["shopbd-prod-vpc"]
+        subgraph AZA["AZ a — private subnets"]
+            ECA["ECS Fargate&lt;br/&gt;shopbd-api"]
+        end
+        subgraph AZB["AZ b — private subnets"]
+            ECB["ECS Fargate&lt;br/&gt;shopbd-api"]
+        end
+        ALB --&gt; ECA
+        ALB --&gt; ECB
+        ECA --&gt; RDS[("RDS PostgreSQL&lt;br/&gt;Multi-AZ shopbd-db")]
+        ECB --&gt; RDS
+        ECA -. "NAT/VPC endpoint" .-&gt; SQS["SQS orders-email"]
+    end
+    CF --&gt; S3I[("S3 shopbd-images")]
+    SQS --&gt; LAM["Lambda worker"] --&gt; SES["Amazon SES&lt;br/&gt;order email"]
+    EVB["EventBridge Scheduler&lt;br/&gt;nightly 02:00"] --&gt; RPT["Lambda / ECS task&lt;br/&gt;sales report"] --&gt; S3R[("S3 reports")]
+    ECA --&gt; SM["Secrets Manager + KMS"]
+    ECA --&gt; CW["CloudWatch&lt;br/&gt;alarms to SNS ops@example.com"]
+    RDS -. "cross-region read replica" .-&gt; RDSDR[("RDS replica&lt;br/&gt;ap-south-2")]
+    S3I -. "CRR" .-&gt; S3IDR[("S3 images DR")]</code></pre>
+<table>
+<thead>
+<tr>
+<th>স্তর</th>
+<th>Service</th>
+<th>মন্তব্য</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Edge</td>
+<td>Route 53, CloudFront, AWS WAF, ACM (certificate, CloudFront-এর জন্য us-east-1)</td>
+<td><code>shopbd.example.com</code></td>
+</tr>
+<tr>
+<td>Frontend</td>
+<td>S3 + CloudFront (OAC দিয়ে private bucket)</td>
+<td></td>
+</tr>
+<tr>
+<td>API</td>
+<td>ECS on <strong>Fargate</strong> (বা App Runner) behind <strong>ALB</strong></td>
+<td>private subnet, ≥২ AZ</td>
+</tr>
+<tr>
+<td>Database</td>
+<td><strong>RDS PostgreSQL Multi-AZ</strong></td>
+<td>private subnet group, encrypted, PITR</td>
+</tr>
+<tr>
+<td>Images</td>
+<td>S3 <code>shopbd-images</code> + CloudFront</td>
+<td>presigned upload URL</td>
+</tr>
+<tr>
+<td>Async</td>
+<td>SQS → Lambda → <strong>SES</strong>; <strong>EventBridge Scheduler</strong> → report job</td>
+<td></td>
+</tr>
+<tr>
+<td>Secrets</td>
+<td>Secrets Manager (RDS managed password), KMS</td>
+<td></td>
+</tr>
+<tr>
+<td>Observability</td>
+<td>CloudWatch, X-Ray/OpenTelemetry, CloudTrail</td>
+<td>alarm → SNS → <code>ops@example.com</code></td>
+</tr>
+<tr>
+<td>Security</td>
+<td>Security groups, VPC endpoints, GuardDuty</td>
+<td><a href="../13-security/">Security</a></td>
+</tr>
+<tr>
+<td>DR (Hyderabad)</td>
+<td>RDS cross-region read replica, S3 CRR, AWS Backup copy, IaC প্রস্তুত</td>
+<td>pilot light</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ট্রাফিক বাড়লে:</strong> Fargate service-এর target-tracking autoscaling (CPU বা ALB request-per-target)।
+<strong>IaC:</strong> Terraform module — <code>network</code>, <code>data</code>, <code>app</code>, <code>edge</code>, <code>observability</code> (<a href="../14-infrastructure-as-code/">Terraform</a>)।</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Primary:</strong> <code>asia-south1</code> (Mumbai) · <strong>DR:</strong> <code>asia-south2</code> (Delhi)</p>
+<pre class="mermaid"><code>flowchart TB
+    U["ক্রেতা"] --&gt; DNS["Cloud DNS&lt;br/&gt;shopbd.example.com"]
+    DNS --&gt; LB["Global external Application LB&lt;br/&gt;Cloud CDN + Cloud Armor"]
+    LB --&gt; GW[("Cloud Storage shopbd-web&lt;br/&gt;backend bucket")]
+    LB --&gt; CR["Cloud Run&lt;br/&gt;shopbd-api — multi-zone"]
+    subgraph VPC["shopbd-prod-vpc — global VPC"]
+        CR -- "Direct VPC egress&lt;br/&gt;private IP" --&gt; SQL[("Cloud SQL PostgreSQL&lt;br/&gt;HA REGIONAL shopbd-db")]
+    end
+    LB --&gt; GCSI[("Cloud Storage shopbd-images")]
+    CR --&gt; PS["Pub/Sub orders-email"]
+    PS --&gt; CRW["Cloud Run worker"] --&gt; MAIL["Email provider&lt;br/&gt;third party API"]
+    SCH["Cloud Scheduler&lt;br/&gt;nightly 02:00"] --&gt; JOB["Cloud Run job&lt;br/&gt;sales report"] --&gt; GCSR[("Cloud Storage reports")]
+    CR --&gt; SMS["Secret Manager + Cloud KMS"]
+    CR --&gt; MON["Cloud Monitoring + Logging&lt;br/&gt;alert to ops@example.com"]
+    SQL -. "cross-region replica" .-&gt; SQLDR[("Cloud SQL replica&lt;br/&gt;asia-south2")]
+    GCSI -. "dual-region or transfer" .-&gt; GCSDR[("images DR")]</code></pre>
+<table>
+<thead>
+<tr>
+<th>স্তর</th>
+<th>Service</th>
+<th>মন্তব্য</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Edge</td>
+<td>Cloud DNS, <strong>global external Application LB</strong>, Cloud CDN, <strong>Cloud Armor</strong> (WAF/DDoS), Google-managed certificate</td>
+<td>একটি anycast IP</td>
+</tr>
+<tr>
+<td>Frontend</td>
+<td>Cloud Storage bucket → LB-র backend bucket</td>
+<td></td>
+</tr>
+<tr>
+<td>API</td>
+<td><strong>Cloud Run</strong> (বা GKE Autopilot)</td>
+<td>autoscaling (শূন্য পর্যন্ত), multi-zone ডিফল্ট</td>
+</tr>
+<tr>
+<td>Database</td>
+<td><strong>Cloud SQL for PostgreSQL, HA (REGIONAL)</strong> (বা AlloyDB)</td>
+<td>private IP, PITR</td>
+</tr>
+<tr>
+<td>Images</td>
+<td>Cloud Storage <code>shopbd-images</code> + Cloud CDN</td>
+<td>signed URL</td>
+</tr>
+<tr>
+<td>Async</td>
+<td><strong>Pub/Sub</strong> → Cloud Run worker; <strong>Cloud Scheduler</strong> → Cloud Run job</td>
+<td></td>
+</tr>
+<tr>
+<td>ইমেইল</td>
+<td>GCP-তে নিজস্ব bulk email service নেই — তৃতীয় পক্ষের email API (বা SMTP relay)</td>
+<td>অমিল!</td>
+</tr>
+<tr>
+<td>Secrets</td>
+<td>Secret Manager, Cloud KMS</td>
+<td></td>
+</tr>
+<tr>
+<td>Observability</td>
+<td>Cloud Monitoring, Logging, Trace, Audit Logs</td>
+<td>alert policy → <code>ops@example.com</code></td>
+</tr>
+<tr>
+<td>DR (Delhi)</td>
+<td>Cloud SQL cross-region replica, bucket replication/transfer, Terraform/Infrastructure Manager</td>
+<td>pilot light</td>
+</tr>
+</tbody>
+</table>
+<p><strong>GCP-র সুবিধা:</strong> VPC <strong>global</strong> — DR region-এর subnet একই VPC-তে; global LB failover সহজ।
+<strong>ট্রাফিক বাড়লে:</strong> Cloud Run max-instances ও concurrency বাড়ান; Cloud SQL-এর connection সীমা মাথায় রাখুন (pooling)।</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Primary:</strong> Central India · <strong>DR:</strong> South India</p>
+<pre class="mermaid"><code>flowchart TB
+    U["ক্রেতা"] --&gt; AFD["Azure Front Door + WAF&lt;br/&gt;shopbd.example.com"]
+    AFD --&gt; SA[("Storage static website&lt;br/&gt;shopbd-web")]
+    AFD --&gt; CA["Azure Container Apps&lt;br/&gt;shopbd-api — zone-redundant"]
+    subgraph VNET["shopbd-prod-vnet"]
+        subgraph SNAPP["app subnet"]
+            CA
+        end
+        subgraph SNDB["db subnet delegated"]
+            PG[("PostgreSQL Flexible Server&lt;br/&gt;ZoneRedundant HA shopbd-db")]
+        end
+        CA --&gt; PG
+    end
+    AFD --&gt; BLOB[("Blob Storage shopbd-images")]
+    CA --&gt; SB["Service Bus queue&lt;br/&gt;orders-email"]
+    SB --&gt; FN["Azure Functions"] --&gt; ACS["Azure Communication Services&lt;br/&gt;Email"]
+    JOBT["Container Apps job&lt;br/&gt;cron 02:00"] --&gt; REP[("Blob reports")]
+    CA --&gt; KV["Key Vault + managed identity"]
+    CA --&gt; AM["Azure Monitor + Log Analytics&lt;br/&gt;action group ops@example.com"]
+    PG -. "geo read replica" .-&gt; PGDR[("PostgreSQL replica&lt;br/&gt;South India")]
+    BLOB -. "GZRS / object replication" .-&gt; BLOBDR[("images DR")]</code></pre>
+<table>
+<thead>
+<tr>
+<th>স্তর</th>
+<th>Service</th>
+<th>মন্তব্য</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Edge</td>
+<td>Azure DNS, <strong>Azure Front Door</strong> (CDN+WAF+global LB), managed certificate</td>
+<td></td>
+</tr>
+<tr>
+<td>Frontend</td>
+<td>Storage account static website, বা Static Web Apps</td>
+<td></td>
+</tr>
+<tr>
+<td>API</td>
+<td><strong>Azure Container Apps</strong> (বা App Service)</td>
+<td>VNet integration, zone redundancy, autoscaling (KEDA)</td>
+</tr>
+<tr>
+<td>Database</td>
+<td><strong>Azure Database for PostgreSQL Flexible Server — ZoneRedundant HA</strong></td>
+<td>delegated subnet + private DNS zone</td>
+</tr>
+<tr>
+<td>Images</td>
+<td>Blob Storage <code>shopbd-images</code> (ZRS/GZRS) + Front Door</td>
+<td>SAS URL</td>
+</tr>
+<tr>
+<td>Async</td>
+<td><strong>Service Bus</strong> → Functions → <strong>Azure Communication Services Email</strong>; Container Apps <strong>job</strong> (cron)</td>
+<td></td>
+</tr>
+<tr>
+<td>Secrets</td>
+<td>Key Vault, <strong>managed identity</strong></td>
+<td>কোনো password কোডে নয়</td>
+</tr>
+<tr>
+<td>Observability</td>
+<td>Azure Monitor, Log Analytics, Application Insights, Activity Log</td>
+<td>action group → <code>ops@example.com</code></td>
+</tr>
+<tr>
+<td>Security</td>
+<td>NSG, Private Endpoint, Defender for Cloud, Azure Policy</td>
+<td></td>
+</tr>
+<tr>
+<td>DR (South India)</td>
+<td>PostgreSQL geo replica, Blob GZRS, Front Door origin failover, Bicep/Terraform</td>
+<td>pilot light</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Azure-র সুবিধা:</strong> ডিফল্টে region pair, Entra ID-র সাথে integration, Front Door-এ CDN+WAF+failover একসাথে।
+<strong>মনে রাখুন:</strong> Resource Group-এ lifecycle অনুযায়ী resource ভাগ করুন (<code>shopbd-prod-rg</code>, <code>shopbd-dr-rg</code>, <code>shopbd-global-rg</code>)।</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Primary:</strong> <code>ap-mumbai-1</code> · <strong>DR:</strong> <code>ap-hyderabad-1</code> · (দুটিই single-AD — HA হয় <strong>fault domain</strong> দিয়ে)</p>
+<pre class="mermaid"><code>flowchart TB
+    U["ক্রেতা"] --&gt; DNS["OCI DNS&lt;br/&gt;shopbd.example.com"]
+    DNS --&gt; WAF["OCI WAF"]
+    WAF --&gt; LB["Flexible Load Balancer&lt;br/&gt;public subnet"]
+    subgraph VCN["shopbd-prod-vcn"]
+        subgraph PRIV["private subnet — AD-1"]
+            FD1["API instance&lt;br/&gt;Fault Domain 1"]
+            FD2["API instance&lt;br/&gt;Fault Domain 2"]
+            FD3["API instance&lt;br/&gt;Fault Domain 3"]
+        end
+        LB --&gt; FD1
+        LB --&gt; FD2
+        LB --&gt; FD3
+        FD1 --&gt; DB[("OCI Database with PostgreSQL&lt;br/&gt;HA shopbd-db")]
+        FD2 --&gt; DB
+        FD3 --&gt; DB
+    end
+    LB --&gt; OSW[("Object Storage shopbd-web")]
+    WAF --&gt; OSI[("Object Storage shopbd-images")]
+    FD1 --&gt; Q["OCI Queue&lt;br/&gt;orders-email"]
+    Q --&gt; FN["OCI Functions"] --&gt; EM["Email Delivery"]
+    CRON["Scheduled job&lt;br/&gt;nightly 02:00"] --&gt; REP[("Object Storage reports")]
+    FD1 --&gt; VLT["OCI Vault&lt;br/&gt;secrets + keys"]
+    FD1 --&gt; MON["Monitoring + Logging&lt;br/&gt;Notifications to ops@example.com"]
+    DB -. "backup copy / replica" .-&gt; DBDR[("DB in Hyderabad")]
+    OSI -. "replication policy" .-&gt; OSIDR[("images DR")]</code></pre>
+<table>
+<thead>
+<tr>
+<th>স্তর</th>
+<th>Service</th>
+<th>মন্তব্য</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Edge</td>
+<td>OCI DNS, <strong>WAF</strong>, Load Balancer (TLS certificate সহ)</td>
+<td></td>
+</tr>
+<tr>
+<td>Frontend</td>
+<td>Object Storage + LB/CDN বিকল্প, বা API instance-এ nginx</td>
+<td>OCI-র CDN বিকল্প সীমিত; আপনার কেস অনুযায়ী যাচাই করুন</td>
+</tr>
+<tr>
+<td>API</td>
+<td><strong>Compute instance pool</strong> (container চালিয়ে) বা OKE / Container Instances</td>
+<td>তিন <strong>fault domain</strong>-এ ছড়ানো, instance principal</td>
+</tr>
+<tr>
+<td>Database</td>
+<td><strong>OCI Database with PostgreSQL</strong> (HA) বা MySQL HeatWave HA</td>
+<td>private subnet, backup/cross-region কপি</td>
+</tr>
+<tr>
+<td>Images</td>
+<td>Object Storage <code>shopbd-images</code></td>
+<td><strong>PAR</strong> (pre-authenticated request) URL</td>
+</tr>
+<tr>
+<td>Async</td>
+<td><strong>OCI Queue</strong> → <strong>Functions</strong> → <strong>Email Delivery</strong>; রাতের job: scheduled instance/cron বা অন্য scheduler</td>
+<td>OCI-তে সোজাসুজি "cron থেকে function" বিকল্প সীমিত — আপনার region-এ বর্তমান বিকল্প যাচাই করুন</td>
+</tr>
+<tr>
+<td>Secrets</td>
+<td><strong>OCI Vault</strong> (secrets + keys)</td>
+<td></td>
+</tr>
+<tr>
+<td>Observability</td>
+<td>Monitoring, Logging, APM, Audit; Notifications topic → <code>ops@example.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Security</td>
+<td>NSG, Security Lists, Cloud Guard, Compartment ও policy</td>
+<td><code>shopbd-prod</code> compartment</td>
+</tr>
+<tr>
+<td>DR (Hyderabad)</td>
+<td>Object Storage replication, DB backup/replica cross-region, Full Stack DR plan, Resource Manager/Terraform</td>
+<td>pilot light</td>
+</tr>
+</tbody>
+</table>
+<p><strong>OCI-র সুবিধা:</strong> কম egress খরচ, শক্তিশালী free/অর্থ-সাশ্রয়ী compute, Oracle DB, ও <strong>Full Stack Disaster Recovery</strong> (compute+DB-র DR plan এক জায়গায়)।
+<strong>মনে রাখুন:</strong> compartment OCID প্রায় সব resource-এ লাগে; policy-তে <code>dynamic-group</code> ব্যবহার করুন।</p>
+</div>
+</div>
+</div>
+<h3 id="৭৩-slo-ও-dr-runbook-সব-cloud-এ-পরযজয">৭.৩ SLO ও DR runbook (সব cloud-এ প্রযোজ্য)<a class="headerlink" href="#৭৩-slo-ও-dr-runbook-সব-cloud-এ-পরযজয" title="Permanent link">&para;</a></h3>
+<p><strong>SLO (Service Level Objective) — shopbd-র লক্ষ্য</strong></p>
+<table>
+<thead>
+<tr>
+<th>Indicator</th>
+<th>লক্ষ্য</th>
+<th>কী মাপা হয়</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Availability</td>
+<td>৯৯.৯% (মাসিক)</td>
+<td><code>/health</code> সফল %</td>
+</tr>
+<tr>
+<td>API latency</td>
+<td>p95 &lt; ৫০০ ms</td>
+<td>load balancer metric</td>
+</tr>
+<tr>
+<td>Checkout success</td>
+<td>≥ ৯৯%</td>
+<td>অর্ডার সফল / চেষ্টা</td>
+</tr>
+<tr>
+<td>RPO / RTO</td>
+<td>≤ ১৫ মিনিট / ≤ ৪ ঘণ্টা</td>
+<td>replica lag; game day-এর সময়</td>
+</tr>
+</tbody>
+</table>
+<p><strong>DR runbook (সংক্ষেপ)</strong></p>
+<ol>
+<li><strong>ঘোষণা:</strong> <code>ops@example.com</code>-এ alert → on-call নিশ্চিত করেন primary region ব্যর্থ (শুধু একটা service নয়)।</li>
+<li><strong>ডেটা:</strong> DR region-এর DB replica <strong>promote</strong> করুন (৩.৫ক-র কমান্ড)। Replication lag দেখে সম্ভাব্য data loss রেকর্ড করুন।</li>
+<li><strong>App:</strong> Terraform দিয়ে DR region-এ <code>app</code> module apply (<code>terraform apply -var region=dr</code>) — container image আগেই DR registry-তে কপি করা থাকে।</li>
+<li><strong>Secrets/Config:</strong> DR region-এ secret আছে কি না যাচাই (secret replication বা আগে থেকে তৈরি)।</li>
+<li><strong>Traffic:</strong> DNS failover/global LB/Front Door/steering policy DR endpoint-এ ঘোরান; TTL কম রাখা ছিল।</li>
+<li><strong>যাচাই:</strong> smoke test — হোমপেজ, লগইন, cart, checkout, ইমেইল।</li>
+<li><strong>যোগাযোগ:</strong> স্ট্যাটাস পাতা/সোশ্যাল মিডিয়ায় ক্রেতাদের জানান।</li>
+<li><strong>Failback:</strong> primary ফিরলে DB উল্টো দিকে sync করে পরিকল্পিত সময়ে ফিরুন; postmortem (blameless) লিখুন।</li>
+</ol>
+<p><strong>Game day checklist:</strong> replica promote সময় মাপা · app-DB connection string বদলের ধাপ · image/registry DR region-এ আছে · DNS TTL সত্যিই কম · alert কাজ করে · runbook-এ ছাড় পড়েনি।</p>
+<h2 id="মল-ও-অমল">মিল ও অমিল<a class="headerlink" href="#মল-ও-অমল" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zone ধারণা</td>
+<td>AZ (নামের অক্ষর account-ভেদে আলাদা ম্যাপ হতে পারে — AZ ID দেখুন)</td>
+<td>Zone</td>
+<td>Availability Zone (logical, subscription-ভেদে ম্যাপ)</td>
+<td>AD + <strong>Fault Domain</strong> (Mumbai: ১ AD)</td>
+</tr>
+<tr>
+<td>Network পরিধি</td>
+<td>VPC = region</td>
+<td><strong>VPC = global</strong></td>
+<td>VNet = region</td>
+<td>VCN = region</td>
+</tr>
+<tr>
+<td>DNS-ভিত্তিক বনাম anycast failover</td>
+<td>Route 53 (DNS) / Global Accelerator (anycast)</td>
+<td>Global LB (anycast)</td>
+<td>Traffic Manager (DNS) / Front Door (anycast)</td>
+<td>Steering policy (DNS)</td>
+</tr>
+<tr>
+<td>Region জোড়া</td>
+<td>নেই (আপনি বাছেন)</td>
+<td>নেই</td>
+<td><strong>আছে</strong> (paired regions)</td>
+<td>নেই</td>
+</tr>
+<tr>
+<td>DR প্রশাসন</td>
+<td>Elastic DR, Route 53 ARC</td>
+<td>Backup and DR</td>
+<td>Site Recovery</td>
+<td>Full Stack DR</td>
+</tr>
+<tr>
+<td>Hybrid-এর দর্শন</td>
+<td>hardware ঘরে (Outposts)</td>
+<td>software/K8s (Anthos→GKE Enterprise)</td>
+<td><strong>Arc</strong> (control plane সর্বত্র)</td>
+<td>Cloud@Customer, Dedicated Region</td>
+</tr>
+</tbody>
+</table>
+<p><strong>যেসব বিষয়ে মানুষ ভুল করে:</strong></p>
+<ul>
+<li><strong>AWS:</strong> AZ-র নাম (<code>ap-south-1a</code>) আপনার account-এ আর অন্যের account-এ আলাদা physical AZ হতে পারে — cross-account কাজে <strong>AZ ID</strong> (<code>aps1-az1</code>) দেখুন।</li>
+<li><strong>GCP:</strong> VPC global হলেও subnet regional; আর Cloud Run-এ DB connection সীমা/pooling ভুলবেন না।</li>
+<li><strong>Azure:</strong> সব region-এ বা সব SKU-তে availability zone নেই; zone-redundant ও zonal সম্পদ এক জিনিস না।</li>
+<li><strong>OCI:</strong> compartment ও policy ঠিক না থাকলে কিছুই চলে না; Mumbai single-AD বলে "আলাদা AD" পরিকল্পনা কাজ করবে না।</li>
+<li><strong>সব cloud:</strong> replication ≠ backup; DR region-এ <strong>quota</strong> ও <strong>capacity</strong> আগে থেকে নিশ্চিত না করলে বিপদে instance পাবেন না।</li>
+</ul>
+<h2 id="real-world-shopbd">Real-world: shopbd<a class="headerlink" href="#real-world-shopbd" title="Permanent link">&para;</a></h2>
+<p>shopbd-র যাত্রাপথ (দলের আকার ও ব্যবসা বাড়ার সাথে):</p>
+<table>
+<thead>
+<tr>
+<th>ধাপ</th>
+<th>পরিস্থিতি</th>
+<th>architecture</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>১ — শুরু</td>
+<td>১–২ জন ডেভেলপার, কম ট্রাফিক</td>
+<td>একটা region, managed DB (single-AZ), ছবি object storage-এ, <strong>backup</strong> চালু; HA পরে</td>
+</tr>
+<tr>
+<td>২ — বিক্রি বাড়ছে</td>
+<td>ঈদ sale আসছে</td>
+<td>Multi-AZ app ও DB, CDN, autoscaling, monitoring ও alert</td>
+</tr>
+<tr>
+<td>৩ — ব্যবসা নির্ভর</td>
+<td>ডাউনটাইম = বড় লোকসান</td>
+<td>DR region-এ replica (Pilot Light), IaC সব, game day বছরে ২ বার</td>
+</tr>
+<tr>
+<td>৪ — বড়</td>
+<td>একাধিক দেশ/শাখা</td>
+<td>Warm Standby বা multi-region; compliance; landing zone</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ঈদ sale-এর আগের checklist:</strong></p>
+<ol>
+<li>Load test করে autoscaling-এর max ঠিক করুন; DB connection ও queue-র সীমা দেখুন।</li>
+<li>Quota আগে বাড়ান (vCPU, load balancer, API rate)।</li>
+<li>Cache ও CDN গরম করুন; ছবি প্রি-লোড।</li>
+<li>Deploy freeze (বড় sale-এর ৩ দিন আগে থেকে)।</li>
+<li>On-call রোস্টার ও runbook হালনাগাদ; DR replica-র lag ঠিক আছে কি না দেখুন।</li>
+<li>Budget alert কড়া করুন — ট্রাফিক বাড়লে খরচও বাড়বে।</li>
+</ol>
+<h2 id="best-practices">Best practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Business দিয়ে শুরু:</strong> RTO/RPO ও বাজেট আগে; তারপর প্রযুক্তি।</li>
+<li><strong>কমপক্ষে ২ zone</strong>, stateless app, managed HA database।</li>
+<li><strong>SPOF খুঁজুন</strong> প্রতিটি layer-এ (DNS, LB, secret, identity, একক region-এর service)।</li>
+<li><strong>Replica + আলাদা backup + restore test</strong> — তিনটাই।</li>
+<li><strong>সবকিছু IaC-তে</strong> (<a href="../14-infrastructure-as-code/">Terraform</a>): <code>network</code>, <code>data</code>, <code>app</code>, <code>edge</code> module; DR env-এ একই module, ছোট আকার, আলাদা remote state।</li>
+<li><strong>খরচ:</strong> idle compute, HA-র দ্বিগুণ DB, NAT/egress, log ingest ও DR replica — এই পাঁচটি দেখুন (<a href="../18-cost-management/">Cost</a>)।</li>
+<li><strong>Failover স্বয়ংক্রিয় রাখুন যেখানে নিরাপদ,</strong> যেখানে data-loss-এর ঝুঁকি (DB promote) সেখানে ইচ্ছাকৃত মানুষের সিদ্ধান্ত।</li>
+<li><strong>Game day</strong> বছরে অন্তত ২ বার; ফলাফল runbook-এ ফেরত।</li>
+<li><strong>Landing zone ও আলাদা account</strong> — blast radius কম, backup-এর আলাদা account।</li>
+<li><strong>Observability আগে:</strong> SLO ঠিক করে alert; সবকিছুতে alert করলে কেউ কিছু দেখে না।</li>
+<li><strong>Multi-cloud/active-active প্রয়োজন প্রমাণ করে</strong> — ডিফল্ট নয়।</li>
+<li><strong>Well-Architected review</strong> নিয়মিত (প্রতি বড় পরিবর্তনে ও বছরে একবার)।</li>
+</ul>
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ভুল</th>
+<th>কেন সমস্যা</th>
+<th>সমাধান</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>শুধু একটা AZ/zone-এ সব</td>
+<td>zone ভাঙলে পুরো সাইট বন্ধ</td>
+<td>কমপক্ষে ২ zone; HA DB</td>
+</tr>
+<tr>
+<td>Replica আছে বলে backup নেই</td>
+<td>ভুল delete/ransomware replica-তেও যায়</td>
+<td>আলাদা immutable backup + PITR</td>
+</tr>
+<tr>
+<td>Backup কখনো restore করে দেখেননি</td>
+<td>দরকারে দেখা গেল ভাঙা/অসম্পূর্ণ</td>
+<td>মাসিক restore test</td>
+</tr>
+<tr>
+<td>DR region-এ quota ০ বা capacity নেই</td>
+<td>বিপদে instance পান না</td>
+<td>quota আগে নিন, reservation/pilot light</td>
+</tr>
+<tr>
+<td>DNS TTL বড় (যেমন ২৪ ঘণ্টা)</td>
+<td>failover-এর পর ঘণ্টার পর ঘণ্টা পুরোনো IP</td>
+<td>TTL ৬০–৩০০ সেকেন্ড</td>
+</tr>
+<tr>
+<td>Failover চালু কিন্তু secret/config DR-এ নেই</td>
+<td>app উঠলেও DB/key পায় না</td>
+<td>secret replication/আগে থেকে তৈরি</td>
+</tr>
+<tr>
+<td>App stateful (session instance-এ)</td>
+<td>instance বদলালে user logout</td>
+<td>Redis/DB/token</td>
+</tr>
+<tr>
+<td>DR প্ল্যান শুধু কাগজে</td>
+<td>বিপদে কেউ জানে না কী করতে হবে</td>
+<td>game day + runbook</td>
+</tr>
+<tr>
+<td>শুরুতেই multi-cloud/multi-region</td>
+<td>জটিলতা ও খরচ, ছোট দল সামলাতে পারে না</td>
+<td>আগে এক region-এ ভালো HA</td>
+</tr>
+<tr>
+<td>Dependency উপেক্ষা (ইমেইল, payment, DNS)</td>
+<td>নিজের system ঠিক, কিন্তু বাইরের জিনিসে আটকে</td>
+<td>dependency map ও fallback</td>
+</tr>
+<tr>
+<td>Migration-এ landing zone বাদ</td>
+<td>অগোছালো account, নিরাপত্তা ফাঁক</td>
+<td>আগে landing zone</td>
+</tr>
+<tr>
+<td>6R না ভেবে সবকিছু lift-and-shift</td>
+<td>cloud-এর সুবিধা না পেয়ে বেশি খরচ</td>
+<td>workload-ভেদে R বাছুন</td>
+</tr>
+<tr>
+<td>Production ও DR এক account/subscription-এ</td>
+<td>একটা compromise দুটোই শেষ</td>
+<td>আলাদা account/project</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ইনটরভউ--সরটফকশন-টপস">ইন্টারভিউ / সার্টিফিকেশন টিপস<a class="headerlink" href="#ইনটরভউ--সরটফকশন-টপস" title="Permanent link">&para;</a></h2>
+<details class="question">
+<summary>High Availability আর Disaster Recovery-র পার্থক্য কী?</summary>
+<p>HA ছোট ব্যর্থতা (server, AZ) সামলে সিস্টেম চালু রাখে — প্রায় অদৃশ্যভাবে, একই region-এ। DR পুরো region বা মারাত্মক ঘটনার পর অন্য জায়গায় সিস্টেম ফিরিয়ে আনার পরিকল্পনা, যেখানে কিছুটা downtime ও data loss মেনে নেওয়া হয় (RTO/RPO দ্বারা নির্ধারিত)।</p>
+</details>
+<details class="question">
+<summary>RTO ও RPO কী? একটা উদাহরণ দিন।</summary>
+<p>RTO: বিপর্যয়ের পর কত সময়ে সেবা চালু; RPO: কতটুকু data হারানো সহনীয়। shopbd-র RPO ১৫ মিনিট মানে সর্বোচ্চ শেষ ১৫ মিনিটের অর্ডার হারানো চলবে; RTO ৪ ঘণ্টা মানে ৪ ঘণ্টার মধ্যে সাইট ফেরাতে হবে। এগুলো ব্যবসা ঠিক করে, তারপর strategy ও বাজেট।</p>
+</details>
+<details class="question">
+<summary>চার DR strategy ও কখন কোনটা?</summary>
+<p>Backup &amp; Restore (সবচেয়ে সস্তা, RTO ঘণ্টা) — অ-critical; Pilot Light (শুধু data layer সবসময় চালু) — মাঝারি RTO; Warm Standby (ছোট পুরো কপি চালু) — মিনিটের RTO; Active/Active (দুই region live) — প্রায় শূন্য RTO, সর্বোচ্চ খরচ ও data-conflict জটিলতা।</p>
+</details>
+<details class="question">
+<summary>Multi-AZ আর read replica কি এক জিনিস?</summary>
+<p>না। Multi-AZ (HA) synchronous standby — failover-এর জন্য, সাধারণত পড়ার জন্য ব্যবহার হয় না। Read replica asynchronous — পড়ার load ভাগ করে ও cross-region DR-এ কাজে লাগে, কিন্তু lag থাকতে পারে এবং promote করলে কিছু data হারানো সম্ভব।</p>
+</details>
+<details class="question">
+<summary>Composite SLA কীভাবে বের করবেন?</summary>
+<p>ক্রমানুসারে (serial) যুক্ত component-গুলোর availability গুণ করে। যেমন 99.99% × 99.95% × 99.95% ≈ 99.89%। সমান্তরাল redundancy availability বাড়ায়, তবে স্বাধীন ব্যর্থতা ধরে নিলেই — বাস্তবে shared dependency ও ভুল deploy সম্ভাবনা বদলে দেয়।</p>
+</details>
+<details class="question">
+<summary>OCI-র Mumbai region-এ HA কীভাবে করবেন, যেখানে একটাই AD?</summary>
+<p>Fault Domain ব্যবহার করে — AD-র ভেতরে তিনটি আলাদা hardware/power গ্রুপ। Instance pool ও HA database fault domain-এ ছড়ান। পুরো region-এর ঝুঁকির জন্য অন্য region-এ (যেমন Hyderabad) cross-region replica/backup রাখুন।</p>
+</details>
+<details class="question">
+<summary>6R কী কী?</summary>
+<p>Rehost, Replatform, Repurchase, Refactor/Re-architect, Retire, Retain (সাথে কিছু framework-এ Relocate)। প্রতিটি application-এর জন্য ভিন্ন R হতে পারে; migration শুরুর আগে assessment-এ বেছে নেওয়া হয়।</p>
+</details>
+<details class="question">
+<summary>Azure Arc ও AWS Outposts-এর পার্থক্য?</summary>
+<p>Outposts: AWS-এর hardware আপনার data center-এ বসে (AWS-পরিচালিত)। Azure Arc: কোনো hardware না, বরং যেকোনো জায়গার (on-prem, অন্য cloud) server/Kubernetes/database-কে Azure-এর control plane-এ জুড়ে একই policy ও monitoring দেওয়ার স্তর। Azure-এ hardware-সহ বিকল্প হলো Azure Local।</p>
+</details>
+<h2 id="সরসকষপ">সারসংক্ষেপ<a class="headerlink" href="#সরসকষপ" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Well-Architected Framework</strong> (চার cloud-এরই আছে) = design যাচাইয়ের প্রশ্ন-তালিকা; pillar-গুলোর মধ্যে trade-off মেনে ব্যবসার প্রয়োজনে ভারসাম্য আনুন।</li>
+<li><strong>HA</strong> = SPOF নেই: ≥২ zone, stateless app, managed HA database। Availability-র সংখ্যা গুণ হয় (serial) — বাস্তবে shared dependency খেয়াল রাখুন।</li>
+<li><strong>OCI Mumbai/Hyderabad single-AD</strong> — HA-র জন্য fault domain; region-ঝুঁকির জন্য cross-region।</li>
+<li><strong>DR:</strong> আগে RTO/RPO ঠিক করুন; Backup &amp; Restore → Pilot Light → Warm Standby → Active/Active। Replication ≠ backup; restore ও failover পরীক্ষা করুন (game day)।</li>
+<li><strong>Multi-region</strong> মানে data-র জটিলতা; <strong>multi-cloud</strong> মানে দ্বিগুণ দক্ষতা ও egress খরচ — প্রয়োজন প্রমাণ করে নিন। <strong>Hybrid:</strong> Outposts, Distributed Cloud, Arc/Azure Local, Cloud@Customer।</li>
+<li><strong>Migration:</strong> 6R + landing zone আগে + pilot + optimize। টুল: MGN/DMS, Migrate to VMs/DMS, Azure Migrate, OCI Cloud Migrations/ZDM।</li>
+<li><strong>shopbd reference:</strong> edge (DNS/CDN/WAF) → stateless API (২+ zone) → managed HA PostgreSQL → object storage ছবি → queue ও scheduler → secrets/monitoring → DR region-এ replica ও IaC। চার cloud-এ কাঠামো এক, নাম আলাদা।</li>
+</ul>
+<p>পরবর্তী ধাপ: আবার শুরুর অধ্যায়গুলোতে ফিরে এই reference architecture-এর প্রতিটি অংশ নিজের হাতে তৈরি করুন — <a href="../05-networking/">Networking</a>, <a href="../07-databases/">Database</a>, <a href="../13-security/">Security</a>, <a href="../14-infrastructure-as-code/">Terraform</a>, <a href="../18-cost-management/">Cost</a>। আর AI-র অংশ যোগ করতে: <a href="../17-ai-ml/">17 · AI ও ML</a>।</p>
+<p>আরও পড়ুন (official docs):</p>
+<ul>
+<li>AWS: <a href="https://aws.amazon.com/architecture/well-architected/">https://aws.amazon.com/architecture/well-architected/</a></li>
+<li>GCP: <a href="https://cloud.google.com/architecture/framework">https://cloud.google.com/architecture/framework</a></li>
+<li>Azure: <a href="https://learn.microsoft.com/azure/well-architected/">https://learn.microsoft.com/azure/well-architected/</a></li>
+<li>OCI: <a href="https://docs.oracle.com/solutions/">https://docs.oracle.com/solutions/</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  উপরে ফিরে যাও
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="ফুটার" >
+        
+          
+          <a href="../18-cost-management/" class="md-footer__link md-footer__link--prev" aria-label="পূর্ববর্তী: 18 · Cost Management">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পূর্ববর্তী
+              </span>
+              <div class="md-ellipsis">
+                18 · Cost Management
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../platforms/aws/" class="md-footer__link md-footer__link--next" aria-label="পরে: AWS">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পরে
+              </span>
+              <div class="md-ellipsis">
+                AWS
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Hasib Ahmed — Cloud বাংলা ডকুমেন্টেশন
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Hasib105/cloud-bangla-docs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u09b9\u09df\u09c7\u099b\u09c7", "clipboard.copy": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u0995\u09b0\u09c1\u09a8", "search.result.more.one": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 \u09e7\u099f\u09bf \u0986\u099b\u09c7", "search.result.more.other": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 #\u099f\u09bf \u0986\u099b\u09c7", "search.result.none": "\u0995\u09bf\u099b\u09c1 \u09aa\u09be\u0993\u09df\u09be \u09af\u09be\u09df\u09a8\u09bf", "search.result.one": "\u09e7 \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.other": "# \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.placeholder": "\u09b8\u09be\u09b0\u09cd\u099a \u099f\u09be\u0987\u09aa \u0995\u09b0\u09c1\u09a8", "search.result.term.missing": "\u0985\u09a8\u09c1\u09aa\u09b8\u09cd\u09a5\u09bf\u09a4", "select.version": "\u09b8\u0982\u09b8\u09cd\u0995\u09b0\u09a3 \u09a8\u09bf\u09b0\u09cd\u09ac\u09be\u099a\u09a8 \u0995\u09b0\u09c1\u09a3"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

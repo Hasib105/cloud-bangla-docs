@@ -1,0 +1,3576 @@
+
+<!doctype html>
+<html lang="bn" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="এক টপিক, চার cloud — AWS, Google Cloud, Microsoft Azure ও Oracle Cloud (OCI) শূন্য থেকে অ্যাডভান্স, পাশাপাশি তুলনাসহ সম্পূর্ণ বাংলা ডকুমেন্টেশন।">
+      
+      
+        <meta name="author" content="Hasib Ahmed">
+      
+      
+        <link rel="canonical" href="https://hasib105.github.io/cloud-bangla-docs/08-containers-kubernetes/">
+      
+      
+        <link rel="prev" href="../07-databases/">
+      
+      
+        <link rel="next" href="../09-serverless/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>08 · Container ও Kubernetes - Cloud বাংলা — AWS · GCP · Azure · OCI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M6.5%2020q-2.28%200-3.89-1.57Q1%2016.85%201%2014.58q0-1.95%201.17-3.48%201.18-1.53%203.08-1.95.63-2.3%202.5-3.72Q9.63%204%2012%204q2.93%200%204.96%202.04Q19%208.07%2019%2011q1.73.2%202.86%201.5%201.14%201.28%201.14%203%200%201.88-1.31%203.19T18.5%2020m-12-2h12q1.05%200%201.77-.73.73-.72.73-1.77t-.73-1.77Q19.55%2013%2018.5%2013H17v-2q0-2.07-1.46-3.54Q14.08%206%2012%206%209.93%206%208.46%207.46%207%208.93%207%2011h-.5q-1.45%200-2.47%201.03Q3%2013.05%203%2014.5T4.03%2017q1.02%201%202.47%201m5.5-6%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind+Siliguri:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Hind Siliguri";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#08--container-ও-kubernetes" class="md-skip">
+          কনটেন্টে যান
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="হেডার">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-header__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud বাংলা — AWS · GCP · Azure · OCI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              08 · Container ও Kubernetes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="ডার্ক মোড"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ডার্ক মোড" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="লাইট মোড"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="লাইট মোড" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="অনুসন্ধান করুন" placeholder="অনুসন্ধান করুন" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="অনুসন্ধান করুন">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="শেয়ার" aria-label="শেয়ার" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="রিসেট" aria-label="রিসেট" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            অনুসন্ধান শুরু করা হচ্ছে
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="ট্যাব" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  হোম
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01-cloud-fundamentals/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  মূল ধারণা
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../platforms/aws/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  প্ল্যাটফর্ম গাইড
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reference/service-map/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  রেফারেন্স
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ন্যাভিগেশন" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-nav__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    Cloud বাংলা — AWS · GCP · Azure · OCI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    হোম
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    মূল ধারণা
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    মূল ধারণা
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-cloud-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Cloud-এর ভিত্তি
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-accounts-and-hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Account ও Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-identity-and-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Identity ও Access (IAM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-compute-vms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Virtual Machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-networking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Networking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Container ও Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Container ও Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-container-ক-ও-কন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. Container কী ও কেন
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. Container কী ও কেন">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#সমসযট" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সমস্যাটা
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-বনম-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Container বনাম VM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-container-ও-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Image, container ও registry
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-container-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Container Registry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-orchestration-কন-লগ--kubernetes-এর-পরচয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Orchestration কেন লাগে — Kubernetes-এর পরিচয়
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Orchestration কেন লাগে — Kubernetes-এর পরিচয়">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes-এর-সথপতয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubernetes-এর স্থাপত্য
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#মল-k8s-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মূল K8s object
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shopbd-api-র-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shopbd-api-র manifest
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-managed-kubernetes--eks-gke-aks-oke" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. Managed Kubernetes — EKS, GKE, AKS, OKE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. Managed Kubernetes — EKS, GKE, AKS, OKE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cluster-বনন-ও-kubectl-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cluster বানানো ও kubectl connect
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-autopilot-style--node-ছড-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. "Autopilot-style" — node ছাড়া Kubernetes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-node-pool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Node pool
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৬. Node pool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pod-ক-নরদষট-pool-এ-পঠন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pod-কে নির্দিষ্ট pool-এ পাঠানো
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-aws-ecs--kubernetes-ছড-আরক-পথ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. AWS ECS — Kubernetes ছাড়া আরেক পথ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৮-ingress-ও-gateway--বইরর-traffic-ভতর-ঢকন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮. Ingress ও Gateway — বাইরের traffic ভেতরে ঢোকানো
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৯-kubernetes--cloud-iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৯. Kubernetes ↔ Cloud IAM
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১০-terraform-দয-registry-ও-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১০. Terraform দিয়ে registry ও cluster
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="মিল ও অমিল">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#যসব-জযগয-মনষ-হচট-খয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        যেসব জায়গায় মানুষ হোঁচট খায়
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-serverless/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Serverless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-load-balancing-scaling-dns-cdn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Load Balancing, DNS ও CDN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-messaging-and-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Messaging ও Event
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Monitoring ও Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-infrastructure-as-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 · Infrastructure as Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-cicd-devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 · CI/CD ও DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-data-and-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 · Data ও Analytics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-ai-ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 · AI ও Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-cost-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 · Cost Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-architecture-ha-dr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 · Architecture ও HA/DR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/gcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Cloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/azure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microsoft Azure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/oci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle Cloud (OCI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    রেফারেন্স
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    রেফারেন্স
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/service-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli-cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Cheatsheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-container-ক-ও-কন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. Container কী ও কেন
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. Container কী ও কেন">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#সমসযট" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সমস্যাটা
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-বনম-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Container বনাম VM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-container-ও-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Image, container ও registry
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-container-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Container Registry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-orchestration-কন-লগ--kubernetes-এর-পরচয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Orchestration কেন লাগে — Kubernetes-এর পরিচয়
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Orchestration কেন লাগে — Kubernetes-এর পরিচয়">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes-এর-সথপতয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubernetes-এর স্থাপত্য
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#মল-k8s-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মূল K8s object
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shopbd-api-র-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shopbd-api-র manifest
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-managed-kubernetes--eks-gke-aks-oke" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. Managed Kubernetes — EKS, GKE, AKS, OKE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. Managed Kubernetes — EKS, GKE, AKS, OKE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cluster-বনন-ও-kubectl-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cluster বানানো ও kubectl connect
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-autopilot-style--node-ছড-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. "Autopilot-style" — node ছাড়া Kubernetes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-node-pool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Node pool
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৬. Node pool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pod-ক-নরদষট-pool-এ-পঠন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pod-কে নির্দিষ্ট pool-এ পাঠানো
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-aws-ecs--kubernetes-ছড-আরক-পথ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. AWS ECS — Kubernetes ছাড়া আরেক পথ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৮-ingress-ও-gateway--বইরর-traffic-ভতর-ঢকন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮. Ingress ও Gateway — বাইরের traffic ভেতরে ঢোকানো
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৯-kubernetes--cloud-iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৯. Kubernetes ↔ Cloud IAM
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১০-terraform-দয-registry-ও-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১০. Terraform দিয়ে registry ও cluster
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="মিল ও অমিল">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#যসব-জযগয-মনষ-হচট-খয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        যেসব জায়গায় মানুষ হোঁচট খায়
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Hasib105/cloud-bangla-docs/edit/main/docs/08-containers-kubernetes.md" title="এই পেজ এডিট করুন" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="08--container-ও-kubernetes">08 · Container ও Kubernetes<a class="headerlink" href="#08--container-ও-kubernetes" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>এই অধ্যায়ে কী শিখবেন</strong></p>
+<ul>
+<li>Container আসলে কী, VM থেকে কীভাবে আলাদা, আর image কীভাবে বানাতে ও রাখতে হয়</li>
+<li>চার cloud-এর container registry: <strong>ECR / Artifact Registry / ACR / OCIR</strong></li>
+<li>Kubernetes-এর মূল ধারণা এবং managed service: <strong>EKS / GKE / AKS / OKE</strong></li>
+<li>"Standard" বনাম "Autopilot-style" mode, node pool, AWS <strong>ECS</strong>-এর ভূমিকা</li>
+<li>Ingress / Gateway দিয়ে বাইরের traffic ঢোকানো, আর Pod-কে cloud IAM-এর সাথে যুক্ত করা</li>
+<li><code>shopbd</code>-এর API container কীভাবে চার cloud-এ চলে — CLI ও Terraform সহ</li>
+</ul>
+</blockquote>
+<div class="admonition abstract">
+<p class="admonition-title">এক নজরে — কোন cloud-এ কী নাম</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Container registry</td>
+<td>Amazon ECR</td>
+<td>Artifact Registry</td>
+<td>Azure Container Registry (ACR)</td>
+<td>OCI Registry (OCIR / Container Registry)</td>
+</tr>
+<tr>
+<td>Managed Kubernetes</td>
+<td>Amazon EKS</td>
+<td>Google Kubernetes Engine (GKE)</td>
+<td>Azure Kubernetes Service (AKS)</td>
+<td>Oracle Container Engine for Kubernetes (OKE)</td>
+</tr>
+<tr>
+<td>"Autopilot-style" (node ম্যানেজ করতে হয় না)</td>
+<td>EKS Auto Mode, Fargate profile</td>
+<td>GKE Autopilot</td>
+<td>AKS Automatic</td>
+<td>OKE virtual nodes</td>
+</tr>
+<tr>
+<td>Node-এর group</td>
+<td>Managed node group</td>
+<td>Node pool</td>
+<td>Node pool (system / user)</td>
+<td>Node pool</td>
+</tr>
+<tr>
+<td>Cloud-এর নিজস্ব orchestrator</td>
+<td>Amazon ECS</td>
+<td>নেই (Cloud Run, দেখুন <a href="../09-serverless/">Serverless</a>)</td>
+<td>Azure Container Apps (Kubernetes-based, abstracted)</td>
+<td>OCI Container Instances (orchestrator নয়)</td>
+</tr>
+<tr>
+<td>Pod → cloud IAM</td>
+<td>EKS Pod Identity / IRSA</td>
+<td>Workload Identity Federation for GKE</td>
+<td>Microsoft Entra Workload ID</td>
+<td>Workload Identity (OKE)</td>
+</tr>
+<tr>
+<td>Ingress / L7 controller</td>
+<td>AWS Load Balancer Controller (ALB)</td>
+<td>GKE Ingress / Gateway API (Application LB)</td>
+<td>Application Gateway for Containers, app routing add-on</td>
+<td>OCI native ingress controller (OCI LB)</td>
+</tr>
+<tr>
+<td>Image vulnerability scan</td>
+<td>ECR scanning (Inspector)</td>
+<td>Artifact Analysis</td>
+<td>Microsoft Defender for Containers</td>
+<td>OCI Vulnerability Scanning</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>আগের অধ্যায়গুলোতে আমরা <a href="../04-compute-vms/">VM</a>, <a href="../05-networking/">Network</a> ও <a href="../06-storage/">Storage</a> দেখেছি। এবার দেখব কীভাবে
+app-কে <strong>container</strong> আকারে প্যাকেজ করে একই ভাবে যেকোনো cloud-এ চালানো যায়। পরের অধ্যায় <a href="../09-serverless/">Serverless</a>-এ দেখব
+container চালানোর আরও সহজ পথ, আর <a href="../10-load-balancing-scaling-dns-cdn/">Load Balancing</a>-এ দেখব traffic ভাগ করার বিস্তারিত।</p>
+<hr />
+<h2 id="১-container-ক-ও-কন">১. Container কী ও কেন<a class="headerlink" href="#১-container-ক-ও-কন" title="Permanent link">&para;</a></h2>
+<h3 id="সমসযট">সমস্যাটা<a class="headerlink" href="#সমসযট" title="Permanent link">&para;</a></h3>
+<p>আপনার <code>shopbd-api</code> আপনার laptop-এ Python 3.12 আর কিছু library দিয়ে চলে। Server-এ গিয়ে দেখলেন Python 3.9, library-র
+version আলাদা — app চলছে না। "আমার মেশিনে তো চলে!" — এই বিখ্যাত সমস্যার সমাধান container।</p>
+<p><strong>Container</strong> হলো app + তার runtime + library + config — সব একটা বাক্সে (image) বন্দি করা, যা যেকোনো জায়গায় একইভাবে চলে।</p>
+<div class="admonition example">
+<p class="admonition-title">দৈনন্দিন analogy</p>
+<p>Container হলো <strong>শিপিং কন্টেইনার</strong>। ভেতরে কী আছে (কাপড়, মোবাইল, চাল) জাহাজ-ট্রাক-ট্রেনের জানার দরকার নেই —
+সবাই শুধু বাক্সের মাপ আর হুক চেনে। তেমনি container-এর ভেতরে Python আছে না Go আছে, host মেশিন তা নিয়ে মাথা ঘামায় না।</p>
+</div>
+<h3 id="container-বনম-vm">Container বনাম VM<a class="headerlink" href="#container-বনম-vm" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>Virtual Machine</th>
+<th>Container</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OS</td>
+<td>প্রতিটির নিজের পুরো OS (guest kernel)</td>
+<td>Host-এর kernel শেয়ার করে</td>
+</tr>
+<tr>
+<td>আকার</td>
+<td>GB</td>
+<td>সাধারণত MB (দশ থেকে কয়েকশো)</td>
+</tr>
+<tr>
+<td>চালু হতে সময়</td>
+<td>কয়েক সেকেন্ড থেকে মিনিট</td>
+<td>সাধারণত এক সেকেন্ডের কাছাকাছি</td>
+</tr>
+<tr>
+<td>Isolation</td>
+<td>শক্তিশালী (hypervisor)</td>
+<td>Process-level (namespace + cgroup)</td>
+</tr>
+<tr>
+<td>এক মেশিনে কতগুলো</td>
+<td>কয়েকটি</td>
+<td>অনেক (dense)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="image-container-ও-registry">Image, container ও registry<a class="headerlink" href="#image-container-ও-registry" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Dockerfile</strong> — image বানানোর recipe।</li>
+<li><strong>Image</strong> — immutable (বদলানো যায় না) template; অনেকগুলো read-only <strong>layer</strong> দিয়ে তৈরি। একই base layer অনেক image শেয়ার করে, তাই pull দ্রুত হয়।</li>
+<li><strong>Container</strong> — image-এর চলমান instance।</li>
+<li><strong>Registry</strong> — image রাখার server (Docker Hub, ECR, Artifact Registry…)। Image-এর পূর্ণ নাম হলো <code>registry/repository:tag</code>।</li>
+<li><strong>Tag</strong> — version লেবেল (<code>1.0</code>, <code>git-3f2a9c1</code>)। <strong>Digest</strong> (<code>sha256:...</code>) — image-এর অপরিবর্তনীয় fingerprint।</li>
+</ul>
+<p><code>shopbd-api</code>-এর জন্য একটা multi-stage Dockerfile:</p>
+<div class="language-dockerfile highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c"># Build stage: dependency আলাদা করে বানাই</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">build</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>--prefix<span class="o">=</span>/install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c"># Runtime stage: ছোট ও পরিষ্কার</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>build<span class="w"> </span>/install<span class="w"> </span>/usr/local
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c"># Non-root user: security best practice</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">RUN</span><span class="w"> </span>useradd<span class="w"> </span>--create-home<span class="w"> </span>appuser
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">USER</span><span class="w"> </span><span class="s">appuser</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">EXPOSE</span><span class="w"> </span><span class="s">8000</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"gunicorn"</span><span class="p">,</span><span class="w"> </span><span class="s2">"-b"</span><span class="p">,</span><span class="w"> </span><span class="s2">"0.0.0.0:8000"</span><span class="p">,</span><span class="w"> </span><span class="s2">"shopbd.api:app"</span><span class="p">]</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>shopbd-api:1.0<span class="w"> </span>.
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>shopbd-api:1.0
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>curl<span class="w"> </span>http://localhost:8000/healthz
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Container-এর ১২-factor নিয়ম</p>
+<p>Config ঢুকবে <strong>environment variable</strong> দিয়ে (image-এ hard-code নয়), log যাবে <strong>stdout/stderr</strong>-এ (file-এ নয়), আর container
+হবে <strong>stateless</strong> — data থাকবে <a href="../07-databases/">database</a> বা <a href="../06-storage/">object storage</a>-এ। এই তিনটা মানলে যেকোনো
+orchestrator-এ app সুন্দরভাবে চলে।</p>
+</div>
+<hr />
+<h2 id="২-container-registry">২. Container Registry<a class="headerlink" href="#২-container-registry" title="Permanent link">&para;</a></h2>
+<p>Registry হলো আপনার private image-এর গুদাম। Cluster বা serverless service এখান থেকেই image <strong>pull</strong> করে।
+চার cloud-এর registry-র মূল কাজ এক; পার্থক্য নাম, login ও repository-র গঠনে।</p>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>AWS ECR</th>
+<th>GCP Artifact Registry</th>
+<th>Azure ACR</th>
+<th>OCI OCIR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image-এর পূর্ণ নাম</td>
+<td><code>123456789012.dkr.ecr.ap-south-1.amazonaws.com/shopbd-api:1.0</code></td>
+<td><code>asia-south1-docker.pkg.dev/my-project-id/shopbd/shopbd-api:1.0</code></td>
+<td><code>shopbdacr.azurecr.io/shopbd-api:1.0</code></td>
+<td><code>bom.ocir.io/&lt;tenancy-namespace&gt;/shopbd-api:1.0</code></td>
+</tr>
+<tr>
+<td>"Repository"-র অর্থ</td>
+<td>প্রতিটি image-এর জন্য আলাদা repository</td>
+<td>একটা repository-তে অনেক image</td>
+<td>একটা registry-তে অনেক repository</td>
+<td>একটা tenancy namespace-এ অনেক repository</td>
+</tr>
+<tr>
+<td>Login</td>
+<td><code>aws ecr get-login-password</code></td>
+<td><code>gcloud auth configure-docker</code></td>
+<td><code>az acr login</code></td>
+<td>Auth token (password) + username</td>
+</tr>
+<tr>
+<td>পুরোনো image মোছা</td>
+<td>Lifecycle policy</td>
+<td>Cleanup policy</td>
+<td>Retention / purge task</td>
+<td>Retention policy</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">পুরোনো নাম</p>
+<p>GCP-র <strong>Container Registry</strong> (<code>gcr.io</code>) এখন legacy — নতুন কাজে সবসময় <strong>Artifact Registry</strong> ব্যবহার করুন; পুরোনো <code>gcr.io</code> path
+Artifact Registry-র দিকে redirect হয়। Artifact Registry শুধু Docker image নয়, Python/npm/Maven package-ও রাখে।</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="aws" name="__tabbed_1" type="radio" /><input id="gcp" name="__tabbed_1" type="radio" /><input id="azure" name="__tabbed_1" type="radio" /><input id="oci" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="aws">AWS</label><label for="gcp">GCP</label><label for="azure">Azure</label><label for="oci">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Service: <strong>Amazon ECR</strong>। Console: ECR → Repositories → Create repository।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nv">REGION</span><span class="o">=</span>ap-south-1
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nv">ACCOUNT</span><span class="o">=</span><span class="m">123456789012</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># ১) Repository বানানো (scan-on-push চালু)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>aws<span class="w"> </span>ecr<span class="w"> </span>create-repository<span class="w"> </span>--repository-name<span class="w"> </span>shopbd-api<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span>--image-scanning-configuration<span class="w"> </span><span class="nv">scanOnPush</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>--region<span class="w"> </span><span class="nv">$REGION</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># ২) Docker-কে ECR-এ login</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>aws<span class="w"> </span>ecr<span class="w"> </span>get-login-password<span class="w"> </span>--region<span class="w"> </span><span class="nv">$REGION</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span>login<span class="w"> </span>--username<span class="w"> </span>AWS<span class="w"> </span>--password-stdin<span class="w"> </span><span class="nv">$ACCOUNT</span>.dkr.ecr.<span class="nv">$REGION</span>.amazonaws.com
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="c1"># ৩) Tag ও push</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>docker<span class="w"> </span>tag<span class="w"> </span>shopbd-api:1.0<span class="w"> </span><span class="nv">$ACCOUNT</span>.dkr.ecr.<span class="nv">$REGION</span>.amazonaws.com/shopbd-api:1.0
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>docker<span class="w"> </span>push<span class="w"> </span><span class="nv">$ACCOUNT</span>.dkr.ecr.<span class="nv">$REGION</span>.amazonaws.com/shopbd-api:1.0
+</span></code></pre></div>
+<p>Login token প্রায় ১২ ঘণ্টা বৈধ থাকে — CI-তে প্রতিবার login করান। Lifecycle policy দিয়ে "১০টির বেশি untagged image রাখো না" জাতীয় নিয়ম বসানো যায়।</p>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Artifact Registry</strong>। Console: Artifact Registry → Create repository (format = Docker)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>gcloud<span class="w"> </span>artifacts<span class="w"> </span>repositories<span class="w"> </span>create<span class="w"> </span>shopbd<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--repository-format<span class="o">=</span>docker<span class="w"> </span>--location<span class="o">=</span>asia-south1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>--description<span class="o">=</span><span class="s2">"shopbd container images"</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># Docker-কে gcloud credential ব্যবহার করতে বলা (একবারই)</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>gcloud<span class="w"> </span>auth<span class="w"> </span>configure-docker<span class="w"> </span>asia-south1-docker.pkg.dev
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>docker<span class="w"> </span>tag<span class="w"> </span>shopbd-api:1.0<span class="w"> </span>asia-south1-docker.pkg.dev/my-project-id/shopbd/shopbd-api:1.0
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>docker<span class="w"> </span>push<span class="w"> </span>asia-south1-docker.pkg.dev/my-project-id/shopbd/shopbd-api:1.0
+</span></code></pre></div>
+<p>Repository region-ভিত্তিক। Cluster/Cloud Run যে region-এ চলে, repository-ও সেই region-এ রাখলে pull দ্রুত ও সস্তা।</p>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Azure Container Registry (ACR)</strong>। Registry-র নাম global-ভাবে unique, শুধু ছোট হাতের অক্ষর ও সংখ্যা।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>az<span class="w"> </span>group<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>shopbd-rg<span class="w"> </span>--location<span class="w"> </span>centralindia
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>az<span class="w"> </span>acr<span class="w"> </span>create<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span>--name<span class="w"> </span>shopbdacr<span class="w"> </span>--sku<span class="w"> </span>Standard
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>az<span class="w"> </span>acr<span class="w"> </span>login<span class="w"> </span>--name<span class="w"> </span>shopbdacr
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>docker<span class="w"> </span>tag<span class="w"> </span>shopbd-api:1.0<span class="w"> </span>shopbdacr.azurecr.io/shopbd-api:1.0
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>docker<span class="w"> </span>push<span class="w"> </span>shopbdacr.azurecr.io/shopbd-api:1.0
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># Docker ছাড়াই cloud-এ build করা (ACR Tasks)</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>az<span class="w"> </span>acr<span class="w"> </span>build<span class="w"> </span>--registry<span class="w"> </span>shopbdacr<span class="w"> </span>--image<span class="w"> </span>shopbd-api:1.0<span class="w"> </span>.
+</span></code></pre></div>
+<p><code>az acr build</code> laptop-এ Docker না থাকলেও চলে — source ACR-এ গিয়ে সেখানেই build হয়।</p>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Container Registry (OCIR)</strong>। Registry-র host হলো region key দিয়ে — Mumbai (<code>ap-mumbai-1</code>)-র key <code>bom</code>।
+Username গঠন: <code>&lt;tenancy-namespace&gt;/&lt;username&gt;</code>, আর password হলো <strong>Auth Token</strong> (Console → Profile → Auth tokens)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>login<span class="w"> </span>bom.ocir.io<span class="w"> </span>-u<span class="w"> </span><span class="s1">'&lt;tenancy-namespace&gt;/&lt;username&gt;'</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># Password প্রশ্নে Auth Token paste করুন</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>docker<span class="w"> </span>tag<span class="w"> </span>shopbd-api:1.0<span class="w"> </span>bom.ocir.io/&lt;tenancy-namespace&gt;/shopbd-api:1.0
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>docker<span class="w"> </span>push<span class="w"> </span>bom.ocir.io/&lt;tenancy-namespace&gt;/shopbd-api:1.0
+</span></code></pre></div>
+<p>প্রথম push-এ repository নিজে থেকে তৈরি হয় (root compartment-এ)। নির্দিষ্ট compartment-এ রাখতে আগে Console থেকে repository বানান।
+Region key-র তালিকা OCI docs-এ আছে — Mumbai <code>bom</code>, Hyderabad <code>hyd</code>, Singapore <code>sin</code>।</p>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Image tag নিয়ে সাবধান</p>
+<p><code>latest</code> tag production-এ ব্যবহার করবেন না — আজ <code>latest</code> যা, কাল তা অন্য কিছু; rollback অসম্ভব হয়ে যায়। Git commit SHA বা semantic
+version ব্যবহার করুন, আর deploy করার সময় সম্ভব হলে <strong>digest</strong> pin করুন। ECR/ACR-এ <strong>tag immutability</strong> চালু রাখুন।</p>
+</div>
+<hr />
+<h2 id="৩-orchestration-কন-লগ--kubernetes-এর-পরচয">৩. Orchestration কেন লাগে — Kubernetes-এর পরিচয়<a class="headerlink" href="#৩-orchestration-কন-লগ--kubernetes-এর-পরচয" title="Permanent link">&para;</a></h2>
+<p>একটা container চালানো সহজ। কিন্তু <code>shopbd</code> যখন বড় হয় — ১০টা API container, ৩টা worker, কোনোটা মরে গেলে নতুন চালু, নতুন
+version-এ একটা একটা করে বদল, ভিড়ে বাড়ানো — তখন কাজগুলো হাতে করা অসম্ভব। এই কাজ করে <strong>container orchestrator</strong>:</p>
+<ul>
+<li><strong>Scheduling</strong> — কোন container কোন মেশিনে বসবে</li>
+<li><strong>Self-healing</strong> — মরে গেলে আবার চালু, health check ব্যর্থ হলে সরিয়ে দেওয়া</li>
+<li><strong>Scaling</strong> — লোড বাড়লে সংখ্যা বাড়ানো</li>
+<li><strong>Rolling update / rollback</strong> — বিনা downtime-এ version বদল</li>
+<li><strong>Service discovery ও load balancing</strong> — container-এ container-এ কথা বলা</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Analogy</p>
+<p>Orchestrator হলো রেস্টুরেন্টের <strong>ম্যানেজার</strong>। রাঁধুনি (container) কম পড়লে সে নতুন ডাকে, কেউ অসুস্থ হলে বদলি আনে,
+কোন টেবিলে কে সার্ভ করবে ঠিক করে। আপনি শুধু বলেন "দিনে ৫ জন রাঁধুনি চাই" — বাকি সে সামলায়।</p>
+</div>
+<p><strong>Kubernetes (K8s)</strong> হলো এই কাজের de-facto standard, open-source। চার cloud-ই managed Kubernetes দেয়, তাই K8s জানলে skill সব জায়গায় কাজে লাগে।</p>
+<h3 id="kubernetes-এর-সথপতয">Kubernetes-এর স্থাপত্য<a class="headerlink" href="#kubernetes-এর-সথপতয" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart LR
+    U["kubectl / CI"] --&gt; API["API Server"]
+    subgraph CP["Control plane (cloud ম্যানেজ করে)"]
+        API --&gt; ETCD[("etcd")]
+        API --&gt; SCH["Scheduler"]
+        API --&gt; CM["Controller Manager"]
+    end
+    subgraph N1["Worker node 1"]
+        K1["kubelet"] --&gt; P1["Pod: shopbd-api"]
+        K1 --&gt; P2["Pod: shopbd-api"]
+    end
+    subgraph N2["Worker node 2"]
+        K2["kubelet"] --&gt; P3["Pod: shopbd-worker"]
+    end
+    API --&gt; K1
+    API --&gt; K2</code></pre>
+<ul>
+<li><strong>Control plane</strong> — cluster-এর "মস্তিষ্ক" (API server, etcd, scheduler, controller)। Managed service-এ এটা cloud চালায়, আপনি দেখেনও না।</li>
+<li><strong>Worker node</strong> — যে মেশিনে আপনার container আসলে চলে (VM)। Node-এ <code>kubelet</code> আর container runtime থাকে।</li>
+</ul>
+<h3 id="মল-k8s-object">মূল K8s object<a class="headerlink" href="#মল-k8s-object" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>কাজ</th>
+<th>shopbd-এ উদাহরণ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pod</strong></td>
+<td>এক বা একাধিক container-এর ক্ষুদ্রতম একক</td>
+<td>একটা <code>shopbd-api</code> container</td>
+</tr>
+<tr>
+<td><strong>Deployment</strong></td>
+<td>"এই Pod ৩টা সবসময় চলুক" + rolling update</td>
+<td><code>shopbd-api</code> Deployment</td>
+</tr>
+<tr>
+<td><strong>Service</strong></td>
+<td>Pod-গুলোর সামনে স্থির নাম ও IP (cluster-ভেতরের load balancer)</td>
+<td><code>shopbd-api</code> Service</td>
+</tr>
+<tr>
+<td><strong>Ingress / Gateway</strong></td>
+<td>বাইরের HTTP(S) traffic ভেতরে ঢোকানো</td>
+<td><code>shopbd.example.com</code> → API</td>
+</tr>
+<tr>
+<td><strong>ConfigMap / Secret</strong></td>
+<td>Config ও গোপন তথ্য</td>
+<td>DB host, API key</td>
+</tr>
+<tr>
+<td><strong>Namespace</strong></td>
+<td>Cluster-এর ভেতরে logical ভাগ</td>
+<td><code>shopbd-prod</code>, <code>shopbd-staging</code></td>
+</tr>
+<tr>
+<td><strong>HPA</strong></td>
+<td>Pod-সংখ্যা auto-scale</td>
+<td>CPU 60% ছুঁলে বাড়াও</td>
+</tr>
+<tr>
+<td><strong>PersistentVolumeClaim</strong></td>
+<td>স্থায়ী disk চাওয়া</td>
+<td>(shopbd-এর stateless API-তে দরকার নেই)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="shopbd-api-র-manifest">shopbd-api-র manifest<a class="headerlink" href="#shopbd-api-র-manifest" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shopbd-api</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shopbd-prod</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shopbd-api</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shopbd-api</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">      </span><span class="nt">serviceAccountName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shopbd-api-sa</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REGISTRY/shopbd-api:1.0</span><span class="w">   </span><span class="c1"># পরের অংশে প্রতিটি cloud-এর registry বসবে</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">          </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8000</span>
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="w">          </span><span class="nt">env</span><span class="p">:</span>
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">APP_ENV</span>
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="w">              </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prod</span>
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="w">          </span><span class="nt">resources</span><span class="p">:</span>
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="w">            </span><span class="nt">requests</span><span class="p">:</span>
+</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="w">              </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">250m</span>
+</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a><span class="w">              </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">256Mi</span>
+</span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="w">            </span><span class="nt">limits</span><span class="p">:</span>
+</span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="w">              </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">512Mi</span>
+</span><span id="__span-6-31"><a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a><span class="w">          </span><span class="nt">readinessProbe</span><span class="p">:</span>
+</span><span id="__span-6-32"><a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="w">            </span><span class="nt">httpGet</span><span class="p">:</span>
+</span><span id="__span-6-33"><a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a><span class="w">              </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/healthz</span>
+</span><span id="__span-6-34"><a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="w">              </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8000</span>
+</span><span id="__span-6-35"><a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a><span class="w">            </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+</span><span id="__span-6-36"><a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a><span class="w">          </span><span class="nt">livenessProbe</span><span class="p">:</span>
+</span><span id="__span-6-37"><a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a><span class="w">            </span><span class="nt">httpGet</span><span class="p">:</span>
+</span><span id="__span-6-38"><a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a><span class="w">              </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/healthz</span>
+</span><span id="__span-6-39"><a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a><span class="w">              </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8000</span>
+</span><span id="__span-6-40"><a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a><span class="w">            </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span>
+</span><span id="__span-6-41"><a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a><span class="nn">---</span>
+</span><span id="__span-6-42"><a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-6-43"><a id="__codelineno-6-43" name="__codelineno-6-43" href="#__codelineno-6-43"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
+</span><span id="__span-6-44"><a id="__codelineno-6-44" name="__codelineno-6-44" href="#__codelineno-6-44"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-6-45"><a id="__codelineno-6-45" name="__codelineno-6-45" href="#__codelineno-6-45"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shopbd-api</span>
+</span><span id="__span-6-46"><a id="__codelineno-6-46" name="__codelineno-6-46" href="#__codelineno-6-46"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shopbd-prod</span>
+</span><span id="__span-6-47"><a id="__codelineno-6-47" name="__codelineno-6-47" href="#__codelineno-6-47"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-6-48"><a id="__codelineno-6-48" name="__codelineno-6-48" href="#__codelineno-6-48"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+</span><span id="__span-6-49"><a id="__codelineno-6-49" name="__codelineno-6-49" href="#__codelineno-6-49"></a><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shopbd-api</span>
+</span><span id="__span-6-50"><a id="__codelineno-6-50" name="__codelineno-6-50" href="#__codelineno-6-50"></a><span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-6-51"><a id="__codelineno-6-51" name="__codelineno-6-51" href="#__codelineno-6-51"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</span><span id="__span-6-52"><a id="__codelineno-6-52" name="__codelineno-6-52" href="#__codelineno-6-52"></a><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8000</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>shopbd-prod
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>shopbd-api.yaml
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>shopbd-prod<span class="w"> </span>get<span class="w"> </span>pods
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>shopbd-prod<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/shopbd-api
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>shopbd-prod<span class="w"> </span>logs<span class="w"> </span>deployment/shopbd-api
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>shopbd-prod<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/shopbd-api<span class="w">   </span><span class="c1"># ভুল version গেলে rollback</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">resources.requests ছাড়া Pod দেবেন না</p>
+<p>Scheduler <code>requests</code> দেখেই Pod কোথায় বসবে ঠিক করে, আর HPA-ও <code>requests</code>-এর শতাংশ ধরে হিসাব করে। <code>requests</code> না দিলে
+scheduling এলোমেলো হয়, autoscaling কাজ করে না, আর একটা Pod পুরো node-এর memory খেয়ে ফেলতে পারে।</p>
+</div>
+<hr />
+<h2 id="৪-managed-kubernetes--eks-gke-aks-oke">৪. Managed Kubernetes — EKS, GKE, AKS, OKE<a class="headerlink" href="#৪-managed-kubernetes--eks-gke-aks-oke" title="Permanent link">&para;</a></h2>
+<p>নিজে Kubernetes বানানো (control plane, etcd backup, upgrade, certificate) কঠিন। Managed service-এ <strong>control plane-এর দায়িত্ব cloud-এর</strong>,
+আপনি দেখেন শুধু worker node আর workload। চার cloud-এর পার্থক্য:</p>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>EKS</th>
+<th>GKE</th>
+<th>AKS</th>
+<th>OKE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Control plane খরচ</td>
+<td>Cluster-ঘণ্টা হিসেবে charge</td>
+<td>Cluster management fee (billing account প্রতি একটা free-tier credit আছে)</td>
+<td>Free tier (SLA ছাড়া) / Standard / Premium tier</td>
+<td>Basic cluster বিনা-খরচে; Enhanced cluster-এ ঘণ্টা-হিসেব</td>
+</tr>
+<tr>
+<td>Node ম্যানেজমেন্ট</td>
+<td>Managed node group / self-managed / Fargate / Auto Mode</td>
+<td>Standard (node pool) / Autopilot</td>
+<td>Node pool / AKS Automatic</td>
+<td>Managed node / Virtual node</td>
+</tr>
+<tr>
+<td>Default networking</td>
+<td>Amazon VPC CNI (Pod পায় VPC IP)</td>
+<td>VPC-native (alias IP)</td>
+<td>Azure CNI (Overlay সহ) / kubenet legacy</td>
+<td>VCN-native Pod networking / Flannel overlay</td>
+</tr>
+<tr>
+<td>Upgrade</td>
+<td>Control plane ও node আলাদা করে</td>
+<td>Release channel দিয়ে auto-upgrade</td>
+<td>Auto-upgrade channel</td>
+<td>Manual / managed</td>
+</tr>
+<tr>
+<td>K8s-এ কে ঢুকতে পারে</td>
+<td>EKS access entries (IAM)</td>
+<td>IAM role + K8s RBAC</td>
+<td>Entra ID + Azure RBAC for K8s</td>
+<td>IAM policy + K8s RBAC</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">দাম নিয়ে</p>
+<p>Control plane fee, node VM, load balancer, disk, data transfer — সব মিলে খরচ। সঠিক সংখ্যার জন্য দেখুন:
+<a href="https://aws.amazon.com/eks/pricing/">AWS EKS pricing</a>, <a href="https://cloud.google.com/kubernetes-engine/pricing">GKE pricing</a>,
+<a href="https://azure.microsoft.com/pricing/details/kubernetes-service/">AKS pricing</a>, <a href="https://www.oracle.com/cloud/cloud-native/kubernetes-engine/pricing/">OKE pricing</a>।</p>
+</div>
+<h3 id="cluster-বনন-ও-kubectl-connect">Cluster বানানো ও <code>kubectl</code> connect<a class="headerlink" href="#cluster-বনন-ও-kubectl-connect" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="aws_1" name="__tabbed_2" type="radio" /><input id="gcp_1" name="__tabbed_2" type="radio" /><input id="azure_1" name="__tabbed_2" type="radio" /><input id="oci_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="aws_1">AWS</label><label for="gcp_1">GCP</label><label for="azure_1">Azure</label><label for="oci_1">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Service: <strong>Amazon EKS</strong>। সবচেয়ে সহজ পথ <code>eksctl</code> — ভেতরে CloudFormation দিয়ে VPC, IAM role, node group সব বানায়।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>eksctl<span class="w"> </span>create<span class="w"> </span>cluster<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-eks<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span>--region<span class="w"> </span>ap-south-1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span>--nodegroup-name<span class="w"> </span>shopbd-nodes<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span>--node-type<span class="w"> </span>t3.medium<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span>--nodes<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1"># kubeconfig-এ cluster যোগ</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>aws<span class="w"> </span>eks<span class="w"> </span>update-kubeconfig<span class="w"> </span>--name<span class="w"> </span>shopbd-eks<span class="w"> </span>--region<span class="w"> </span>ap-south-1
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span></code></pre></div>
+<p>Cluster তৈরিতে সাধারণত ১৫-২০ মিনিট লাগে। Add-on (VPC CNI, CoreDNS, kube-proxy) EKS add-on হিসেবে manage হয়।</p>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Google Kubernetes Engine (GKE)</strong>। দুটো mode: <strong>Standard</strong> ও <strong>Autopilot</strong> (পরের অংশ দেখুন)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Autopilot cluster (node নিয়ে ভাবতে হয় না)</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>gcloud<span class="w"> </span>container<span class="w"> </span>clusters<span class="w"> </span>create-auto<span class="w"> </span>shopbd-gke<span class="w"> </span>--region<span class="w"> </span>asia-south1
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># অথবা Standard cluster (--num-nodes প্রতি zone-এ)</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>gcloud<span class="w"> </span>container<span class="w"> </span>clusters<span class="w"> </span>create<span class="w"> </span>shopbd-gke-std<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span>--region<span class="w"> </span>asia-south1<span class="w"> </span>--num-nodes<span class="w"> </span><span class="m">1</span><span class="w"> </span>--machine-type<span class="w"> </span>e2-standard-2
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>gcloud<span class="w"> </span>container<span class="w"> </span>clusters<span class="w"> </span>get-credentials<span class="w"> </span>shopbd-gke<span class="w"> </span>--region<span class="w"> </span>asia-south1
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span></code></pre></div>
+<p><code>get-credentials</code> কমান্ড kubeconfig-এ context যোগ করে। Regional cluster-এ control plane একাধিক zone-এ ছড়ানো থাকে, তাই বেশি available।</p>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Azure Kubernetes Service (AKS)</strong>। Cluster একটা resource group-এ থাকে; Azure নিজে আরেকটা "node resource group" (<code>MC_...</code>) বানিয়ে ভেতরে VM, disk, LB রাখে।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>az<span class="w"> </span>group<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>shopbd-rg<span class="w"> </span>--location<span class="w"> </span>centralindia
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>az<span class="w"> </span>aks<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-aks<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">  </span>--node-count<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span>--generate-ssh-keys<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">  </span>--attach-acr<span class="w"> </span>shopbdacr
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>az<span class="w"> </span>aks<span class="w"> </span>get-credentials<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span>--name<span class="w"> </span>shopbd-aks
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span></code></pre></div>
+<p><code>--attach-acr</code> flag দিলে cluster-এর kubelet identity-কে ACR থেকে image pull করার অনুমতি (AcrPull) নিজে থেকে দেওয়া হয়।</p>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Oracle Container Engine for Kubernetes (OKE)</strong>। OCI-তে সবকিছু compartment-এর ভেতরে এবং CLI-তে OCID লাগে বলে প্রথমবার <strong>Console → Developer Services → Kubernetes Clusters → Create cluster → Quick create</strong> ব্যবহার করাই সহজ — এটা VCN, subnet ও node pool একসাথে বানিয়ে দেয়।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Cluster তৈরির পর kubeconfig নেওয়া</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>oci<span class="w"> </span>ce<span class="w"> </span>cluster<span class="w"> </span>create-kubeconfig<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span>--cluster-id<span class="w"> </span>ocid1.cluster.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span>--file<span class="w"> </span><span class="nv">$HOME</span>/.kube/config<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span>--region<span class="w"> </span>ap-mumbai-1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">  </span>--token-version<span class="w"> </span><span class="m">2</span>.0.0<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">  </span>--kube-endpoint<span class="w"> </span>PUBLIC_ENDPOINT
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span></code></pre></div>
+<p>Kubeconfig-এর token <code>oci</code> CLI চালিয়ে আনা হয় — তাই <code>kubectl</code> চালানো মেশিনে OCI CLI configure করা থাকতে হবে।</p>
+</div>
+</div>
+</div>
+<p>Deploy-এর আগে manifest-এর <code>REGISTRY</code> অংশে নিজের registry path বসান, তারপর <code>kubectl apply -f shopbd-api.yaml</code>।</p>
+<hr />
+<h2 id="৫-autopilot-style--node-ছড-kubernetes">৫. "Autopilot-style" — node ছাড়া Kubernetes<a class="headerlink" href="#৫-autopilot-style--node-ছড-kubernetes" title="Permanent link">&para;</a></h2>
+<p>Standard mode-এ আপনাকে node-এর আকার, সংখ্যা, OS patch, upgrade ভাবতে হয়। <strong>Autopilot-style</strong> mode-এ cloud এই কাজ নিজে করে —
+আপনি শুধু Pod বলেন, cloud সঠিক capacity জোগায়।</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standard (আপনি node ম্যানেজ করেন)</td>
+<td>Managed node group</td>
+<td>GKE Standard</td>
+<td>AKS (node pool)</td>
+<td>OKE managed nodes</td>
+</tr>
+<tr>
+<td>Node-ছাড়া / কম-ম্যানেজমেন্ট</td>
+<td><strong>EKS Auto Mode</strong> (node, load balancer, storage, autoscaling cloud ম্যানেজ করে) এবং <strong>Fargate profile</strong> (Pod প্রতি আলাদা micro-VM)</td>
+<td><strong>GKE Autopilot</strong></td>
+<td><strong>AKS Automatic</strong> (preconfigured, opinionated cluster)</td>
+<td><strong>Virtual nodes</strong> (serverless node, Pod প্রতি)</td>
+</tr>
+<tr>
+<td>Billing-এর একক</td>
+<td>Auto Mode: node EC2 + management fee; Fargate: Pod-এর vCPU/memory</td>
+<td>Autopilot: Pod-এর requests করা resource</td>
+<td>AKS Automatic: node VM-ভিত্তিক</td>
+<td>Virtual node: Pod-এর resource</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">কখন Autopilot-style?</p>
+<p>ছোট টিম, ops-এর লোক কম, workload সাধারণ (web API, worker) — তাহলে Autopilot-style বেছে নিন। DaemonSet, privileged container,
+GPU/বিশেষ hardware, কাস্টম kernel setting, অথবা খুব বড় scale-এ খরচ কমানো দরকার হলে Standard। প্রতিটি mode-এর সীমাবদ্ধতা
+(যেমন GKE Autopilot-এ কিছু privileged workload নিষিদ্ধ) docs-এ দেখে নিন।</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Autopilot-এ <code>requests</code> = আপনার বিল</p>
+<p>GKE Autopilot ও Fargate-এ আপনি Pod-এর <code>requests</code> অনুযায়ী টাকা দেন। <code>cpu: 2</code> চেয়ে ০.২ ব্যবহার করলেও ২-এর দাম। তাই <code>requests</code> ঠিকঠাক মাপুন।</p>
+</div>
+<hr />
+<h2 id="৬-node-pool">৬. Node pool<a class="headerlink" href="#৬-node-pool" title="Permanent link">&para;</a></h2>
+<p><strong>Node pool</strong> হলো একই ধরনের node-এর group। একটা cluster-এ একাধিক pool থাকতে পারে — যেমন সাধারণ API-র জন্য ছোট VM, ভারী report job-এর জন্য বেশি memory-র VM, আর সস্তা spot/preemptible VM batch কাজের জন্য।</p>
+<table>
+<thead>
+<tr>
+<th>Cloud</th>
+<th>Node pool-এর নাম</th>
+<th>Autoscaler</th>
+<th>Spot/সস্তা node</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AWS</td>
+<td>Managed node group (Auto Scaling Group-ভিত্তিক)</td>
+<td>Cluster Autoscaler বা <strong>Karpenter</strong> (Auto Mode-এ built-in)</td>
+<td>Spot Instance capacity type</td>
+</tr>
+<tr>
+<td>GCP</td>
+<td>Node pool</td>
+<td>Cluster autoscaler, node auto-provisioning</td>
+<td>Spot VM node pool</td>
+</tr>
+<tr>
+<td>Azure</td>
+<td>System pool + User pool</td>
+<td>Cluster autoscaler</td>
+<td>Spot node pool</td>
+</tr>
+<tr>
+<td>OCI</td>
+<td>Node pool</td>
+<td>Cluster Autoscaler (add-on)</td>
+<td>Preemptible instance node pool</td>
+</tr>
+</tbody>
+</table>
+<p>AKS-এ <strong>system pool</strong> (CoreDNS, metrics-server-এর মতো system Pod) আর <strong>user pool</strong> (আপনার app) আলাদা রাখা হয়। বাকি cloud-এ এই আলাদা করা ঐচ্ছিক।</p>
+<h3 id="pod-ক-নরদষট-pool-এ-পঠন">Pod-কে নির্দিষ্ট pool-এ পাঠানো<a class="headerlink" href="#pod-ক-নরদষট-pool-এ-পঠন" title="Permanent link">&para;</a></h3>
+<p>Node-এ <strong>label</strong> ও <strong>taint</strong> বসিয়ে Pod-কে নির্দিষ্ট pool-এ বসানো যায়:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># spec.template.spec-এর ভেতরে</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">      </span><span class="nt">nodeSelector</span><span class="p">:</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">        </span><span class="nt">workload</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reports</span><span class="w">          </span><span class="c1"># এই label-ওয়ালা node-এই বসো</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">      </span><span class="nt">tolerations</span><span class="p">:</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dedicated</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">          </span><span class="nt">operator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Equal</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reports</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">          </span><span class="nt">effect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NoSchedule</span><span class="w">       </span><span class="c1"># taint থাকা node-এ বসার অনুমতি</span>
+</span></code></pre></div>
+<p>Pool যোগ করার কমান্ড: <code>eksctl create nodegroup</code> (AWS), <code>gcloud container node-pools create</code> (GCP), <code>az aks nodepool add</code> (Azure); OCI-তে Console → OKE → Node pools → Add node pool (shape, OCPU, memory, image, subnet লাগে)। সব ক্ষেত্রেই min/max দিয়ে autoscaling চালু করা যায়।</p>
+<h2 id="৭-aws-ecs--kubernetes-ছড-আরক-পথ">৭. AWS ECS — Kubernetes ছাড়া আরেক পথ<a class="headerlink" href="#৭-aws-ecs--kubernetes-ছড-আরক-পথ" title="Permanent link">&para;</a></h2>
+<p>শুধু AWS-এই <strong>Amazon ECS (Elastic Container Service)</strong> আছে — AWS-এর নিজস্ব, সহজতর orchestrator। Kubernetes-এর চেয়ে শেখা সহজ, AWS-এর সাথে গভীরভাবে যুক্ত, আর ECS-এর control plane-এর জন্য আলাদা ফি নেই।</p>
+<table>
+<thead>
+<tr>
+<th>ECS উপাদান</th>
+<th>মানে</th>
+<th>K8s-এ কাছাকাছি</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Task definition</strong></td>
+<td>Container-এর blueprint (image, CPU, memory, port, env, log)</td>
+<td>Pod spec</td>
+</tr>
+<tr>
+<td><strong>Task</strong></td>
+<td>Task definition থেকে চলমান instance</td>
+<td>Pod</td>
+</tr>
+<tr>
+<td><strong>Service</strong></td>
+<td>N টা task সবসময় চালু রাখে, ALB-র সাথে যুক্ত</td>
+<td>Deployment + Service</td>
+</tr>
+<tr>
+<td><strong>Cluster</strong></td>
+<td>Capacity-র logical group</td>
+<td>Cluster</td>
+</tr>
+<tr>
+<td><strong>Launch type</strong></td>
+<td><strong>Fargate</strong> (serverless) বা <strong>EC2</strong> (নিজের instance)</td>
+<td>Autopilot-style বনাম node pool</td>
+</tr>
+</tbody>
+</table>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">{</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="nt">"family"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shopbd-api"</span><span class="p">,</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="nt">"networkMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"awsvpc"</span><span class="p">,</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span><span class="nt">"requiresCompatibilities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"FARGATE"</span><span class="p">],</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span><span class="nt">"cpu"</span><span class="p">:</span><span class="w"> </span><span class="s2">"256"</span><span class="p">,</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span><span class="nt">"memory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"512"</span><span class="p">,</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">  </span><span class="nt">"executionRoleArn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:iam::123456789012:role/shopbd-ecs-execution-role"</span><span class="p">,</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">  </span><span class="nt">"taskRoleArn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:iam::123456789012:role/shopbd-api-task-role"</span><span class="p">,</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">  </span><span class="nt">"containerDefinitions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">      </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789012.dkr.ecr.ap-south-1.amazonaws.com/shopbd-api:1.0"</span><span class="p">,</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">      </span><span class="nt">"essential"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">      </span><span class="nt">"portMappings"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">"containerPort"</span><span class="p">:</span><span class="w"> </span><span class="mi">8000</span><span class="p">,</span><span class="w"> </span><span class="nt">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tcp"</span><span class="w"> </span><span class="p">}],</span>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">      </span><span class="nt">"logConfiguration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="w">        </span><span class="nt">"logDriver"</span><span class="p">:</span><span class="w"> </span><span class="s2">"awslogs"</span><span class="p">,</span>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="w">        </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="w">          </span><span class="nt">"awslogs-group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/ecs/shopbd-api"</span><span class="p">,</span>
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="w">          </span><span class="nt">"awslogs-region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ap-south-1"</span><span class="p">,</span>
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="w">          </span><span class="nt">"awslogs-stream-prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ecs"</span>
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a><span class="w">  </span><span class="p">]</span>
+</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>aws<span class="w"> </span>ecs<span class="w"> </span>create-cluster<span class="w"> </span>--cluster-name<span class="w"> </span>shopbd-prod
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>aws<span class="w"> </span>logs<span class="w"> </span>create-log-group<span class="w"> </span>--log-group-name<span class="w"> </span>/ecs/shopbd-api
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>aws<span class="w"> </span>ecs<span class="w"> </span>register-task-definition<span class="w"> </span>--cli-input-json<span class="w"> </span>file://task-def.json
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>aws<span class="w"> </span>ecs<span class="w"> </span>create-service<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">  </span>--cluster<span class="w"> </span>shopbd-prod<span class="w"> </span>--service-name<span class="w"> </span>shopbd-api<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">  </span>--task-definition<span class="w"> </span>shopbd-api<span class="w"> </span>--desired-count<span class="w"> </span><span class="m">2</span><span class="w"> </span>--launch-type<span class="w"> </span>FARGATE<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">  </span>--network-configuration<span class="w"> </span><span class="s2">"awsvpcConfiguration={subnets=[subnet-aaa,subnet-bbb],securityGroups=[sg-123],assignPublicIp=DISABLED}"</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">দুটো role — ভুল করা সহজ</p>
+<p>ECS-এ <strong>execution role</strong> (ECS agent-এর জন্য: ECR থেকে image টানা, log লেখা) আর <strong>task role</strong> (আপনার app-এর জন্য: S3, DynamoDB ইত্যাদি) আলাদা।
+App S3 ধরতে না পারলে প্রায় সবসময় task role-এ permission নেই।</p>
+</div>
+<p>বাকি তিন cloud-এ "orchestrator" নামে সরাসরি সমতুল্য নেই; সেখানে container চালাতে হয় হয় Kubernetes-এ, নয়তো serverless container-এ:
+<strong>Cloud Run</strong> (GCP), <strong>Azure Container Apps</strong>, <strong>OCI Container Instances</strong> — এগুলো <a href="../09-serverless/">Serverless অধ্যায়ে</a> বিস্তারিত।</p>
+<h2 id="৮-ingress-ও-gateway--বইরর-traffic-ভতর-ঢকন">৮. Ingress ও Gateway — বাইরের traffic ভেতরে ঢোকানো<a class="headerlink" href="#৮-ingress-ও-gateway--বইরর-traffic-ভতর-ঢকন" title="Permanent link">&para;</a></h2>
+<p>Cluster-এর ভেতরে Service-এর IP বাইরে থেকে পৌঁছায় না। বাইরে থেকে <code>https://shopbd.example.com</code>-এ আসা request-কে Pod-এ পৌঁছাতে লাগে:</p>
+<ol>
+<li><strong>Service type <code>LoadBalancer</code></strong> — প্রতি Service-এ একটা cloud load balancer (L4) তৈরি হয়। সহজ, কিন্তু অনেক Service হলে অনেক LB = খরচ।</li>
+<li><strong>Ingress</strong> — একটা L7 load balancer, hostname/path দেখে Service-এ পাঠায়। Ingress নিজে শুধু নিয়মের "ঘোষণা"; কাজটা করে <strong>Ingress controller</strong>।</li>
+<li><strong>Gateway API</strong> — Ingress-এর আধুনিক উত্তরসূরি (<code>Gateway</code>, <code>HTTPRoute</code>); আরও expressive ও role-ভিত্তিক। নতুন প্রজেক্টে এটাই এগোনোর পথ।</li>
+</ol>
+<pre class="mermaid"><code>flowchart LR
+    User["ব্যবহারকারী"] --&gt; DNS["shopbd.example.com (DNS)"]
+    DNS --&gt; LB["Cloud L7 Load Balancer"]
+    LB --&gt;|"/api"| S1["Service: shopbd-api"]
+    LB --&gt;|"/"| S2["Service: shopbd-web"]
+    S1 --&gt; P1["Pod"]
+    S1 --&gt; P2["Pod"]
+    S2 --&gt; P3["Pod"]</code></pre>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L7 controller</td>
+<td><strong>AWS Load Balancer Controller</strong> → ALB</td>
+<td><strong>GKE Ingress / Gateway controller</strong> (built-in) → Google Cloud Application LB</td>
+<td><strong>Application Gateway for Containers</strong>, AGIC, বা <strong>app routing add-on</strong> (managed NGINX)</td>
+<td><strong>OCI native ingress controller</strong> → OCI Load Balancer</td>
+</tr>
+<tr>
+<td><code>type: LoadBalancer</code> Service</td>
+<td>NLB (controller থাকলে)</td>
+<td>Network LB (passthrough)</td>
+<td>Azure Load Balancer</td>
+<td>OCI Load Balancer / NLB (annotation দিয়ে)</td>
+</tr>
+<tr>
+<td>Controller কীভাবে আসে</td>
+<td>Helm দিয়ে install (EKS Auto Mode-এ built-in)</td>
+<td>Cluster-এ আগে থেকেই</td>
+<td>Add-on enable</td>
+<td>Add-on / manifest install</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">ingress-nginx সম্পর্কে</p>
+<p>জনপ্রিয় community <strong>ingress-nginx</strong> project-এর retirement (রক্ষণাবেক্ষণ বন্ধ) ঘোষণা হয়েছে (২০২৬-এর শুরুতে)। নতুন cluster-এ তাই cloud-native
+controller বা <strong>Gateway API</strong> implementation দেখুন; পুরোনো cluster-এ migration-এর পরিকল্পনা করুন। AKS-এর app routing add-on-এর ভবিষ্যৎ সংস্করণও
+Microsoft docs-এ দেখে নিন।</p>
+</div>
+<p>একটা সাধারণ Ingress (controller ভেদে <code>ingressClassName</code> ও annotation আলাদা):</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networking.k8s.io/v1</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ingress</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shopbd</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shopbd-prod</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">    </span><span class="c1"># AWS Load Balancer Controller-এর উদাহরণ; অন্য cloud-এ অন্য annotation</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">    </span><span class="nt">alb.ingress.kubernetes.io/scheme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">internet-facing</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">    </span><span class="nt">alb.ingress.kubernetes.io/target-type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ip</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">    </span><span class="nt">alb.ingress.kubernetes.io/healthcheck-path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/healthz</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">  </span><span class="nt">ingressClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alb</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shopbd.example.com</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">      </span><span class="nt">http</span><span class="p">:</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">        </span><span class="nt">paths</span><span class="p">:</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/api</span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="w">            </span><span class="nt">pathType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Prefix</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="w">            </span><span class="nt">backend</span><span class="p">:</span>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="w">              </span><span class="nt">service</span><span class="p">:</span>
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shopbd-api</span>
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="w">                </span><span class="nt">port</span><span class="p">:</span>
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a><span class="w">                  </span><span class="nt">number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</span></code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="aws_2" name="__tabbed_3" type="radio" /><input id="gcp_2" name="__tabbed_3" type="radio" /><input id="azure_2" name="__tabbed_3" type="radio" /><input id="oci_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="aws_2">AWS</label><label for="gcp_2">GCP</label><label for="azure_2">Azure</label><label for="oci_2">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># AWS Load Balancer Controller install (Helm) — IAM role (IRSA/Pod Identity) আগে বানানো থাকতে হবে</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>eks<span class="w"> </span>https://aws.github.io/eks-charts
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>helm<span class="w"> </span>install<span class="w"> </span>aws-load-balancer-controller<span class="w"> </span>eks/aws-load-balancer-controller<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">  </span>-n<span class="w"> </span>kube-system<span class="w"> </span>--set<span class="w"> </span><span class="nv">clusterName</span><span class="o">=</span>shopbd-eks<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">  </span>--set<span class="w"> </span>serviceAccount.name<span class="o">=</span>aws-load-balancer-controller
+</span></code></pre></div>
+<p><code>Ingress</code> apply করলে controller নিজে একটা <strong>ALB</strong> বানায়। <code>ingressClassName: alb</code>। EKS Auto Mode-এ এই controller built-in।</p>
+</div>
+<div class="tabbed-block">
+<p>GKE-তে Ingress/Gateway controller আগে থেকেই আছে — আলাদা install লাগে না।</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gateway</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shopbd-gw</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shopbd-prod</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">  </span><span class="nt">gatewayClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gke-l7-global-external-managed</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">  </span><span class="nt">listeners</span><span class="p">:</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">      </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTP</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</span></code></pre></div>
+<p><code>gatewayClassName</code> ঠিক করে কোন ধরনের load balancer (global external, regional, internal) তৈরি হবে। সাধারণ Ingress-এ <code>kubernetes.io/ingress.class</code> বা <code>ingressClassName: gce</code> ব্যবহৃত হয়।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># সবচেয়ে সহজ: app routing add-on (managed ingress controller)</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>az<span class="w"> </span>aks<span class="w"> </span>approuting<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span>--name<span class="w"> </span>shopbd-aks
+</span></code></pre></div>
+<p>এরপর Ingress-এ <code>ingressClassName: webapprouting.kubernetes.azure.com</code>। বেশি feature (WAF, Gateway API) লাগলে <strong>Application Gateway for Containers</strong>।</p>
+</div>
+<div class="tabbed-block">
+<p><strong>OCI native ingress controller</strong> Ingress object দেখে OCI Load Balancer (flexible shape) বানায় ও আপডেট করে। Install: OKE cluster-এ add-on বা official manifest।
+Controller-কে OCI Load Balancer ম্যানেজ করার জন্য IAM policy (dynamic group বা workload identity দিয়ে) দিতে হয়।
+সাধারণ <code>Service</code> <code>type: LoadBalancer</code>-এ annotation (<code>service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"</code> ইত্যাদি) দিয়ে shape ও bandwidth ঠিক করা যায়।</p>
+</div>
+</div>
+</div>
+<p>TLS certificate কীভাবে Ingress-এ যুক্ত হয় তা <a href="../10-load-balancing-scaling-dns-cdn/">Load Balancing, DNS ও CDN</a> অধ্যায়ে।</p>
+<hr />
+<h2 id="৯-kubernetes--cloud-iam">৯. Kubernetes ↔ Cloud IAM<a class="headerlink" href="#৯-kubernetes--cloud-iam" title="Permanent link">&para;</a></h2>
+<p>Pod-এর ভেতরের <code>shopbd-api</code> কোড <code>shopbd-images</code> bucket-এ ছবি রাখবে। এর জন্য access key Pod-এ ঢোকানো (Secret/env) — <strong>ভুল পথ</strong>: key leak হয়, rotate করা কষ্ট। সঠিক পথ: <strong>Pod-এর Kubernetes ServiceAccount-কে cloud-এর IAM identity-র সাথে যুক্ত করা</strong>, যাতে Pod short-lived token পায়। বিস্তারিত IAM ধারণা <a href="../03-identity-and-access/">Identity ও Access</a> অধ্যায়ে।</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Feature</td>
+<td><strong>EKS Pod Identity</strong> (নতুন, সহজ) বা <strong>IRSA</strong> (OIDC-ভিত্তিক)</td>
+<td><strong>Workload Identity Federation for GKE</strong></td>
+<td><strong>Microsoft Entra Workload ID</strong></td>
+<td><strong>Workload Identity</strong> (OKE)</td>
+</tr>
+<tr>
+<td>কী যুক্ত হয়</td>
+<td>K8s ServiceAccount ↔ IAM role</td>
+<td>K8s ServiceAccount ↔ IAM principal (বা Google service account)</td>
+<td>K8s ServiceAccount ↔ Managed identity (federated credential)</td>
+<td>K8s ServiceAccount ↔ IAM policy (principal type workload)</td>
+</tr>
+<tr>
+<td>Pod কী পায়</td>
+<td>STS temporary credential</td>
+<td>Short-lived token</td>
+<td>Entra token</td>
+<td>Short-lived token</td>
+</tr>
+</tbody>
+</table>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="aws_3" name="__tabbed_4" type="radio" /><input id="gcp_3" name="__tabbed_4" type="radio" /><input id="azure_3" name="__tabbed_4" type="radio" /><input id="oci_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="aws_3">AWS</label><label for="gcp_3">GCP</label><label for="azure_3">Azure</label><label for="oci_3">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>EKS Pod Identity</strong> — IAM role বানিয়ে ServiceAccount-এর সাথে association করা:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>aws<span class="w"> </span>eks<span class="w"> </span>create-pod-identity-association<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">  </span>--cluster-name<span class="w"> </span>shopbd-eks<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">  </span>--namespace<span class="w"> </span>shopbd-prod<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span>--service-account<span class="w"> </span>shopbd-api-sa<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">  </span>--role-arn<span class="w"> </span>arn:aws:iam::123456789012:role/shopbd-api-pod-role
+</span></code></pre></div>
+<p>(Pod Identity-র জন্য cluster-এ <code>eks-pod-identity-agent</code> add-on থাকতে হয়।) পুরোনো <strong>IRSA</strong> পদ্ধতিতে ServiceAccount-এ annotation দেওয়া হয়:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ServiceAccount</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shopbd-api-sa</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shopbd-prod</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">    </span><span class="nt">eks.amazonaws.com/role-arn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">arn:aws:iam::123456789012:role/shopbd-api-pod-role</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Autopilot-এ Workload Identity Federation ডিফল্টে চালু; Standard-এ cluster তৈরির সময় চালু করতে হয়। ServiceAccount সরাসরি IAM principal হিসেবে role পায়:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>my-project-id<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">  </span>--role<span class="o">=</span><span class="s2">"roles/storage.objectAdmin"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">  </span>--member<span class="o">=</span><span class="s2">"principal://iam.googleapis.com/projects/123456789012/locations/global/workloadIdentityPools/my-project-id.svc.id.goog/subject/ns/shopbd-prod/sa/shopbd-api-sa"</span>
+</span></code></pre></div>
+<p>এখানে <code>123456789012</code> হলো project <strong>number</strong>। Production-এ role আরও সংকীর্ণ করুন (পুরো project-এ না দিয়ে শুধু <code>shopbd-images</code> bucket-এ)।</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Microsoft Entra Workload ID</strong> — cluster-এ OIDC issuer ও workload identity চালু করে, একটা user-assigned managed identity-তে federated credential যোগ করা হয়:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>az<span class="w"> </span>aks<span class="w"> </span>update<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span>--name<span class="w"> </span>shopbd-aks<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span>--enable-oidc-issuer<span class="w"> </span>--enable-workload-identity
+</span></code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ServiceAccount</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shopbd-api-sa</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shopbd-prod</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="w">    </span><span class="nt">azure.workload.identity/client-id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">00000000-0000-0000-0000-000000000000</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="nn">---</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="c1"># Pod template-এ label লাগবে:</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="c1">#   metadata.labels: azure.workload.identity/use: "true"</span>
+</span></code></pre></div>
+<p>Managed identity-কে Storage Blob Data Contributor role দিতে হয় (<a href="../03-identity-and-access/">Azure RBAC</a>)।</p>
+</div>
+<div class="tabbed-block">
+<p>OKE <strong>Enhanced cluster</strong>-এ Workload Identity সমর্থিত। Access দেওয়া হয় IAM policy-তে, workload-এর namespace ও service account শর্ত দিয়ে:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>Allow any-user to manage objects in compartment shopbd where all {
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>  request.principal.type = 'workload',
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>  request.principal.namespace = 'shopbd-prod',
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>  request.principal.service_account = 'shopbd-api-sa',
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>  request.principal.cluster_id = 'ocid1.cluster.oc1..example'
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>}
+</span></code></pre></div>
+<p>Basic cluster-এ এই সুবিধা নেই — সেখানে instance principal (node-এর dynamic group) ব্যবহার হয়, যা node-এর সব Pod-কে একই অধিকার দেয় — তাই কম নিরাপদ।</p>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">দুই ধরনের access আলাদা</p>
+<p>এখানে আমরা <strong>Pod → cloud service</strong> access দেখলাম। আর <strong>মানুষ → cluster (<code>kubectl</code>)</strong> access আলাদা বিষয়: EKS-এ access entries,
+GKE-তে IAM role + RBAC, AKS-এ Entra ID + Azure RBAC for Kubernetes, OKE-তে IAM policy + RBAC। দুটোই least privilege মেনে বসান।</p>
+</div>
+<hr />
+<h2 id="১০-terraform-দয-registry-ও-cluster">১০. Terraform দিয়ে registry ও cluster<a class="headerlink" href="#১০-terraform-দয-registry-ও-cluster" title="Permanent link">&para;</a></h2>
+<p>নিচের snippet-গুলো <strong>ছোট উদাহরণ</strong> — production-এ network, IAM role, version variable আলাদা module-এ রাখুন (<a href="../14-infrastructure-as-code/">Terraform অধ্যায়</a>)।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:4"><input checked="checked" id="aws_4" name="__tabbed_5" type="radio" /><input id="gcp_4" name="__tabbed_5" type="radio" /><input id="azure_4" name="__tabbed_5" type="radio" /><input id="oci_4" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="aws_4">AWS</label><label for="gcp_4">GCP</label><label for="azure_4">Azure</label><label for="oci_4">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">"aws"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">  </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ap-south-1"</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="p">}</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_ecr_repository"</span><span class="w"> </span><span class="nv">"api"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">  </span><span class="na">name</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-api"</span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="w">  </span><span class="na">image_tag_mutability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"IMMUTABLE"</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="w">  </span><span class="nb">image_scanning_configuration</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="w">    </span><span class="na">scan_on_push</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="p">}</span>
+</span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>
+</span><span id="__span-25-14"><a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_eks_cluster"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-25-15"><a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a><span class="w">  </span><span class="na">name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-eks"</span>
+</span><span id="__span-25-16"><a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a><span class="w">  </span><span class="na">role_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_role.eks_cluster.arn</span><span class="c1"> # role আলাদা resource-এ বানানো</span>
+</span><span id="__span-25-17"><a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a>
+</span><span id="__span-25-18"><a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a><span class="w">  </span><span class="nb">vpc_config</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-25-19"><a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a><span class="w">    </span><span class="na">subnet_ids</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.private_subnet_ids</span>
+</span><span id="__span-25-20"><a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-25-21"><a id="__codelineno-25-21" name="__codelineno-25-21" href="#__codelineno-25-21"></a><span class="p">}</span>
+</span><span id="__span-25-22"><a id="__codelineno-25-22" name="__codelineno-25-22" href="#__codelineno-25-22"></a>
+</span><span id="__span-25-23"><a id="__codelineno-25-23" name="__codelineno-25-23" href="#__codelineno-25-23"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_eks_node_group"</span><span class="w"> </span><span class="nv">"default"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-25-24"><a id="__codelineno-25-24" name="__codelineno-25-24" href="#__codelineno-25-24"></a><span class="w">  </span><span class="na">cluster_name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_eks_cluster.shopbd.name</span>
+</span><span id="__span-25-25"><a id="__codelineno-25-25" name="__codelineno-25-25" href="#__codelineno-25-25"></a><span class="w">  </span><span class="na">node_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-nodes"</span>
+</span><span id="__span-25-26"><a id="__codelineno-25-26" name="__codelineno-25-26" href="#__codelineno-25-26"></a><span class="w">  </span><span class="na">node_role_arn</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_role.eks_node.arn</span>
+</span><span id="__span-25-27"><a id="__codelineno-25-27" name="__codelineno-25-27" href="#__codelineno-25-27"></a><span class="w">  </span><span class="na">subnet_ids</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">var.private_subnet_ids</span>
+</span><span id="__span-25-28"><a id="__codelineno-25-28" name="__codelineno-25-28" href="#__codelineno-25-28"></a><span class="w">  </span><span class="na">instance_types</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"t3.medium"</span><span class="p">]</span>
+</span><span id="__span-25-29"><a id="__codelineno-25-29" name="__codelineno-25-29" href="#__codelineno-25-29"></a>
+</span><span id="__span-25-30"><a id="__codelineno-25-30" name="__codelineno-25-30" href="#__codelineno-25-30"></a><span class="w">  </span><span class="nb">scaling_config</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-25-31"><a id="__codelineno-25-31" name="__codelineno-25-31" href="#__codelineno-25-31"></a><span class="w">    </span><span class="na">desired_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+</span><span id="__span-25-32"><a id="__codelineno-25-32" name="__codelineno-25-32" href="#__codelineno-25-32"></a><span class="w">    </span><span class="na">min_size</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+</span><span id="__span-25-33"><a id="__codelineno-25-33" name="__codelineno-25-33" href="#__codelineno-25-33"></a><span class="w">    </span><span class="na">max_size</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="m">4</span>
+</span><span id="__span-25-34"><a id="__codelineno-25-34" name="__codelineno-25-34" href="#__codelineno-25-34"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-25-35"><a id="__codelineno-25-35" name="__codelineno-25-35" href="#__codelineno-25-35"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">"google"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">  </span><span class="na">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my-project-id"</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">  </span><span class="na">region</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"asia-south1"</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="p">}</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_artifact_registry_repository"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="w">  </span><span class="na">location</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">"asia-south1"</span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="w">  </span><span class="na">repository_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd"</span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="w">  </span><span class="na">format</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">"DOCKER"</span>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="p">}</span>
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_container_cluster"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-26-13"><a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="w">  </span><span class="na">name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-gke"</span>
+</span><span id="__span-26-14"><a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a><span class="w">  </span><span class="na">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"asia-south1"</span>
+</span><span id="__span-26-15"><a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a>
+</span><span id="__span-26-16"><a id="__codelineno-26-16" name="__codelineno-26-16" href="#__codelineno-26-16"></a><span class="w">  </span><span class="na">enable_autopilot</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-26-17"><a id="__codelineno-26-17" name="__codelineno-26-17" href="#__codelineno-26-17"></a><span class="w">  </span><span class="na">deletion_protection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">false</span><span class="c1"> # শুধু শেখার জন্য; production-এ true</span>
+</span><span id="__span-26-18"><a id="__codelineno-26-18" name="__codelineno-26-18" href="#__codelineno-26-18"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">"azurerm"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">  </span><span class="nb">features</span><span class="w"> </span><span class="p">{}</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="p">}</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_resource_group"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="w">  </span><span class="na">name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-rg"</span>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="w">  </span><span class="na">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"centralindia"</span>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="p">}</span>
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>
+</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_container_registry"</span><span class="w"> </span><span class="nv">"acr"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-27-11"><a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbdacr"</span>
+</span><span id="__span-27-12"><a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.shopbd.name</span>
+</span><span id="__span-27-13"><a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a><span class="w">  </span><span class="na">location</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.shopbd.location</span>
+</span><span id="__span-27-14"><a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a><span class="w">  </span><span class="na">sku</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s2">"Standard"</span>
+</span><span id="__span-27-15"><a id="__codelineno-27-15" name="__codelineno-27-15" href="#__codelineno-27-15"></a><span class="p">}</span>
+</span><span id="__span-27-16"><a id="__codelineno-27-16" name="__codelineno-27-16" href="#__codelineno-27-16"></a>
+</span><span id="__span-27-17"><a id="__codelineno-27-17" name="__codelineno-27-17" href="#__codelineno-27-17"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_kubernetes_cluster"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-27-18"><a id="__codelineno-27-18" name="__codelineno-27-18" href="#__codelineno-27-18"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-aks"</span>
+</span><span id="__span-27-19"><a id="__codelineno-27-19" name="__codelineno-27-19" href="#__codelineno-27-19"></a><span class="w">  </span><span class="na">location</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.shopbd.location</span>
+</span><span id="__span-27-20"><a id="__codelineno-27-20" name="__codelineno-27-20" href="#__codelineno-27-20"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.shopbd.name</span>
+</span><span id="__span-27-21"><a id="__codelineno-27-21" name="__codelineno-27-21" href="#__codelineno-27-21"></a><span class="w">  </span><span class="na">dns_prefix</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd"</span>
+</span><span id="__span-27-22"><a id="__codelineno-27-22" name="__codelineno-27-22" href="#__codelineno-27-22"></a>
+</span><span id="__span-27-23"><a id="__codelineno-27-23" name="__codelineno-27-23" href="#__codelineno-27-23"></a><span class="w">  </span><span class="nb">default_node_pool</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-27-24"><a id="__codelineno-27-24" name="__codelineno-27-24" href="#__codelineno-27-24"></a><span class="w">    </span><span class="na">name</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s2">"system"</span>
+</span><span id="__span-27-25"><a id="__codelineno-27-25" name="__codelineno-27-25" href="#__codelineno-27-25"></a><span class="w">    </span><span class="na">node_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+</span><span id="__span-27-26"><a id="__codelineno-27-26" name="__codelineno-27-26" href="#__codelineno-27-26"></a><span class="w">    </span><span class="na">vm_size</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"Standard_D2s_v5"</span>
+</span><span id="__span-27-27"><a id="__codelineno-27-27" name="__codelineno-27-27" href="#__codelineno-27-27"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-27-28"><a id="__codelineno-27-28" name="__codelineno-27-28" href="#__codelineno-27-28"></a>
+</span><span id="__span-27-29"><a id="__codelineno-27-29" name="__codelineno-27-29" href="#__codelineno-27-29"></a><span class="w">  </span><span class="nb">identity</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-27-30"><a id="__codelineno-27-30" name="__codelineno-27-30" href="#__codelineno-27-30"></a><span class="w">    </span><span class="na">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"SystemAssigned"</span>
+</span><span id="__span-27-31"><a id="__codelineno-27-31" name="__codelineno-27-31" href="#__codelineno-27-31"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-27-32"><a id="__codelineno-27-32" name="__codelineno-27-32" href="#__codelineno-27-32"></a><span class="p">}</span>
+</span><span id="__span-27-33"><a id="__codelineno-27-33" name="__codelineno-27-33" href="#__codelineno-27-33"></a>
+</span><span id="__span-27-34"><a id="__codelineno-27-34" name="__codelineno-27-34" href="#__codelineno-27-34"></a><span class="c1"># AKS-কে ACR থেকে image টানার অনুমতি</span>
+</span><span id="__span-27-35"><a id="__codelineno-27-35" name="__codelineno-27-35" href="#__codelineno-27-35"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_role_assignment"</span><span class="w"> </span><span class="nv">"aks_acr_pull"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-27-36"><a id="__codelineno-27-36" name="__codelineno-27-36" href="#__codelineno-27-36"></a><span class="w">  </span><span class="na">scope</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_container_registry.acr.id</span>
+</span><span id="__span-27-37"><a id="__codelineno-27-37" name="__codelineno-27-37" href="#__codelineno-27-37"></a><span class="w">  </span><span class="na">role_definition_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"AcrPull"</span>
+</span><span id="__span-27-38"><a id="__codelineno-27-38" name="__codelineno-27-38" href="#__codelineno-27-38"></a><span class="w">  </span><span class="na">principal_id</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_kubernetes_cluster.shopbd.kubelet_identity[0].object_id</span>
+</span><span id="__span-27-39"><a id="__codelineno-27-39" name="__codelineno-27-39" href="#__codelineno-27-39"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">"oci"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">  </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ap-mumbai-1"</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="p">}</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="kr">variable</span><span class="w"> </span><span class="nv">"compartment_id"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">  </span><span class="na">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ocid1.compartment.oc1..example"</span>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="p">}</span>
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"oci_artifacts_container_repository"</span><span class="w"> </span><span class="nv">"api"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="w">  </span><span class="na">compartment_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.compartment_id</span>
+</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="w">  </span><span class="na">display_name</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-api"</span>
+</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="w">  </span><span class="na">is_public</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
+</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a><span class="p">}</span>
+</span><span id="__span-28-14"><a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a>
+</span><span id="__span-28-15"><a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"oci_containerengine_cluster"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-28-16"><a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a><span class="w">  </span><span class="na">compartment_id</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">var.compartment_id</span>
+</span><span id="__span-28-17"><a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a><span class="w">  </span><span class="na">kubernetes_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.k8s_version</span>
+</span><span id="__span-28-18"><a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a><span class="w">  </span><span class="na">name</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-oke"</span>
+</span><span id="__span-28-19"><a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a><span class="w">  </span><span class="na">vcn_id</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="nv">var.vcn_id</span>
+</span><span id="__span-28-20"><a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a><span class="w">  </span><span class="na">type</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">"ENHANCED_CLUSTER"</span>
+</span><span id="__span-28-21"><a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a>
+</span><span id="__span-28-22"><a id="__codelineno-28-22" name="__codelineno-28-22" href="#__codelineno-28-22"></a><span class="w">  </span><span class="nb">endpoint_config</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-28-23"><a id="__codelineno-28-23" name="__codelineno-28-23" href="#__codelineno-28-23"></a><span class="w">    </span><span class="na">subnet_id</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">var.api_subnet_id</span>
+</span><span id="__span-28-24"><a id="__codelineno-28-24" name="__codelineno-28-24" href="#__codelineno-28-24"></a><span class="w">    </span><span class="na">is_public_ip_enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-28-25"><a id="__codelineno-28-25" name="__codelineno-28-25" href="#__codelineno-28-25"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-28-26"><a id="__codelineno-28-26" name="__codelineno-28-26" href="#__codelineno-28-26"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Node pool (<code>oci_containerengine_node_pool</code>) আলাদা resource — shape, image ও subnet লাগে।</p>
+</div>
+</div>
+</div>
+<hr />
+<h2 id="মল-ও-অমল">মিল ও অমিল<a class="headerlink" href="#মল-ও-অমল" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registry-র গঠন</td>
+<td>প্রতি image-এর আলাদা repository</td>
+<td>এক repository-তে বহু image</td>
+<td>এক registry-তে বহু repository</td>
+<td>Tenancy namespace + repository</td>
+</tr>
+<tr>
+<td>Registry login</td>
+<td>IAM → ১২ ঘণ্টার token</td>
+<td>gcloud credential helper</td>
+<td><code>az acr login</code> / managed identity</td>
+<td><strong>Auth token</strong> (আলাদা password)</td>
+</tr>
+<tr>
+<td>Cluster-এর নেটওয়ার্ক</td>
+<td>VPC-র IP সরাসরি Pod পায়</td>
+<td>VPC-native alias IP</td>
+<td>Azure CNI (Overlay)</td>
+<td>VCN-native বা Flannel</td>
+</tr>
+<tr>
+<td>Autopilot-style</td>
+<td>Auto Mode / Fargate</td>
+<td>Autopilot (পরিণত, জনপ্রিয়)</td>
+<td>AKS Automatic</td>
+<td>Virtual nodes</td>
+</tr>
+<tr>
+<td>Pod → IAM</td>
+<td>Pod Identity / IRSA</td>
+<td>WIF for GKE</td>
+<td>Workload ID</td>
+<td>Workload identity (Enhanced)</td>
+</tr>
+<tr>
+<td>Native simple orchestrator</td>
+<td><strong>ECS</strong></td>
+<td>নেই</td>
+<td>নেই (Container Apps আলাদা)</td>
+<td>নেই</td>
+</tr>
+</tbody>
+</table>
+<h3 id="যসব-জযগয-মনষ-হচট-খয">যেসব জায়গায় মানুষ হোঁচট খায়<a class="headerlink" href="#যসব-জযগয-মনষ-হচট-খয" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>AWS:</strong> EKS cluster বানালেই node-এ কাজ হয় না — node group, VPC CNI, IAM role, আর <code>aws-auth</code>/access entry ঠিক থাকতে হয়। Cluster-এর creator-ই শুরুতে একমাত্র admin।</li>
+<li><strong>GCP:</strong> Standard cluster-এ <code>--num-nodes</code> <strong>প্রতি zone</strong>-এ। <code>--region</code> দিয়ে ৩ zone-এ <code>--num-nodes 2</code> মানে ৬টা node!</li>
+<li><strong>GCP Autopilot:</strong> কিছু workload (privileged, hostPath) অনুমোদিত নয়; <code>requests</code> ছোট হলে Autopilot নিজে বাড়িয়ে দেয়।</li>
+<li><strong>Azure:</strong> ACR-এর নাম global unique ও hyphen-হীন। AKS-এর <code>MC_...</code> node resource group হাতে বদলাবেন না।</li>
+<li><strong>Azure:</strong> <code>--attach-acr</code> না দিলে Pod <code>ImagePullBackOff</code> ধরবে।</li>
+<li><strong>OCI:</strong> <code>docker login</code> এ password আসলে <strong>Auth Token</strong>, console password নয়। প্রতিটি resource compartment OCID চায়।</li>
+<li><strong>OCI:</strong> Workload Identity শুধু <strong>Enhanced</strong> cluster-এ।</li>
+<li><strong>সব cloud:</strong> Private registry থেকে pull-এ <code>ImagePullBackOff</code> মানে প্রায় সবসময় credential/permission সমস্যা, image নামের টাইপো নয়।</li>
+</ul>
+<hr />
+<h2 id="real-world-shopbd">Real-world: shopbd<a class="headerlink" href="#real-world-shopbd" title="Permanent link">&para;</a></h2>
+<p><code>shopbd</code> ছোট দোকান — প্রথম দিন থেকে Kubernetes লাগে না। সৎ পরামর্শ: <strong>শুরুতে serverless container বা ECS Fargate</strong>, দল ও লোড বাড়লে Kubernetes। তবু ধরুন shopbd-র টিম Kubernetes বেছে নিল। তাহলে একই workload চার cloud-এ এভাবে বসে:</p>
+<table>
+<thead>
+<tr>
+<th>কাজ</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>ECR <code>shopbd-api</code></td>
+<td>Artifact Registry <code>shopbd</code></td>
+<td>ACR <code>shopbdacr</code></td>
+<td>OCIR <code>shopbd-api</code></td>
+</tr>
+<tr>
+<td>Cluster</td>
+<td><code>shopbd-eks</code> (Auto Mode বা managed node group, <code>ap-south-1</code>)</td>
+<td><code>shopbd-gke</code> (Autopilot, <code>asia-south1</code>)</td>
+<td><code>shopbd-aks</code> (<code>centralindia</code>)</td>
+<td><code>shopbd-oke</code> (Enhanced, <code>ap-mumbai-1</code>)</td>
+</tr>
+<tr>
+<td>API Pod</td>
+<td>Deployment, ৩ replica + HPA</td>
+<td>একই</td>
+<td>একই</td>
+<td>একই</td>
+</tr>
+<tr>
+<td>Ingress</td>
+<td>AWS LB Controller → ALB</td>
+<td>Gateway/Ingress → Application LB</td>
+<td>App Gateway for Containers</td>
+<td>OCI native ingress → OCI LB</td>
+</tr>
+<tr>
+<td>ছবি রাখা</td>
+<td>Pod Identity → S3 <code>shopbd-images</code></td>
+<td>WIF → GCS <code>shopbd-images</code></td>
+<td>Workload ID → Blob container</td>
+<td>Workload identity → Object Storage</td>
+</tr>
+<tr>
+<td>DB</td>
+<td>RDS PostgreSQL (cluster-এর বাইরে, managed)</td>
+<td>Cloud SQL</td>
+<td>Azure Database for PostgreSQL</td>
+<td>OCI Database with PostgreSQL</td>
+</tr>
+<tr>
+<td>Nightly sales report</td>
+<td>K8s <code>CronJob</code> (বা Lambda/ECS scheduled task)</td>
+<td><code>CronJob</code></td>
+<td><code>CronJob</code></td>
+<td><code>CronJob</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Database cluster-এর ভেতরে নয়</p>
+<p>shopbd-র PostgreSQL Kubernetes-এ নিজে না চালিয়ে <strong>managed database</strong> ব্যবহার করুন (<a href="../07-databases/">Database অধ্যায়</a>)। Stateful workload
+K8s-এ চালানো সম্ভব কিন্তু backup, failover, upgrade-এর দায়িত্ব আপনার ঘাড়ে। Pod stateless, data managed service-এ — এটাই সহজ ও নিরাপদ।</p>
+</div>
+<p>Nightly report চালাতে K8s <code>CronJob</code> (<code>schedule: "0 20 * * *"</code>, UTC — বাংলাদেশে রাত ২টা) ব্যবহার করা যায়।</p>
+<hr />
+<h2 id="best-practices">Best practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>ছোট ও পরিষ্কার image</strong> — slim base, multi-stage build, non-root user। কম আকার = দ্রুত pull, কম attack surface।</li>
+<li><strong>Tag immutable, <code>latest</code> নয়</strong> — commit SHA বা version; production-এ digest pin।</li>
+<li><strong>Registry-তে scan ও cleanup চালু</strong> রাখুন; পুরোনো image মোছার policy বসান।</li>
+<li><strong>প্রতিটি Pod-এ <code>requests</code>, <code>limits</code>, <code>readinessProbe</code>, <code>livenessProbe</code></strong> দিন।</li>
+<li><strong>Namespace দিয়ে ভাগ</strong> করুন (prod/staging/team)। NetworkPolicy দিয়ে Pod↔Pod traffic সীমিত করুন।</li>
+<li><strong>Secret আলাদা</strong> — K8s Secret-এর বদলে cloud-এর secret manager (<a href="../13-security/">Security অধ্যায়</a>) + workload identity।</li>
+<li><strong>Node-এ key নয়, workload identity</strong> ব্যবহার করুন; node role-এ বিস্তৃত permission দেবেন না।</li>
+<li><strong>Control plane-কে private</strong> রাখার কথা ভাবুন; ভেতর-বাইরের নেটওয়ার্ক <a href="../05-networking/">Networking অধ্যায়</a> অনুযায়ী।</li>
+<li><strong>Version নিয়মিত upgrade</strong> — K8s প্রতি কয়েক মাসে নতুন minor version আনে; পুরোনো version support হারায়। Upgrade staging-এ আগে চালান।</li>
+<li><strong>Multi-AZ</strong> — node pool একাধিক availability zone-এ ছড়ান; Pod-এ <code>topologySpreadConstraints</code> বা <code>podAntiAffinity</code>।</li>
+<li><strong>খরচ নজরে</strong> — idle node, অব্যবহৃত load balancer, বড় <code>requests</code> সবচেয়ে বেশি অপচয়। <a href="../18-cost-management/">Cost অধ্যায়</a> দেখুন।</li>
+</ul>
+<hr />
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ভুল</th>
+<th>ফল</th>
+<th>সমাধান</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>latest</code> tag ব্যবহার</td>
+<td>Rollback অসম্ভব, অজানা version চলে</td>
+<td>SHA/version tag + immutability</td>
+</tr>
+<tr>
+<td>Access key Pod-এ env/Secret আকারে</td>
+<td>Leak, rotate কঠিন</td>
+<td>Workload identity (Pod Identity / WIF / Workload ID)</td>
+</tr>
+<tr>
+<td><code>requests</code> না দেওয়া</td>
+<td>HPA কাজ করে না, node overload</td>
+<td>সব Pod-এ <code>requests</code></td>
+</tr>
+<tr>
+<td><code>livenessProbe</code> খুব আক্রমণাত্মক</td>
+<td>App ধীর চালু হলে ক্রমাগত restart</td>
+<td><code>initialDelaySeconds</code> / startupProbe</td>
+</tr>
+<tr>
+<td>সব Service <code>type: LoadBalancer</code></td>
+<td>অনেক LB, অনেক খরচ</td>
+<td>একটা Ingress/Gateway</td>
+</tr>
+<tr>
+<td>DB Pod-এর ভেতরে, backup ছাড়া</td>
+<td>Data হারানো</td>
+<td>Managed database</td>
+</tr>
+<tr>
+<td>Control plane public ও খোলা</td>
+<td>আক্রমণের ঝুঁকি</td>
+<td>Authorized network / private endpoint</td>
+</tr>
+<tr>
+<td>Node একটা zone-এ</td>
+<td>Zone বিভ্রাটে সব বন্ধ</td>
+<td>Multi-AZ node pool</td>
+</tr>
+<tr>
+<td>ছোট app-এর জন্যই K8s</td>
+<td>Ops-ভার বেশি, শেখার চাপ</td>
+<td>আগে ECS Fargate / Cloud Run / Container Apps</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ইনটরভউ--সরটফকশন-টপস">ইন্টারভিউ / সার্টিফিকেশন টিপস<a class="headerlink" href="#ইনটরভউ--সরটফকশন-টপস" title="Permanent link">&para;</a></h2>
+<details class="question">
+<summary>Container ও VM-এর পার্থক্য কী?</summary>
+<p>VM প্রতিটি নিজের guest OS নিয়ে hypervisor-এর ওপর চলে; container host OS-এর kernel শেয়ার করে, তাই হালকা ও দ্রুত চালু হয়। Isolation VM-এ বেশি শক্তিশালী,
+container-এ process-level (namespace ও cgroup)।</p>
+</details>
+<details class="question">
+<summary>Pod, Deployment ও Service-এর সম্পর্ক বোঝান।</summary>
+<p>Pod ক্ষুদ্রতম চলমান একক। Deployment বলে "এই Pod-এর N টা কপি চাই" ও rolling update সামলায় (ভেতরে ReplicaSet)। Service Pod-গুলোর সামনে স্থির নাম/IP
+দেয় ও তাদের মধ্যে traffic ভাগ করে — কারণ Pod-এর IP বদলায়।</p>
+</details>
+<details class="question">
+<summary>Managed Kubernetes-এ cloud কী দেখে, আপনি কী দেখেন?</summary>
+<p>Control plane (API server, etcd, scheduler) cloud চালায়, upgrade ও availability তার দায়িত্ব। Worker node, workload, networking, IAM আপনার — Autopilot-style mode-এ node-ও cloud দেখে।</p>
+</details>
+<details class="question">
+<summary>EKS Pod Identity বা IRSA কেন দরকার?</summary>
+<p>Pod-কে long-lived access key না দিয়ে ServiceAccount-এর মাধ্যমে IAM role-এ যুক্ত করতে; ফলে short-lived credential আসে, key leak-এর ঝুঁকি কমে। GCP-তে Workload Identity Federation, Azure-এ Workload ID — একই ধারণা।</p>
+</details>
+<details class="question">
+<summary>ECS বনাম EKS কখন কোনটা?</summary>
+<p>শুধু AWS, ছোট টিম, দ্রুত চালু — ECS (Fargate)। Portability, K8s ecosystem (Helm, operator), অভিজ্ঞ টিম — EKS। অনেক সময় প্রশ্নের উত্তর "টিম কী জানে" ও "ভবিষ্যতে multi-cloud লাগবে কি না"-র ওপর।</p>
+</details>
+<details class="question">
+<summary>Ingress ও Service type LoadBalancer-এর পার্থক্য?</summary>
+<p><code>LoadBalancer</code> Service প্রতিটির জন্য একটা L4 cloud LB বানায়। Ingress একটা L7 LB দিয়ে hostname/path দেখে অনেক Service-এ পাঠায় — খরচ ও ম্যানেজমেন্ট কম। Ingress controller ছাড়া Ingress কিছুই করে না।</p>
+</details>
+<details class="question">
+<summary>GKE Autopilot ও Standard-এর পার্থক্য?</summary>
+<p>Standard-এ আপনি node pool ও machine type ঠিক করেন; Autopilot-এ Google node ম্যানেজ করে, আর billing Pod-এর requested resource অনুযায়ী। Autopilot-এ কিছু privileged workload চলে না।</p>
+</details>
+<details class="question">
+<summary><code>ImagePullBackOff</code> হলে কী দেখবেন?</summary>
+<p><code>kubectl describe pod</code> → event দেখুন। সাধারণ কারণ: image নাম/tag ভুল, registry credential/permission নেই (ACR attach, ECR pull policy, OCIR secret), অথবা node থেকে registry-তে network path নেই।</p>
+</details>
+<p><strong>সার্টিফিকেশন-সংযোগ:</strong> AWS Solutions Architect / Developer (ECS, EKS, ECR), Google Associate/Professional Cloud (GKE), Azure AZ-104/AZ-204 (AKS, ACR), OCI Architect Associate (OKE) এবং CNCF-এর <strong>CKA / CKAD</strong>-এ Kubernetes ধারণা সরাসরি আসে।</p>
+<hr />
+<h2 id="সরসকষপ">সারসংক্ষেপ<a class="headerlink" href="#সরসকষপ" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Container = app + dependency একসাথে, image থেকে চলে; registry-তে image থাকে — <strong>ECR / Artifact Registry / ACR / OCIR</strong>।</li>
+<li>Orchestrator scheduling, self-healing, scaling, rolling update সামলায়; Kubernetes হলো standard — <strong>EKS / GKE / AKS / OKE</strong>।</li>
+<li>Control plane cloud চালায়; <strong>Autopilot-style</strong> mode (EKS Auto Mode/Fargate, GKE Autopilot, AKS Automatic, OKE virtual nodes) node-ম্যানেজমেন্টও সরিয়ে দেয়।</li>
+<li><strong>Node pool</strong> দিয়ে ভিন্ন workload-এর জন্য ভিন্ন আকারের/সস্তা node।</li>
+<li>AWS-এ <strong>ECS</strong> সহজতর বিকল্প; বাকি cloud-এ serverless container (<a href="../09-serverless/">পরের অধ্যায়</a>)।</li>
+<li>বাইরের traffic <strong>Ingress/Gateway + cloud L7 LB</strong>-এ; Pod→cloud access <strong>workload identity</strong>-তে — কখনো key ঢুকিয়ে নয়।</li>
+<li>ছোট দোকান <code>shopbd</code>-র জন্য আগে সহজ পথ; K8s তখনই যখন টিম ও প্রয়োজন তৈরি।</li>
+</ul>
+<p>পরের অধ্যায়: <a href="../09-serverless/">09 · Serverless</a> — server/node ছাড়াই code ও container চালানো।</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  উপরে ফিরে যাও
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="ফুটার" >
+        
+          
+          <a href="../07-databases/" class="md-footer__link md-footer__link--prev" aria-label="পূর্ববর্তী: 07 · Database">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পূর্ববর্তী
+              </span>
+              <div class="md-ellipsis">
+                07 · Database
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../09-serverless/" class="md-footer__link md-footer__link--next" aria-label="পরে: 09 · Serverless">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পরে
+              </span>
+              <div class="md-ellipsis">
+                09 · Serverless
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Hasib Ahmed — Cloud বাংলা ডকুমেন্টেশন
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Hasib105/cloud-bangla-docs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u09b9\u09df\u09c7\u099b\u09c7", "clipboard.copy": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u0995\u09b0\u09c1\u09a8", "search.result.more.one": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 \u09e7\u099f\u09bf \u0986\u099b\u09c7", "search.result.more.other": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 #\u099f\u09bf \u0986\u099b\u09c7", "search.result.none": "\u0995\u09bf\u099b\u09c1 \u09aa\u09be\u0993\u09df\u09be \u09af\u09be\u09df\u09a8\u09bf", "search.result.one": "\u09e7 \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.other": "# \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.placeholder": "\u09b8\u09be\u09b0\u09cd\u099a \u099f\u09be\u0987\u09aa \u0995\u09b0\u09c1\u09a8", "search.result.term.missing": "\u0985\u09a8\u09c1\u09aa\u09b8\u09cd\u09a5\u09bf\u09a4", "select.version": "\u09b8\u0982\u09b8\u09cd\u0995\u09b0\u09a3 \u09a8\u09bf\u09b0\u09cd\u09ac\u09be\u099a\u09a8 \u0995\u09b0\u09c1\u09a3"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

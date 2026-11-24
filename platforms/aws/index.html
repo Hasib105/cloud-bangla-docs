@@ -1,0 +1,3876 @@
+
+<!doctype html>
+<html lang="bn" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="এক টপিক, চার cloud — AWS, Google Cloud, Microsoft Azure ও Oracle Cloud (OCI) শূন্য থেকে অ্যাডভান্স, পাশাপাশি তুলনাসহ সম্পূর্ণ বাংলা ডকুমেন্টেশন।">
+      
+      
+        <meta name="author" content="Hasib Ahmed">
+      
+      
+        <link rel="canonical" href="https://hasib105.github.io/cloud-bangla-docs/platforms/aws/">
+      
+      
+        <link rel="prev" href="../../19-architecture-ha-dr/">
+      
+      
+        <link rel="next" href="../gcp/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>AWS - Cloud বাংলা — AWS · GCP · Azure · OCI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M6.5%2020q-2.28%200-3.89-1.57Q1%2016.85%201%2014.58q0-1.95%201.17-3.48%201.18-1.53%203.08-1.95.63-2.3%202.5-3.72Q9.63%204%2012%204q2.93%200%204.96%202.04Q19%208.07%2019%2011q1.73.2%202.86%201.5%201.14%201.28%201.14%203%200%201.88-1.31%203.19T18.5%2020m-12-2h12q1.05%200%201.77-.73.73-.72.73-1.77t-.73-1.77Q19.55%2013%2018.5%2013H17v-2q0-2.07-1.46-3.54Q14.08%206%2012%206%209.93%206%208.46%207.46%207%208.93%207%2011h-.5q-1.45%200-2.47%201.03Q3%2013.05%203%2014.5T4.03%2017q1.02%201%202.47%201m5.5-6%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind+Siliguri:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Hind Siliguri";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#aws--amazon-web-services-গইড" class="md-skip">
+          কনটেন্টে যান
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="হেডার">
+    <a href="../.." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-header__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud বাংলা — AWS · GCP · Azure · OCI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AWS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="ডার্ক মোড"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ডার্ক মোড" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="লাইট মোড"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="লাইট মোড" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="অনুসন্ধান করুন" placeholder="অনুসন্ধান করুন" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="অনুসন্ধান করুন">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="শেয়ার" aria-label="শেয়ার" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="রিসেট" aria-label="রিসেট" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            অনুসন্ধান শুরু করা হচ্ছে
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="ট্যাব" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  হোম
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../01-cloud-fundamentals/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  মূল ধারণা
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  প্ল্যাটফর্ম গাইড
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../reference/service-map/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  রেফারেন্স
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ন্যাভিগেশন" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-nav__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../../assets/logo.svg" alt="logo">
+
+    </a>
+    Cloud বাংলা — AWS · GCP · Azure · OCI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    হোম
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    মূল ধারণা
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    মূল ধারণা
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-cloud-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Cloud-এর ভিত্তি
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-accounts-and-hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Account ও Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-identity-and-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Identity ও Access (IAM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-compute-vms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Virtual Machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-networking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Networking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-containers-kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Container ও Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-serverless/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Serverless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-load-balancing-scaling-dns-cdn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Load Balancing, DNS ও CDN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-messaging-and-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Messaging ও Event
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Monitoring ও Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../14-infrastructure-as-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 · Infrastructure as Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../15-cicd-devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 · CI/CD ও DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../16-data-and-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 · Data ও Analytics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../17-ai-ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 · AI ও Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../18-cost-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 · Cost Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../19-architecture-ha-dr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 · Architecture ও HA/DR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-aws-এর-মনসকত--ক-আলদ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. AWS-এর মানসিকতা — কী আলাদা?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. AWS-এর মানসিকতা — কী আলাদা?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lego-র-বকস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lego-র বাক্স
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-এর-বশষটয-যগল-মন-রখবন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS-এর বৈশিষ্ট্য যেগুলো মনে রাখবেন
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#বক-তন-cloud-এর-তলনয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        বাকি তিন cloud-এর তুলনায়
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-sign-up-ও-free-tier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Sign-up ও Free Tier
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="২. Sign-up ও Free Tier">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#account-খলর-ধপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Account খোলার ধাপ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#free-tier--কভব-ভববন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Free Tier — কীভাবে ভাববেন
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-console-ঘর-দখ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Console ঘুরে দেখা
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Console ঘুরে দেখা">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#region-ও-az--বলদশর-জনয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Region ও AZ — বাংলাদেশের জন্য
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-cli-install-ও-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. CLI install ও authentication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. CLI install ও authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-cli-v2-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS CLI v2 install
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#পদধত-১--aws-configure-iam-user-এর-access-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        পদ্ধতি ১ — aws configure (IAM user-এর access key)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#পদধত-২--aws-configure-sso-পরসতবত" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        পদ্ধতি ২ — aws configure sso (প্রস্তাবিত)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-বযবহর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile ব্যবহার
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#অনযনয-উপয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        অন্যান্য উপায়
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-পরথম-account-এর-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. প্রথম account-এর hierarchy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৫. প্রথম account-এর hierarchy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shopbd-র-জনয-পরথম-কযকট-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shopbd-র জন্য প্রথম কয়েকটা command
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-naming-quirks--aws-এর-বশষ-বযপর-সযপর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Naming quirks — AWS-এর বিশেষ ব্যাপার-স্যাপার
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-aws-এর-service-তলক-category-অনযয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. AWS-এর service তালিকা (category অনুযায়ী)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৭. AWS-এর service তালিকা (category অনুযায়ী)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Networking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-ও-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Container ও Kubernetes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serverless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Serverless
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#messaging-ও-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Messaging ও Event
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-ও-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security ও Identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infrastructure-as-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Infrastructure as Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-ও-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data ও Analytics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai-ও-machine-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI ও Machine Learning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cost-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cost Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৮-shopbd-aws-এ-কমন-দখয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮. shopbd AWS-এ কেমন দেখায়
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৯-certification-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৯. Certification path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১০-শখর-উৎস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১০. শেখার উৎস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১১-পরথম-দনর-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১১. প্রথম দিনের checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১২-সচরচর-ভল-aws-এ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১২. সচরাচর ভুল (AWS-এ)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Cloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../azure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microsoft Azure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle Cloud (OCI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    রেফারেন্স
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    রেফারেন্স
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/service-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/cli-cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Cheatsheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-aws-এর-মনসকত--ক-আলদ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. AWS-এর মানসিকতা — কী আলাদা?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. AWS-এর মানসিকতা — কী আলাদা?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lego-র-বকস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lego-র বাক্স
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-এর-বশষটয-যগল-মন-রখবন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS-এর বৈশিষ্ট্য যেগুলো মনে রাখবেন
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#বক-তন-cloud-এর-তলনয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        বাকি তিন cloud-এর তুলনায়
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-sign-up-ও-free-tier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Sign-up ও Free Tier
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="২. Sign-up ও Free Tier">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#account-খলর-ধপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Account খোলার ধাপ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#free-tier--কভব-ভববন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Free Tier — কীভাবে ভাববেন
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-console-ঘর-দখ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Console ঘুরে দেখা
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Console ঘুরে দেখা">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#region-ও-az--বলদশর-জনয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Region ও AZ — বাংলাদেশের জন্য
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-cli-install-ও-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. CLI install ও authentication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. CLI install ও authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-cli-v2-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS CLI v2 install
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#পদধত-১--aws-configure-iam-user-এর-access-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        পদ্ধতি ১ — aws configure (IAM user-এর access key)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#পদধত-২--aws-configure-sso-পরসতবত" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        পদ্ধতি ২ — aws configure sso (প্রস্তাবিত)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-বযবহর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile ব্যবহার
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#অনযনয-উপয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        অন্যান্য উপায়
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-পরথম-account-এর-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. প্রথম account-এর hierarchy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৫. প্রথম account-এর hierarchy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shopbd-র-জনয-পরথম-কযকট-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shopbd-র জন্য প্রথম কয়েকটা command
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-naming-quirks--aws-এর-বশষ-বযপর-সযপর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Naming quirks — AWS-এর বিশেষ ব্যাপার-স্যাপার
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-aws-এর-service-তলক-category-অনযয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. AWS-এর service তালিকা (category অনুযায়ী)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৭. AWS-এর service তালিকা (category অনুযায়ী)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Networking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-ও-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Container ও Kubernetes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serverless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Serverless
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#messaging-ও-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Messaging ও Event
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-ও-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security ও Identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infrastructure-as-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Infrastructure as Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-ও-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data ও Analytics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai-ও-machine-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI ও Machine Learning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cost-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cost Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৮-shopbd-aws-এ-কমন-দখয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮. shopbd AWS-এ কেমন দেখায়
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৯-certification-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৯. Certification path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১০-শখর-উৎস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১০. শেখার উৎস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১১-পরথম-দনর-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১১. প্রথম দিনের checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১২-সচরচর-ভল-aws-এ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১২. সচরাচর ভুল (AWS-এ)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Hasib105/cloud-bangla-docs/edit/main/docs/platforms/aws.md" title="এই পেজ এডিট করুন" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="aws--amazon-web-services-গইড">AWS · Amazon Web Services গাইড<a class="headerlink" href="#aws--amazon-web-services-গইড" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>এই পাতায় শুধু <strong>AWS</strong> নিয়ে কথা। আপনি এখানে শিখবেন:</p>
+<ul>
+<li>AWS-এর মানসিকতা কী — অন্য cloud থেকে কোথায় আলাদা</li>
+<li>Account খোলা, free tier বোঝা এবং Console ঘুরে দেখা</li>
+<li>AWS CLI install ও login (<code>aws configure</code>, <code>aws configure sso</code>)</li>
+<li>প্রথম account-এর hierarchy ও naming-এর খুঁটিনাটি</li>
+<li>AWS-এর সব প্রধান service — category অনুযায়ী, প্রতিটার পাশে বিস্তারিত অধ্যায়ের লিংক</li>
+<li>Certification path, শেখার উৎস ও <strong>প্রথম দিনের checklist</strong></li>
+</ul>
+</blockquote>
+<div class="admonition abstract">
+<p class="admonition-title">এক নজরে — AWS</p>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>AWS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Provider</td>
+<td>Amazon (২০০৬ সাল থেকে public cloud)</td>
+</tr>
+<tr>
+<td>সবচেয়ে বড় শক্তি</td>
+<td>সবচেয়ে বড় service catalog, পরিণত ecosystem, প্রচুর চাকরি ও community</td>
+</tr>
+<tr>
+<td>Hierarchy-র মাথা</td>
+<td>Organization → OU → <strong>Account</strong></td>
+</tr>
+<tr>
+<td>বাংলাদেশের কাছের region</td>
+<td><code>ap-south-1</code> (Mumbai), <code>ap-south-2</code> (Hyderabad), <code>ap-southeast-1</code> (Singapore)</td>
+</tr>
+<tr>
+<td>Web console</td>
+<td><a href="https://console.aws.amazon.com">console.aws.amazon.com</a></td>
+</tr>
+<tr>
+<td>CLI</td>
+<td><code>aws</code> (AWS CLI v2)</td>
+</tr>
+<tr>
+<td>নিজস্ব IaC</td>
+<td>CloudFormation ও AWS CDK (Terraform-ও খুব জনপ্রিয়)</td>
+</tr>
+<tr>
+<td>Free tier পাতা</td>
+<td><a href="https://aws.amazon.com/free/">aws.amazon.com/free</a></td>
+</tr>
+<tr>
+<td>Pricing পাতা</td>
+<td><a href="https://aws.amazon.com/pricing/">aws.amazon.com/pricing</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+<h2 id="১-aws-এর-মনসকত--ক-আলদ">১. AWS-এর মানসিকতা — কী আলাদা?<a class="headerlink" href="#১-aws-এর-মনসকত--ক-আলদ" title="Permanent link">&para;</a></h2>
+<h3 id="lego-র-বকস">Lego-র বাক্স<a class="headerlink" href="#lego-র-বকস" title="Permanent link">&para;</a></h3>
+<p>AWS কে ভাবুন একটা বিশাল Lego-র দোকান। প্রতিটা ছোট ব্লক (service) একটা নির্দিষ্ট কাজ করে — EC2 দেয় virtual machine,
+S3 দেয় object storage, SQS দেয় queue। এই ব্লকগুলো আপনি নিজে জোড়া লাগিয়ে system বানান। ফলাফল: <strong>নমনীয়তা প্রচুর,
+কিন্তু শেখার জিনিসও প্রচুর।</strong></p>
+<h3 id="aws-এর-বশষটয-যগল-মন-রখবন">AWS-এর বৈশিষ্ট্য যেগুলো মনে রাখবেন<a class="headerlink" href="#aws-এর-বশষটয-যগল-মন-রখবন" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Account-ই সবচেয়ে শক্ত দেয়াল।</strong> AWS-এ resource আলাদা করার সবচেয়ে মজবুত উপায় হলো আলাদা <strong>account</strong>
+  (GCP-র project বা Azure-র subscription-এর মতো ভূমিকা, কিন্তু security boundary হিসেবে আরও কড়া)। বড় প্রতিষ্ঠান <code>prod</code>, <code>dev</code>,
+  <code>security</code> — প্রতিটার জন্য আলাদা account নেয়।</li>
+<li><strong>Region-কেন্দ্রিক।</strong> বেশিরভাগ service একটা region-এ চলে। Console-এর ওপরে ডানদিকে region না দেখে resource খুঁজলে
+  "আমার EC2 কই গেল?" — এই সমস্যা সবার একবার হয়।</li>
+<li><strong>সবকিছু API।</strong> Console-এ যা করেন, CLI/SDK/Terraform-এও তা-ই করা যায়। তাই automation এখানে স্বাভাবিক পথ।</li>
+<li><strong>অনেক পথ, অনেক service।</strong> একই কাজের একাধিক উপায় থাকে (container চালাতে ECS, EKS, App Runner, Lambda)। নতুনদের জন্য
+  এটা বিভ্রান্তিকর, অভিজ্ঞদের জন্য শক্তি।</li>
+<li><strong>Default-এ বন্ধ (deny by default)।</strong> IAM-এ কিছু allow না করলে কেউ কিছু করতে পারে না। "Access Denied" দেখলে প্রথমে policy দেখুন।</li>
+<li><strong>Shared responsibility।</strong> Cloud-এর <em>নিচের</em> অংশ (data center, hardware) AWS-এর; আপনার data, IAM, OS patch, security group আপনার।
+  বিস্তারিত: <a href="../../01-cloud-fundamentals/">Cloud-এর ভিত্তি</a>।</li>
+</ul>
+<h3 id="বক-তন-cloud-এর-তলনয">বাকি তিন cloud-এর তুলনায়<a class="headerlink" href="#বক-তন-cloud-এর-তলনয" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>AWS-এর অবস্থান</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Service-এর সংখ্যা</td>
+<td>সবচেয়ে বেশি; প্রায় সব workload-এর জন্য একাধিক বিকল্প</td>
+</tr>
+<tr>
+<td>Isolation unit</td>
+<td>Account (শক্ত দেয়াল)</td>
+</tr>
+<tr>
+<td>Network</td>
+<td>VPC <strong>regional</strong>; subnet একটা AZ-তে (GCP-র global VPC-র সঙ্গে আলাদা)</td>
+</tr>
+<tr>
+<td>Identity</td>
+<td>নিজস্ব IAM (JSON policy) + IAM Identity Center; Azure-এর মতো Entra নেই</td>
+</tr>
+<tr>
+<td>কোথায় সবচেয়ে জোরালো</td>
+<td>বৈচিত্র্য, ecosystem, third-party tool support, চাকরির বাজার</td>
+</tr>
+<tr>
+<td>কোথায় জটিল</td>
+<td>অনেক service, IAM policy ও pricing বোঝা, প্রতিটা দামের আলাদা dimension</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">কখন AWS বেছে নেবেন?</p>
+<p>Startup বা team যদি বিশাল tool-ecosystem, নানা ধরনের managed service এবং সহজে লোক নিয়োগ চায়, AWS প্রায়ই প্রথম পছন্দ।
+কীভাবে cloud বাছবেন তার আলোচনা আছে <a href="../../01-cloud-fundamentals/">Cloud-এর ভিত্তি</a> অধ্যায়ে।</p>
+</div>
+<hr />
+<h2 id="২-sign-up-ও-free-tier">২. Sign-up ও Free Tier<a class="headerlink" href="#২-sign-up-ও-free-tier" title="Permanent link">&para;</a></h2>
+<h3 id="account-খলর-ধপ">Account খোলার ধাপ<a class="headerlink" href="#account-খলর-ধপ" title="Permanent link">&para;</a></h3>
+<ol>
+<li><a href="https://aws.amazon.com">aws.amazon.com</a> এ <strong>Create an AWS Account</strong> চাপুন।</li>
+<li>Root user-এর email দিন। <strong>একটা আলাদা, টিমের ঠিকানা</strong> (যেমন <code>ops@example.com</code> ধরনের) ব্যবহার করলে ভবিষ্যতে
+   মালিকানা বদলানো সহজ হয়; ব্যক্তিগত email-এ account বাঁধবেন না।</li>
+<li>Account name ও password দিন, contact তথ্য দিন।</li>
+<li><strong>Payment method</strong> — credit/debit card লাগে। বাংলাদেশ থেকে সাধারণত international transaction চালু থাকা (dual-currency)
+   card লাগে; যাচাইয়ের জন্য ছোট একটা অস্থায়ী hold পড়তে পারে। Card না চললে ব্যাংকের সঙ্গে international online payment চালু আছে কিনা দেখুন।</li>
+<li>Phone verification (SMS/call) করুন।</li>
+<li>Support plan বাছুন — শেখার জন্য <strong>Basic (free)</strong> যথেষ্ট।</li>
+<li>Email-এ ঢুকে sign in করুন।</li>
+</ol>
+<div class="admonition danger">
+<p class="admonition-title">Root user দিয়ে দৈনন্দিন কাজ নয়</p>
+<p>প্রথম কাজ: root-এ <strong>MFA</strong> চালু করা। তারপর root-এ access key <strong>কখনো তৈরি করবেন না</strong>। রোজকার কাজ করবেন
+IAM Identity Center বা IAM user/role দিয়ে। বিস্তারিত: <a href="../../03-identity-and-access/">Identity ও Access</a>।</p>
+</div>
+<h3 id="free-tier--কভব-ভববন">Free Tier — কীভাবে ভাববেন<a class="headerlink" href="#free-tier--কভব-ভববন" title="Permanent link">&para;</a></h3>
+<p>AWS-এর free tier-এর নিয়ম সময়ের সঙ্গে বদলেছে, তাই <strong>এখানে কোনো সংখ্যা লিখছি না</strong> — সবসময় <a href="https://aws.amazon.com/free/">অফিশিয়াল Free Tier পাতা</a> দেখুন।
+সাধারণ গঠনটা এরকম:</p>
+<table>
+<thead>
+<tr>
+<th>ধরন</th>
+<th>মানে</th>
+<th>মনে রাখুন</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Free plan / trial credit</td>
+<td>নতুন account-এ নির্দিষ্ট সময় বা credit শেষ হওয়া পর্যন্ত চালানো যায়</td>
+<td>মেয়াদ বা credit ফুরালে paid plan-এ যেতে হয়; আপনার account-এর শর্ত Billing পাতায় দেখুন</td>
+</tr>
+<tr>
+<td>12-month free (পুরোনো account)</td>
+<td>কিছু service-এর মাসিক সীমা প্রথম ১২ মাস</td>
+<td>আপনার account কবে খোলা তার ওপর নির্ভর করে</td>
+</tr>
+<tr>
+<td>Always Free</td>
+<td>কিছু service-এ মাসিক ছোট একটা সীমা চিরকাল free</td>
+<td>সীমা পেরোলে সাধারণ দামে বিল</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Free tier মানে 'কখনো বিল আসবে না' নয়</p>
+<p>সীমার বাইরের কিছু চালালে বা দামি resource (NAT Gateway, Elastic IP যা কোনো কিছুর সঙ্গে যুক্ত নয়, বড় instance) রেখে দিলে বিল আসে।
+প্রথম দিনেই <strong>Budget</strong> ও billing alert বানিয়ে নিন — বিস্তারিত <a href="../../18-cost-management/">Cost Management</a>।</p>
+</div>
+<hr />
+<h2 id="৩-console-ঘর-দখ">৩. Console ঘুরে দেখা<a class="headerlink" href="#৩-console-ঘর-দখ" title="Permanent link">&para;</a></h2>
+<p>Console: <a href="https://console.aws.amazon.com">console.aws.amazon.com</a>। Sign in করলে যা দেখবেন:</p>
+<table>
+<thead>
+<tr>
+<th>জায়গা</th>
+<th>কী আছে</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ওপরের বাঁদিকে <strong>Services</strong> মেনু / search bar</td>
+<td>Service খোঁজার প্রধান উপায়। Search bar-এ service-এর নাম লিখলেই হয়</td>
+</tr>
+<tr>
+<td>ওপরের ডানদিকে <strong>Region selector</strong></td>
+<td>এখানে <code>Asia Pacific (Mumbai)</code> ধরনের নাম দেখাবে। <strong>কাজ শুরুর আগে region দেখে নিন</strong></td>
+</tr>
+<tr>
+<td>ওপরের ডানদিকে account নাম</td>
+<td>Account ID, Billing and Cost Management, Security credentials, sign out, role switch</td>
+</tr>
+<tr>
+<td><strong>CloudShell</strong> আইকন</td>
+<td>Browser-এর ভেতরে terminal; AWS CLI আগে থেকে installed ও আপনার login দিয়ে authenticated</td>
+</tr>
+<tr>
+<td><strong>Notifications / Health</strong></td>
+<td>AWS-এর দিক থেকে সমস্যা বা পরিকল্পিত কাজের খবর</td>
+</tr>
+<tr>
+<td><strong>Console Home</strong> widget</td>
+<td>সাম্প্রতিক service, cost summary, security recommendation</td>
+</tr>
+<tr>
+<td><strong>Resource Explorer / Tag Editor</strong></td>
+<td>Region জুড়ে resource খোঁজা ও tag করা</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Region নিয়ে ঝামেলা এড়ানোর কৌশল</p>
+<ol>
+<li>কাজের আগে ডানদিকের region নাম দেখে নিন।</li>
+<li>কিছু service <strong>global</strong> — IAM, Route 53, CloudFront, Organizations; এগুলোর জন্য region বাছতে হয় না (বা <code>Global</code> দেখায়)।</li>
+<li>Billing সব region-এর খরচ একসঙ্গে দেখায়; তাই "ভুলে যাওয়া resource" খুঁজতে Billing-এর service-ভিত্তিক breakdown দেখুন।</li>
+</ol>
+</div>
+<h3 id="region-ও-az--বলদশর-জনয">Region ও AZ — বাংলাদেশের জন্য<a class="headerlink" href="#region-ও-az--বলদশর-জনয" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Region</th>
+<th>কোড</th>
+<th>মন্তব্য</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Asia Pacific (Mumbai)</td>
+<td><code>ap-south-1</code></td>
+<td>বাংলাদেশের সবচেয়ে কাছের জনপ্রিয় বিকল্প; আমাদের উদাহরণে এটাই ধরা হয়েছে</td>
+</tr>
+<tr>
+<td>Asia Pacific (Hyderabad)</td>
+<td><code>ap-south-2</code></td>
+<td>ভারতের দ্বিতীয় region; DR-এর জন্য ভালো</td>
+</tr>
+<tr>
+<td>Asia Pacific (Singapore)</td>
+<td><code>ap-southeast-1</code></td>
+<td>বেশি service ও feature প্রায়ই আগে পাওয়া যায়</td>
+</tr>
+</tbody>
+</table>
+<p>প্রতিটা region-এ একাধিক <strong>Availability Zone (AZ)</strong> — <code>ap-south-1a</code>, <code>ap-south-1b</code> ইত্যাদি। কোনো নতুন service/feature সব region-এ একসঙ্গে আসে না;
+ব্যবহারের আগে <a href="https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/">Regional Services list</a> দেখুন।
+Region/zone/edge-এর ধারণা: <a href="../../01-cloud-fundamentals/">Cloud-এর ভিত্তি</a>।</p>
+<hr />
+<h2 id="৪-cli-install-ও-authentication">৪. CLI install ও authentication<a class="headerlink" href="#৪-cli-install-ও-authentication" title="Permanent link">&para;</a></h2>
+<h3 id="aws-cli-v2-install">AWS CLI v2 install<a class="headerlink" href="#aws-cli-v2-install" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="linux" name="__tabbed_1" type="radio" /><input id="macos" name="__tabbed_1" type="radio" /><input id="windows" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="linux">Linux</label><label for="macos">macOS</label><label for="windows">Windows</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span><span class="s2">"https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"</span><span class="w"> </span>-o<span class="w"> </span><span class="s2">"awscliv2.zip"</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>unzip<span class="w"> </span>awscliv2.zip
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>sudo<span class="w"> </span>./aws/install
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>aws<span class="w"> </span>--version
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>brew<span class="w"> </span>install<span class="w"> </span>awscli
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>aws<span class="w"> </span>--version
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">msiexec</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">i</span> <span class="n">https</span><span class="p">://</span><span class="n">awscli</span><span class="p">.</span><span class="n">amazonaws</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">AWSCLIV2</span><span class="p">.</span><span class="n">msi</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">aws</span> <span class="p">-</span><span class="n">-version</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="পদধত-১--aws-configure-iam-user-এর-access-key">পদ্ধতি ১ — <code>aws configure</code> (IAM user-এর access key)<a class="headerlink" href="#পদধত-১--aws-configure-iam-user-এর-access-key" title="Permanent link">&para;</a></h3>
+<p>সবচেয়ে সরল, কিন্তু <strong>long-lived key</strong> থাকে বলে সবচেয়ে ঝুঁকির। শুধু ব্যক্তিগত শেখার account-এ চলে।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>aws<span class="w"> </span>configure
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># AWS Access Key ID [None]: &lt;your-access-key-id&gt;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># AWS Secret Access Key [None]: &lt;your-secret-access-key&gt;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Default region name [None]: ap-south-1</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># Default output format [None]: json</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity
+</span></code></pre></div>
+<p><code>aws sts get-caller-identity</code> আপনি কোন account ও কোন identity হিসেবে ঢুকেছেন তা দেখায় — প্রতিদিন কাজ শুরুর আগে এটা চালানো ভালো অভ্যাস।
+Key গুলো থাকে <code>~/.aws/credentials</code> ও <code>~/.aws/config</code> ফাইলে।</p>
+<div class="admonition danger">
+<p class="admonition-title">Access key কখনো Git-এ নয়</p>
+<p>Key GitHub-এ push হলে কয়েক মিনিটে bot তুলে নেয়। Key ফাঁস হলে সঙ্গে সঙ্গে IAM-এ সেটা <strong>deactivate</strong> করে নতুন নিন।</p>
+</div>
+<h3 id="পদধত-২--aws-configure-sso-পরসতবত">পদ্ধতি ২ — <code>aws configure sso</code> (প্রস্তাবিত)<a class="headerlink" href="#পদধত-২--aws-configure-sso-পরসতবত" title="Permanent link">&para;</a></h3>
+<p>IAM Identity Center (আগের নাম AWS SSO) থাকলে CLI-কে স্থায়ী key দিতে হয় না — browser-এ login করলে <strong>অস্থায়ী credential</strong> আসে।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>aws<span class="w"> </span>configure<span class="w"> </span>sso
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># SSO session name: shopbd</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># SSO start URL: https://my-org.awsapps.com/start</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># SSO region: ap-south-1</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># (browser খুলবে, login করুন; তারপর account ও role বাছুন)</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># CLI default client Region: ap-south-1</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Profile name: shopbd-dev</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>aws<span class="w"> </span>sso<span class="w"> </span>login<span class="w"> </span>--profile<span class="w"> </span>shopbd-dev
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity<span class="w"> </span>--profile<span class="w"> </span>shopbd-dev
+</span></code></pre></div>
+<h3 id="profile-বযবহর">Profile ব্যবহার<a class="headerlink" href="#profile-বযবহর" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># একটা command-এ</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>aws<span class="w"> </span>s3<span class="w"> </span>ls<span class="w"> </span>--profile<span class="w"> </span>shopbd-dev
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># পুরো terminal session-এ</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_PROFILE</span><span class="o">=</span>shopbd-dev
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_REGION</span><span class="o">=</span>ap-south-1
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>aws<span class="w"> </span>ec2<span class="w"> </span>describe-instances
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Environment variable</th>
+<th>কাজ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AWS_PROFILE</code></td>
+<td>কোন profile ব্যবহার হবে</td>
+</tr>
+<tr>
+<td><code>AWS_REGION</code> / <code>AWS_DEFAULT_REGION</code></td>
+<td>Default region</td>
+</tr>
+<tr>
+<td><code>AWS_ACCESS_KEY_ID</code>, <code>AWS_SECRET_ACCESS_KEY</code>, <code>AWS_SESSION_TOKEN</code></td>
+<td>সরাসরি credential (CI বা অস্থায়ী কাজে)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="অনযনয-উপয">অন্যান্য উপায়<a class="headerlink" href="#অনযনয-উপয" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>CloudShell</strong> — Console থেকে এক ক্লিকে terminal; আলাদা install বা key লাগে না। দ্রুত পরীক্ষার জন্য আদর্শ।</li>
+<li><strong>Instance profile / IAM role</strong> — EC2, Lambda, ECS-এ চলা code নিজে role পায়, key দেওয়ার দরকার হয় না। বিস্তারিত: <a href="../../03-identity-and-access/">Identity ও Access</a>।</li>
+<li><strong>GitHub Actions OIDC</strong> — CI থেকে key ছাড়াই AWS-এ ঢোকা: <a href="../../15-cicd-devops/">CI/CD ও DevOps</a>।</li>
+<li><strong>SDK</strong> — Python-এর <code>boto3</code> ইত্যাদি একই credential chain ব্যবহার করে।</li>
+</ul>
+<hr />
+<h2 id="৫-পরথম-account-এর-hierarchy">৫. প্রথম account-এর hierarchy<a class="headerlink" href="#৫-পরথম-account-এর-hierarchy" title="Permanent link">&para;</a></h2>
+<p>AWS-এ কাঠামো এরকম:</p>
+<pre class="mermaid"><code>flowchart TD
+    ORG["Organization (management account)"]
+    ORG --&gt; OU1["OU: Workloads"]
+    ORG --&gt; OU2["OU: Security"]
+    OU1 --&gt; A1["Account: shopbd-prod"]
+    OU1 --&gt; A2["Account: shopbd-dev"]
+    OU2 --&gt; A3["Account: log-archive"]
+    A1 --&gt; R1["Region ap-south-1"]
+    R1 --&gt; V1["shopbd-prod-vpc"]</code></pre>
+<table>
+<thead>
+<tr>
+<th>স্তর</th>
+<th>মানে</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Root user</strong></td>
+<td>Account খোলার সময়ের email; সর্বশক্তিমান, প্রায় ব্যবহার করবেন না</td>
+</tr>
+<tr>
+<td><strong>Account</strong></td>
+<td>Resource, IAM ও billing-এর মৌলিক সীমানা; ১২ অঙ্কের Account ID (<code>123456789012</code>)</td>
+</tr>
+<tr>
+<td><strong>Organization</strong></td>
+<td>একাধিক account একসঙ্গে manage; consolidated billing</td>
+</tr>
+<tr>
+<td><strong>OU</strong> (Organizational Unit)</td>
+<td>Account-এর গ্রুপ; এখানে SCP (guardrail policy) বসে</td>
+</tr>
+<tr>
+<td><strong>Region</strong></td>
+<td>Resource আসলে কোথায় থাকে</td>
+</tr>
+</tbody>
+</table>
+<p>শেখার সময় একটা account-ই যথেষ্ট। কিন্তু ছোট প্রতিষ্ঠানও অন্তত <code>dev</code> ও <code>prod</code> আলাদা account-এ রাখলে ভুল করে prod মুছে ফেলার ভয় অনেক কমে।
+গভীর আলোচনা: <a href="../../02-accounts-and-hierarchy/">Account, Organization ও Resource hierarchy</a>।</p>
+<h3 id="shopbd-র-জনয-পরথম-কযকট-command">shopbd-র জন্য প্রথম কয়েকটা command<a class="headerlink" href="#shopbd-র-জনয-পরথম-কযকট-command" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># আমি কে?</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Organization তৈরি (management account থেকে, একবার)</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>aws<span class="w"> </span>organizations<span class="w"> </span>create-organization<span class="w"> </span>--feature-set<span class="w"> </span>ALL
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># প্রথম bucket (নাম globally unique হতে হয় — তাই account ID জুড়ে দেওয়া)</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>aws<span class="w"> </span>s3<span class="w"> </span>mb<span class="w"> </span>s3://shopbd-images-123456789012<span class="w"> </span>--region<span class="w"> </span>ap-south-1
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="c1"># কোন কোন region চালু?</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>aws<span class="w"> </span>ec2<span class="w"> </span>describe-regions<span class="w"> </span>--query<span class="w"> </span><span class="s2">"Regions[].RegionName"</span><span class="w"> </span>--output<span class="w"> </span>text
+</span></code></pre></div>
+<hr />
+<h2 id="৬-naming-quirks--aws-এর-বশষ-বযপর-সযপর">৬. Naming quirks — AWS-এর বিশেষ ব্যাপার-স্যাপার<a class="headerlink" href="#৬-naming-quirks--aws-এর-বশষ-বযপর-সযপর" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>কী ঘটে</th>
+<th>টিপস</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ARN</strong></td>
+<td>প্রতিটা resource-এর পূর্ণ নাম: <code>arn:aws:s3:::shopbd-images-123456789012</code></td>
+<td>IAM policy-তে ARN লাগে; ভুল ARN মানেই "Access Denied"</td>
+</tr>
+<tr>
+<td><strong>S3 bucket name</strong></td>
+<td>সব AWS account জুড়ে <strong>globally unique</strong></td>
+<td><code>shopbd-images-&lt;account-id&gt;</code> ধরনের pattern নিন</td>
+</tr>
+<tr>
+<td><strong>Global vs regional</strong></td>
+<td>IAM, Route 53, CloudFront global; বেশিরভাগ service regional</td>
+<td>কিছু global service-এর certificate/Config <code>us-east-1</code>-এ লাগে (যেমন CloudFront-এর জন্য ACM certificate)</td>
+</tr>
+<tr>
+<td><strong>Security Group</strong></td>
+<td>Instance-এর virtual firewall; <strong>stateful</strong>, শুধু allow rule</td>
+<td>Azure-এর NSG/GCP-র firewall rule-এর সঙ্গে নামে ও আচরণে আলাদা</td>
+</tr>
+<tr>
+<td><strong>Elastic ___</strong></td>
+<td>Elastic IP, Elastic Load Balancing, Elastic Beanstalk — "Elastic" মানে সাধারণত scale/attach করা যায়</td>
+<td>নাম দেখে কাজ ধরা কঠিন; service list দেখুন</td>
+</tr>
+<tr>
+<td><strong>Amazon vs AWS</strong></td>
+<td>Amazon S3, AWS Lambda — পার্থক্য ঐতিহাসিক</td>
+<td>এতে কিছু আসে-যায় না, খোঁজার সময় সংক্ষিপ্ত নাম দিন</td>
+</tr>
+<tr>
+<td><strong>Instance type</strong></td>
+<td><code>t3.micro</code>, <code>m7g.large</code> — family + generation + size</td>
+<td><code>g</code> মানে Graviton (Arm) CPU; সস্তা, তবে software Arm-সমর্থিত হতে হবে</td>
+</tr>
+<tr>
+<td><strong>Tag</strong></td>
+<td>Key-value; AWS-এ নাম-ঠিকানার চেয়ে tag-ই খরচ ও ownership ঠিক করে</td>
+<td><code>Project=shopbd</code>, <code>Env=prod</code>; Cost allocation tag আলাদা চালু করতে হয়</td>
+</tr>
+<tr>
+<td><strong>Default VPC</strong></td>
+<td>প্রতি region-এ একটা আগে থেকে তৈরি</td>
+<td>শেখার সময় সুবিধাজনক, production-এ নিজের VPC বানান</td>
+</tr>
+<tr>
+<td><strong>Service-linked role</strong></td>
+<td>কিছু service নিজে IAM role বানায়</td>
+<td>মুছে ফেললে service ভাঙতে পারে</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="৭-aws-এর-service-তলক-category-অনযয">৭. AWS-এর service তালিকা (category অনুযায়ী)<a class="headerlink" href="#৭-aws-এর-service-তলক-category-অনযয" title="Permanent link">&para;</a></h2>
+<p>নিচের তালিকা AWS-এর সবচেয়ে প্রচলিত service ধরে। "বিস্তারিত" কলামের লিংকে চার cloud-এর তুলনাসহ পূর্ণ আলোচনা পাবেন।
+সব service-এর পাশাপাশি তুলনা দেখতে: <a href="../../reference/service-map/">Service Map</a>।</p>
+<h3 id="compute">Compute<a class="headerlink" href="#compute" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Amazon EC2</strong></td>
+<td>Virtual machine; instance type, AMI, key pair</td>
+<td><a href="../../04-compute-vms/">Virtual Machine</a></td>
+</tr>
+<tr>
+<td><strong>EC2 Auto Scaling</strong></td>
+<td>চাহিদা অনুযায়ী instance বাড়ানো-কমানো</td>
+<td><a href="../../10-load-balancing-scaling-dns-cdn/">Load Balancing ও Autoscaling</a></td>
+</tr>
+<tr>
+<td><strong>EC2 Spot Instances</strong></td>
+<td>বাড়তি capacity-তে কম দামে; যেকোনো সময় কেড়ে নিতে পারে</td>
+<td><a href="../../04-compute-vms/">Virtual Machine</a></td>
+</tr>
+<tr>
+<td><strong>EC2 Dedicated Hosts / metal</strong></td>
+<td>নিজস্ব physical server বা bare metal</td>
+<td><a href="../../04-compute-vms/">Virtual Machine</a></td>
+</tr>
+<tr>
+<td><strong>Amazon Lightsail</strong></td>
+<td>সরল VPS-ধরনের package; নতুনদের ছোট site-এর জন্য</td>
+<td><a href="../../04-compute-vms/">Virtual Machine</a></td>
+</tr>
+<tr>
+<td><strong>AWS Elastic Beanstalk</strong></td>
+<td>Code দিন, EC2/LB/scaling নিজে বানায় (PaaS-ধরন)</td>
+<td><a href="../../09-serverless/">Serverless</a></td>
+</tr>
+<tr>
+<td><strong>AWS Batch</strong></td>
+<td>Batch job চালানো (নিচে compute বা Fargate-এ)</td>
+<td><a href="../../04-compute-vms/">Virtual Machine</a></td>
+</tr>
+<tr>
+<td><strong>AWS Outposts</strong></td>
+<td>AWS hardware আপনার data center-এ</td>
+<td><a href="../../19-architecture-ha-dr/">Architecture, HA/DR ও Multi-cloud</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="networking">Networking<a class="headerlink" href="#networking" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Amazon VPC</strong></td>
+<td>Private network; subnet, route table, Internet/NAT Gateway</td>
+<td><a href="../../05-networking/">Networking</a></td>
+</tr>
+<tr>
+<td><strong>Security Group / Network ACL</strong></td>
+<td>Instance-স্তরের (stateful) ও subnet-স্তরের (stateless) firewall</td>
+<td><a href="../../05-networking/">Networking</a></td>
+</tr>
+<tr>
+<td><strong>VPC Peering / Transit Gateway</strong></td>
+<td>একাধিক VPC জোড়া লাগানো</td>
+<td><a href="../../05-networking/">Networking</a></td>
+</tr>
+<tr>
+<td><strong>AWS PrivateLink / VPC Endpoints</strong></td>
+<td>Internet ছাড়া private পথে service ধরা</td>
+<td><a href="../../05-networking/">Networking</a></td>
+</tr>
+<tr>
+<td><strong>Site-to-Site VPN / Direct Connect</strong></td>
+<td>অফিস/data center থেকে AWS-এ VPN বা dedicated লাইন</td>
+<td><a href="../../05-networking/">Networking</a></td>
+</tr>
+<tr>
+<td><strong>Elastic Load Balancing (ALB, NLB, GWLB)</strong></td>
+<td>L7, L4 ও appliance load balancer</td>
+<td><a href="../../10-load-balancing-scaling-dns-cdn/">Load Balancing, DNS ও CDN</a></td>
+</tr>
+<tr>
+<td><strong>Amazon Route 53</strong></td>
+<td>DNS, routing policy, health check</td>
+<td><a href="../../10-load-balancing-scaling-dns-cdn/">Load Balancing, DNS ও CDN</a></td>
+</tr>
+<tr>
+<td><strong>Amazon CloudFront</strong></td>
+<td>CDN</td>
+<td><a href="../../10-load-balancing-scaling-dns-cdn/">Load Balancing, DNS ও CDN</a></td>
+</tr>
+<tr>
+<td><strong>AWS Global Accelerator</strong></td>
+<td>Anycast IP দিয়ে বিশ্বজুড়ে দ্রুত routing</td>
+<td><a href="../../10-load-balancing-scaling-dns-cdn/">Load Balancing, DNS ও CDN</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="storage">Storage<a class="headerlink" href="#storage" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Amazon S3</strong></td>
+<td>Object storage; storage class, lifecycle, presigned URL</td>
+<td><a href="../../06-storage/">Storage</a></td>
+</tr>
+<tr>
+<td><strong>S3 Glacier classes</strong></td>
+<td>সস্তা archive (পেতে দেরি/খরচ বেশি)</td>
+<td><a href="../../06-storage/">Storage</a></td>
+</tr>
+<tr>
+<td><strong>Amazon EBS</strong></td>
+<td>VM-এর block disk, snapshot</td>
+<td><a href="../../06-storage/">Storage</a></td>
+</tr>
+<tr>
+<td><strong>Amazon EFS</strong></td>
+<td>Shared NFS file system</td>
+<td><a href="../../06-storage/">Storage</a></td>
+</tr>
+<tr>
+<td><strong>Amazon FSx</strong></td>
+<td>Windows, Lustre, NetApp ধরনের managed file system</td>
+<td><a href="../../06-storage/">Storage</a></td>
+</tr>
+<tr>
+<td><strong>AWS Backup</strong></td>
+<td>কেন্দ্রীয় backup policy</td>
+<td><a href="../../06-storage/">Storage</a></td>
+</tr>
+<tr>
+<td><strong>DataSync / Transfer Family / Snow family</strong></td>
+<td>Data সরানো — network বা physical device দিয়ে</td>
+<td><a href="../../06-storage/">Storage</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="database">Database<a class="headerlink" href="#database" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Amazon RDS</strong></td>
+<td>Managed PostgreSQL, MySQL, MariaDB, SQL Server, Oracle</td>
+<td><a href="../../07-databases/">Database</a></td>
+</tr>
+<tr>
+<td><strong>Amazon Aurora</strong></td>
+<td>AWS-এর নিজস্ব cloud-native MySQL/PostgreSQL-compatible engine</td>
+<td><a href="../../07-databases/">Database</a></td>
+</tr>
+<tr>
+<td><strong>Amazon DynamoDB</strong></td>
+<td>Serverless key-value / document NoSQL</td>
+<td><a href="../../07-databases/">Database</a></td>
+</tr>
+<tr>
+<td><strong>Amazon ElastiCache / MemoryDB</strong></td>
+<td>Redis/Valkey/Memcached cache; durable in-memory</td>
+<td><a href="../../07-databases/">Database</a></td>
+</tr>
+<tr>
+<td><strong>Amazon DocumentDB / Neptune / Keyspaces</strong></td>
+<td>MongoDB-compatible, graph, Cassandra-compatible</td>
+<td><a href="../../07-databases/">Database</a></td>
+</tr>
+<tr>
+<td><strong>AWS Database Migration Service (DMS)</strong></td>
+<td>চলমান database অন্য জায়গায় সরানো</td>
+<td><a href="../../19-architecture-ha-dr/">Architecture, HA/DR ও Multi-cloud</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="container-ও-kubernetes">Container ও Kubernetes<a class="headerlink" href="#container-ও-kubernetes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Amazon ECR</strong></td>
+<td>Container image registry</td>
+<td><a href="../../08-containers-kubernetes/">Container ও Kubernetes</a></td>
+</tr>
+<tr>
+<td><strong>Amazon ECS</strong></td>
+<td>AWS-এর নিজস্ব container orchestrator</td>
+<td><a href="../../08-containers-kubernetes/">Container ও Kubernetes</a></td>
+</tr>
+<tr>
+<td><strong>Amazon EKS</strong></td>
+<td>Managed Kubernetes</td>
+<td><a href="../../08-containers-kubernetes/">Container ও Kubernetes</a></td>
+</tr>
+<tr>
+<td><strong>AWS Fargate</strong></td>
+<td>Server manage না করে container চালানো (ECS/EKS-এর mode)</td>
+<td><a href="../../08-containers-kubernetes/">Container ও Kubernetes</a></td>
+</tr>
+<tr>
+<td><strong>AWS App Runner</strong></td>
+<td>Source/image দিলেই web service; সরল serverless container</td>
+<td><a href="../../09-serverless/">Serverless</a></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">App Runner-এর অবস্থা যাচাই করুন</p>
+<p>AWS কিছু service নতুন গ্রাহকের জন্য সীমিত করেছে বা maintenance mode-এ নিয়েছে। শুরুর আগে service-এর অফিশিয়াল পাতায় বর্তমান অবস্থা দেখুন।</p>
+</div>
+<h3 id="serverless">Serverless<a class="headerlink" href="#serverless" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AWS Lambda</strong></td>
+<td>Function চালানো; event-triggered</td>
+<td><a href="../../09-serverless/">Serverless</a></td>
+</tr>
+<tr>
+<td><strong>Amazon API Gateway</strong></td>
+<td>REST/HTTP/WebSocket API-র সামনের দরজা</td>
+<td><a href="../../09-serverless/">Serverless</a></td>
+</tr>
+<tr>
+<td><strong>AWS Step Functions</strong></td>
+<td>Serverless workflow/state machine</td>
+<td><a href="../../11-messaging-and-events/">Messaging ও Event</a></td>
+</tr>
+<tr>
+<td><strong>AWS AppSync</strong></td>
+<td>Managed GraphQL</td>
+<td><a href="../../09-serverless/">Serverless</a></td>
+</tr>
+<tr>
+<td><strong>ECS Fargate</strong></td>
+<td>Serverless container</td>
+<td><a href="../../08-containers-kubernetes/">Container ও Kubernetes</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="messaging-ও-event">Messaging ও Event<a class="headerlink" href="#messaging-ও-event" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Amazon SQS</strong></td>
+<td>Queue; standard ও FIFO, dead-letter queue</td>
+<td><a href="../../11-messaging-and-events/">Messaging ও Event</a></td>
+</tr>
+<tr>
+<td><strong>Amazon SNS</strong></td>
+<td>Pub/sub, fan-out, SMS/email notification</td>
+<td><a href="../../11-messaging-and-events/">Messaging ও Event</a></td>
+</tr>
+<tr>
+<td><strong>Amazon EventBridge</strong></td>
+<td>Event bus ও scheduler</td>
+<td><a href="../../11-messaging-and-events/">Messaging ও Event</a></td>
+</tr>
+<tr>
+<td><strong>Amazon Kinesis / MSK</strong></td>
+<td>Stream data; MSK মানে managed Kafka</td>
+<td><a href="../../11-messaging-and-events/">Messaging ও Event</a></td>
+</tr>
+<tr>
+<td><strong>Amazon MQ</strong></td>
+<td>Managed RabbitMQ/ActiveMQ</td>
+<td><a href="../../11-messaging-and-events/">Messaging ও Event</a></td>
+</tr>
+<tr>
+<td><strong>Amazon SES</strong></td>
+<td>Transactional/bulk email (shopbd-র order email)</td>
+<td><a href="../../11-messaging-and-events/">Messaging ও Event</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="observability">Observability<a class="headerlink" href="#observability" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Amazon CloudWatch</strong></td>
+<td>Metrics, logs, alarms, dashboards, Logs Insights</td>
+<td><a href="../../12-observability/">Monitoring, Logging ও Tracing</a></td>
+</tr>
+<tr>
+<td><strong>AWS X-Ray</strong></td>
+<td>Distributed tracing</td>
+<td><a href="../../12-observability/">Monitoring, Logging ও Tracing</a></td>
+</tr>
+<tr>
+<td><strong>AWS CloudTrail</strong></td>
+<td>কে কোথায় কী API call করল — audit log</td>
+<td><a href="../../12-observability/">Monitoring, Logging ও Tracing</a></td>
+</tr>
+<tr>
+<td><strong>AWS Config</strong></td>
+<td>Resource-এর configuration ইতিহাস ও compliance check</td>
+<td><a href="../../13-security/">Security</a></td>
+</tr>
+<tr>
+<td><strong>Managed Grafana / Managed Prometheus</strong></td>
+<td>Open-source monitoring stack, managed</td>
+<td><a href="../../12-observability/">Monitoring, Logging ও Tracing</a></td>
+</tr>
+<tr>
+<td><strong>AWS Distro for OpenTelemetry</strong></td>
+<td>OpenTelemetry collector/SDK distribution</td>
+<td><a href="../../12-observability/">Monitoring, Logging ও Tracing</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="security-ও-identity">Security ও Identity<a class="headerlink" href="#security-ও-identity" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AWS IAM</strong></td>
+<td>User, group, role, policy</td>
+<td><a href="../../03-identity-and-access/">Identity ও Access</a></td>
+</tr>
+<tr>
+<td><strong>IAM Identity Center</strong></td>
+<td>কর্মীদের SSO, multi-account access</td>
+<td><a href="../../03-identity-and-access/">Identity ও Access</a></td>
+</tr>
+<tr>
+<td><strong>AWS Organizations / Control Tower</strong></td>
+<td>Multi-account কাঠামো, guardrail, landing zone</td>
+<td><a href="../../02-accounts-and-hierarchy/">Account, Organization ও Hierarchy</a></td>
+</tr>
+<tr>
+<td><strong>AWS KMS</strong></td>
+<td>Encryption key management</td>
+<td><a href="../../13-security/">Security</a></td>
+</tr>
+<tr>
+<td><strong>AWS Secrets Manager / Parameter Store</strong></td>
+<td>Secret ও config সংরক্ষণ</td>
+<td><a href="../../13-security/">Security</a></td>
+</tr>
+<tr>
+<td><strong>AWS Certificate Manager (ACM)</strong></td>
+<td>TLS certificate</td>
+<td><a href="../../13-security/">Security</a></td>
+</tr>
+<tr>
+<td><strong>AWS WAF / Shield</strong></td>
+<td>Web firewall ও DDoS সুরক্ষা</td>
+<td><a href="../../13-security/">Security</a></td>
+</tr>
+<tr>
+<td><strong>GuardDuty / Security Hub / Inspector</strong></td>
+<td>Threat detection, posture ও vulnerability scan</td>
+<td><a href="../../13-security/">Security</a></td>
+</tr>
+<tr>
+<td><strong>Amazon Cognito</strong></td>
+<td>App-এর ব্যবহারকারীর sign-up/login</td>
+<td><a href="../../03-identity-and-access/">Identity ও Access</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="infrastructure-as-code">Infrastructure as Code<a class="headerlink" href="#infrastructure-as-code" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AWS CloudFormation</strong></td>
+<td>JSON/YAML template দিয়ে stack</td>
+<td><a href="../../14-infrastructure-as-code/">Infrastructure as Code</a></td>
+</tr>
+<tr>
+<td><strong>AWS CDK</strong></td>
+<td>Python/TypeScript দিয়ে লিখে CloudFormation তৈরি</td>
+<td><a href="../../14-infrastructure-as-code/">Infrastructure as Code</a></td>
+</tr>
+<tr>
+<td><strong>Terraform / OpenTofu (<code>aws</code> provider)</strong></td>
+<td>Multi-cloud IaC (AWS-এর নিজস্ব নয়)</td>
+<td><a href="../../14-infrastructure-as-code/">Infrastructure as Code</a></td>
+</tr>
+<tr>
+<td><strong>AWS Systems Manager</strong></td>
+<td>Fleet পরিচালনা, patch, Session Manager</td>
+<td><a href="../../04-compute-vms/">Virtual Machine</a></td>
+</tr>
+<tr>
+<td><strong>AWS Service Catalog</strong></td>
+<td>অনুমোদিত template-এর তালিকা</td>
+<td><a href="../../14-infrastructure-as-code/">Infrastructure as Code</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="cicd">CI/CD<a class="headerlink" href="#cicd" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AWS CodePipeline</strong></td>
+<td>Pipeline orchestration</td>
+<td><a href="../../15-cicd-devops/">CI/CD ও DevOps</a></td>
+</tr>
+<tr>
+<td><strong>AWS CodeBuild</strong></td>
+<td>Managed build server</td>
+<td><a href="../../15-cicd-devops/">CI/CD ও DevOps</a></td>
+</tr>
+<tr>
+<td><strong>AWS CodeDeploy</strong></td>
+<td>EC2/ECS/Lambda-য় deploy strategy</td>
+<td><a href="../../15-cicd-devops/">CI/CD ও DevOps</a></td>
+</tr>
+<tr>
+<td><strong>AWS CodeArtifact</strong></td>
+<td>Package repository (npm, PyPI…)</td>
+<td><a href="../../15-cicd-devops/">CI/CD ও DevOps</a></td>
+</tr>
+<tr>
+<td><strong>GitHub Actions + OIDC</strong></td>
+<td>Key ছাড়া GitHub থেকে AWS-এ deploy</td>
+<td><a href="../../15-cicd-devops/">CI/CD ও DevOps</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="data-ও-analytics">Data ও Analytics<a class="headerlink" href="#data-ও-analytics" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Amazon Redshift</strong></td>
+<td>Data warehouse</td>
+<td><a href="../../16-data-and-analytics/">Data ও Analytics</a></td>
+</tr>
+<tr>
+<td><strong>Amazon Athena</strong></td>
+<td>S3-এর data-তে SQL query</td>
+<td><a href="../../16-data-and-analytics/">Data ও Analytics</a></td>
+</tr>
+<tr>
+<td><strong>AWS Glue</strong></td>
+<td>ETL ও data catalog</td>
+<td><a href="../../16-data-and-analytics/">Data ও Analytics</a></td>
+</tr>
+<tr>
+<td><strong>Amazon EMR</strong></td>
+<td>Managed Spark/Hadoop</td>
+<td><a href="../../16-data-and-analytics/">Data ও Analytics</a></td>
+</tr>
+<tr>
+<td><strong>AWS Lake Formation</strong></td>
+<td>Data lake-এর access control</td>
+<td><a href="../../16-data-and-analytics/">Data ও Analytics</a></td>
+</tr>
+<tr>
+<td><strong>Amazon OpenSearch Service</strong></td>
+<td>Search ও log analytics</td>
+<td><a href="../../16-data-and-analytics/">Data ও Analytics</a></td>
+</tr>
+<tr>
+<td><strong>Amazon QuickSight</strong></td>
+<td>BI dashboard</td>
+<td><a href="../../16-data-and-analytics/">Data ও Analytics</a></td>
+</tr>
+<tr>
+<td><strong>Amazon Data Firehose</strong></td>
+<td>Stream থেকে S3/warehouse-এ পৌঁছানো</td>
+<td><a href="../../16-data-and-analytics/">Data ও Analytics</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ai-ও-machine-learning">AI ও Machine Learning<a class="headerlink" href="#ai-ও-machine-learning" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Amazon SageMaker AI</strong></td>
+<td>Model তৈরি, train, deploy-এর ML platform</td>
+<td><a href="../../17-ai-ml/">AI ও Machine Learning</a></td>
+</tr>
+<tr>
+<td><strong>Amazon Bedrock</strong></td>
+<td>বিভিন্ন foundation model API দিয়ে ব্যবহার (managed GenAI)</td>
+<td><a href="../../17-ai-ml/">AI ও Machine Learning</a></td>
+</tr>
+<tr>
+<td><strong>Rekognition / Textract</strong></td>
+<td>ছবি ও document বিশ্লেষণ API</td>
+<td><a href="../../17-ai-ml/">AI ও Machine Learning</a></td>
+</tr>
+<tr>
+<td><strong>Transcribe / Polly / Translate</strong></td>
+<td>Speech-to-text, text-to-speech, অনুবাদ</td>
+<td><a href="../../17-ai-ml/">AI ও Machine Learning</a></td>
+</tr>
+<tr>
+<td><strong>Comprehend</strong></td>
+<td>Text বিশ্লেষণ (sentiment, entity)</td>
+<td><a href="../../17-ai-ml/">AI ও Machine Learning</a></td>
+</tr>
+<tr>
+<td><strong>GPU instance, Trainium / Inferentia</strong></td>
+<td>ML-এর জন্য বিশেষ hardware</td>
+<td><a href="../../17-ai-ml/">AI ও Machine Learning</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="cost-management">Cost Management<a class="headerlink" href="#cost-management" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Billing and Cost Management</strong></td>
+<td>Bill, payment, credit দেখা</td>
+<td><a href="../../18-cost-management/">Cost Management</a></td>
+</tr>
+<tr>
+<td><strong>Cost Explorer</strong></td>
+<td>খরচের গ্রাফ ও বিশ্লেষণ</td>
+<td><a href="../../18-cost-management/">Cost Management</a></td>
+</tr>
+<tr>
+<td><strong>AWS Budgets</strong></td>
+<td>Budget ও alert</td>
+<td><a href="../../18-cost-management/">Cost Management</a></td>
+</tr>
+<tr>
+<td><strong>Cost and Usage Report / Data Exports</strong></td>
+<td>বিস্তারিত খরচের raw data</td>
+<td><a href="../../18-cost-management/">Cost Management</a></td>
+</tr>
+<tr>
+<td><strong>Savings Plans / Reserved Instances</strong></td>
+<td>দীর্ঘমেয়াদি commitment-এ ছাড়</td>
+<td><a href="../../18-cost-management/">Cost Management</a></td>
+</tr>
+<tr>
+<td><strong>Compute Optimizer / Trusted Advisor</strong></td>
+<td>Rightsizing ও সাশ্রয়ের পরামর্শ</td>
+<td><a href="../../18-cost-management/">Cost Management</a></td>
+</tr>
+<tr>
+<td><strong>Pricing Calculator</strong></td>
+<td>আগেই আনুমানিক খরচ হিসাব</td>
+<td><a href="../../18-cost-management/">Cost Management</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="৮-shopbd-aws-এ-কমন-দখয">৮. shopbd AWS-এ কেমন দেখায়<a class="headerlink" href="#৮-shopbd-aws-এ-কমন-দখয" title="Permanent link">&para;</a></h2>
+<p><code>shopbd</code> — আমাদের ছোট বাংলাদেশি অনলাইন শপ: web frontend, REST API, PostgreSQL, ছবির storage, order email, রাতের sales report।</p>
+<table>
+<thead>
+<tr>
+<th>shopbd-র অংশ</th>
+<th>AWS service</th>
+<th>নাম</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Web frontend (static)</td>
+<td>S3 + CloudFront</td>
+<td><code>shopbd-web</code></td>
+</tr>
+<tr>
+<td>REST API</td>
+<td>ECS Fargate (ALB-র পেছনে) বা Lambda + API Gateway</td>
+<td><code>shopbd-api</code></td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td>RDS for PostgreSQL</td>
+<td><code>shopbd-db</code></td>
+</tr>
+<tr>
+<td>Product image</td>
+<td>S3 bucket</td>
+<td><code>shopbd-images</code></td>
+</tr>
+<tr>
+<td>Order email</td>
+<td>Amazon SES</td>
+<td>sender <code>ops@example.com</code></td>
+</tr>
+<tr>
+<td>Nightly sales report</td>
+<td>EventBridge Scheduler → Lambda</td>
+<td><code>shopbd-nightly-report</code></td>
+</tr>
+<tr>
+<td>Network</td>
+<td>VPC</td>
+<td><code>shopbd-prod-vpc</code></td>
+</tr>
+<tr>
+<td>Domain</td>
+<td>Route 53</td>
+<td><code>shopbd.example.com</code></td>
+</tr>
+<tr>
+<td>Monitoring</td>
+<td>CloudWatch alarm → SNS → email</td>
+<td><code>ops@example.com</code></td>
+</tr>
+</tbody>
+</table>
+<p>পূর্ণ architecture ও diagram: <a href="../../19-architecture-ha-dr/">Architecture, HA/DR ও Multi-cloud</a>।</p>
+<hr />
+<h2 id="৯-certification-path">৯. Certification path<a class="headerlink" href="#৯-certification-path" title="Permanent link">&para;</a></h2>
+<p>AWS-এর certification-এর নাম ও তালিকা মাঝে মাঝে বদলায় — <a href="https://aws.amazon.com/certification/">aws.amazon.com/certification</a> দেখে নিন।
+সাধারণ ধাপগুলো:</p>
+<table>
+<thead>
+<tr>
+<th>স্তর</th>
+<th>Certification</th>
+<th>কার জন্য</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Foundational</td>
+<td><strong>Cloud Practitioner</strong>, <strong>AI Practitioner</strong></td>
+<td>একদম নতুন, non-tech role, প্রথম পরিচয়</td>
+</tr>
+<tr>
+<td>Associate</td>
+<td><strong>Solutions Architect – Associate</strong></td>
+<td>সবচেয়ে জনপ্রিয় শুরু; architecture বোঝা</td>
+</tr>
+<tr>
+<td>Associate</td>
+<td><strong>Developer – Associate</strong></td>
+<td>Lambda, API, CI/CD-তে code লেখা মানুষ</td>
+</tr>
+<tr>
+<td>Associate</td>
+<td><strong>CloudOps Engineer – Associate</strong> (আগে SysOps Administrator)</td>
+<td>Operations, monitoring, troubleshooting</td>
+</tr>
+<tr>
+<td>Associate</td>
+<td><strong>Data Engineer – Associate</strong>, <strong>Machine Learning Engineer – Associate</strong></td>
+<td>Data/ML pipeline</td>
+</tr>
+<tr>
+<td>Professional</td>
+<td><strong>Solutions Architect – Professional</strong>, <strong>DevOps Engineer – Professional</strong></td>
+<td>অভিজ্ঞ, জটিল system</td>
+</tr>
+<tr>
+<td>Specialty</td>
+<td><strong>Security</strong>, <strong>Advanced Networking</strong> ইত্যাদি</td>
+<td>নির্দিষ্ট ক্ষেত্রে গভীরতা</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">শুরুর পরামর্শ</p>
+<p>হাতে-কলমে ৩–৪টা project (shopbd-র মতো) করে তারপর <strong>Solutions Architect – Associate</strong> দিন। Dump মুখস্থ করার চেয়ে
+"কেন এই service, কেন ওটা নয়" বোঝা চাকরির ইন্টারভিউতে অনেক বেশি কাজে লাগে।</p>
+</div>
+<hr />
+<h2 id="১০-শখর-উৎস">১০. শেখার উৎস<a class="headerlink" href="#১০-শখর-উৎস" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>উৎস</th>
+<th>কী পাবেন</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://docs.aws.amazon.com">AWS Documentation</a></td>
+<td>প্রতিটা service-এর অফিশিয়াল guide ও API reference</td>
+</tr>
+<tr>
+<td><a href="https://skillbuilder.aws">AWS Skill Builder</a></td>
+<td>অফিশিয়াল কোর্স, lab, exam প্রস্তুতি (কিছু free)</td>
+</tr>
+<tr>
+<td><a href="https://aws.amazon.com/architecture/well-architected/">AWS Well-Architected Framework</a></td>
+<td>ভালো architecture-এর নীতি</td>
+</tr>
+<tr>
+<td><a href="https://aws.amazon.com/architecture/">AWS Architecture Center</a></td>
+<td>Reference architecture ও diagram</td>
+</tr>
+<tr>
+<td><a href="https://workshops.aws">AWS Workshops</a></td>
+<td>ধাপে ধাপে hands-on workshop</td>
+</tr>
+<tr>
+<td><a href="https://docs.aws.amazon.com/cli/latest/">AWS CLI Command Reference</a></td>
+<td>সব command-এর বিবরণ</td>
+</tr>
+<tr>
+<td><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs">Terraform AWS provider docs</a></td>
+<td>Terraform resource-এর reference</td>
+</tr>
+<tr>
+<td><a href="https://aws.amazon.com/new/">AWS What's New</a></td>
+<td>নতুন service ও feature-এর খবর</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="১১-পরথম-দনর-checklist">১১. প্রথম দিনের checklist<a class="headerlink" href="#১১-পরথম-দনর-checklist" title="Permanent link">&para;</a></h2>
+<p>Account খোলার প্রথম দিনেই এগুলো সেরে ফেলুন। প্রতিটা আধ ঘণ্টার বেশি লাগে না, কিন্তু পরে বড় বিপদ থেকে বাঁচায়।</p>
+<p><strong>Account সুরক্ষা</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Root user-এ MFA চালু করেছি (authenticator app বা security key)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Root user-এর কোনো access key নেই (থাকলে মুছেছি)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Root-এর email টিমের ঠিকানা এবং সেই email-এও MFA আছে</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Alternate contact (billing, security, operations) দিয়েছি</li>
+</ul>
+<p><strong>নিজের জন্য সঠিক login</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> IAM Identity Center চালু করেছি (বা অন্তত একটা আলাদা admin IAM user বানিয়েছি)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> নিজের admin user-এ MFA চালু করেছি</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> রোজকার কাজ root নয়, এই user/role দিয়ে করি</li>
+</ul>
+<p><strong>খরচের সুরক্ষা</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Billing-এ IAM/Identity Center user-দের access দেখার অনুমতি চালু করেছি</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> একটা <strong>Budget</strong> বানিয়েছি এবং alert <code>ops@example.com</code> ধরনের ঠিকানায় যায়</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <a href="../../18-cost-management/">Cost Management</a> অধ্যায় একবার পড়েছি</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Free tier-এর শর্ত ও মেয়াদ নিজের account-এর Billing পাতায় দেখেছি</li>
+</ul>
+<p><strong>Tools</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> AWS CLI v2 install করেছি (<code>aws --version</code>)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>aws configure sso</code> (বা শেখার জন্য <code>aws configure</code>) করেছি</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>aws sts get-caller-identity</code> চালিয়ে নিজের account ID পেয়েছি</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> CloudShell একবার খুলে দেখেছি</li>
+</ul>
+<p><strong>প্রথম resource</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Region <code>ap-south-1</code> ঠিক করে নিয়েছি</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> একটা S3 bucket (<code>shopbd-images-&lt;account-id&gt;</code>) বানিয়ে একটা ছবি upload করেছি</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> CloudTrail-এ নিজের আজকের API call দেখেছি</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> পরীক্ষার সব resource মুছে ফেলার অভ্যাস করেছি</li>
+</ul>
+<hr />
+<h2 id="১২-সচরচর-ভল-aws-এ">১২. সচরাচর ভুল (AWS-এ)<a class="headerlink" href="#১২-সচরচর-ভল-aws-এ" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ভুল</th>
+<th>ফল</th>
+<th>সমাধান</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Root user দিয়ে সব কাজ</td>
+<td>একটা ফাঁস মানে সর্বনাশ</td>
+<td>Identity Center/IAM role ব্যবহার করুন</td>
+</tr>
+<tr>
+<td>Access key code বা Git-এ</td>
+<td>Key চুরি, অনাকাঙ্ক্ষিত bill</td>
+<td>Role/SSO নিন; key দিলে deactivate ও rotate</td>
+</tr>
+<tr>
+<td>ভুল region-এ কাজ</td>
+<td>"Resource হারিয়ে গেছে" মনে হয়</td>
+<td>কাজের আগে region দেখুন, <code>AWS_REGION</code> ঠিক রাখুন</td>
+</tr>
+<tr>
+<td>NAT Gateway ও unattached Elastic IP ফেলে রাখা</td>
+<td>নীরবে খরচ বাড়ে</td>
+<td>কাজ শেষে মুছুন; Budget alert রাখুন</td>
+</tr>
+<tr>
+<td>Security Group-এ <code>0.0.0.0/0</code> দিয়ে SSH/DB খোলা</td>
+<td>হ্যাকিংয়ের ঝুঁকি</td>
+<td>নিজের IP বা Session Manager ব্যবহার করুন</td>
+</tr>
+<tr>
+<td>S3 bucket public রেখে দেওয়া</td>
+<td>Data leak</td>
+<td>Block Public Access চালু রাখুন; CloudFront ব্যবহার করুন</td>
+</tr>
+<tr>
+<td>একটাই account-এ dev ও prod</td>
+<td>ভুলে prod মুছে ফেলা</td>
+<td>অন্তত দুটো আলাদা account</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="সরসকষপ">সারসংক্ষেপ<a class="headerlink" href="#সরসকষপ" title="Permanent link">&para;</a></h2>
+<ul>
+<li>AWS মানে <strong>বিশাল Lego-র বাক্স</strong> — নমনীয়, কিন্তু শিখতে সময় লাগে। <strong>Account</strong> হলো সবচেয়ে শক্ত দেয়াল।</li>
+<li>প্রথম দিনেই <strong>root-এ MFA, Budget, SSO</strong> — এই তিনটা করলে ৯০% নতুনদের ভুল এড়ানো যায়।</li>
+<li>CLI-র জন্য <code>aws configure sso</code> পছন্দ করুন; কাজের আগে <code>aws sts get-caller-identity</code> দিয়ে পরিচয় ও region দেখুন।</li>
+<li>Service খুঁজতে এই পাতার তালিকা ধরে সংশ্লিষ্ট অধ্যায়ে যান; চার cloud-এর পাশাপাশি তুলনা পাবেন।</li>
+<li>পরের ধাপ: <a href="../../02-accounts-and-hierarchy/">Account ও Hierarchy</a> → <a href="../../03-identity-and-access/">IAM</a> → <a href="../../04-compute-vms/">Virtual Machine</a>।</li>
+</ul>
+<p>অন্য cloud দেখতে: <a href="../gcp/">GCP</a> · <a href="../azure/">Azure</a> · <a href="../oci/">OCI</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  উপরে ফিরে যাও
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="ফুটার" >
+        
+          
+          <a href="../../19-architecture-ha-dr/" class="md-footer__link md-footer__link--prev" aria-label="পূর্ববর্তী: 19 · Architecture ও HA/DR">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পূর্ববর্তী
+              </span>
+              <div class="md-ellipsis">
+                19 · Architecture ও HA/DR
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../gcp/" class="md-footer__link md-footer__link--next" aria-label="পরে: Google Cloud">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পরে
+              </span>
+              <div class="md-ellipsis">
+                Google Cloud
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Hasib Ahmed — Cloud বাংলা ডকুমেন্টেশন
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Hasib105/cloud-bangla-docs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit", "toc.follow"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u09b9\u09df\u09c7\u099b\u09c7", "clipboard.copy": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u0995\u09b0\u09c1\u09a8", "search.result.more.one": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 \u09e7\u099f\u09bf \u0986\u099b\u09c7", "search.result.more.other": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 #\u099f\u09bf \u0986\u099b\u09c7", "search.result.none": "\u0995\u09bf\u099b\u09c1 \u09aa\u09be\u0993\u09df\u09be \u09af\u09be\u09df\u09a8\u09bf", "search.result.one": "\u09e7 \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.other": "# \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.placeholder": "\u09b8\u09be\u09b0\u09cd\u099a \u099f\u09be\u0987\u09aa \u0995\u09b0\u09c1\u09a8", "search.result.term.missing": "\u0985\u09a8\u09c1\u09aa\u09b8\u09cd\u09a5\u09bf\u09a4", "select.version": "\u09b8\u0982\u09b8\u09cd\u0995\u09b0\u09a3 \u09a8\u09bf\u09b0\u09cd\u09ac\u09be\u099a\u09a8 \u0995\u09b0\u09c1\u09a3"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

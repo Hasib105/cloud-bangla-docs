@@ -1,0 +1,3800 @@
+
+<!doctype html>
+<html lang="bn" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="এক টপিক, চার cloud — AWS, Google Cloud, Microsoft Azure ও Oracle Cloud (OCI) শূন্য থেকে অ্যাডভান্স, পাশাপাশি তুলনাসহ সম্পূর্ণ বাংলা ডকুমেন্টেশন।">
+      
+      
+        <meta name="author" content="Hasib Ahmed">
+      
+      
+        <link rel="canonical" href="https://hasib105.github.io/cloud-bangla-docs/10-load-balancing-scaling-dns-cdn/">
+      
+      
+        <link rel="prev" href="../09-serverless/">
+      
+      
+        <link rel="next" href="../11-messaging-and-events/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>10 · Load Balancing, DNS ও CDN - Cloud বাংলা — AWS · GCP · Azure · OCI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M6.5%2020q-2.28%200-3.89-1.57Q1%2016.85%201%2014.58q0-1.95%201.17-3.48%201.18-1.53%203.08-1.95.63-2.3%202.5-3.72Q9.63%204%2012%204q2.93%200%204.96%202.04Q19%208.07%2019%2011q1.73.2%202.86%201.5%201.14%201.28%201.14%203%200%201.88-1.31%203.19T18.5%2020m-12-2h12q1.05%200%201.77-.73.73-.72.73-1.77t-.73-1.77Q19.55%2013%2018.5%2013H17v-2q0-2.07-1.46-3.54Q14.08%206%2012%206%209.93%206%208.46%207.46%207%208.93%207%2011h-.5q-1.45%200-2.47%201.03Q3%2013.05%203%2014.5T4.03%2017q1.02%201%202.47%201m5.5-6%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind+Siliguri:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Hind Siliguri";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#10--load-balancing-autoscaling-dns-ও-cdn" class="md-skip">
+          কনটেন্টে যান
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="হেডার">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-header__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud বাংলা — AWS · GCP · Azure · OCI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              10 · Load Balancing, DNS ও CDN
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="ডার্ক মোড"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ডার্ক মোড" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="লাইট মোড"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="লাইট মোড" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="অনুসন্ধান করুন" placeholder="অনুসন্ধান করুন" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="অনুসন্ধান করুন">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="শেয়ার" aria-label="শেয়ার" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="রিসেট" aria-label="রিসেট" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            অনুসন্ধান শুরু করা হচ্ছে
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="ট্যাব" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  হোম
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01-cloud-fundamentals/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  মূল ধারণা
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../platforms/aws/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  প্ল্যাটফর্ম গাইড
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reference/service-map/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  রেফারেন্স
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ন্যাভিগেশন" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-nav__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    Cloud বাংলা — AWS · GCP · Azure · OCI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    হোম
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    মূল ধারণা
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    মূল ধারণা
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-cloud-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Cloud-এর ভিত্তি
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-accounts-and-hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Account ও Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-identity-and-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Identity ও Access (IAM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-compute-vms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Virtual Machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-networking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Networking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-containers-kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Container ও Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-serverless/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Serverless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Load Balancing, DNS ও CDN
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Load Balancing, DNS ও CDN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-load-balancer--ভড-ভগ-কর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. Load Balancer — ভিড় ভাগ করা
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. Load Balancer — ভিড় ভাগ করা">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#l4-বনম-l7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L4 বনাম L7
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#চর-cloud-এর-lb-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        চার cloud-এর LB service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lb-র-ভতরর-অশ--সব-cloud-এ-একই-কঠম" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LB-র ভেতরের অংশ — সব cloud-এ একই কাঠামো
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-health-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Health Check
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-load-balancer-বনন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Load Balancer বানানো
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Load Balancer বানানো">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#l7-lb-র-দরকর-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L7 LB-র দরকারি feature
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-autoscaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. Autoscaling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. Autoscaling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#policy-র-ধরন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Policy-র ধরন
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scaling-এর-খটনট" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaling-এর খুঁটিনাটি
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. DNS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৫. DNS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#মল-record-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মূল record type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delegation--কন-registrar-এ-ns-বসত-হয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delegation — কেন registrar-এ NS বসাতে হয়
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#চর-cloud-এর-dns-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        চার cloud-এর DNS service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#private-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Private DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns-routing-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DNS routing policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-cdn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. CDN
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৬. CDN">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#মল-ধরণ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মূল ধারণা
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching-এর-best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching-এর best practice
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-tls-certificate-ও-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. TLS Certificate ও HTTPS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৮-terraform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮. Terraform
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="মিল ও অমিল">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#যসব-জযগয-মনষ-হচট-খয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        যেসব জায়গায় মানুষ হোঁচট খায়
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-messaging-and-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Messaging ও Event
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Monitoring ও Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-infrastructure-as-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 · Infrastructure as Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-cicd-devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 · CI/CD ও DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-data-and-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 · Data ও Analytics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-ai-ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 · AI ও Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-cost-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 · Cost Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-architecture-ha-dr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 · Architecture ও HA/DR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/gcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Cloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/azure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microsoft Azure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/oci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle Cloud (OCI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    রেফারেন্স
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    রেফারেন্স
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/service-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli-cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Cheatsheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-load-balancer--ভড-ভগ-কর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. Load Balancer — ভিড় ভাগ করা
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. Load Balancer — ভিড় ভাগ করা">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#l4-বনম-l7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L4 বনাম L7
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#চর-cloud-এর-lb-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        চার cloud-এর LB service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lb-র-ভতরর-অশ--সব-cloud-এ-একই-কঠম" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LB-র ভেতরের অংশ — সব cloud-এ একই কাঠামো
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-health-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Health Check
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-load-balancer-বনন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Load Balancer বানানো
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Load Balancer বানানো">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#l7-lb-র-দরকর-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L7 LB-র দরকারি feature
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-autoscaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. Autoscaling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. Autoscaling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#policy-র-ধরন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Policy-র ধরন
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scaling-এর-খটনট" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaling-এর খুঁটিনাটি
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. DNS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৫. DNS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#মল-record-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মূল record type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delegation--কন-registrar-এ-ns-বসত-হয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delegation — কেন registrar-এ NS বসাতে হয়
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#চর-cloud-এর-dns-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        চার cloud-এর DNS service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#private-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Private DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns-routing-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DNS routing policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-cdn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. CDN
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৬. CDN">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#মল-ধরণ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মূল ধারণা
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching-এর-best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching-এর best practice
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-tls-certificate-ও-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. TLS Certificate ও HTTPS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৮-terraform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮. Terraform
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="মিল ও অমিল">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#যসব-জযগয-মনষ-হচট-খয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        যেসব জায়গায় মানুষ হোঁচট খায়
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Hasib105/cloud-bangla-docs/edit/main/docs/10-load-balancing-scaling-dns-cdn.md" title="এই পেজ এডিট করুন" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="10--load-balancing-autoscaling-dns-ও-cdn">10 · Load Balancing, Autoscaling, DNS ও CDN<a class="headerlink" href="#10--load-balancing-autoscaling-dns-ও-cdn" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>এই অধ্যায়ে কী শিখবেন</strong></p>
+<ul>
+<li><strong>Load balancer</strong> কী, L4 ও L7-এর পার্থক্য, আর চার cloud-এর কোন service কোনটা</li>
+<li><strong>Health check</strong> কীভাবে কাজ করে এবং কেন ভুল হলে পুরো সাইট নামে</li>
+<li><strong>Autoscaling</strong> — scale out/in, target tracking, schedule, cooldown</li>
+<li><strong>DNS</strong> — record, routing policy (weighted, latency, failover, geo), private zone</li>
+<li><strong>CDN</strong> — edge cache, invalidation, origin protection</li>
+<li><strong>TLS certificate</strong> — কোথায় তৈরি হয়, কীভাবে auto-renew হয়, HTTPS-এ redirect</li>
+</ul>
+</blockquote>
+<div class="admonition abstract">
+<p class="admonition-title">এক নজরে — কোন cloud-এ কী নাম</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L7 (HTTP/HTTPS) load balancer</td>
+<td>Application Load Balancer (ALB)</td>
+<td>Application Load Balancer (global বা regional)</td>
+<td>Application Gateway (regional), Front Door (global)</td>
+<td>Load Balancer (L7)</td>
+</tr>
+<tr>
+<td>L4 (TCP/UDP) load balancer</td>
+<td>Network Load Balancer (NLB)</td>
+<td>Network Load Balancer (passthrough ও proxy)</td>
+<td>Azure Load Balancer</td>
+<td>Network Load Balancer</td>
+</tr>
+<tr>
+<td>Appliance (firewall) LB</td>
+<td>Gateway Load Balancer</td>
+<td>Internal passthrough NLB (next-hop)</td>
+<td>Gateway Load Balancer</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Autoscaling (VM)</td>
+<td>EC2 Auto Scaling Group</td>
+<td>Managed Instance Group (MIG) autoscaler</td>
+<td>VM Scale Set autoscale</td>
+<td>Instance Pool + Autoscaling configuration</td>
+</tr>
+<tr>
+<td>DNS</td>
+<td>Route 53</td>
+<td>Cloud DNS</td>
+<td>Azure DNS (+ Private DNS)</td>
+<td>OCI DNS</td>
+</tr>
+<tr>
+<td>DNS-ভিত্তিক traffic routing</td>
+<td>Route 53 routing policies</td>
+<td>Cloud DNS routing policies</td>
+<td>Traffic Manager</td>
+<td>Traffic Management Steering Policies</td>
+</tr>
+<tr>
+<td>CDN</td>
+<td>CloudFront</td>
+<td>Cloud CDN (Media CDN)</td>
+<td>Azure Front Door</td>
+<td>কোনো সরাসরি built-in CDN নেই — partner/third-party</td>
+</tr>
+<tr>
+<td>TLS certificate</td>
+<td>AWS Certificate Manager (ACM)</td>
+<td>Certificate Manager, Google-managed cert</td>
+<td>App Service / Front Door managed cert, Key Vault</td>
+<td>OCI Certificates</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>আগের অধ্যায়ে instance (<a href="../04-compute-vms/">VM</a>) ও container (<a href="../08-containers-kubernetes/">Kubernetes</a>, <a href="../09-serverless/">Serverless</a>) চালানো দেখেছি। এখন প্রশ্ন:
+ব্যবহারকারী কীভাবে সেগুলোর কাছে পৌঁছাবে, ভিড় বাড়লে কীভাবে সামলাবে, আর পৃথিবীর ওপারের ব্যবহারকারী কীভাবে দ্রুত সাড়া পাবে — সেটাই এই অধ্যায়।</p>
+<pre class="mermaid"><code>flowchart LR
+    U["ব্যবহারকারী"] --&gt; DNS["DNS&lt;br/&gt;shopbd.example.com"]
+    DNS --&gt; CDN["CDN (edge cache)"]
+    CDN --&gt; LB["Load Balancer&lt;br/&gt;TLS termination"]
+    LB --&gt; A["Instance / Pod ১"]
+    LB --&gt; B["Instance / Pod ২"]
+    LB --&gt; C["Instance / Pod ৩"]
+    AS["Autoscaling"] -. সংখ্যা বাড়ায়-কমায় .-&gt; A</code></pre>
+<hr />
+<h2 id="১-load-balancer--ভড-ভগ-কর">১. Load Balancer — ভিড় ভাগ করা<a class="headerlink" href="#১-load-balancer--ভড-ভগ-কর" title="Permanent link">&para;</a></h2>
+<p>একটা server সব request সামলাতে পারে না, আর সেটা মরলে সাইট শেষ। <strong>Load balancer (LB)</strong> সামনে বসে request-গুলো একাধিক backend-এ ভাগ করে, আর মরা backend-কে বাদ দেয়। ফলে: <strong>availability</strong> (একটা পড়লেও সাইট চলে), <strong>scalability</strong> (backend বাড়ানো যায়), <strong>নিরাপত্তা</strong> (backend সরাসরি ইন্টারনেটে খোলা থাকে না)।</p>
+<div class="admonition example">
+<p class="admonition-title">Analogy</p>
+<p>ব্যাংকের <strong>টোকেন কাউন্টার</strong>: গ্রাহক এলে ম্যানেজার (LB) দেখে কোন কাউন্টার খালি, সেখানে পাঠায়। কোনো কাউন্টারের কর্মী অনুপস্থিত থাকলে সেখানে কাউকে পাঠায় না (health check)।</p>
+</div>
+<h3 id="l4-বনম-l7">L4 বনাম L7<a class="headerlink" href="#l4-বনম-l7" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>L4 (Transport)</th>
+<th>L7 (Application)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>কী দেখে</td>
+<td>IP, port, TCP/UDP</td>
+<td>HTTP: host, path, header, cookie</td>
+</tr>
+<tr>
+<td>গতি</td>
+<td>খুব দ্রুত, কম latency</td>
+<td>সামান্য বেশি processing</td>
+</tr>
+<tr>
+<td>TLS</td>
+<td>সাধারণত passthrough (বা কিছু ক্ষেত্রে terminate)</td>
+<td>Terminate করে, certificate এখানে</td>
+</tr>
+<tr>
+<td>ক্ষমতা</td>
+<td>যেকোনো TCP/UDP protocol, static IP, millions of connections</td>
+<td>path/host routing, redirect, rewrite, WAF, sticky session, gRPC/WebSocket</td>
+</tr>
+<tr>
+<td>কখন</td>
+<td>Database proxy, game, MQTT, non-HTTP, static IP চাই</td>
+<td>Web app, REST API, microservice routing</td>
+</tr>
+</tbody>
+</table>
+<h3 id="চর-cloud-এর-lb-service">চার cloud-এর LB service<a class="headerlink" href="#চর-cloud-এর-lb-service" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>ধরন</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>L7 regional</strong></td>
+<td>ALB</td>
+<td>Regional external/internal Application LB</td>
+<td><strong>Application Gateway</strong> (WAF সহ)</td>
+<td><strong>Load Balancer</strong> (flexible shape)</td>
+</tr>
+<tr>
+<td><strong>L7 global</strong></td>
+<td>ALB + CloudFront / Global Accelerator-এর সামনে</td>
+<td><strong>Global external Application LB</strong> (একটা anycast IP)</td>
+<td><strong>Front Door</strong></td>
+<td>— (DNS steering + regional LB)</td>
+</tr>
+<tr>
+<td><strong>L4</strong></td>
+<td>NLB</td>
+<td>Network LB (passthrough) / Proxy Network LB</td>
+<td>Azure Load Balancer (Standard)</td>
+<td>Network Load Balancer</td>
+</tr>
+<tr>
+<td><strong>Appliance</strong></td>
+<td>Gateway LB</td>
+<td>—</td>
+<td>Gateway LB</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Internal/private</td>
+<td>Internal ALB/NLB</td>
+<td>Internal Application/Network LB</td>
+<td>Internal Load Balancer / Internal App Gateway</td>
+<td>Private LB</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">পুরোনো নাম</p>
+<p>AWS-এর <strong>Classic Load Balancer (CLB)</strong> legacy — নতুন কাজে ALB/NLB। GCP-তে "HTTP(S) Load Balancing" এখন <strong>Application Load Balancer</strong> নামে।
+Azure-এ <strong>Traffic Manager</strong> আসলে LB নয়, DNS-ভিত্তিক routing (পরে দেখব)।</p>
+</div>
+<h3 id="lb-র-ভতরর-অশ--সব-cloud-এ-একই-কঠম">LB-র ভেতরের অংশ — সব cloud-এ একই কাঠামো<a class="headerlink" href="#lb-র-ভতরর-অশ--সব-cloud-এ-একই-কঠম" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart LR
+    L["Listener&lt;br/&gt;port 443, HTTPS + certificate"] --&gt; R["Rule / URL map&lt;br/&gt;host ও path দেখে"]
+    R --&gt; TG1["Backend / Target group: api&lt;br/&gt;health check /healthz"]
+    R --&gt; TG2["Backend / Target group: web"]
+    TG1 --&gt; I1["Instance/Pod"]
+    TG1 --&gt; I2["Instance/Pod"]</code></pre>
+<table>
+<thead>
+<tr>
+<th>ধারণা</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure (App Gateway)</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Listener</td>
+<td>Listener</td>
+<td>Forwarding rule + target proxy</td>
+<td>Listener</td>
+<td>Listener</td>
+</tr>
+<tr>
+<td>Routing নিয়ম</td>
+<td>Listener rule</td>
+<td>URL map</td>
+<td>Routing rule / path map</td>
+<td>Routing policy</td>
+</tr>
+<tr>
+<td>Backend-এর group</td>
+<td>Target group</td>
+<td>Backend service</td>
+<td>Backend pool</td>
+<td>Backend set</td>
+</tr>
+<tr>
+<td>Health check</td>
+<td>Target group-এ</td>
+<td>Health check resource</td>
+<td>Health probe</td>
+<td>Backend set-এ</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="২-health-check">২. Health Check<a class="headerlink" href="#২-health-check" title="Permanent link">&para;</a></h2>
+<p>LB প্রতি কয়েক সেকেন্ডে backend-কে ডাকে (<code>GET /healthz</code>); ধারাবাহিকভাবে ব্যর্থ হলে সেই backend-কে <strong>unhealthy</strong> ধরে traffic বন্ধ করে, আবার সুস্থ হলে ফেরত আনে।</p>
+<p>প্রধান সেটিং (নাম ভিন্ন, ধারণা এক):</p>
+<table>
+<thead>
+<tr>
+<th>সেটিং</th>
+<th>মানে</th>
+<th>সাধারণ উদাহরণ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Protocol / port / path</td>
+<td>কী ডাকবে</td>
+<td>HTTP, <code>8000</code>, <code>/healthz</code></td>
+</tr>
+<tr>
+<td>Interval</td>
+<td>কত সেকেন্ড পর পর</td>
+<td>১০–৩০</td>
+</tr>
+<tr>
+<td>Timeout</td>
+<td>কত সময়ে উত্তর না দিলে ব্যর্থ</td>
+<td>৫</td>
+</tr>
+<tr>
+<td>Healthy threshold</td>
+<td>কতবার সফল হলে "সুস্থ"</td>
+<td>২–৩</td>
+</tr>
+<tr>
+<td>Unhealthy threshold</td>
+<td>কতবার ব্যর্থ হলে "অসুস্থ"</td>
+<td>২–৩</td>
+</tr>
+<tr>
+<td>Success code</td>
+<td>কোন HTTP status ঠিক</td>
+<td><code>200</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>ভালো <code>/healthz</code> কেমন?</strong> হালকা, দ্রুত, শুধু "আমি request নিতে পারি কি না" বলে। সাধারণ best practice: ডেটাবেস ডাউন হলেই <strong>সব</strong> instance-কে unhealthy করবেন না (তাহলে সব সরে গিয়ে পুরো সাইট নামে) — LB health আর deep dependency check আলাদা রাখুন।</p>
+<div class="admonition warning">
+<p class="admonition-title">Health check-এর firewall — সবচেয়ে সাধারণ ভুল</p>
+<p>LB-র probe আপনার backend-এ ঢুকতে না পারলে সব backend "unhealthy" দেখাবে, যদিও app ঠিক আছে। অনুমতি দিন:
+<strong>AWS:</strong> backend security group-এ LB-র security group থেকে port; <strong>GCP:</strong> health-check IP range <code>130.211.0.0/22</code> ও <code>35.191.0.0/16</code> firewall-এ allow;
+<strong>Azure:</strong> Azure Load Balancer probe আসে <code>168.63.129.16</code> থেকে (NSG-তে <code>AzureLoadBalancer</code> service tag), Application Gateway-র subnet থেকে allow;
+<strong>OCI:</strong> LB subnet থেকে backend subnet-এ security list/NSG rule। বিস্তারিত নেটওয়ার্ক <a href="../05-networking/">Networking অধ্যায়ে</a>।</p>
+</div>
+<hr />
+<h2 id="৩-load-balancer-বনন">৩. Load Balancer বানানো<a class="headerlink" href="#৩-load-balancer-বনন" title="Permanent link">&para;</a></h2>
+<p>নিচে <code>shopbd-api</code> (port 8000, <code>/healthz</code>) চার cloud-এ HTTPS LB-র পিছনে বসানোর কমান্ড। Certificate আগে তৈরি থাকতে হবে (অংশ ৮)।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="aws" name="__tabbed_1" type="radio" /><input id="gcp" name="__tabbed_1" type="radio" /><input id="azure" name="__tabbed_1" type="radio" /><input id="oci" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="aws">AWS</label><label for="gcp">GCP</label><label for="azure">Azure</label><label for="oci">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Service: <strong>Application Load Balancer</strong>। Console: EC2 → Load Balancers → Create → Application Load Balancer।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># ১) Target group (health check path সহ)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>aws<span class="w"> </span>elbv2<span class="w"> </span>create-target-group<span class="w"> </span>--name<span class="w"> </span>shopbd-api-tg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>--protocol<span class="w"> </span>HTTP<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--vpc-id<span class="w"> </span>vpc-0123456789abcdef0<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>--health-check-path<span class="w"> </span>/healthz<span class="w"> </span>--target-type<span class="w"> </span>instance
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># ২) Load balancer (দুটো public subnet, দুই AZ)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>aws<span class="w"> </span>elbv2<span class="w"> </span>create-load-balancer<span class="w"> </span>--name<span class="w"> </span>shopbd-alb<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span>--subnets<span class="w"> </span>subnet-aaa<span class="w"> </span>subnet-bbb<span class="w"> </span>--security-groups<span class="w"> </span>sg-0123456789abcdef0<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span>--scheme<span class="w"> </span>internet-facing<span class="w"> </span>--type<span class="w"> </span>application
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># ৩) HTTPS listener (ACM certificate) → target group</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>aws<span class="w"> </span>elbv2<span class="w"> </span>create-listener<span class="w"> </span>--load-balancer-arn<span class="w"> </span>&lt;alb-arn&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span>--protocol<span class="w"> </span>HTTPS<span class="w"> </span>--port<span class="w"> </span><span class="m">443</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span>--certificates<span class="w"> </span><span class="nv">CertificateArn</span><span class="o">=</span>arn:aws:acm:ap-south-1:123456789012:certificate/example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span>--default-actions<span class="w"> </span><span class="nv">Type</span><span class="o">=</span>forward,TargetGroupArn<span class="o">=</span>&lt;tg-arn&gt;
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="c1"># ৪) HTTP → HTTPS redirect</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>aws<span class="w"> </span>elbv2<span class="w"> </span>create-listener<span class="w"> </span>--load-balancer-arn<span class="w"> </span>&lt;alb-arn&gt;<span class="w"> </span>--protocol<span class="w"> </span>HTTP<span class="w"> </span>--port<span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span>--default-actions<span class="w"> </span><span class="s1">'Type=redirect,RedirectConfig={Protocol=HTTPS,Port=443,StatusCode=HTTP_301}'</span>
+</span></code></pre></div>
+<p>Instance-কে target group-এ <code>register-targets</code> দিয়ে বা Auto Scaling Group-এর <code>--target-group-arns</code> দিয়ে যুক্ত করুন।</p>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Global external Application Load Balancer</strong> — একটা anycast IP, পৃথিবীর যেকোনো জায়গা থেকে নিকটতম Google edge-এ ঢোকে। GCP-তে LB কয়েকটা আলাদা resource জুড়ে তৈরি হয়:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># ১) Health check</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>health-checks<span class="w"> </span>create<span class="w"> </span>http<span class="w"> </span>shopbd-hc<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>--port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--request-path<span class="w"> </span>/healthz
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># ২) Backend service + instance group যোগ</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>backend-services<span class="w"> </span>create<span class="w"> </span>shopbd-backend<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span>--protocol<span class="w"> </span>HTTP<span class="w"> </span>--health-checks<span class="w"> </span>shopbd-hc<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span>--load-balancing-scheme<span class="w"> </span>EXTERNAL_MANAGED<span class="w"> </span>--global
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>backend-services<span class="w"> </span>add-backend<span class="w"> </span>shopbd-backend<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span>--instance-group<span class="w"> </span>shopbd-mig<span class="w"> </span>--instance-group-region<span class="w"> </span>asia-south1<span class="w"> </span>--global
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># ৩) URL map → HTTPS proxy (Google-managed certificate)</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>url-maps<span class="w"> </span>create<span class="w"> </span>shopbd-urlmap<span class="w"> </span>--default-service<span class="w"> </span>shopbd-backend
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>target-https-proxies<span class="w"> </span>create<span class="w"> </span>shopbd-https-proxy<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span>--url-map<span class="w"> </span>shopbd-urlmap<span class="w"> </span>--certificate-map<span class="w"> </span>shopbd-certmap
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="c1"># ৪) Forwarding rule (এটাই public IP/port)</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>forwarding-rules<span class="w"> </span>create<span class="w"> </span>shopbd-fr<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">  </span>--global<span class="w"> </span>--target-https-proxy<span class="w"> </span>shopbd-https-proxy<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">  </span>--ports<span class="w"> </span><span class="m">443</span><span class="w"> </span>--load-balancing-scheme<span class="w"> </span>EXTERNAL_MANAGED
+</span></code></pre></div>
+<p>Console-এ "Create load balancer" wizard এই সব একসাথে বানিয়ে দেয়। Certificate map তৈরির কথা অংশ ৮-এ।</p>
+</div>
+<div class="tabbed-block">
+<p>L7-এর জন্য <strong>Application Gateway</strong>, L4-এর জন্য <strong>Azure Load Balancer</strong>।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># L7: Application Gateway (v2; subnet ও public IP আগে থেকে লাগে)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>az<span class="w"> </span>network<span class="w"> </span>application-gateway<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-appgw<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>--sku<span class="w"> </span>Standard_v2<span class="w"> </span>--capacity<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>--vnet-name<span class="w"> </span>shopbd-prod-vnet<span class="w"> </span>--subnet<span class="w"> </span>appgw-subnet<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span>--public-ip-address<span class="w"> </span>shopbd-appgw-ip<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span>--http-settings-port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--http-settings-protocol<span class="w"> </span>Http
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1"># L4: Azure Load Balancer (Standard SKU)</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>az<span class="w"> </span>network<span class="w"> </span>lb<span class="w"> </span>create<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span>--name<span class="w"> </span>shopbd-lb<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span>--sku<span class="w"> </span>Standard<span class="w"> </span>--frontend-ip-name<span class="w"> </span>fe<span class="w"> </span>--backend-pool-name<span class="w"> </span>be<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span>--public-ip-address<span class="w"> </span>shopbd-lb-ip
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>az<span class="w"> </span>network<span class="w"> </span>lb<span class="w"> </span>probe<span class="w"> </span>create<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span>--lb-name<span class="w"> </span>shopbd-lb<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">  </span>--name<span class="w"> </span>hc<span class="w"> </span>--protocol<span class="w"> </span>http<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--path<span class="w"> </span>/healthz
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>az<span class="w"> </span>network<span class="w"> </span>lb<span class="w"> </span>rule<span class="w"> </span>create<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span>--lb-name<span class="w"> </span>shopbd-lb<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">  </span>--name<span class="w"> </span>http<span class="w"> </span>--protocol<span class="w"> </span>Tcp<span class="w"> </span>--frontend-port<span class="w"> </span><span class="m">80</span><span class="w"> </span>--backend-port<span class="w"> </span><span class="m">8000</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">  </span>--frontend-ip-name<span class="w"> </span>fe<span class="w"> </span>--backend-pool-name<span class="w"> </span>be<span class="w"> </span>--probe-name<span class="w"> </span>hc
+</span></code></pre></div>
+<p>Application Gateway-র জন্য আলাদা <strong>dedicated subnet</strong> লাগে। Global L7 দরকার হলে <strong>Azure Front Door</strong> (CDN অংশে দেখুন)।</p>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Load Balancer</strong> (L7, flexible shape — bandwidth min/max ঠিক করা যায়) ও <strong>Network Load Balancer</strong> (L4)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>oci<span class="w"> </span>lb<span class="w"> </span>load-balancer<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>--display-name<span class="w"> </span>shopbd-lb<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span>--shape-name<span class="w"> </span>flexible<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span>--shape-details<span class="w"> </span><span class="s1">'{"minimumBandwidthInMbps": 10, "maximumBandwidthInMbps": 100}'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span>--subnet-ids<span class="w"> </span><span class="s1">'["ocid1.subnet.oc1..example"]'</span>
+</span></code></pre></div>
+<p>এরপর <strong>backend set</strong> (health check সহ), <strong>backend</strong> (instance IP:port), <strong>listener</strong> ও certificate যোগ করতে হয় — Console: Networking → Load balancers → Create।</p>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Internal vs external</p>
+<p>ইন্টারনেট-মুখী LB আর ভেতরের (microservice-এ microservice) LB আলাদা। Backend-কে private subnet-এ রাখুন; শুধু LB-কে public রাখুন।</p>
+</div>
+<h3 id="l7-lb-র-দরকর-feature">L7 LB-র দরকারি feature<a class="headerlink" href="#l7-lb-র-দরকর-feature" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Host ও path routing:</strong> <code>api.shopbd.example.com</code> ও <code>/api/*</code> → API; বাকি → web।</li>
+<li><strong>TLS termination</strong> — certificate LB-তে, backend-এ plain HTTP (বা end-to-end TLS)।</li>
+<li><strong>Redirect</strong> HTTP→HTTPS, URL rewrite।</li>
+<li><strong>WAF integration</strong> — AWS WAF / Cloud Armor / Azure WAF / OCI WAF (<a href="../13-security/">Security অধ্যায়</a>)।</li>
+<li><strong>Connection draining</strong> — instance সরানোর সময় চলমান request শেষ হতে দেওয়া।</li>
+</ul>
+<hr />
+<h2 id="৪-autoscaling">৪. Autoscaling<a class="headerlink" href="#৪-autoscaling" title="Permanent link">&para;</a></h2>
+<p>ভিড় বাড়লে instance বাড়ানো, কমলে কমানো — স্বয়ংক্রিয়ভাবে। দুই ধরনের scaling:</p>
+<ul>
+<li><strong>Scale out/in (horizontal)</strong> — instance-এর <strong>সংখ্যা</strong> বাড়ানো/কমানো। Cloud-এর সাধারণ পথ।</li>
+<li><strong>Scale up/down (vertical)</strong> — একটা instance-এর <strong>আকার</strong> বাড়ানো (restart লাগে, সীমা আছে)।</li>
+</ul>
+<h3 id="policy-র-ধরন">Policy-র ধরন<a class="headerlink" href="#policy-র-ধরন" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>ধরন</th>
+<th>কীভাবে কাজ করে</th>
+<th>উদাহরণ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Target tracking</strong></td>
+<td>একটা metric লক্ষ্যে রাখো</td>
+<td>"গড় CPU ৫০% রাখো" — সবচেয়ে সহজ ও প্রস্তাবিত</td>
+</tr>
+<tr>
+<td><strong>Step / simple</strong></td>
+<td>Threshold পেরোলে নির্দিষ্ট সংখ্যা যোগ</td>
+<td>"CPU &gt; ৭০% হলে +২"</td>
+</tr>
+<tr>
+<td><strong>Scheduled</strong></td>
+<td>নির্দিষ্ট সময়ে</td>
+<td>"রোজ বিকেল ৫টায় min ৪"</td>
+</tr>
+<tr>
+<td><strong>Predictive</strong></td>
+<td>ইতিহাস দেখে আগেই বাড়ায়</td>
+<td>নিয়মিত দৈনিক pattern-এ</td>
+</tr>
+</tbody>
+</table>
+<p>মূল প্যারামিটার: <strong>min, max, desired</strong> (সংখ্যা), <strong>cooldown/warm-up</strong> (নতুন instance প্রস্তুত হওয়ার সময়), <strong>health check grace period</strong>।</p>
+<div class="admonition example">
+<p class="admonition-title">Analogy</p>
+<p>রেস্টুরেন্ট: দুপুরে ভিড় বাড়লে অতিরিক্ত ওয়েটার ডাকা (scale out), ভিড় কমলে ছুটি (scale in)। কিন্তু ওয়েটার ডাকার পর কাজ শিখতে সময় লাগে (warm-up), তাই প্রতি মিনিটে ডাকা-ছাড়া করলে দোকান বিশৃঙ্খল (flapping) — তাই cooldown।</p>
+</div>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Group-এর নাম</td>
+<td><strong>Auto Scaling Group</strong> (Launch template)</td>
+<td><strong>Managed Instance Group</strong> (Instance template)</td>
+<td><strong>VM Scale Set (VMSS)</strong></td>
+<td><strong>Instance Pool</strong> (Instance configuration)</td>
+</tr>
+<tr>
+<td>Autoscale সুবিধা</td>
+<td>Auto Scaling policies</td>
+<td>MIG autoscaler</td>
+<td>Azure Monitor autoscale</td>
+<td>Autoscaling configuration</td>
+</tr>
+<tr>
+<td>Metric</td>
+<td>CPU, ALB request count/target, custom</td>
+<td>CPU, LB utilization, custom metric, schedule</td>
+<td>CPU, memory, queue length, custom, schedule</td>
+<td>CPU, memory, schedule</td>
+</tr>
+<tr>
+<td>Predictive</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓ (VMSS predictive autoscale)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Multi-AZ</td>
+<td>Subnet-এর মাধ্যমে</td>
+<td>Regional MIG (একাধিক zone)</td>
+<td>Zones</td>
+<td>একাধিক AD/FD</td>
+</tr>
+</tbody>
+</table>
+<p>(Container ও serverless-এ scaling আলাদা: Kubernetes-এ <strong>HPA + Cluster Autoscaler</strong>, Cloud Run/Functions-এ built-in request-ভিত্তিক — <a href="../08-containers-kubernetes/">Container</a> ও <a href="../09-serverless/">Serverless</a> অধ্যায়।)</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="aws_1" name="__tabbed_2" type="radio" /><input id="gcp_1" name="__tabbed_2" type="radio" /><input id="azure_1" name="__tabbed_2" type="radio" /><input id="oci_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="aws_1">AWS</label><label for="gcp_1">GCP</label><label for="azure_1">Azure</label><label for="oci_1">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Launch template আগে বানানো (AMI, instance type, security group, user data)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>aws<span class="w"> </span>autoscaling<span class="w"> </span>create-auto-scaling-group<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span>--auto-scaling-group-name<span class="w"> </span>shopbd-api-asg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span>--launch-template<span class="w"> </span><span class="nv">LaunchTemplateName</span><span class="o">=</span>shopbd-api-lt,Version<span class="o">=</span><span class="s1">'$Latest'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span>--min-size<span class="w"> </span><span class="m">2</span><span class="w"> </span>--max-size<span class="w"> </span><span class="m">6</span><span class="w"> </span>--desired-capacity<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span>--vpc-zone-identifier<span class="w"> </span><span class="s2">"subnet-aaa,subnet-bbb"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span>--target-group-arns<span class="w"> </span>&lt;tg-arn&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span>--health-check-type<span class="w"> </span>ELB<span class="w"> </span>--health-check-grace-period<span class="w"> </span><span class="m">120</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># Target tracking: গড় CPU ৫০%</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>aws<span class="w"> </span>autoscaling<span class="w"> </span>put-scaling-policy<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">  </span>--auto-scaling-group-name<span class="w"> </span>shopbd-api-asg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">  </span>--policy-name<span class="w"> </span>cpu50<span class="w"> </span>--policy-type<span class="w"> </span>TargetTrackingScaling<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">  </span>--target-tracking-configuration<span class="w"> </span>file://tt.json
+</span></code></pre></div>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">"PredefinedMetricSpecification"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"PredefinedMetricType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ASGAverageCPUUtilization"</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">"TargetValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><code>--health-check-type ELB</code> দিলে LB-র health check অনুযায়ী অসুস্থ instance বদলানো হয়। Request-ভিত্তিক scaling-এর জন্য <code>ALBRequestCountPerTarget</code> metric।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>instance-templates<span class="w"> </span>create<span class="w"> </span>shopbd-api-tpl<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>--machine-type<span class="w"> </span>e2-small<span class="w"> </span>--image-family<span class="w"> </span>debian-12<span class="w"> </span>--image-project<span class="w"> </span>debian-cloud
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>instance-groups<span class="w"> </span>managed<span class="w"> </span>create<span class="w"> </span>shopbd-mig<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span>--template<span class="w"> </span>shopbd-api-tpl<span class="w"> </span>--size<span class="w"> </span><span class="m">2</span><span class="w"> </span>--region<span class="w"> </span>asia-south1
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>instance-groups<span class="w"> </span>managed<span class="w"> </span>set-autoscaling<span class="w"> </span>shopbd-mig<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span>--region<span class="w"> </span>asia-south1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">  </span>--min-num-replicas<span class="w"> </span><span class="m">2</span><span class="w"> </span>--max-num-replicas<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">  </span>--target-cpu-utilization<span class="w"> </span><span class="m">0</span>.6<span class="w"> </span>--cool-down-period<span class="w"> </span><span class="m">90</span>
+</span></code></pre></div>
+<p>Regional MIG instance-গুলো একাধিক zone-এ ছড়ায়। <code>--cool-down-period</code> = নতুন instance-কে metric-এ ধরার আগে অপেক্ষা।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>az<span class="w"> </span>vmss<span class="w"> </span>create<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span>--name<span class="w"> </span>shopbd-vmss<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>--image<span class="w"> </span>Ubuntu2204<span class="w"> </span>--instance-count<span class="w"> </span><span class="m">2</span><span class="w"> </span>--vm-sku<span class="w"> </span>Standard_B2s<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>--lb<span class="w"> </span>shopbd-lb<span class="w"> </span>--admin-username<span class="w"> </span>azureuser<span class="w"> </span>--generate-ssh-keys
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>az<span class="w"> </span>monitor<span class="w"> </span>autoscale<span class="w"> </span>create<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span>--resource<span class="w"> </span>shopbd-vmss<span class="w"> </span>--resource-type<span class="w"> </span>Microsoft.Compute/virtualMachineScaleSets<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-autoscale<span class="w"> </span>--min-count<span class="w"> </span><span class="m">2</span><span class="w"> </span>--max-count<span class="w"> </span><span class="m">6</span><span class="w"> </span>--count<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>az<span class="w"> </span>monitor<span class="w"> </span>autoscale<span class="w"> </span>rule<span class="w"> </span>create<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">  </span>--autoscale-name<span class="w"> </span>shopbd-autoscale<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">  </span>--condition<span class="w"> </span><span class="s2">"Percentage CPU &gt; 60 avg 5m"</span><span class="w"> </span>--scale<span class="w"> </span>out<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>az<span class="w"> </span>monitor<span class="w"> </span>autoscale<span class="w"> </span>rule<span class="w"> </span>create<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">  </span>--autoscale-name<span class="w"> </span>shopbd-autoscale<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">  </span>--condition<span class="w"> </span><span class="s2">"Percentage CPU &lt; 30 avg 10m"</span><span class="w"> </span>--scale<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span>
+</span></code></pre></div>
+<p>Azure-এ scale out ও scale in-এর <strong>আলাদা rule</strong> লাগে — একটা দিলে অন্যটা নিজে আসে না।</p>
+</div>
+<div class="tabbed-block">
+<p>OCI-তে <strong>Instance Pool</strong>-এর ওপর <strong>Autoscaling configuration</strong> বসে (metric-ভিত্তিক বা schedule-ভিত্তিক)। Resource ও policy JSON-এ দিতে হয়:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>oci<span class="w"> </span>autoscaling<span class="w"> </span>auto-scaling-configuration<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span>--display-name<span class="w"> </span>shopbd-autoscale<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span>--resource<span class="w"> </span>file://resource.json<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span>--policies<span class="w"> </span>file://policies.json
+</span></code></pre></div>
+<p><code>resource.json</code>-এ instance pool OCID, <code>policies.json</code>-এ min/max/initial capacity ও CPU threshold rule। Console-এ (Compute → Autoscaling configurations) সহজে বানানো যায়।</p>
+</div>
+</div>
+</div>
+<h3 id="scaling-এর-খটনট">Scaling-এর খুঁটিনাটি<a class="headerlink" href="#scaling-এর-খটনট" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Stateless হতে হবে:</strong> Session/ফাইল instance-এ রাখলে scale in-এ হারায়। Session <a href="../07-databases/">cache</a>-এ, ফাইল <a href="../06-storage/">object storage</a>-এ।</li>
+<li><strong>Scale out দ্রুত, scale in ধীরে</strong> — scale in-এ বেশি সময় নিন যেন ভিড়ের টেউয়ে আবার না বাড়তে হয়।</li>
+<li><strong>Max সীমা</strong> — ভুল/আক্রমণে অসীম বেড়ে বিল ও database-এ চাপ এড়াতে।</li>
+<li><strong>Database scaling</strong> আলাদা সমস্যা — instance ১০০ করলেও DB bottleneck হতে পারে (<a href="../07-databases/">Database অধ্যায়</a>: read replica, cache)।</li>
+</ul>
+<hr />
+<h2 id="৫-dns">৫. DNS<a class="headerlink" href="#৫-dns" title="Permanent link">&para;</a></h2>
+<p><strong>DNS (Domain Name System)</strong> মানুষের নাম (<code>shopbd.example.com</code>) কে IP address-এ (<code>203.0.113.10</code>) বদলায়। ইন্টারনেটের "ফোনবুক"।</p>
+<h3 id="মল-record-type">মূল record type<a class="headerlink" href="#মল-record-type" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Record</th>
+<th>কাজ</th>
+<th>উদাহরণ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>নাম → IPv4</td>
+<td><code>www → 203.0.113.10</code></td>
+</tr>
+<tr>
+<td><strong>AAAA</strong></td>
+<td>নাম → IPv6</td>
+<td><code>www → 2001:db8::10</code></td>
+</tr>
+<tr>
+<td><strong>CNAME</strong></td>
+<td>নাম → আরেক নাম (alias)</td>
+<td><code>www → shopbd-alb-123.ap-south-1.elb.amazonaws.com</code></td>
+</tr>
+<tr>
+<td><strong>ALIAS / ANAME</strong></td>
+<td>Zone apex (root domain)-এ CNAME-এর মতো — cloud-এর বিশেষ ধরন</td>
+<td><code>shopbd.example.com → ALB</code></td>
+</tr>
+<tr>
+<td><strong>MX</strong></td>
+<td>Mail server</td>
+<td>email-এর জন্য</td>
+</tr>
+<tr>
+<td><strong>TXT</strong></td>
+<td>লেখা (SPF, domain verification)</td>
+<td><code>"v=spf1 ..."</code></td>
+</tr>
+<tr>
+<td><strong>NS</strong></td>
+<td>কোন name server এই zone-এর দায়িত্বে</td>
+<td>delegation</td>
+</tr>
+<tr>
+<td><strong>SOA</strong></td>
+<td>Zone-এর মূল তথ্য</td>
+<td>automatic</td>
+</tr>
+</tbody>
+</table>
+<p><strong>TTL (Time To Live):</strong> কত সেকেন্ড অন্যরা উত্তর cache করে রাখবে। বেশি TTL = কম DNS query, কিন্তু বদল ছড়াতে দেরি। Migration/failover-এর আগে TTL কমিয়ে রাখুন (যেমন ৬০ সেকেন্ড)।</p>
+<div class="admonition warning">
+<p class="admonition-title">Root domain-এ CNAME চলে না</p>
+<p>DNS নিয়মে <code>shopbd.example.com</code> (zone apex)-এ CNAME বসানো যায় না। তাই cloud আলাদা alias সুবিধা দেয়: Route 53 <strong>Alias record</strong>, Azure DNS <strong>alias record set</strong>,
+OCI DNS-এ ALIAS record, GCP Cloud DNS-এ সাধারণত load balancer-এর <strong>IP</strong> দিয়ে A record (LB-র static/anycast IP থাকে)।</p>
+</div>
+<h3 id="delegation--কন-registrar-এ-ns-বসত-হয">Delegation — কেন registrar-এ NS বসাতে হয়<a class="headerlink" href="#delegation--কন-registrar-এ-ns-বসত-হয" title="Permanent link">&para;</a></h3>
+<p>Domain কেনা (registrar) আর DNS hosting আলাদা বিষয়। Cloud-এ zone বানালে cloud চারটি name server দেয়; সেগুলো আপনার <strong>registrar-এর NS record-এ</strong> বসাতে হয় — তখনই ইন্টারনেট জানে "এই domain-এর উত্তর Route 53/Cloud DNS-এ"।</p>
+<h3 id="চর-cloud-এর-dns-service">চার cloud-এর DNS service<a class="headerlink" href="#চর-cloud-এর-dns-service" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AWS Route 53</th>
+<th>GCP Cloud DNS</th>
+<th>Azure DNS</th>
+<th>OCI DNS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Public zone</td>
+<td>Public hosted zone</td>
+<td>Public managed zone</td>
+<td>DNS zone</td>
+<td>Public zone (PRIMARY)</td>
+</tr>
+<tr>
+<td>Private zone</td>
+<td>Private hosted zone</td>
+<td>Private managed zone</td>
+<td><strong>Azure Private DNS</strong> (আলাদা service)</td>
+<td>Private zone (private view)</td>
+</tr>
+<tr>
+<td>Apex alias</td>
+<td>Alias record</td>
+<td>A record → LB IP</td>
+<td>Alias record set</td>
+<td>ALIAS record</td>
+</tr>
+<tr>
+<td>Health-check-ভিত্তিক failover</td>
+<td>✓ (Route 53 health check)</td>
+<td>✓ (routing policy-তে)</td>
+<td>Traffic Manager দিয়ে</td>
+<td>Traffic Management Steering Policy</td>
+</tr>
+<tr>
+<td>DNSSEC</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Domain registrar</td>
+<td>✓ (Route 53 Domains)</td>
+<td>✓ (Cloud Domains)</td>
+<td>App Service Domains (সীমিত)</td>
+<td>নেই (বাইরের registrar)</td>
+</tr>
+</tbody>
+</table>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="aws_2" name="__tabbed_3" type="radio" /><input id="gcp_2" name="__tabbed_3" type="radio" /><input id="azure_2" name="__tabbed_3" type="radio" /><input id="oci_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="aws_2">AWS</label><label for="gcp_2">GCP</label><label for="azure_2">Azure</label><label for="oci_2">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>aws<span class="w"> </span>route53<span class="w"> </span>create-hosted-zone<span class="w"> </span>--name<span class="w"> </span>shopbd.example.com<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>--caller-reference<span class="w"> </span><span class="s2">"shopbd-</span><span class="k">$(</span>date<span class="w"> </span>+%s<span class="k">)</span><span class="s2">"</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># change.json: UPSERT একটা A alias record (ALB-তে)</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>aws<span class="w"> </span>route53<span class="w"> </span>change-resource-record-sets<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span>--hosted-zone-id<span class="w"> </span>Z0123456789EXAMPLE<span class="w"> </span>--change-batch<span class="w"> </span>file://change.json
+</span></code></pre></div>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">{</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="nt">"Changes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="nt">"Action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPSERT"</span><span class="p">,</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="nt">"ResourceRecordSet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">      </span><span class="nt">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shopbd.example.com"</span><span class="p">,</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">      </span><span class="nt">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">      </span><span class="nt">"AliasTarget"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">        </span><span class="nt">"HostedZoneId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;alb-hosted-zone-id&gt;"</span><span class="p">,</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">        </span><span class="nt">"DNSName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shopbd-alb-123.ap-south-1.elb.amazonaws.com"</span><span class="p">,</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">        </span><span class="nt">"EvaluateTargetHealth"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">  </span><span class="p">}]</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Hosted zone তৈরির পর সেই NS record-গুলো registrar-এ বসান।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>gcloud<span class="w"> </span>dns<span class="w"> </span>managed-zones<span class="w"> </span>create<span class="w"> </span>shopbd-zone<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span>--dns-name<span class="w"> </span>shopbd.example.com.<span class="w"> </span>--description<span class="w"> </span><span class="s2">"shopbd public zone"</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>gcloud<span class="w"> </span>dns<span class="w"> </span>record-sets<span class="w"> </span>create<span class="w"> </span>www.shopbd.example.com.<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span>--zone<span class="w"> </span>shopbd-zone<span class="w"> </span>--type<span class="w"> </span>A<span class="w"> </span>--ttl<span class="w"> </span><span class="m">300</span><span class="w"> </span>--rrdatas<span class="w"> </span><span class="m">203</span>.0.113.10
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1"># Registrar-এ বসানোর NS দেখা</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>gcloud<span class="w"> </span>dns<span class="w"> </span>managed-zones<span class="w"> </span>describe<span class="w"> </span>shopbd-zone<span class="w"> </span>--format<span class="o">=</span><span class="s1">'value(nameServers)'</span>
+</span></code></pre></div>
+<p>GCP-তে domain-এর শেষে <strong>ডট (<code>.</code>)</strong> দিতে হয় (fully qualified name)।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>az<span class="w"> </span>network<span class="w"> </span>dns<span class="w"> </span>zone<span class="w"> </span>create<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span>--name<span class="w"> </span>shopbd.example.com
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>az<span class="w"> </span>network<span class="w"> </span>dns<span class="w"> </span>record-set<span class="w"> </span>a<span class="w"> </span>add-record<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span>--zone-name<span class="w"> </span>shopbd.example.com<span class="w"> </span>--record-set-name<span class="w"> </span>www<span class="w"> </span>--ipv4-address<span class="w"> </span><span class="m">203</span>.0.113.10
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>az<span class="w"> </span>network<span class="w"> </span>dns<span class="w"> </span>zone<span class="w"> </span>show<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span>--name<span class="w"> </span>shopbd.example.com<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">  </span>--query<span class="w"> </span>nameServers
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>oci<span class="w"> </span>dns<span class="w"> </span>zone<span class="w"> </span>create<span class="w"> </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span>--name<span class="w"> </span>shopbd.example.com<span class="w"> </span>--zone-type<span class="w"> </span>PRIMARY
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>oci<span class="w"> </span>dns<span class="w"> </span>record<span class="w"> </span>rrset<span class="w"> </span>update<span class="w"> </span>--zone-name-or-id<span class="w"> </span>shopbd.example.com<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span>--domain<span class="w"> </span>www.shopbd.example.com<span class="w"> </span>--rtype<span class="w"> </span>A<span class="w"> </span>--items<span class="w"> </span>file://items.json
+</span></code></pre></div>
+<p><code>rrset update</code> সেই নামের সব A record <strong>প্রতিস্থাপন</strong> করে — <code>items.json</code>-এ পুরো তালিকা দিন (<code>domain</code>, <code>rtype</code>, <code>rdata</code>, <code>ttl</code>)।</p>
+</div>
+</div>
+</div>
+<h3 id="private-dns">Private DNS<a class="headerlink" href="#private-dns" title="Permanent link">&para;</a></h3>
+<p>ভেতরের নাম (<code>db.shopbd.internal</code>) শুধু VPC/VNet-এর ভেতরে resolve হবে, ইন্টারনেটে নয় — <strong>split-horizon</strong>। যেমন <code>shopbd-db.internal → 10.0.2.15</code>:
+AWS <strong>private hosted zone</strong> (VPC-র সাথে যুক্ত), GCP <strong>private managed zone</strong> (VPC network-এ visible), Azure <strong>Private DNS zone</strong> (VNet link), OCI <strong>private zone</strong> (VCN-এর DNS resolver view)।
+Private endpoint-এর (<a href="../05-networking/">Networking অধ্যায়</a>) জন্য private DNS প্রায় অপরিহার্য।</p>
+<h3 id="dns-routing-policy">DNS routing policy<a class="headerlink" href="#dns-routing-policy" title="Permanent link">&para;</a></h3>
+<p>Plain A record সবসময় এক উত্তর দেয়। Routing policy দিয়ে <strong>ব্যবহারকারী ও backend-এর অবস্থা</strong> দেখে উত্তর বদলানো যায়:</p>
+<table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>কাজ</th>
+<th>AWS Route 53</th>
+<th>GCP Cloud DNS</th>
+<th>Azure</th>
+<th>OCI Steering</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simple</td>
+<td>এক বা একাধিক fixed মান</td>
+<td>✓</td>
+<td>✓</td>
+<td>DNS zone</td>
+<td>✓</td>
+</tr>
+<tr>
+<td><strong>Weighted</strong></td>
+<td>শতাংশ ভাগে (canary, A/B)</td>
+<td>✓</td>
+<td>✓ (weighted round robin)</td>
+<td>Traffic Manager Weighted</td>
+<td>Load Balancer steering</td>
+</tr>
+<tr>
+<td><strong>Latency</strong></td>
+<td>সবচেয়ে কম latency-র region</td>
+<td>✓</td>
+<td>— (Geo দিয়ে)</td>
+<td>Traffic Manager Performance</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Failover</strong></td>
+<td>Primary মরলে secondary</td>
+<td>✓ (health check সহ)</td>
+<td>✓</td>
+<td>Traffic Manager Priority</td>
+<td>Failover steering</td>
+</tr>
+<tr>
+<td><strong>Geolocation</strong></td>
+<td>ব্যবহারকারীর দেশ/অঞ্চল</td>
+<td>✓</td>
+<td>✓</td>
+<td>Traffic Manager Geographic</td>
+<td>Geolocation steering</td>
+</tr>
+<tr>
+<td>Multi-value</td>
+<td>কয়েকটা healthy IP</td>
+<td>✓</td>
+<td>—</td>
+<td>Traffic Manager MultiValue</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Azure-এ DNS ও routing আলাদা</p>
+<p><strong>Azure DNS</strong> শুধু record রাখে। রাউটিং-বুদ্ধি (weighted, performance, failover) <strong>Traffic Manager</strong> (DNS-স্তরে) বা <strong>Front Door</strong> (HTTP-স্তরে, global L7) দেয়।
+OCI-তে এই কাজ <strong>Traffic Management Steering Policies</strong>-এ।</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">DNS failover-এর সীমা</p>
+<p>DNS-স্তরের failover <strong>TTL ও resolver cache</strong>-এর ওপর নির্ভর করে — কিছু client পুরোনো উত্তর ধরে রাখে। তাই সত্যিকারের দ্রুত failover-এ anycast global LB
+(GCP global LB, Front Door, CloudFront) বা Global Accelerator-ধরনের সমাধান ভালো। বিস্তারিত DR <a href="../19-architecture-ha-dr/">Architecture অধ্যায়ে</a>।</p>
+</div>
+<hr />
+<h2 id="৬-cdn">৬. CDN<a class="headerlink" href="#৬-cdn" title="Permanent link">&para;</a></h2>
+<p><strong>CDN (Content Delivery Network)</strong> পৃথিবীজুড়ে ছড়ানো <strong>edge location</strong>-এ আপনার content-এর কপি রাখে, যাতে ব্যবহারকারী নিকটতম edge থেকে পায়। ফল: কম latency, origin-এ কম চাপ, কম egress খরচ, আক্রমণ-প্রতিরোধ।</p>
+<div class="admonition example">
+<p class="admonition-title">Analogy</p>
+<p>ঢাকার একটা প্রকাশনীর বই সবাই কিনতে চট্টগ্রাম থেকে ঢাকায় আসে না — <strong>চট্টগ্রামের বইয়ের দোকানে</strong> কপি রাখা থাকে। দোকানে না থাকলে (cache miss) ঢাকা থেকে আনে (origin fetch), তারপর পরেরজন দোকান থেকেই পায়।</p>
+</div>
+<h3 id="মল-ধরণ">মূল ধারণা<a class="headerlink" href="#মল-ধরণ" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Origin:</strong> আসল source (bucket, load balancer, যেকোনো HTTP server)।</li>
+<li><strong>Cache key:</strong> কোন request একই ধরা হবে (URL, query string, header)।</li>
+<li><strong>TTL / <code>Cache-Control</code>:</strong> কত সময় cache থাকবে। Origin থেকে header দিয়ে নিয়ন্ত্রণ।</li>
+<li><strong>Invalidation/purge:</strong> মেয়াদের আগে cache মোছা (খরচ বা সীমা থাকতে পারে)।</li>
+<li><strong>Origin access control:</strong> Origin-কে শুধু CDN থেকে ঢোকার অনুমতি — bucket সরাসরি public না করে।</li>
+<li><strong>Signed URL/cookie:</strong> private content শুধু অনুমোদিত ব্যবহারকারীকে।</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Service</td>
+<td><strong>CloudFront</strong></td>
+<td><strong>Cloud CDN</strong> (external Application LB-এর সাথে যুক্ত); স্ট্রিমিং-এ <strong>Media CDN</strong></td>
+<td><strong>Azure Front Door</strong> (Standard/Premium)</td>
+<td>সরাসরি built-in general CDN নেই</td>
+</tr>
+<tr>
+<td>Origin</td>
+<td>S3, ALB, যেকোনো HTTP</td>
+<td>Backend service / bucket (Load Balancer-এর পিছনে)</td>
+<td>Blob, App Service, যেকোনো HTTP</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Origin সুরক্ষা</td>
+<td>Origin Access Control (OAC)</td>
+<td>LB-র IAM/signed URL</td>
+<td>Private Link origin, <code>X-Azure-FDID</code> header</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Purge</td>
+<td><code>create-invalidation</code></td>
+<td><code>invalidate-cdn-cache</code></td>
+<td><code>az afd endpoint purge</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>ফ্রি TLS cert</td>
+<td>✓ (ACM)</td>
+<td>✓</td>
+<td>✓ (managed cert)</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Azure CDN-এর পুরোনো নাম</p>
+<p>"Azure CDN"-এর পুরোনো ধরনগুলো (যেমন Edgio/Verizon-ভিত্তিক) অবসরে গেছে বা যাচ্ছে; নতুন কাজে <strong>Azure Front Door</strong> — যা CDN ও global L7 LB একসাথে।</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">OCI-তে CDN</p>
+<p>OCI-র সুপরিচিত নিজস্ব general-purpose CDN নেই। সাধারণ উপায়: OCI Object Storage/LB-কে origin করে <strong>third-party CDN</strong> (Cloudflare, Akamai, Fastly)
+সামনে বসানো; OCI WAF-ও edge-এ কিছু সুরক্ষা দেয়। বর্তমানে কী সুবিধা আছে <a href="https://docs.oracle.com/iaas/">OCI docs</a>-এ যাচাই করুন।</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="aws_3" name="__tabbed_4" type="radio" /><input id="gcp_3" name="__tabbed_4" type="radio" /><input id="azure_3" name="__tabbed_4" type="radio" /><input id="oci_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="aws_3">AWS</label><label for="gcp_3">GCP</label><label for="azure_3">Azure</label><label for="oci_3">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># ছোট কমান্ড-লাইন সংস্করণ: S3 origin-সহ distribution</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>aws<span class="w"> </span>cloudfront<span class="w"> </span>create-distribution<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span>--origin-domain-name<span class="w"> </span>shopbd-images.s3.ap-south-1.amazonaws.com<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">  </span>--default-root-object<span class="w"> </span>index.html
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="c1"># Cache মোছা</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>aws<span class="w"> </span>cloudfront<span class="w"> </span>create-invalidation<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">  </span>--distribution-id<span class="w"> </span>E123EXAMPLE<span class="w"> </span>--paths<span class="w"> </span><span class="s2">"/images/*"</span>
+</span></code></pre></div>
+<p>Production-এ distribution-config JSON (OAC, cache policy, ACM certificate) দিয়ে বানান। <strong>CloudFront-এর জন্য ACM certificate অবশ্যই <code>us-east-1</code> region-এ</strong> তৈরি করতে হয়।</p>
+</div>
+<div class="tabbed-block">
+<p>Cloud CDN আলাদা product-এর মতো নয় — <strong>load balancer-এর backend-এ চালু করা</strong> feature:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Bucket backend + CDN চালু</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>backend-buckets<span class="w"> </span>create<span class="w"> </span>shopbd-images-bb<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span>--gcs-bucket-name<span class="w"> </span>shopbd-images<span class="w"> </span>--enable-cdn
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="c1"># Instance/service backend-এ CDN চালু</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>backend-services<span class="w"> </span>update<span class="w"> </span>shopbd-backend<span class="w"> </span>--global<span class="w"> </span>--enable-cdn
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="c1"># Cache মোছা</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>url-maps<span class="w"> </span>invalidate-cdn-cache<span class="w"> </span>shopbd-urlmap<span class="w"> </span>--path<span class="w"> </span><span class="s2">"/images/*"</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>az<span class="w"> </span>afd<span class="w"> </span>profile<span class="w"> </span>create<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span>--profile-name<span class="w"> </span>shopbd-fd<span class="w"> </span>--sku<span class="w"> </span>Standard_AzureFrontDoor
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>az<span class="w"> </span>afd<span class="w"> </span>endpoint<span class="w"> </span>create<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">  </span>--profile-name<span class="w"> </span>shopbd-fd<span class="w"> </span>--endpoint-name<span class="w"> </span>shopbd<span class="w"> </span>--enabled-state<span class="w"> </span>Enabled
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>az<span class="w"> </span>afd<span class="w"> </span>endpoint<span class="w"> </span>purge<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">  </span>--profile-name<span class="w"> </span>shopbd-fd<span class="w"> </span>--endpoint-name<span class="w"> </span>shopbd<span class="w"> </span>--content-paths<span class="w"> </span><span class="s1">'/images/*'</span>
+</span></code></pre></div>
+<p>এরপর origin group, origin ও route যোগ করতে হয় (<code>az afd origin-group create</code>, <code>az afd origin create</code>, <code>az afd route create</code>)।</p>
+</div>
+<div class="tabbed-block">
+<p>OCI-তে native CDN না থাকায় সাধারণ ধারা: Object Storage bucket/LB-র public hostname বা <strong>pre-authenticated request (PAR)</strong> URL origin হিসেবে third-party CDN-এ বসানো। অথবা
+ছোট প্রজেক্টে OCI-র Object Storage সরাসরি, আর egress কম থাকার সুবিধা কাজে লাগানো (<a href="../06-storage/">Storage অধ্যায়</a>)।</p>
+</div>
+</div>
+</div>
+<h3 id="caching-এর-best-practice">Caching-এর best practice<a class="headerlink" href="#caching-এর-best-practice" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Static asset-এ লম্বা TTL + versioned ফাইলের নাম</strong> (<code>app.3f2a9c.js</code>) — বদলালে নাম বদলায়, invalidation লাগে না।</li>
+<li>HTML/API-তে ছোট TTL বা <code>no-store</code>; ব্যবহারকারী-ভিত্তিক response cache করবেন না।</li>
+<li><code>Cache-Control: public, max-age=31536000, immutable</code> — ছবি/CSS/JS-এর জন্য।</li>
+<li>Origin-কে সরাসরি public না রেখে শুধু CDN-এর জন্য খুলুন।</li>
+</ul>
+<hr />
+<h2 id="৭-tls-certificate-ও-https">৭. TLS Certificate ও HTTPS<a class="headerlink" href="#৭-tls-certificate-ও-https" title="Permanent link">&para;</a></h2>
+<p>HTTPS মানে HTTP + <strong>TLS</strong>; ব্রাউজার ও server-এর মধ্যে কথা এনক্রিপ্ট করে ও server-এর পরিচয় যাচাই করে। এর জন্য লাগে <strong>certificate</strong> (domain-এর নামে, trusted CA-র সই করা)।</p>
+<ul>
+<li><strong>TLS termination:</strong> LB/CDN-এ TLS খোলা — certificate সেখানে থাকে। Backend-এ plain HTTP বা (বেশি নিরাপদ) আবার TLS (end-to-end)।</li>
+<li><strong>Domain validation:</strong> আপনি domain-এর মালিক তা প্রমাণ — সাধারণত <strong>DNS validation</strong> (একটা CNAME/TXT record বসানো); এতে auto-renew নির্বিঘ্ন।</li>
+<li><strong>Auto-renewal:</strong> managed certificate cloud নিজে নবায়ন করে — মেয়াদোত্তীর্ণ certificate-এ সাইট নামার ঘটনা এতে এড়ানো যায়।</li>
+<li><strong>Wildcard</strong> (<code>*.shopbd.example.com</code>) একটা certificate-এ সব subdomain।</li>
+<li><strong>TLS policy:</strong> ন্যূনতম <strong>TLS 1.2</strong> (সম্ভব হলে 1.3); পুরোনো cipher বন্ধ। <strong>HSTS</strong> header দিয়ে ব্রাউজারকে সবসময় HTTPS-এ বাধ্য করা।</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Managed public cert</td>
+<td><strong>ACM</strong> (বিনা মূল্যে, auto-renew)</td>
+<td><strong>Certificate Manager</strong> / Google-managed cert</td>
+<td>App Service managed cert, Front Door managed cert; অন্যত্র <strong>Key Vault</strong> certificate</td>
+<td><strong>OCI Certificates</strong> (নিজের/imported ও private CA); public cert import করে বা Let's Encrypt</td>
+</tr>
+<tr>
+<td>কোথায় ব্যবহার</td>
+<td>ALB, NLB (TLS), CloudFront, API Gateway</td>
+<td>LB target proxy, Cloud CDN</td>
+<td>Front Door, App Gateway (Key Vault থেকে), App Service</td>
+<td>Load Balancer, API Gateway</td>
+</tr>
+<tr>
+<td>Private key export</td>
+<td>Public cert export <strong>যায় না</strong></td>
+<td>Google-managed export যায় না</td>
+<td>Key Vault-এ নিজের cert export-যোগ্য</td>
+<td>নিজের/imported cert-এ নিয়ন্ত্রণ আপনার</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>DNS / email</td>
+<td>DNS authorization / LB authorization</td>
+<td>CNAME/TXT domain validation</td>
+<td>নিজে/Let's Encrypt-এ ACME</td>
+</tr>
+</tbody>
+</table>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:4"><input checked="checked" id="aws_4" name="__tabbed_5" type="radio" /><input id="gcp_4" name="__tabbed_5" type="radio" /><input id="azure_4" name="__tabbed_5" type="radio" /><input id="oci_4" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="aws_4">AWS</label><label for="gcp_4">GCP</label><label for="azure_4">Azure</label><label for="oci_4">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>aws<span class="w"> </span>acm<span class="w"> </span>request-certificate<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span>--domain-name<span class="w"> </span>shopbd.example.com<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span>--subject-alternative-names<span class="w"> </span><span class="s2">"*.shopbd.example.com"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span>--validation-method<span class="w"> </span>DNS<span class="w"> </span>--region<span class="w"> </span>ap-south-1
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="c1"># Validation CNAME দেখা, তারপর Route 53-এ বসানো</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>aws<span class="w"> </span>acm<span class="w"> </span>describe-certificate<span class="w"> </span>--certificate-arn<span class="w"> </span>&lt;cert-arn&gt;<span class="w"> </span>--region<span class="w"> </span>ap-south-1
+</span></code></pre></div>
+<p>Route 53 ব্যবহার করলে Console-এ "Create records in Route 53" এক ক্লিকে validation record বসায়। CloudFront-এর জন্য <code>--region us-east-1</code>।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># DNS authorization + Google-managed certificate</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>gcloud<span class="w"> </span>certificate-manager<span class="w"> </span>dns-authorizations<span class="w"> </span>create<span class="w"> </span>shopbd-auth<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span>--domain<span class="w"> </span>shopbd.example.com
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>gcloud<span class="w"> </span>certificate-manager<span class="w"> </span>certificates<span class="w"> </span>create<span class="w"> </span>shopbd-cert<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">  </span>--domains<span class="w"> </span>shopbd.example.com<span class="w"> </span>--dns-authorizations<span class="w"> </span>shopbd-auth
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>gcloud<span class="w"> </span>certificate-manager<span class="w"> </span>maps<span class="w"> </span>create<span class="w"> </span>shopbd-certmap
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>gcloud<span class="w"> </span>certificate-manager<span class="w"> </span>maps<span class="w"> </span>entries<span class="w"> </span>create<span class="w"> </span>shopbd-entry<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">  </span>--map<span class="w"> </span>shopbd-certmap<span class="w"> </span>--hostname<span class="w"> </span>shopbd.example.com<span class="w"> </span>--certificates<span class="w"> </span>shopbd-cert
+</span></code></pre></div>
+<p><code>dns-authorizations describe</code> যে CNAME দেয় তা DNS zone-এ বসাতে হয়। পুরোনো সরল পথ: <code>gcloud compute ssl-certificates create ... --domains</code>।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Key Vault-এ certificate (Application Gateway এ ব্যবহারের জন্য)</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>az<span class="w"> </span>keyvault<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>shopbd-kv<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span>--location<span class="w"> </span>centralindia
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>az<span class="w"> </span>keyvault<span class="w"> </span>certificate<span class="w"> </span>create<span class="w"> </span>--vault-name<span class="w"> </span>shopbd-kv<span class="w"> </span>--name<span class="w"> </span>shopbd-cert<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span>--policy<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>az<span class="w"> </span>keyvault<span class="w"> </span>certificate<span class="w"> </span>get-default-policy<span class="k">)</span><span class="s2">"</span>
+</span></code></pre></div>
+<p><strong>Front Door</strong>-এ custom domain যোগ করলে managed certificate নিজে তৈরি ও নবায়ন হয়। App Gateway-তে Key Vault certificate ও managed identity দিয়ে TLS listener।</p>
+</div>
+<div class="tabbed-block">
+<p>Console: <strong>Identity &amp; Security → Certificates → Create certificate</strong> (imported, বা Certificate Authority থেকে issued)।
+Load Balancer-এর listener-এ সেই certificate বাছাই করা যায়। Public CA-র certificate হাতে এনে import করা বা ACME (Let's Encrypt) automation-ই সাধারণ।</p>
+</div>
+</div>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Certificate মেয়াদ ফুরানো — নীরব ঘাতক</p>
+<p>Manual certificate-এর মেয়াদ কেউ মনে রাখে না, একদিন সাইট "Not secure" দেখায়। সম্ভব হলে <strong>managed, auto-renew</strong> certificate ব্যবহার করুন;
+না পারলে certificate-এ expiry alarm বসান (<a href="../12-observability/">Observability অধ্যায়</a>)।</p>
+</div>
+<hr />
+<h2 id="৮-terraform">৮. Terraform<a class="headerlink" href="#৮-terraform" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:4"><input checked="checked" id="aws_5" name="__tabbed_6" type="radio" /><input id="gcp_5" name="__tabbed_6" type="radio" /><input id="azure_5" name="__tabbed_6" type="radio" /><input id="oci_5" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="aws_5">AWS</label><label for="gcp_5">GCP</label><label for="azure_5">Azure</label><label for="oci_5">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">"aws"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">  </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ap-south-1"</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="p">}</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_lb"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">  </span><span class="na">name</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-alb"</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">  </span><span class="na">load_balancer_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"application"</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">  </span><span class="na">subnets</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">var.public_subnet_ids</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">  </span><span class="na">security_groups</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nv">aws_security_group.alb.id</span><span class="p">]</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="p">}</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_lb_target_group"</span><span class="w"> </span><span class="nv">"api"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="w">  </span><span class="na">name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-api-tg"</span>
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="w">  </span><span class="na">port</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="m">8000</span>
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="w">  </span><span class="na">protocol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"HTTP"</span>
+</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="w">  </span><span class="na">vpc_id</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">var.vpc_id</span>
+</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>
+</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a><span class="w">  </span><span class="nb">health_check</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a><span class="w">    </span><span class="na">path</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"/healthz"</span>
+</span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a><span class="w">    </span><span class="na">matcher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"200"</span>
+</span><span id="__span-20-21"><a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-20-22"><a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a><span class="p">}</span>
+</span><span id="__span-20-23"><a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>
+</span><span id="__span-20-24"><a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_lb_listener"</span><span class="w"> </span><span class="nv">"https"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-25"><a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a><span class="w">  </span><span class="na">load_balancer_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_lb.shopbd.arn</span>
+</span><span id="__span-20-26"><a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a><span class="w">  </span><span class="na">port</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="m">443</span>
+</span><span id="__span-20-27"><a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a><span class="w">  </span><span class="na">protocol</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">"HTTPS"</span>
+</span><span id="__span-20-28"><a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a><span class="w">  </span><span class="na">certificate_arn</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_acm_certificate.shopbd.arn</span>
+</span><span id="__span-20-29"><a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a>
+</span><span id="__span-20-30"><a id="__codelineno-20-30" name="__codelineno-20-30" href="#__codelineno-20-30"></a><span class="w">  </span><span class="nb">default_action</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-31"><a id="__codelineno-20-31" name="__codelineno-20-31" href="#__codelineno-20-31"></a><span class="w">    </span><span class="na">type</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s2">"forward"</span>
+</span><span id="__span-20-32"><a id="__codelineno-20-32" name="__codelineno-20-32" href="#__codelineno-20-32"></a><span class="w">    </span><span class="na">target_group_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_lb_target_group.api.arn</span>
+</span><span id="__span-20-33"><a id="__codelineno-20-33" name="__codelineno-20-33" href="#__codelineno-20-33"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-20-34"><a id="__codelineno-20-34" name="__codelineno-20-34" href="#__codelineno-20-34"></a><span class="p">}</span>
+</span><span id="__span-20-35"><a id="__codelineno-20-35" name="__codelineno-20-35" href="#__codelineno-20-35"></a>
+</span><span id="__span-20-36"><a id="__codelineno-20-36" name="__codelineno-20-36" href="#__codelineno-20-36"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_autoscaling_group"</span><span class="w"> </span><span class="nv">"api"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-37"><a id="__codelineno-20-37" name="__codelineno-20-37" href="#__codelineno-20-37"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-api-asg"</span>
+</span><span id="__span-20-38"><a id="__codelineno-20-38" name="__codelineno-20-38" href="#__codelineno-20-38"></a><span class="w">  </span><span class="na">min_size</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+</span><span id="__span-20-39"><a id="__codelineno-20-39" name="__codelineno-20-39" href="#__codelineno-20-39"></a><span class="w">  </span><span class="na">max_size</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="m">6</span>
+</span><span id="__span-20-40"><a id="__codelineno-20-40" name="__codelineno-20-40" href="#__codelineno-20-40"></a><span class="w">  </span><span class="na">vpc_zone_identifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.private_subnet_ids</span>
+</span><span id="__span-20-41"><a id="__codelineno-20-41" name="__codelineno-20-41" href="#__codelineno-20-41"></a><span class="w">  </span><span class="na">target_group_arns</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nv">aws_lb_target_group.api.arn</span><span class="p">]</span>
+</span><span id="__span-20-42"><a id="__codelineno-20-42" name="__codelineno-20-42" href="#__codelineno-20-42"></a><span class="w">  </span><span class="na">health_check_type</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">"ELB"</span>
+</span><span id="__span-20-43"><a id="__codelineno-20-43" name="__codelineno-20-43" href="#__codelineno-20-43"></a>
+</span><span id="__span-20-44"><a id="__codelineno-20-44" name="__codelineno-20-44" href="#__codelineno-20-44"></a><span class="w">  </span><span class="nb">launch_template</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-45"><a id="__codelineno-20-45" name="__codelineno-20-45" href="#__codelineno-20-45"></a><span class="w">    </span><span class="na">id</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_launch_template.api.id</span>
+</span><span id="__span-20-46"><a id="__codelineno-20-46" name="__codelineno-20-46" href="#__codelineno-20-46"></a><span class="w">    </span><span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"$Latest"</span>
+</span><span id="__span-20-47"><a id="__codelineno-20-47" name="__codelineno-20-47" href="#__codelineno-20-47"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-20-48"><a id="__codelineno-20-48" name="__codelineno-20-48" href="#__codelineno-20-48"></a><span class="p">}</span>
+</span><span id="__span-20-49"><a id="__codelineno-20-49" name="__codelineno-20-49" href="#__codelineno-20-49"></a>
+</span><span id="__span-20-50"><a id="__codelineno-20-50" name="__codelineno-20-50" href="#__codelineno-20-50"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_route53_zone"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-51"><a id="__codelineno-20-51" name="__codelineno-20-51" href="#__codelineno-20-51"></a><span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd.example.com"</span>
+</span><span id="__span-20-52"><a id="__codelineno-20-52" name="__codelineno-20-52" href="#__codelineno-20-52"></a><span class="p">}</span>
+</span><span id="__span-20-53"><a id="__codelineno-20-53" name="__codelineno-20-53" href="#__codelineno-20-53"></a>
+</span><span id="__span-20-54"><a id="__codelineno-20-54" name="__codelineno-20-54" href="#__codelineno-20-54"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_route53_record"</span><span class="w"> </span><span class="nv">"apex"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-55"><a id="__codelineno-20-55" name="__codelineno-20-55" href="#__codelineno-20-55"></a><span class="w">  </span><span class="na">zone_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_route53_zone.shopbd.zone_id</span>
+</span><span id="__span-20-56"><a id="__codelineno-20-56" name="__codelineno-20-56" href="#__codelineno-20-56"></a><span class="w">  </span><span class="na">name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd.example.com"</span>
+</span><span id="__span-20-57"><a id="__codelineno-20-57" name="__codelineno-20-57" href="#__codelineno-20-57"></a><span class="w">  </span><span class="na">type</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"A"</span>
+</span><span id="__span-20-58"><a id="__codelineno-20-58" name="__codelineno-20-58" href="#__codelineno-20-58"></a>
+</span><span id="__span-20-59"><a id="__codelineno-20-59" name="__codelineno-20-59" href="#__codelineno-20-59"></a><span class="w">  </span><span class="nb">alias</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-60"><a id="__codelineno-20-60" name="__codelineno-20-60" href="#__codelineno-20-60"></a><span class="w">    </span><span class="na">name</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_lb.shopbd.dns_name</span>
+</span><span id="__span-20-61"><a id="__codelineno-20-61" name="__codelineno-20-61" href="#__codelineno-20-61"></a><span class="w">    </span><span class="na">zone_id</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_lb.shopbd.zone_id</span>
+</span><span id="__span-20-62"><a id="__codelineno-20-62" name="__codelineno-20-62" href="#__codelineno-20-62"></a><span class="w">    </span><span class="na">evaluate_target_health</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-20-63"><a id="__codelineno-20-63" name="__codelineno-20-63" href="#__codelineno-20-63"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-20-64"><a id="__codelineno-20-64" name="__codelineno-20-64" href="#__codelineno-20-64"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">"google"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">  </span><span class="na">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my-project-id"</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">  </span><span class="na">region</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"asia-south1"</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="p">}</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_compute_health_check"</span><span class="w"> </span><span class="nv">"api"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-hc"</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="w">  </span><span class="nb">http_health_check</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="w">    </span><span class="na">port</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="m">8000</span>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="w">    </span><span class="na">request_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/healthz"</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="p">}</span>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_compute_backend_service"</span><span class="w"> </span><span class="nv">"api"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a><span class="w">  </span><span class="na">name</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-backend"</span>
+</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="w">  </span><span class="na">protocol</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s2">"HTTP"</span>
+</span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="w">  </span><span class="na">load_balancing_scheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"EXTERNAL_MANAGED"</span>
+</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="w">  </span><span class="na">health_checks</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nv">google_compute_health_check.api.id</span><span class="p">]</span>
+</span><span id="__span-21-20"><a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a><span class="w">  </span><span class="na">enable_cdn</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a>
+</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a><span class="w">  </span><span class="nb">backend</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-21-23"><a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a><span class="w">    </span><span class="na">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">google_compute_region_instance_group_manager.api.instance_group</span>
+</span><span id="__span-21-24"><a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-21-25"><a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a><span class="p">}</span>
+</span><span id="__span-21-26"><a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a>
+</span><span id="__span-21-27"><a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_compute_url_map"</span><span class="w"> </span><span class="nv">"api"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-21-28"><a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a><span class="w">  </span><span class="na">name</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-urlmap"</span>
+</span><span id="__span-21-29"><a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a><span class="w">  </span><span class="na">default_service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">google_compute_backend_service.api.id</span>
+</span><span id="__span-21-30"><a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a><span class="p">}</span>
+</span><span id="__span-21-31"><a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a>
+</span><span id="__span-21-32"><a id="__codelineno-21-32" name="__codelineno-21-32" href="#__codelineno-21-32"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_compute_region_autoscaler"</span><span class="w"> </span><span class="nv">"api"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-21-33"><a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a><span class="w">  </span><span class="na">name</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-autoscaler"</span>
+</span><span id="__span-21-34"><a id="__codelineno-21-34" name="__codelineno-21-34" href="#__codelineno-21-34"></a><span class="w">  </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"asia-south1"</span>
+</span><span id="__span-21-35"><a id="__codelineno-21-35" name="__codelineno-21-35" href="#__codelineno-21-35"></a><span class="w">  </span><span class="na">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">google_compute_region_instance_group_manager.api.id</span>
+</span><span id="__span-21-36"><a id="__codelineno-21-36" name="__codelineno-21-36" href="#__codelineno-21-36"></a>
+</span><span id="__span-21-37"><a id="__codelineno-21-37" name="__codelineno-21-37" href="#__codelineno-21-37"></a><span class="w">  </span><span class="nb">autoscaling_policy</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-21-38"><a id="__codelineno-21-38" name="__codelineno-21-38" href="#__codelineno-21-38"></a><span class="w">    </span><span class="na">min_replicas</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+</span><span id="__span-21-39"><a id="__codelineno-21-39" name="__codelineno-21-39" href="#__codelineno-21-39"></a><span class="w">    </span><span class="na">max_replicas</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">6</span>
+</span><span id="__span-21-40"><a id="__codelineno-21-40" name="__codelineno-21-40" href="#__codelineno-21-40"></a><span class="w">    </span><span class="na">cooldown_period</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">90</span>
+</span><span id="__span-21-41"><a id="__codelineno-21-41" name="__codelineno-21-41" href="#__codelineno-21-41"></a>
+</span><span id="__span-21-42"><a id="__codelineno-21-42" name="__codelineno-21-42" href="#__codelineno-21-42"></a><span class="w">    </span><span class="nb">cpu_utilization</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-21-43"><a id="__codelineno-21-43" name="__codelineno-21-43" href="#__codelineno-21-43"></a><span class="w">      </span><span class="na">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">0.6</span>
+</span><span id="__span-21-44"><a id="__codelineno-21-44" name="__codelineno-21-44" href="#__codelineno-21-44"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-21-45"><a id="__codelineno-21-45" name="__codelineno-21-45" href="#__codelineno-21-45"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-21-46"><a id="__codelineno-21-46" name="__codelineno-21-46" href="#__codelineno-21-46"></a><span class="p">}</span>
+</span><span id="__span-21-47"><a id="__codelineno-21-47" name="__codelineno-21-47" href="#__codelineno-21-47"></a>
+</span><span id="__span-21-48"><a id="__codelineno-21-48" name="__codelineno-21-48" href="#__codelineno-21-48"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_dns_managed_zone"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-21-49"><a id="__codelineno-21-49" name="__codelineno-21-49" href="#__codelineno-21-49"></a><span class="w">  </span><span class="na">name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-zone"</span>
+</span><span id="__span-21-50"><a id="__codelineno-21-50" name="__codelineno-21-50" href="#__codelineno-21-50"></a><span class="w">  </span><span class="na">dns_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd.example.com."</span>
+</span><span id="__span-21-51"><a id="__codelineno-21-51" name="__codelineno-21-51" href="#__codelineno-21-51"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>HTTPS proxy, forwarding rule ও certificate resource-ও লাগে (<code>google_compute_target_https_proxy</code>, <code>google_compute_global_forwarding_rule</code>)।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">"azurerm"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span><span class="nb">features</span><span class="w"> </span><span class="p">{}</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="p">}</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_public_ip"</span><span class="w"> </span><span class="nv">"lb"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-lb-ip"</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">  </span><span class="na">location</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">"centralindia"</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-rg"</span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="w">  </span><span class="na">allocation_method</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">"Static"</span>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="w">  </span><span class="na">sku</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s2">"Standard"</span>
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="p">}</span>
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_lb"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-lb"</span>
+</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="w">  </span><span class="na">location</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">"centralindia"</span>
+</span><span id="__span-22-16"><a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-rg"</span>
+</span><span id="__span-22-17"><a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="w">  </span><span class="na">sku</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s2">"Standard"</span>
+</span><span id="__span-22-18"><a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a>
+</span><span id="__span-22-19"><a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a><span class="w">  </span><span class="nb">frontend_ip_configuration</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-20"><a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a><span class="w">    </span><span class="na">name</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s2">"fe"</span>
+</span><span id="__span-22-21"><a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a><span class="w">    </span><span class="na">public_ip_address_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_public_ip.lb.id</span>
+</span><span id="__span-22-22"><a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-22-23"><a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a><span class="p">}</span>
+</span><span id="__span-22-24"><a id="__codelineno-22-24" name="__codelineno-22-24" href="#__codelineno-22-24"></a>
+</span><span id="__span-22-25"><a id="__codelineno-22-25" name="__codelineno-22-25" href="#__codelineno-22-25"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_lb_probe"</span><span class="w"> </span><span class="nv">"api"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-26"><a id="__codelineno-22-26" name="__codelineno-22-26" href="#__codelineno-22-26"></a><span class="w">  </span><span class="na">loadbalancer_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_lb.shopbd.id</span>
+</span><span id="__span-22-27"><a id="__codelineno-22-27" name="__codelineno-22-27" href="#__codelineno-22-27"></a><span class="w">  </span><span class="na">name</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">"hc"</span>
+</span><span id="__span-22-28"><a id="__codelineno-22-28" name="__codelineno-22-28" href="#__codelineno-22-28"></a><span class="w">  </span><span class="na">protocol</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">"Http"</span>
+</span><span id="__span-22-29"><a id="__codelineno-22-29" name="__codelineno-22-29" href="#__codelineno-22-29"></a><span class="w">  </span><span class="na">port</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="m">8000</span>
+</span><span id="__span-22-30"><a id="__codelineno-22-30" name="__codelineno-22-30" href="#__codelineno-22-30"></a><span class="w">  </span><span class="na">request_path</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"/healthz"</span>
+</span><span id="__span-22-31"><a id="__codelineno-22-31" name="__codelineno-22-31" href="#__codelineno-22-31"></a><span class="p">}</span>
+</span><span id="__span-22-32"><a id="__codelineno-22-32" name="__codelineno-22-32" href="#__codelineno-22-32"></a>
+</span><span id="__span-22-33"><a id="__codelineno-22-33" name="__codelineno-22-33" href="#__codelineno-22-33"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_dns_zone"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-34"><a id="__codelineno-22-34" name="__codelineno-22-34" href="#__codelineno-22-34"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd.example.com"</span>
+</span><span id="__span-22-35"><a id="__codelineno-22-35" name="__codelineno-22-35" href="#__codelineno-22-35"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-rg"</span>
+</span><span id="__span-22-36"><a id="__codelineno-22-36" name="__codelineno-22-36" href="#__codelineno-22-36"></a><span class="p">}</span>
+</span><span id="__span-22-37"><a id="__codelineno-22-37" name="__codelineno-22-37" href="#__codelineno-22-37"></a>
+</span><span id="__span-22-38"><a id="__codelineno-22-38" name="__codelineno-22-38" href="#__codelineno-22-38"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_dns_a_record"</span><span class="w"> </span><span class="nv">"www"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-39"><a id="__codelineno-22-39" name="__codelineno-22-39" href="#__codelineno-22-39"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">"www"</span>
+</span><span id="__span-22-40"><a id="__codelineno-22-40" name="__codelineno-22-40" href="#__codelineno-22-40"></a><span class="w">  </span><span class="na">zone_name</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_dns_zone.shopbd.name</span>
+</span><span id="__span-22-41"><a id="__codelineno-22-41" name="__codelineno-22-41" href="#__codelineno-22-41"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-rg"</span>
+</span><span id="__span-22-42"><a id="__codelineno-22-42" name="__codelineno-22-42" href="#__codelineno-22-42"></a><span class="w">  </span><span class="na">ttl</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="m">300</span>
+</span><span id="__span-22-43"><a id="__codelineno-22-43" name="__codelineno-22-43" href="#__codelineno-22-43"></a><span class="w">  </span><span class="na">records</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nv">azurerm_public_ip.lb.ip_address</span><span class="p">]</span>
+</span><span id="__span-22-44"><a id="__codelineno-22-44" name="__codelineno-22-44" href="#__codelineno-22-44"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>VMSS autoscale-এর জন্য <code>azurerm_monitor_autoscale_setting</code>; Application Gateway ও Front Door-এর জন্য <code>azurerm_application_gateway</code>, <code>azurerm_cdn_frontdoor_profile</code>।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">"oci"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">  </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ap-mumbai-1"</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="p">}</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="kr">variable</span><span class="w"> </span><span class="nv">"compartment_id"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">  </span><span class="na">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ocid1.compartment.oc1..example"</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="p">}</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"oci_load_balancer_load_balancer"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="w">  </span><span class="na">compartment_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.compartment_id</span>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="w">  </span><span class="na">display_name</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-lb"</span>
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="w">  </span><span class="na">shape</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">"flexible"</span>
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a><span class="w">  </span><span class="na">subnet_ids</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nv">var.public_subnet_id</span><span class="p">]</span>
+</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a>
+</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a><span class="w">  </span><span class="nb">shape_details</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-16"><a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a><span class="w">    </span><span class="na">minimum_bandwidth_in_mbps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
+</span><span id="__span-23-17"><a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a><span class="w">    </span><span class="na">maximum_bandwidth_in_mbps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span>
+</span><span id="__span-23-18"><a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-23-19"><a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a><span class="p">}</span>
+</span><span id="__span-23-20"><a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a>
+</span><span id="__span-23-21"><a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"oci_dns_zone"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-22"><a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a><span class="w">  </span><span class="na">compartment_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.compartment_id</span>
+</span><span id="__span-23-23"><a id="__codelineno-23-23" name="__codelineno-23-23" href="#__codelineno-23-23"></a><span class="w">  </span><span class="na">name</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd.example.com"</span>
+</span><span id="__span-23-24"><a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a><span class="w">  </span><span class="na">zone_type</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">"PRIMARY"</span>
+</span><span id="__span-23-25"><a id="__codelineno-23-25" name="__codelineno-23-25" href="#__codelineno-23-25"></a><span class="p">}</span>
+</span><span id="__span-23-26"><a id="__codelineno-23-26" name="__codelineno-23-26" href="#__codelineno-23-26"></a>
+</span><span id="__span-23-27"><a id="__codelineno-23-27" name="__codelineno-23-27" href="#__codelineno-23-27"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"oci_dns_rrset"</span><span class="w"> </span><span class="nv">"www"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-28"><a id="__codelineno-23-28" name="__codelineno-23-28" href="#__codelineno-23-28"></a><span class="w">  </span><span class="na">zone_name_or_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">oci_dns_zone.shopbd.name</span>
+</span><span id="__span-23-29"><a id="__codelineno-23-29" name="__codelineno-23-29" href="#__codelineno-23-29"></a><span class="w">  </span><span class="na">domain</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">"www.shopbd.example.com"</span>
+</span><span id="__span-23-30"><a id="__codelineno-23-30" name="__codelineno-23-30" href="#__codelineno-23-30"></a><span class="w">  </span><span class="na">rtype</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s2">"A"</span>
+</span><span id="__span-23-31"><a id="__codelineno-23-31" name="__codelineno-23-31" href="#__codelineno-23-31"></a>
+</span><span id="__span-23-32"><a id="__codelineno-23-32" name="__codelineno-23-32" href="#__codelineno-23-32"></a><span class="w">  </span><span class="nb">items</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-33"><a id="__codelineno-23-33" name="__codelineno-23-33" href="#__codelineno-23-33"></a><span class="w">    </span><span class="na">domain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"www.shopbd.example.com"</span>
+</span><span id="__span-23-34"><a id="__codelineno-23-34" name="__codelineno-23-34" href="#__codelineno-23-34"></a><span class="w">    </span><span class="na">rtype</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"A"</span>
+</span><span id="__span-23-35"><a id="__codelineno-23-35" name="__codelineno-23-35" href="#__codelineno-23-35"></a><span class="w">    </span><span class="na">rdata</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"203.0.113.10"</span>
+</span><span id="__span-23-36"><a id="__codelineno-23-36" name="__codelineno-23-36" href="#__codelineno-23-36"></a><span class="w">    </span><span class="na">ttl</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">300</span>
+</span><span id="__span-23-37"><a id="__codelineno-23-37" name="__codelineno-23-37" href="#__codelineno-23-37"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-23-38"><a id="__codelineno-23-38" name="__codelineno-23-38" href="#__codelineno-23-38"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Backend set, listener ও certificate-এর জন্য <code>oci_load_balancer_backend_set</code>, <code>oci_load_balancer_listener</code> resource। Instance pool autoscale: <code>oci_autoscaling_auto_scaling_configuration</code>।</p>
+</div>
+</div>
+</div>
+<hr />
+<h2 id="মল-ও-অমল">মিল ও অমিল<a class="headerlink" href="#মল-ও-অমল" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Global LB</td>
+<td>ALB regional; global-এর জন্য CloudFront/Global Accelerator</td>
+<td><strong>একটা global anycast LB</strong> (সবচেয়ে সরল)</td>
+<td>Front Door (global) + App Gateway (regional)</td>
+<td>Regional; global-এ DNS steering</td>
+</tr>
+<tr>
+<td>LB-এর "গঠন"</td>
+<td>Target group + listener (সহজ)</td>
+<td>অনেকগুলো আলাদা resource (forwarding rule, proxy, URL map, backend service)</td>
+<td>Gateway-র জন্য dedicated subnet</td>
+<td>Backend set + listener</td>
+</tr>
+<tr>
+<td>Autoscale group</td>
+<td>ASG</td>
+<td>MIG</td>
+<td>VMSS + Monitor autoscale</td>
+<td>Instance pool + config</td>
+</tr>
+<tr>
+<td>DNS-এ routing বুদ্ধি</td>
+<td>Route 53-এই (সবচেয়ে সমৃদ্ধ)</td>
+<td>Cloud DNS routing policy</td>
+<td><strong>আলাদা</strong> Traffic Manager</td>
+<td>Steering Policy</td>
+</tr>
+<tr>
+<td>CDN</td>
+<td>CloudFront (আলাদা, পরিণত)</td>
+<td>Cloud CDN <strong>LB-র feature</strong></td>
+<td>Front Door (CDN + LB)</td>
+<td>নিজস্ব নেই</td>
+</tr>
+<tr>
+<td>Cert</td>
+<td>ACM (CloudFront → us-east-1)</td>
+<td>Certificate Manager</td>
+<td>Key Vault / managed</td>
+<td>OCI Certificates</td>
+</tr>
+</tbody>
+</table>
+<h3 id="যসব-জযগয-মনষ-হচট-খয">যেসব জায়গায় মানুষ হোঁচট খায়<a class="headerlink" href="#যসব-জযগয-মনষ-হচট-খয" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>AWS:</strong> ALB-কে অন্তত <strong>দুই AZ</strong>-এর subnet লাগে। CloudFront-এর ACM cert <code>us-east-1</code>-এ — ALB-এর cert আপনার region-এ। ALB-র security group ও backend SG-র সম্পর্ক ভুল হলে health check ব্যর্থ।</li>
+<li><strong>GCP:</strong> LB মানে অনেক resource — একটা বাদ পড়লে কাজ করে না। Health-check IP range firewall-এ না খুললে সব backend unhealthy। Google-managed cert চালু হতে <strong>DNS পয়েন্ট করার পর</strong> কিছু সময় লাগে (provisioning)।</li>
+<li><strong>Azure:</strong> Application Gateway-র <strong>dedicated subnet</strong> চাই। Load Balancer Standard SKU <strong>default-এ বন্ধ</strong> (secure by default) — NSG-তে স্পষ্ট allow না দিলে traffic ঢোকে না। Autoscale-এ out ও in rule আলাদা।</li>
+<li><strong>OCI:</strong> LB, NLB আলাদা service; Flexible shape-এ bandwidth min/max ভুলে ছোট রাখলে throttle। Security list/NSG-তে LB↔backend allow দিতে ভুললে 502।</li>
+<li><strong>সব cloud:</strong> DNS বদলের পর পুরোনো উত্তর TTL পর্যন্ত cache — migration-এ আগে TTL কমান।</li>
+</ul>
+<hr />
+<h2 id="real-world-shopbd">Real-world: shopbd<a class="headerlink" href="#real-world-shopbd" title="Permanent link">&para;</a></h2>
+<p><code>shopbd</code> একটা বাংলাদেশি দোকান — বেশিরভাগ ব্যবহারকারী বাংলাদেশে, বিকেলে-সন্ধ্যায় ভিড়, ঈদ-সেলে হঠাৎ কয়েক গুণ। তাই পরিকল্পনা:</p>
+<pre class="mermaid"><code>flowchart LR
+    U["ক্রেতা (BD)"] --&gt; DNS["DNS: shopbd.example.com"]
+    DNS --&gt; CDN["CDN: ছবি, CSS, JS"]
+    CDN --&gt; LB["HTTPS Load Balancer (TLS, WAF)"]
+    LB --&gt; API["shopbd-api (autoscaling ২–৬)"]
+    CDN --&gt;|"ছবি cache miss"| IMG["shopbd-images (object storage)"]
+    API --&gt; DB[("shopbd-db")]</code></pre>
+<table>
+<thead>
+<tr>
+<th>উপাদান</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DNS</td>
+<td>Route 53 (<code>shopbd.example.com</code>)</td>
+<td>Cloud DNS</td>
+<td>Azure DNS</td>
+<td>OCI DNS</td>
+</tr>
+<tr>
+<td>CDN (ছবি/static)</td>
+<td>CloudFront → S3 <code>shopbd-images</code> (OAC)</td>
+<td>Cloud CDN → backend bucket</td>
+<td>Front Door → Blob</td>
+<td>Third-party CDN → Object Storage</td>
+</tr>
+<tr>
+<td>LB</td>
+<td>ALB (HTTPS, ACM)</td>
+<td>Global Application LB (managed cert)</td>
+<td>Application Gateway বা Front Door</td>
+<td>Load Balancer (flexible)</td>
+</tr>
+<tr>
+<td>API scaling</td>
+<td>ASG ২–৬, CPU ৫০% target; বা ECS/Lambda</td>
+<td>MIG ২–৬ / Cloud Run</td>
+<td>VMSS ২–৬ / Container Apps</td>
+<td>Instance Pool ২–৬</td>
+</tr>
+<tr>
+<td>Health check</td>
+<td><code>/healthz</code></td>
+<td><code>/healthz</code></td>
+<td><code>/healthz</code></td>
+<td><code>/healthz</code></td>
+</tr>
+<tr>
+<td>Certificate</td>
+<td>ACM wildcard</td>
+<td>Google-managed</td>
+<td>Managed/Key Vault</td>
+<td>OCI Certificates</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">ঈদ-সেলের আগে</p>
+<p>১) <strong>Scheduled scaling</strong> দিয়ে সেলের দিন আগেই min বাড়ান। ২) <strong>Load test</strong> করে max ঠিক করুন ও vCPU quota বাড়ান। ৩) DNS TTL কমান যাতে সমস্যায় দ্রুত সরানো যায়।
+৪) CDN cache শক্ত করুন যাতে ছবি-ভিড় origin-এ না পড়ে। ৫) Database ও cache আগে থেকে প্রস্তুত রাখুন (<a href="../07-databases/">Database অধ্যায়</a>)।</p>
+</div>
+<hr />
+<h2 id="best-practices">Best practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>LB সবসময় একাধিক AZ/zone জুড়ে</strong>; backend private subnet-এ।</li>
+<li><strong>HTTPS সর্বত্র</strong> — HTTP→HTTPS redirect, TLS ≥ 1.2, HSTS।</li>
+<li><strong>Managed, auto-renew certificate</strong>; expiry alarm বসান।</li>
+<li><strong>হালকা <code>/healthz</code></strong> ও যুক্তিসঙ্গত threshold; Health-check firewall আগে খুলুন।</li>
+<li><strong>Autoscaling: target tracking দিয়ে শুরু</strong>; min ≥ ২ (HA), max নির্ধারণ; scale in ধীরে।</li>
+<li><strong>Stateless</strong> instance — session cache-এ, ফাইল object storage-এ।</li>
+<li><strong>DNS-এ IaC</strong>; migration-এর আগে TTL কমান; apex-এ alias ব্যবহার।</li>
+<li><strong>CDN-এ versioned asset + লম্বা TTL</strong>; origin-কে শুধু CDN-এর জন্য খুলুন।</li>
+<li><strong>WAF ও DDoS সুরক্ষা</strong> LB/CDN-এ (<a href="../13-security/">Security অধ্যায়</a>)।</li>
+<li><strong>Access log চালু</strong> (LB, CDN) — সমস্যা বিশ্লেষণে অমূল্য (<a href="../12-observability/">Observability অধ্যায়</a>)।</li>
+</ul>
+<hr />
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ভুল</th>
+<th>ফল</th>
+<th>সমাধান</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Health-check IP/SG firewall-এ বন্ধ</td>
+<td>সব backend unhealthy, ৫০২/৫০৩</td>
+<td>LB probe-এর source allow</td>
+</tr>
+<tr>
+<td><code>/healthz</code> DB-কে ডাকে, DB ধীর</td>
+<td>সব instance একসাথে unhealthy, পুরো সাইট নামে</td>
+<td>Shallow health check; deep check আলাদা</td>
+</tr>
+<tr>
+<td>Autoscaling min = ১</td>
+<td>একটা মরলে সাইট বন্ধ</td>
+<td>min ≥ ২, multi-AZ</td>
+</tr>
+<tr>
+<td>Scale out ও in-এ একই threshold</td>
+<td>Flapping (বাড়ে-কমে)</td>
+<td>আলাদা threshold ও cooldown</td>
+</tr>
+<tr>
+<td>Session instance-এর memory-তে</td>
+<td>Scale in/LB-তে login হারায়</td>
+<td>Redis/DB session</td>
+</tr>
+<tr>
+<td>Backend instance public IP-সহ খোলা</td>
+<td>LB এড়িয়ে সরাসরি আক্রমণ</td>
+<td>Private subnet, SG শুধু LB থেকে</td>
+</tr>
+<tr>
+<td>Certificate হাতে নবায়ন</td>
+<td>মেয়াদ ফুরিয়ে সাইট "Not secure"</td>
+<td>Managed cert / ACME / alarm</td>
+</tr>
+<tr>
+<td>CloudFront-এ ACM cert ভুল region-এ</td>
+<td>Certificate দেখায় না</td>
+<td><code>us-east-1</code>-এ বানান</td>
+</tr>
+<tr>
+<td>DNS TTL ২৪ ঘণ্টা রেখে migration</td>
+<td>পুরোনো IP-তে traffic যেতে থাকে</td>
+<td>আগেই TTL কমান</td>
+</tr>
+<tr>
+<td>CDN-এ ব্যবহারকারী-ভিত্তিক response cache</td>
+<td>অন্যের ডেটা দেখা — গুরুতর!</td>
+<td><code>Cache-Control: private/no-store</code>, cache key ঠিক</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ইনটরভউ--সরটফকশন-টপস">ইন্টারভিউ / সার্টিফিকেশন টিপস<a class="headerlink" href="#ইনটরভউ--সরটফকশন-টপস" title="Permanent link">&para;</a></h2>
+<details class="question">
+<summary>L4 ও L7 load balancer-এর পার্থক্য?</summary>
+<p>L4 TCP/UDP-স্তরে IP-port দেখে দ্রুত forward করে (static IP, যেকোনো protocol)। L7 HTTP-স্তরে host/path/header দেখে routing, TLS termination, redirect, WAF দেয়। Web app-এ সাধারণত L7 (ALB/Application LB/App Gateway); non-HTTP বা চরম পারফরম্যান্সে L4 (NLB)।</p>
+</details>
+<details class="question">
+<summary>Health check ভুল হলে কী হয়?</summary>
+<p>Healthy backend-কেও unhealthy ধরে সরিয়ে দিলে সব সরে গিয়ে সাইট নামে। সাধারণ কারণ: probe source firewall-এ বন্ধ, ভুল path/port, বা health endpoint-এ ভারী dependency check।</p>
+</details>
+<details class="question">
+<summary>Scale out ও scale up-এর পার্থক্য? কোনটা cloud-এ পছন্দের?</summary>
+<p>Scale out = instance সংখ্যা বাড়ানো (horizontal); scale up = instance বড় করা (vertical, restart ও সীমা আছে)। Stateless app-এ scale out পছন্দের কারণ HA ও প্রায় অসীম বাড়ানো যায়।</p>
+</details>
+<details class="question">
+<summary>Target tracking ও step scaling-এর পার্থক্য?</summary>
+<p>Target tracking একটা metric লক্ষ্যে ধরে রাখে ("CPU ৫০%"), সংখ্যা নিজে হিসাব করে — সহজ। Step scaling-এ আপনি threshold ও কতটা যোগ হবে নিজে নির্ধারণ করেন — বেশি নিয়ন্ত্রণ, বেশি পরিশ্রম।</p>
+</details>
+<details class="question">
+<summary>Root domain-এ CNAME কেন চলে না, কী করবেন?</summary>
+<p>DNS spec অনুযায়ী apex-এ NS/SOA থাকে, তাই CNAME থাকতে পারে না। Cloud-এর alias record (Route 53 Alias, Azure alias record set, OCI ALIAS) বা LB-র IP-তে A record ব্যবহার করুন।</p>
+</details>
+<details class="question">
+<summary>Route 53 routing policy-গুলো কী কী, কখন কোনটা?</summary>
+<p>Simple, Weighted (canary), Latency (সবচেয়ে কাছের region), Failover (health check সহ), Geolocation (দেশ অনুযায়ী/আইনি কারণে), Geoproximity, Multi-value। Azure-এ সমতুল্য Traffic Manager, OCI-তে Steering Policy।</p>
+</details>
+<details class="question">
+<summary>CDN কীভাবে origin-এর চাপ কমায়?</summary>
+<p>Edge-এ cache থাকায় বেশিরভাগ request origin-এ যায় না (cache hit)। ফল: কম latency, কম origin load ও egress খরচ, DDoS শোষণ। Versioned asset ও লম্বা TTL-এ hit ratio সর্বোচ্চ।</p>
+</details>
+<details class="question">
+<summary>CloudFront-এর certificate কোন region-এ?</summary>
+<p><code>us-east-1</code> (N. Virginia)-এ ACM-এ তৈরি করতে হয়, কারণ CloudFront global service।</p>
+</details>
+<p><strong>সার্টিফিকেশন-সংযোগ:</strong> AWS SAA (ELB, Auto Scaling, Route 53, CloudFront), Google ACE/Professional Cloud Architect (LB, MIG, Cloud DNS, CDN), Azure AZ-104 (Load Balancer, App Gateway, VMSS, DNS, Front Door), OCI Architect Associate (LB, Instance Pool, DNS)।</p>
+<hr />
+<h2 id="সরসকষপ">সারসংক্ষেপ<a class="headerlink" href="#সরসকষপ" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Load balancer</strong> ভিড় ভাগ করে ও মরা backend সরায়; <strong>L7</strong> (ALB / Application LB / App Gateway / OCI LB) HTTP বোঝে, <strong>L4</strong> (NLB / Network LB / Azure LB / OCI NLB) দ্রুত ও সাধারণ।</li>
+<li><strong>Health check</strong> ঠিক না হলে সাইট নামে — probe firewall খুলুন, endpoint হালকা রাখুন।</li>
+<li><strong>Autoscaling</strong> (ASG / MIG / VMSS / Instance Pool): target tracking, schedule, min ≥ ২, max সীমা; app stateless।</li>
+<li><strong>DNS</strong> (Route 53 / Cloud DNS / Azure DNS / OCI DNS): record, TTL, apex alias, private zone, routing policy (weighted, latency, failover, geo) — Azure-এ Traffic Manager, OCI-তে Steering।</li>
+<li><strong>CDN</strong> (CloudFront / Cloud CDN / Front Door / OCI-তে third-party) edge-এ cache করে; versioned asset ও লম্বা TTL।</li>
+<li><strong>TLS:</strong> managed auto-renew certificate (ACM / Certificate Manager / Front Door-Key Vault / OCI Certificates), TLS ≥ 1.2, HTTPS redirect।</li>
+<li><code>shopbd</code>-র জন্য: DNS → CDN → HTTPS LB → autoscaling API → managed DB; ঈদ-সেলের আগে scheduled scaling ও load test।</li>
+</ul>
+<p>পরের অধ্যায়: <a href="../11-messaging-and-events/">11 · Messaging ও Event</a>।</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  উপরে ফিরে যাও
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="ফুটার" >
+        
+          
+          <a href="../09-serverless/" class="md-footer__link md-footer__link--prev" aria-label="পূর্ববর্তী: 09 · Serverless">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পূর্ববর্তী
+              </span>
+              <div class="md-ellipsis">
+                09 · Serverless
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../11-messaging-and-events/" class="md-footer__link md-footer__link--next" aria-label="পরে: 11 · Messaging ও Event">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পরে
+              </span>
+              <div class="md-ellipsis">
+                11 · Messaging ও Event
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Hasib Ahmed — Cloud বাংলা ডকুমেন্টেশন
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Hasib105/cloud-bangla-docs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u09b9\u09df\u09c7\u099b\u09c7", "clipboard.copy": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u0995\u09b0\u09c1\u09a8", "search.result.more.one": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 \u09e7\u099f\u09bf \u0986\u099b\u09c7", "search.result.more.other": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 #\u099f\u09bf \u0986\u099b\u09c7", "search.result.none": "\u0995\u09bf\u099b\u09c1 \u09aa\u09be\u0993\u09df\u09be \u09af\u09be\u09df\u09a8\u09bf", "search.result.one": "\u09e7 \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.other": "# \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.placeholder": "\u09b8\u09be\u09b0\u09cd\u099a \u099f\u09be\u0987\u09aa \u0995\u09b0\u09c1\u09a8", "search.result.term.missing": "\u0985\u09a8\u09c1\u09aa\u09b8\u09cd\u09a5\u09bf\u09a4", "select.version": "\u09b8\u0982\u09b8\u09cd\u0995\u09b0\u09a3 \u09a8\u09bf\u09b0\u09cd\u09ac\u09be\u099a\u09a8 \u0995\u09b0\u09c1\u09a3"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

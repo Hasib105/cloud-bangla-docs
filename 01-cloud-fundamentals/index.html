@@ -1,0 +1,3929 @@
+
+<!doctype html>
+<html lang="bn" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="এক টপিক, চার cloud — AWS, Google Cloud, Microsoft Azure ও Oracle Cloud (OCI) শূন্য থেকে অ্যাডভান্স, পাশাপাশি তুলনাসহ সম্পূর্ণ বাংলা ডকুমেন্টেশন।">
+      
+      
+        <meta name="author" content="Hasib Ahmed">
+      
+      
+        <link rel="canonical" href="https://hasib105.github.io/cloud-bangla-docs/01-cloud-fundamentals/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../02-accounts-and-hierarchy/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>01 · Cloud-এর ভিত্তি - Cloud বাংলা — AWS · GCP · Azure · OCI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M6.5%2020q-2.28%200-3.89-1.57Q1%2016.85%201%2014.58q0-1.95%201.17-3.48%201.18-1.53%203.08-1.95.63-2.3%202.5-3.72Q9.63%204%2012%204q2.93%200%204.96%202.04Q19%208.07%2019%2011q1.73.2%202.86%201.5%201.14%201.28%201.14%203%200%201.88-1.31%203.19T18.5%2020m-12-2h12q1.05%200%201.77-.73.73-.72.73-1.77t-.73-1.77Q19.55%2013%2018.5%2013H17v-2q0-2.07-1.46-3.54Q14.08%206%2012%206%209.93%206%208.46%207.46%207%208.93%207%2011h-.5q-1.45%200-2.47%201.03Q3%2013.05%203%2014.5T4.03%2017q1.02%201%202.47%201m5.5-6%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind+Siliguri:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Hind Siliguri";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#01--cloud-এর-ভতত" class="md-skip">
+          কনটেন্টে যান
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="হেডার">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-header__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud বাংলা — AWS · GCP · Azure · OCI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              01 · Cloud-এর ভিত্তি
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="ডার্ক মোড"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ডার্ক মোড" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="লাইট মোড"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="লাইট মোড" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="অনুসন্ধান করুন" placeholder="অনুসন্ধান করুন" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="অনুসন্ধান করুন">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="শেয়ার" aria-label="শেয়ার" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="রিসেট" aria-label="রিসেট" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            অনুসন্ধান শুরু করা হচ্ছে
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="ট্যাব" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  হোম
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  মূল ধারণা
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../platforms/aws/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  প্ল্যাটফর্ম গাইড
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reference/service-map/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  রেফারেন্স
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ন্যাভিগেশন" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-nav__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    Cloud বাংলা — AWS · GCP · Azure · OCI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    হোম
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    মূল ধারণা
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    মূল ধারণা
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Cloud-এর ভিত্তি
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Cloud-এর ভিত্তি
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-cloud-computing-ক" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. Cloud computing কী?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. Cloud computing কী?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nist-এর-পচট-বশষটয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NIST-এর পাঁচটি বৈশিষ্ট্য
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capex-বনম-opex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CapEx বনাম OpEx
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scalability-elasticity-high-availability--তনট-আলদ-জনস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scalability, Elasticity, High availability — তিনটি আলাদা জিনিস
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment model
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-on-premise-বনম-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. On-premise বনাম Cloud
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-iaas-paas-saas-ও-faas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. IaaS, PaaS, SaaS ও FaaS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. IaaS, PaaS, SaaS ও FaaS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iaas--infrastructure-as-a-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IaaS — Infrastructure as a Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paas--platform-as-a-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PaaS — Platform as a Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faas--serverless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FaaS / Serverless
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saas--software-as-a-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SaaS — Software as a Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#চর-cloud-এ-তলন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        চার cloud-এ তুলনা
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-region-zone-ও-edge--global-infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. Region, Zone ও Edge — Global infrastructure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. Region, Zone ও Edge — Global infrastructure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#পরতট-cloud-এর-শবদ-ও-কঠম" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        প্রতিটি cloud-এর শব্দ ও কাঠামো
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#বলদশ-থক-কন-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        বাংলাদেশ থেকে কোন region?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terraform-এ-region-কথয-বস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terraform-এ region কোথায় বসে
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-shared-responsibility-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. Shared responsibility model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৫. Shared responsibility model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#মডল-ভদ-দযতব-কর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মডেল ভেদে দায়িত্ব কার
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#পরতট-provider-এর-ভষ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        প্রতিটি provider-এর ভাষা
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-pricing-model--খরচ-কভব-তর-হয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Pricing model — খরচ কীভাবে তৈরি হয়
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৬. Pricing model — খরচ কীভাবে তৈরি হয়">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#খরচর-চরট-মল-উৎস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        খরচের চারটি মূল উৎস
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#তনট-কনর-ধরন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        তিনটি কেনার ধরন
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="তিনটি কেনার ধরন">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ক-on-demand-pay-as-you-go" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ক) On-demand (pay-as-you-go)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#খ-reserved--commitment-আগম-পরতশরত" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        খ) Reserved / Commitment (আগাম প্রতিশ্রুতি)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#গ-spot--preemptible-উদবতত-কষমত" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        গ) Spot / Preemptible (উদ্বৃত্ত ক্ষমতা)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#billing-এর-ধরন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Billing-এর ধরন
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-free-tier--নরপদ-শখ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. Free tier — নিরাপদে শেখা
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৮-চর-provider-এর-শকতর-জযগ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮. চার provider-এর শক্তির জায়গা
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৮. চার provider-এর শক্তির জায়গা">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#পশপশ-সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        পাশাপাশি সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৯-কভব-বছ-নবন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৯. কীভাবে বেছে নেবেন
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৯. কীভাবে বেছে নেবেন">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#সদধনতর-চকলসট" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সিদ্ধান্তের চেকলিস্ট
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১০-শরর-কজ--cli-ইনসটল-ও-লগইন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১০. শুরুর কাজ — CLI ইনস্টল ও লগইন
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-accounts-and-hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Account ও Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-identity-and-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Identity ও Access (IAM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-compute-vms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Virtual Machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-networking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Networking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-containers-kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Container ও Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-serverless/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Serverless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-load-balancing-scaling-dns-cdn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Load Balancing, DNS ও CDN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-messaging-and-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Messaging ও Event
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Monitoring ও Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-infrastructure-as-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 · Infrastructure as Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-cicd-devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 · CI/CD ও DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-data-and-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 · Data ও Analytics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-ai-ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 · AI ও Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-cost-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 · Cost Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-architecture-ha-dr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 · Architecture ও HA/DR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/gcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Cloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/azure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microsoft Azure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/oci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle Cloud (OCI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    রেফারেন্স
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    রেফারেন্স
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/service-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli-cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Cheatsheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-cloud-computing-ক" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. Cloud computing কী?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. Cloud computing কী?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nist-এর-পচট-বশষটয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NIST-এর পাঁচটি বৈশিষ্ট্য
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capex-বনম-opex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CapEx বনাম OpEx
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scalability-elasticity-high-availability--তনট-আলদ-জনস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scalability, Elasticity, High availability — তিনটি আলাদা জিনিস
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment model
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-on-premise-বনম-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. On-premise বনাম Cloud
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-iaas-paas-saas-ও-faas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. IaaS, PaaS, SaaS ও FaaS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. IaaS, PaaS, SaaS ও FaaS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iaas--infrastructure-as-a-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IaaS — Infrastructure as a Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paas--platform-as-a-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PaaS — Platform as a Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faas--serverless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FaaS / Serverless
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saas--software-as-a-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SaaS — Software as a Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#চর-cloud-এ-তলন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        চার cloud-এ তুলনা
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-region-zone-ও-edge--global-infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. Region, Zone ও Edge — Global infrastructure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. Region, Zone ও Edge — Global infrastructure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#পরতট-cloud-এর-শবদ-ও-কঠম" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        প্রতিটি cloud-এর শব্দ ও কাঠামো
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#বলদশ-থক-কন-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        বাংলাদেশ থেকে কোন region?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terraform-এ-region-কথয-বস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terraform-এ region কোথায় বসে
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-shared-responsibility-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. Shared responsibility model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৫. Shared responsibility model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#মডল-ভদ-দযতব-কর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মডেল ভেদে দায়িত্ব কার
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#পরতট-provider-এর-ভষ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        প্রতিটি provider-এর ভাষা
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-pricing-model--খরচ-কভব-তর-হয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Pricing model — খরচ কীভাবে তৈরি হয়
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৬. Pricing model — খরচ কীভাবে তৈরি হয়">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#খরচর-চরট-মল-উৎস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        খরচের চারটি মূল উৎস
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#তনট-কনর-ধরন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        তিনটি কেনার ধরন
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="তিনটি কেনার ধরন">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ক-on-demand-pay-as-you-go" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ক) On-demand (pay-as-you-go)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#খ-reserved--commitment-আগম-পরতশরত" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        খ) Reserved / Commitment (আগাম প্রতিশ্রুতি)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#গ-spot--preemptible-উদবতত-কষমত" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        গ) Spot / Preemptible (উদ্বৃত্ত ক্ষমতা)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#billing-এর-ধরন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Billing-এর ধরন
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-free-tier--নরপদ-শখ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. Free tier — নিরাপদে শেখা
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৮-চর-provider-এর-শকতর-জযগ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮. চার provider-এর শক্তির জায়গা
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৮. চার provider-এর শক্তির জায়গা">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#পশপশ-সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        পাশাপাশি সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৯-কভব-বছ-নবন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৯. কীভাবে বেছে নেবেন
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৯. কীভাবে বেছে নেবেন">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#সদধনতর-চকলসট" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সিদ্ধান্তের চেকলিস্ট
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১০-শরর-কজ--cli-ইনসটল-ও-লগইন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১০. শুরুর কাজ — CLI ইনস্টল ও লগইন
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Hasib105/cloud-bangla-docs/edit/main/docs/01-cloud-fundamentals.md" title="এই পেজ এডিট করুন" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="01--cloud-এর-ভতত">01 · Cloud-এর ভিত্তি<a class="headerlink" href="#01--cloud-এর-ভতত" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>এই অধ্যায়ে কী শিখবেন</strong></p>
+<ul>
+<li>Cloud computing আসলে কী, কেন এত জনপ্রিয় — এবং On-premise-এর সাথে পার্থক্য</li>
+<li>IaaS / PaaS / SaaS / FaaS — চার মডেল, চার cloud-এ উদাহরণসহ</li>
+<li>Region, Zone (AZ), Edge — প্রতিটি cloud-এর নিজস্ব শব্দ ও বাংলাদেশ থেকে কোনটা কাছে</li>
+<li>Shared responsibility model — কোনটা provider-এর দায়, কোনটা আপনার</li>
+<li>Pricing model (on-demand, reserved/commitment, spot) ও free tier — খরচ কীভাবে তৈরি হয়</li>
+<li>চার provider-এর শক্তির জায়গা এবং নিজের প্রজেক্টের জন্য কীভাবে বেছে নেবেন</li>
+</ul>
+</blockquote>
+<div class="admonition abstract">
+<p class="admonition-title">এক নজরে — কোন cloud-এ কী নাম</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>কোম্পানি / চালু</td>
+<td>Amazon Web Services (২০০৬)</td>
+<td>Google Cloud Platform</td>
+<td>Microsoft Azure</td>
+<td>Oracle Cloud Infrastructure</td>
+</tr>
+<tr>
+<td>Virtual machine (IaaS)</td>
+<td>Amazon EC2</td>
+<td>Compute Engine</td>
+<td>Azure Virtual Machines</td>
+<td>OCI Compute</td>
+</tr>
+<tr>
+<td>Managed platform (PaaS)</td>
+<td>Elastic Beanstalk, App Runner</td>
+<td>App Engine, Cloud Run</td>
+<td>Azure App Service</td>
+<td>Container Instances, OCI APEX ইত্যাদি (App Service-এর হুবহু সমতুল্য নেই)</td>
+</tr>
+<tr>
+<td>Functions (FaaS)</td>
+<td>AWS Lambda</td>
+<td>Cloud Run functions (পুরোনো নাম Cloud Functions)</td>
+<td>Azure Functions</td>
+<td>OCI Functions</td>
+</tr>
+<tr>
+<td>ভৌগোলিক এলাকা</td>
+<td>Region</td>
+<td>Region</td>
+<td>Region (Geography-র ভেতরে)</td>
+<td>Region</td>
+</tr>
+<tr>
+<td>Region-এর ভেতরে isolated অংশ</td>
+<td>Availability Zone (AZ)</td>
+<td>Zone</td>
+<td>Availability Zone (১/২/৩)</td>
+<td>Availability Domain (AD) ও Fault Domain (FD)</td>
+</tr>
+<tr>
+<td>Edge</td>
+<td>Edge location / PoP, Local Zone</td>
+<td>Edge PoP (Cloud CDN, Cloud Interconnect)</td>
+<td>Edge site (Front Door, ExpressRoute)</td>
+<td>Edge / FastConnect PoP</td>
+</tr>
+<tr>
+<td>Region কোড (Mumbai)</td>
+<td><code>ap-south-1</code></td>
+<td><code>asia-south1</code></td>
+<td><code>centralindia</code> (Pune), <code>westindia</code> (Mumbai)</td>
+<td><code>ap-mumbai-1</code></td>
+</tr>
+<tr>
+<td>Shared responsibility-র নাম</td>
+<td>Shared Responsibility Model</td>
+<td>Shared responsibility ও "shared fate"</td>
+<td>Shared responsibility</td>
+<td>Shared responsibility</td>
+</tr>
+<tr>
+<td>Spot / সস্তা interruptible VM</td>
+<td>Spot Instances</td>
+<td>Spot VMs (আগে Preemptible VM)</td>
+<td>Spot VMs</td>
+<td>Preemptible Instances</td>
+</tr>
+<tr>
+<td>Commitment ছাড়</td>
+<td>Savings Plans, Reserved Instances</td>
+<td>Committed Use Discounts (CUD)</td>
+<td>Reservations, Savings Plan for compute</td>
+<td>Universal Credits (commitment)</td>
+</tr>
+<tr>
+<td>Free tier</td>
+<td>Free plan (credit) + Always Free কিছু service</td>
+<td>Free Trial credit + Always Free</td>
+<td>Free account (credit + ১২ মাস + always free)</td>
+<td>Free Trial credit + Always Free</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+<h2 id="১-cloud-computing-ক">১. Cloud computing কী?<a class="headerlink" href="#১-cloud-computing-ক" title="Permanent link">&para;</a></h2>
+<p>কল্পনা করুন <code>shopbd</code> নামে একটি ছোট অনলাইন শপ আপনি শুরু করতে চান। পুরোনো দিনে আপনাকে করতে হতো:</p>
+<ol>
+<li>একটা server কিনতে হতো (লক্ষ লক্ষ টাকা আগাম)।</li>
+<li>সেটা রাখার জন্য ঠান্ডা ঘর, নিরবচ্ছিন্ন বিদ্যুৎ (UPS, generator), dedicated internet লাগত।</li>
+<li>Hardware নষ্ট হলে নিজেই ঠিক করতে হতো।</li>
+<li>ঈদের আগে বিক্রি দশগুণ হলে? আরো server কিনে বসানোর সময় থাকত না।</li>
+</ol>
+<p><strong>Cloud computing</strong> মানে এই সব computing resource — server, storage, database, network — আপনি internet-এর মাধ্যমে অন্য কোম্পানি
+(AWS, Google, Microsoft, Oracle) থেকে <strong>ভাড়া</strong> নেন এবং <strong>যতটুকু ব্যবহার করেন ততটুকুর</strong> বিল দেন।</p>
+<div class="admonition example">
+<p class="admonition-title">দৈনন্দিন উপমা</p>
+<p>বিদ্যুৎ। আপনি নিজের বাড়িতে power plant বসান না; বিদ্যুৎ কোম্পানির লাইন থেকে নেন, মিটার দেখে বিল দেন।
+Cloud-ও তাই — "computing power"-এর মিটার। সুইচ অন করলেই পাবেন, বন্ধ করলে বিল থামবে।</p>
+</div>
+<h3 id="nist-এর-পচট-বশষটয">NIST-এর পাঁচটি বৈশিষ্ট্য<a class="headerlink" href="#nist-এর-পচট-বশষটয" title="Permanent link">&para;</a></h3>
+<p>কোনো সেবাকে "cloud" বলতে গেলে সাধারণত এই পাঁচটি থাকতে হয়:</p>
+<table>
+<thead>
+<tr>
+<th>বৈশিষ্ট্য</th>
+<th>মানে</th>
+<th><code>shopbd</code> উদাহরণ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>On-demand self-service</td>
+<td>কারো সাথে কথা না বলে নিজেই resource নেওয়া</td>
+<td>Console/CLI থেকে ২ মিনিটে VM চালু</td>
+</tr>
+<tr>
+<td>Broad network access</td>
+<td>Internet দিয়ে যেকোনো জায়গা থেকে</td>
+<td>ঢাকা থেকে Mumbai region-এর server ম্যানেজ</td>
+</tr>
+<tr>
+<td>Resource pooling</td>
+<td>বিশাল pool থেকে অনেক গ্রাহক ভাগ করে নেয়</td>
+<td>আপনার VM আর অন্য কোম্পানির VM একই data center-এ</td>
+</tr>
+<tr>
+<td>Rapid elasticity</td>
+<td>চাহিদা অনুযায়ী দ্রুত বাড়ানো-কমানো</td>
+<td>ঈদ সেলে server ৩টি থেকে ১২টি, সেল শেষে আবার ৩টি</td>
+</tr>
+<tr>
+<td>Measured service</td>
+<td>ব্যবহার মাপা হয়, সেই অনুযায়ী বিল</td>
+<td>ঘণ্টা/সেকেন্ড/GB/request অনুযায়ী খরচ</td>
+</tr>
+</tbody>
+</table>
+<h3 id="capex-বনম-opex">CapEx বনাম OpEx<a class="headerlink" href="#capex-বনম-opex" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>CapEx (Capital Expenditure):</strong> আগাম বড় বিনিয়োগ — server কেনা। না লাগলেও টাকা আটকে থাকে।</li>
+<li><strong>OpEx (Operational Expenditure):</strong> চলমান খরচ — মাসিক বিল। ব্যবহার কমলে খরচও কমে।</li>
+</ul>
+<p>Cloud মূলত CapEx-কে OpEx-এ বদলে দেয়। তবে সতর্ক থাকুন: OpEx মানে "খরচ নিয়ন্ত্রণে" নয় — ভুলে চালু থাকা resource
+প্রতি মাসেই টাকা খাবে। খরচের পুরো গল্প <a href="../18-cost-management/">18 · Cost Management</a> অধ্যায়ে।</p>
+<h3 id="scalability-elasticity-high-availability--তনট-আলদ-জনস">Scalability, Elasticity, High availability — তিনটি আলাদা জিনিস<a class="headerlink" href="#scalability-elasticity-high-availability--তনট-আলদ-জনস" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>শব্দ</th>
+<th>মানে</th>
+<th>উদাহরণ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Scalability</strong></td>
+<td>বেশি লোড সামলানোর ক্ষমতা (বড় machine = vertical, বেশি machine = horizontal)</td>
+<td>VM ছোট থেকে বড় করা, বা ২টির জায়গায় ১০টি VM</td>
+</tr>
+<tr>
+<td><strong>Elasticity</strong></td>
+<td>লোড অনুযায়ী <em>স্বয়ংক্রিয়ভাবে</em> বাড়া ও কমা</td>
+<td>Autoscaling: রাতে ২টি, সন্ধ্যায় ৮টি</td>
+</tr>
+<tr>
+<td><strong>High availability (HA)</strong></td>
+<td>একটি অংশ ভাঙলেও সেবা চালু থাকা</td>
+<td>২টি আলাদা AZ-তে app চালানো</td>
+</tr>
+<tr>
+<td><strong>Fault tolerance</strong></td>
+<td>ব্যর্থতা হলেও ব্যবহারকারী টেরই পান না</td>
+<td>Database standby + স্বয়ংক্রিয় failover</td>
+</tr>
+</tbody>
+</table>
+<h3 id="deployment-model">Deployment model<a class="headerlink" href="#deployment-model" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>মডেল</th>
+<th>মানে</th>
+<th>কখন</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Public cloud</strong></td>
+<td>AWS/GCP/Azure/OCI-র মতো shared infrastructure</td>
+<td>বেশিরভাগ নতুন কাজ</td>
+</tr>
+<tr>
+<td><strong>Private cloud</strong></td>
+<td>শুধু একটি প্রতিষ্ঠানের জন্য (নিজের data center-এ বা hosted)</td>
+<td>কড়া regulation, legacy</td>
+</tr>
+<tr>
+<td><strong>Hybrid cloud</strong></td>
+<td>on-premise + public cloud একসাথে, সংযুক্ত</td>
+<td>ব্যাংক/টেলকো যাদের কিছু data বাইরে যাবে না</td>
+</tr>
+<tr>
+<td><strong>Multi-cloud</strong></td>
+<td>একাধিক public cloud</td>
+<td>vendor lock-in কমানো, প্রতিটির সেরা service নেওয়া</td>
+</tr>
+</tbody>
+</table>
+<p>Hybrid ও multi-cloud-এর আর্কিটেকচার আছে <a href="../19-architecture-ha-dr/">19 · Architecture, HA/DR ও Multi-cloud</a> অধ্যায়ে।</p>
+<hr />
+<h2 id="২-on-premise-বনম-cloud">২. On-premise বনাম Cloud<a class="headerlink" href="#২-on-premise-বনম-cloud" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>On-premise</th>
+<th>Cloud</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>শুরুর খরচ</td>
+<td>অনেক বেশি (hardware)</td>
+<td>প্রায় শূন্য</td>
+</tr>
+<tr>
+<td>Setup সময়</td>
+<td>সপ্তাহ–মাস</td>
+<td>মিনিট</td>
+</tr>
+<tr>
+<td>Scaling</td>
+<td>নতুন hardware কিনে</td>
+<td>কয়েক ক্লিক / স্বয়ংক্রিয়</td>
+</tr>
+<tr>
+<td>Maintenance</td>
+<td>আপনার দল</td>
+<td>provider (hardware-এর অংশ)</td>
+</tr>
+<tr>
+<td>Disaster recovery</td>
+<td>নিজে আরেকটি site বানাতে হয়</td>
+<td>multi-AZ / multi-region সহজ</td>
+</tr>
+<tr>
+<td>Control</td>
+<td>পূর্ণ</td>
+<td>সীমিত (hypervisor-এর নিচে যাওয়া যায় না)</td>
+</tr>
+<tr>
+<td>খরচ ভবিষ্যদ্বাণী</td>
+<td>সহজ (fixed)</td>
+<td>কঠিন, শৃঙ্খলা না থাকলে বিল চমকে দেয়</td>
+</tr>
+<tr>
+<td>কখন ভালো</td>
+<td>স্থির, বড়, পূর্বানুমেয় workload; কড়া data নিয়ম</td>
+<td>ওঠানামা করা চাহিদা, দ্রুত শুরু, ছোট দল</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Cloud সবসময় সস্তা নয়</p>
+<p>২৪/৭ একই লোডে চলা বিশাল, স্থির workload হিসাব করলে নিজের hardware কখনো সস্তা হতে পারে। Cloud-এর জোর হলো
+<strong>গতি ও নমনীয়তা</strong> — এবং হিসাবটা <em>total cost of ownership (TCO)</em> ধরে করতে হয়: বিদ্যুৎ, জায়গা, লোকবল, hardware পরিবর্তন সহ।</p>
+</div>
+<hr />
+<h2 id="৩-iaas-paas-saas-ও-faas">৩. IaaS, PaaS, SaaS ও FaaS<a class="headerlink" href="#৩-iaas-paas-saas-ও-faas" title="Permanent link">&para;</a></h2>
+<p>মূল প্রশ্ন একটাই: <strong>কোন স্তর পর্যন্ত আপনি manage করবেন, আর কোনটা provider?</strong></p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph onprem["On-premise: সবকিছু আপনার"]
+        A1[Application] --- A2[Data] --- A3[Runtime] --- A4[OS] --- A5[Virtualization] --- A6[Server ও Network] --- A7[Data center]
+    end
+    subgraph iaas["IaaS: OS থেকে উপরে আপনার"]
+        B1[Application] --- B2[Data] --- B3[Runtime] --- B4[OS]
+    end
+    subgraph paas["PaaS: শুধু app ও data"]
+        C1[Application] --- C2[Data]
+    end
+    subgraph saas["SaaS: কিছুই না, শুধু ব্যবহার"]
+        D1[শুধু configuration]
+    end</code></pre>
+<div class="admonition example">
+<p class="admonition-title">পিৎজার উপমা</p>
+<ul>
+<li><strong>On-premise</strong> = বাড়িতে ময়দা মেখে, চুলা বসিয়ে পিৎজা বানানো।</li>
+<li><strong>IaaS</strong> = কাঁচামাল ও চুলা ভাড়া — রান্না আপনার।</li>
+<li><strong>PaaS</strong> = তৈরি base কিনে নিজের পছন্দের topping দেওয়া।</li>
+<li><strong>SaaS</strong> = রেস্টুরেন্টে গিয়ে খাওয়া।</li>
+<li><strong>FaaS</strong> = অর্ডার এলে তবেই একটা পিৎজা বানানো হয়, বানানোর সময়টুকুর দাম — না এলে শূন্য।</li>
+</ul>
+</div>
+<h3 id="iaas--infrastructure-as-a-service">IaaS — Infrastructure as a Service<a class="headerlink" href="#iaas--infrastructure-as-a-service" title="Permanent link">&para;</a></h3>
+<p>Virtual machine, disk, network আপনি ভাড়া নেন; OS patch, runtime, app সব আপনার দায়িত্ব। সর্বোচ্চ নমনীয়তা, সর্বোচ্চ কাজ।</p>
+<h3 id="paas--platform-as-a-service">PaaS — Platform as a Service<a class="headerlink" href="#paas--platform-as-a-service" title="Permanent link">&para;</a></h3>
+<p>Code (বা container) দিন; OS, runtime, scaling, patch provider সামলায়। Managed database (RDS, Cloud SQL, Azure SQL, OCI MySQL)-ও
+সাধারণত PaaS হিসেবে ধরা হয়।</p>
+<h3 id="faas--serverless">FaaS / Serverless<a class="headerlink" href="#faas--serverless" title="Permanent link">&para;</a></h3>
+<p>ছোট function লিখুন; event এলে চলে, না এলে চলে না। <strong>Serverless</strong> শব্দটি একটু বড় — function ছাড়াও serverless container
+(Cloud Run, Azure Container Apps) ও managed database (DynamoDB, Firestore) এর আওতায় পড়ে। বিস্তারিত <a href="../09-serverless/">09 · Serverless</a>-এ।</p>
+<h3 id="saas--software-as-a-service">SaaS — Software as a Service<a class="headerlink" href="#saas--software-as-a-service" title="Permanent link">&para;</a></h3>
+<p>সম্পূর্ণ software, আপনি শুধু ব্যবহার করেন: Gmail, Microsoft 365, Google Workspace, Salesforce, Oracle NetSuite। Cloud provider-রাও
+কিছু SaaS দেয় (যেমন Amazon Connect contact center)।</p>
+<h3 id="চর-cloud-এ-তলন">চার cloud-এ তুলনা<a class="headerlink" href="#চর-cloud-এ-তলন" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="aws" name="__tabbed_1" type="radio" /><input id="gcp" name="__tabbed_1" type="radio" /><input id="azure" name="__tabbed_1" type="radio" /><input id="oci" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="aws">AWS</label><label for="gcp">GCP</label><label for="azure">Azure</label><label for="oci">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>মডেল</th>
+<th>Service</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IaaS</td>
+<td><strong>Amazon EC2</strong>, EBS (disk), VPC</td>
+</tr>
+<tr>
+<td>PaaS</td>
+<td><strong>Elastic Beanstalk</strong>, <strong>AWS App Runner</strong>, RDS (managed DB)</td>
+</tr>
+<tr>
+<td>FaaS</td>
+<td><strong>AWS Lambda</strong></td>
+</tr>
+<tr>
+<td>Serverless container</td>
+<td><strong>AWS Fargate</strong> (ECS/EKS-এর জন্য)</td>
+</tr>
+<tr>
+<td>SaaS</td>
+<td>Amazon Connect, Amazon QuickSight (BI)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>মডেল</th>
+<th>Service</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IaaS</td>
+<td><strong>Compute Engine</strong>, Persistent Disk / Hyperdisk, VPC</td>
+</tr>
+<tr>
+<td>PaaS</td>
+<td><strong>App Engine</strong>, <strong>Cloud Run</strong> (container), Cloud SQL</td>
+</tr>
+<tr>
+<td>FaaS</td>
+<td><strong>Cloud Run functions</strong> (আগের নাম Cloud Functions)</td>
+</tr>
+<tr>
+<td>Serverless container</td>
+<td><strong>Cloud Run</strong></td>
+</tr>
+<tr>
+<td>SaaS</td>
+<td>Google Workspace (Gmail, Docs), Looker</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>মডেল</th>
+<th>Service</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IaaS</td>
+<td><strong>Azure Virtual Machines</strong>, Managed Disks, Virtual Network</td>
+</tr>
+<tr>
+<td>PaaS</td>
+<td><strong>Azure App Service</strong>, Azure SQL Database</td>
+</tr>
+<tr>
+<td>FaaS</td>
+<td><strong>Azure Functions</strong></td>
+</tr>
+<tr>
+<td>Serverless container</td>
+<td><strong>Azure Container Apps</strong>, Container Instances</td>
+</tr>
+<tr>
+<td>SaaS</td>
+<td>Microsoft 365, Dynamics 365, Power BI</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>মডেল</th>
+<th>Service</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IaaS</td>
+<td><strong>OCI Compute</strong>, Block Volume, VCN</td>
+</tr>
+<tr>
+<td>PaaS</td>
+<td>OCI APEX, Autonomous Database, MySQL HeatWave (managed)</td>
+</tr>
+<tr>
+<td>FaaS</td>
+<td><strong>OCI Functions</strong> (open-source Fn Project-ভিত্তিক)</td>
+</tr>
+<tr>
+<td>Serverless container</td>
+<td><strong>OCI Container Instances</strong></td>
+</tr>
+<tr>
+<td>SaaS</td>
+<td>Oracle Fusion Cloud Applications, NetSuite</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">মনে রাখার সূত্র</p>
+<p>IaaS থেকে SaaS-এর দিকে গেলে <strong>control কমে, দায়িত্বও কমে</strong>। <code>shopbd</code>-এর মতো ছোট দলের জন্য সাধারণ নিয়ম:
+যে কাজ provider আপনার চেয়ে ভালো করে, সেটা provider-কে দিন (managed database, managed Kubernetes, serverless)।</p>
+</div>
+<hr />
+<h2 id="৪-region-zone-ও-edge--global-infrastructure">৪. Region, Zone ও Edge — Global infrastructure<a class="headerlink" href="#৪-region-zone-ও-edge--global-infrastructure" title="Permanent link">&para;</a></h2>
+<p>Cloud provider-দের data center পৃথিবীজুড়ে ছড়ানো। একটি সঠিক জায়গা বাছাই latency, নির্ভরযোগ্যতা, আইন ও খরচ — সবকিছুকে প্রভাবিত করে।</p>
+<pre class="mermaid"><code>flowchart TB
+    G[পৃথিবী] --&gt; R1[Region: Mumbai]
+    G --&gt; R2[Region: Singapore]
+    R1 --&gt; Z1[Zone A: আলাদা data center, power, cooling]
+    R1 --&gt; Z2[Zone B]
+    R1 --&gt; Z3[Zone C]
+    G --&gt; E[Edge: user-এর কাছের caching ও network PoP]</code></pre>
+<ul>
+<li><strong>Region</strong> — ভৌগোলিক এলাকা, যেখানে একাধিক data center আছে। Region একটি অন্যটি থেকে সম্পূর্ণ স্বাধীন।</li>
+<li><strong>Zone</strong> — Region-এর ভেতরে আলাদা power, cooling, network-যুক্ত অংশ। একটি zone-এ বিপর্যয় হলে অন্যটি চলতে থাকে।</li>
+<li><strong>Edge</strong> — ছোট সাইট যা user-এর কাছে content cache করে বা network-এর প্রবেশপথ হয়। Region-এর চেয়ে অনেক বেশি।</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">উপমা</p>
+<p>Region = একটি জেলা শহর। Zone = সেই শহরের আলাদা আলাদা থানা-এলাকা, প্রতিটির নিজস্ব বিদ্যুৎ-লাইন।
+একটি এলাকায় লোডশেডিং হলে অন্য এলাকায় দোকান খোলা থাকে। Edge = প্রতিটি পাড়ার কোণের ছোট দোকান যেখানে জনপ্রিয় জিনিস আগে থেকেই রাখা।</p>
+</div>
+<h3 id="পরতট-cloud-এর-শবদ-ও-কঠম">প্রতিটি cloud-এর শব্দ ও কাঠামো<a class="headerlink" href="#পরতট-cloud-এর-শবদ-ও-কঠম" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="aws_1" name="__tabbed_2" type="radio" /><input id="gcp_1" name="__tabbed_2" type="radio" /><input id="azure_1" name="__tabbed_2" type="radio" /><input id="oci_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="aws_1">AWS</label><label for="gcp_1">GCP</label><label for="azure_1">Azure</label><label for="oci_1">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li><strong>Region</strong> (<code>ap-south-1</code> Mumbai, <code>ap-south-2</code> Hyderabad, <code>ap-southeast-1</code> Singapore) — প্রতিটি region-এ সাধারণত ৩ বা তার বেশি <strong>Availability Zone (AZ)</strong>।</li>
+<li>AZ-র নাম <code>ap-south-1a</code>, <code>ap-south-1b</code>… — কিন্তু এই নাম <strong>আপনার account-এর জন্য</strong> physical AZ-তে map হয়। একই <code>1a</code> আরেক account-এ আলাদা physical AZ হতে পারে। Account জুড়ে মিলাতে <strong>AZ ID</strong> (<code>aps1-az1</code>) ব্যবহার করুন।</li>
+<li><strong>Edge:</strong> CloudFront-এর edge location ও Regional edge cache; <strong>Local Zones</strong> (ছোট শহরের কাছে সীমিত service) এবং <strong>Wavelength</strong> (টেলকোর 5G network-এ)।</li>
+<li>নতুন কিছু region <strong>opt-in</strong> — ডিফল্টে বন্ধ থাকে, account-এ চালু করতে হয়।</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>aws<span class="w"> </span>ec2<span class="w"> </span>describe-regions<span class="w"> </span>--query<span class="w"> </span><span class="s2">"Regions[].RegionName"</span><span class="w"> </span>--output<span class="w"> </span>text
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>aws<span class="w"> </span>ec2<span class="w"> </span>describe-availability-zones<span class="w"> </span>--region<span class="w"> </span>ap-south-1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>--query<span class="w"> </span><span class="s2">"AvailabilityZones[].[ZoneName,ZoneId]"</span><span class="w"> </span>--output<span class="w"> </span>table
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Region</strong> (<code>asia-south1</code> Mumbai, <code>asia-south2</code> Delhi, <code>asia-southeast1</code> Singapore) — প্রতিটি region-এ সাধারণত ৩টি <strong>Zone</strong> (<code>asia-south1-a</code>, <code>-b</code>, <code>-c</code>)।</li>
+<li><strong>Multi-region</strong> বলে কিছু service আছে (যেমন Cloud Storage <code>ASIA</code>, BigQuery <code>US</code>) — সেখানে data একাধিক region জুড়ে থাকে।</li>
+<li>GCP-র একটি বিশেষত্ব: <strong>VPC network global</strong> — একটি VPC সব region জুড়ে (বিস্তারিত <a href="../05-networking/">05 · Networking</a>)।</li>
+<li><strong>Edge:</strong> Google-এর নিজস্ব global backbone ও edge PoP; Cloud CDN ও Cloud Interconnect এগুলো ব্যবহার করে।</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>regions<span class="w"> </span>list
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>zones<span class="w"> </span>list<span class="w"> </span>--filter<span class="o">=</span><span class="s2">"region:asia-south1"</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Region</strong> (<code>centralindia</code> Pune, <code>southindia</code> Chennai, <code>westindia</code> Mumbai, <code>southeastasia</code> Singapore)। কাছাকাছি region-গুলো মিলিয়ে একটি <strong>Geography</strong> (যেমন India) — data residency-র সীমানা।</li>
+<li><strong>Availability Zone</strong> (১, ২, ৩) — সব region-এ নেই; যেসব region-এ আছে সেখানে তিনটি। Zone-নম্বর আপনার subscription-এর জন্য logical, physical zone-এ map হয় (AWS-এর মতোই)।</li>
+<li><strong>Region pair</strong> — অনেক region-এর একটি নির্দিষ্ট জোড়া থাকে (DR ও platform update-এর জন্য)।</li>
+<li><strong>Edge:</strong> Azure Front Door ও CDN-এর edge site, ExpressRoute-এর peering location।</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>az<span class="w"> </span>account<span class="w"> </span>list-locations<span class="w"> </span>--query<span class="w"> </span><span class="s2">"[].{name:name, display:displayName}"</span><span class="w"> </span>--output<span class="w"> </span>table
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Region</strong> (<code>ap-mumbai-1</code> Mumbai, <code>ap-hyderabad-1</code> Hyderabad, <code>ap-singapore-1</code> Singapore)।</li>
+<li>Region-এর ভেতরে <strong>Availability Domain (AD)</strong> — কিছু region-এ ৩টি AD, কিন্তু <strong>অনেক region-এ মাত্র একটি AD</strong>। এক-AD region-এ resilience পেতে <strong>Fault Domain (FD)</strong> ব্যবহার করুন: প্রতিটি AD-তে ৩টি FD, যেখানে আলাদা hardware/power গ্রুপ।</li>
+<li>OCI-র নিজস্ব শব্দ মনে রাখুন: <strong>AD ≠ AZ</strong>। Multi-AZ-এর OCI সমতুল্য হলো "একাধিক AD, না থাকলে একাধিক FD"।</li>
+<li><strong>Tenancy-র home region</strong> আলাদা বিষয় — IAM resource সেখানে তৈরি হয় (<a href="../03-identity-and-access/">03 · IAM</a>-এ দেখবেন)।</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>oci<span class="w"> </span>iam<span class="w"> </span>region<span class="w"> </span>list
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>oci<span class="w"> </span>iam<span class="w"> </span>availability-domain<span class="w"> </span>list<span class="w"> </span>--compartment-id<span class="w"> </span>ocid1.tenancy.oc1..example
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="বলদশ-থক-কন-region">বাংলাদেশ থেকে কোন region?<a class="headerlink" href="#বলদশ-থক-কন-region" title="Permanent link">&para;</a></h3>
+<p>২০২৬ সালের শেষ পর্যন্ত বাংলাদেশে এই চার provider-এর কারোরই নিজস্ব region নেই বলে ধরে নেওয়া হয় (বর্তমান তালিকা যাচাই করুন)। নিকটতম বিকল্প:</p>
+<table>
+<thead>
+<tr>
+<th>Region</th>
+<th>সুবিধা</th>
+<th>অসুবিধা</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mumbai / Hyderabad / Delhi (ভারত)</td>
+<td>সাধারণত কাছে, প্রায় সব service থাকে</td>
+<td>সীমান্ত ও সাবমেরিন ক্যাবল রুটের উপর latency নির্ভর করে</td>
+</tr>
+<tr>
+<td>Singapore</td>
+<td>সবচেয়ে বেশি service, প্রায় সব নতুন feature আগে আসে</td>
+<td>সাধারণত ভারতীয় region-এর চেয়ে একটু দূরে</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Region বাছাইয়ের চার প্রশ্ন:</strong></p>
+<ol>
+<li><strong>Latency</strong> — আমার user কোথায়? (Dhaka থেকে ping করে দেখুন)</li>
+<li><strong>Compliance / data residency</strong> — আইন বা ক্লায়েন্ট কি দেশের বাইরে data রাখতে দেয়? (ব্যাংকিং ও সরকারি কাজে প্রায়ই সীমাবদ্ধ — নিয়ন্ত্রকের নির্দেশনা দেখে নিন)</li>
+<li><strong>Service availability</strong> — দরকারি service ও machine type এই region-এ আছে তো?</li>
+<li><strong>Price</strong> — region ভেদে দাম আলাদা হয়; official calculator-এ মিলিয়ে নিন।</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Dhaka-র user থাকলে কী করবেন</p>
+<p>Static content (ছবি, CSS, JS) CDN দিয়ে দিন — edge cache user-এর কাছে থাকে। Dynamic API Mumbai/Singapore-এ রাখুন।
+CDN-এর বিস্তারিত <a href="../10-load-balancing-scaling-dns-cdn/">10 · Load Balancing, DNS ও CDN</a>-এ।</p>
+</div>
+<h3 id="terraform-এ-region-কথয-বস">Terraform-এ region কোথায় বসে<a class="headerlink" href="#terraform-এ-region-কথয-বস" title="Permanent link">&para;</a></h3>
+<p>কোন cloud-এ resource তৈরি হবে সেটি provider block-এই ঠিক হয়। (Terraform পরিচিতি <a href="../14-infrastructure-as-code/">14 · Infrastructure as Code</a> অধ্যায়ে; এখানে শুধু কাঠামোটুকু দেখুন।)</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="aws_2" name="__tabbed_3" type="radio" /><input id="gcp_2" name="__tabbed_3" type="radio" /><input id="azure_2" name="__tabbed_3" type="radio" /><input id="oci_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="aws_2">AWS</label><label for="gcp_2">GCP</label><label for="azure_2">Azure</label><label for="oci_2">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">terraform</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nb">required_providers</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nb">aws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="na">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"hashicorp/aws"</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">}</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">"aws"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ap-south-1"</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">terraform</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nb">required_providers</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nb">google</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="na">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"hashicorp/google"</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">}</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">"google"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="na">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my-project-id"</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span><span class="na">region</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"asia-south1"</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">terraform</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nb">required_providers</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nb">azurerm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="na">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"hashicorp/azurerm"</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">}</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">"azurerm"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span><span class="nb">features</span><span class="w"> </span><span class="p">{}</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">  </span><span class="na">subscription_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"00000000-0000-0000-0000-000000000000"</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="p">}</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="c1"># Azure-এ region আলাদা resource-এর location attribute-এ দেওয়া হয়</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="c1"># যেমন: location = "centralindia"</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">terraform</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nb">required_providers</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="nb">oci</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="na">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"oracle/oci"</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">}</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">"oci"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">  </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ap-mumbai-1"</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1">  # authentication আসে ~/.oci/config থেকে অথবা environment variable থেকে</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<hr />
+<h2 id="৫-shared-responsibility-model">৫. Shared responsibility model<a class="headerlink" href="#৫-shared-responsibility-model" title="Permanent link">&para;</a></h2>
+<p>Cloud-এ নিরাপত্তা <strong>দুই পক্ষের যৌথ দায়িত্ব</strong>। সবচেয়ে বড় ভুল হলো ভাবা "AWS/GCP আছে, তাই সব নিরাপদ"।</p>
+<ul>
+<li><strong>Provider-এর দায় — "cloud-এর নিরাপত্তা" (security <em>of</em> the cloud):</strong> data center-এর গেট, hardware, hypervisor, global network।</li>
+<li><strong>আপনার দায় — "cloud-এর ভেতরের নিরাপত্তা" (security <em>in</em> the cloud):</strong> আপনার data, কে কী access পাবে (IAM), firewall rule, OS patch (IaaS হলে), encryption চালু করা, কনফিগারেশন।</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">উপমা</p>
+<p>আপনি বহুতল ভবনে ফ্ল্যাট ভাড়া নিয়েছেন। ভবনের মূল ফটক, সিঁড়ি, lift, দারোয়ান — মালিকের দায়। কিন্তু আপনার ফ্ল্যাটের দরজায় তালা
+দেওয়া, চাবি কাউকে না দেওয়া, ভেতরের জিনিসপত্র সামলানো — আপনার। দরজা খোলা রেখে চুরি হলে ভবন-মালিককে দোষ দিতে পারবেন না।</p>
+</div>
+<h3 id="মডল-ভদ-দযতব-কর">মডেল ভেদে দায়িত্ব কার<a class="headerlink" href="#মডল-ভদ-দযতব-কর" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>স্তর</th>
+<th>On-premise</th>
+<th>IaaS</th>
+<th>PaaS</th>
+<th>FaaS / Serverless</th>
+<th>SaaS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data ও তার শ্রেণিবিন্যাস</td>
+<td>আপনি</td>
+<td>আপনি</td>
+<td>আপনি</td>
+<td>আপনি</td>
+<td>আপনি</td>
+</tr>
+<tr>
+<td>Identity ও access (IAM)</td>
+<td>আপনি</td>
+<td>আপনি</td>
+<td>আপনি</td>
+<td>আপনি</td>
+<td>আপনি</td>
+</tr>
+<tr>
+<td>Application code</td>
+<td>আপনি</td>
+<td>আপনি</td>
+<td>আপনি</td>
+<td>আপনি</td>
+<td>provider</td>
+</tr>
+<tr>
+<td>Network control (firewall rule)</td>
+<td>আপনি</td>
+<td>আপনি</td>
+<td>ভাগাভাগি</td>
+<td>সীমিত</td>
+<td>provider</td>
+</tr>
+<tr>
+<td>OS ও patching</td>
+<td>আপনি</td>
+<td><strong>আপনি</strong></td>
+<td>provider</td>
+<td>provider</td>
+<td>provider</td>
+</tr>
+<tr>
+<td>Runtime</td>
+<td>আপনি</td>
+<td>আপনি</td>
+<td>provider</td>
+<td>provider</td>
+<td>provider</td>
+</tr>
+<tr>
+<td>Hypervisor ও hardware</td>
+<td>আপনি</td>
+<td>provider</td>
+<td>provider</td>
+<td>provider</td>
+<td>provider</td>
+</tr>
+<tr>
+<td>Data center physical</td>
+<td>আপনি</td>
+<td>provider</td>
+<td>provider</td>
+<td>provider</td>
+<td>provider</td>
+</tr>
+</tbody>
+</table>
+<p>লক্ষ্য করুন: <strong>Data</strong> আর <strong>Identity</strong> সব মডেলেই সবসময় আপনার। এই কারণেই এই বইয়ে IAM-কে তৃতীয় অধ্যায়েই রাখা হয়েছে।</p>
+<h3 id="পরতট-provider-এর-ভষ">প্রতিটি provider-এর ভাষা<a class="headerlink" href="#পরতট-provider-এর-ভষ" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="aws_3" name="__tabbed_4" type="radio" /><input id="gcp_3" name="__tabbed_4" type="radio" /><input id="azure_3" name="__tabbed_4" type="radio" /><input id="oci_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="aws_3">AWS</label><label for="gcp_3">GCP</label><label for="azure_3">Azure</label><label for="oci_3">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>AWS বলে: <strong>Security <em>of</em> the Cloud</strong> (AWS-এর) বনাম <strong>Security <em>in</em> the Cloud</strong> (গ্রাহকের)।
+উদাহরণ: S3 bucket public করে ফেললে সেটা গ্রাহকের কনফিগারেশন-ভুল, AWS-এর নয়।
+প্রমাণপত্র ও audit রিপোর্ট পাবেন <strong>AWS Artifact</strong> থেকে।</p>
+</div>
+<div class="tabbed-block">
+<p>Google নিজেদের মডেলকে "shared responsibility"-র পাশাপাশি <strong>shared fate</strong> বলে — মানে শুধু দায় ভাগ নয়, গ্রাহকের সাফল্যে
+সহায়তাও (secure-by-default blueprint, Security Command Center ইত্যাদি)। মূল দায়ভাগ কিন্তু একই।
+রিপোর্ট পাবেন <strong>Compliance Reports Manager</strong> থেকে।</p>
+</div>
+<div class="tabbed-block">
+<p>Microsoft-এর documentation-এ shared responsibility-র একটি সুপরিচিত চার্ট আছে (on-prem, IaaS, PaaS, SaaS)।
+রিপোর্ট পাবেন <strong>Service Trust Portal</strong> থেকে।</p>
+</div>
+<div class="tabbed-block">
+<p>Oracle-ও একই ভাগ করে — "security <em>of</em> the cloud" ও "security <em>in</em> the cloud"। OCI-তে নিজস্ব isolated network virtualization
+ও security zones-এর মতো ধারণা আছে। compliance তথ্য পাবেন <strong>OCI Compliance documents</strong> থেকে।</p>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">সবচেয়ে সাধারণ ভুল</p>
+<p>Public storage bucket, সবার জন্য খোলা SSH port (<code>0.0.0.0/0</code>), source code-এ secret key, কাউকে Admin permission দিয়ে রাখা —
+এগুলো <strong>সবই গ্রাহকের দায়</strong>। বড় বড় data leak-এর অধিকাংশই provider-এর hack নয়, গ্রাহকের misconfiguration।</p>
+</div>
+<hr />
+<h2 id="৬-pricing-model--খরচ-কভব-তর-হয">৬. Pricing model — খরচ কীভাবে তৈরি হয়<a class="headerlink" href="#৬-pricing-model--খরচ-কভব-তর-হয" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">দাম নিয়ে নোট</p>
+<p>এই বইয়ে কোনো সুনির্দিষ্ট দাম লেখা হয়নি, কারণ দাম region ও সময় অনুযায়ী বদলায়। প্রতিবার official calculator-এ
+হিসাব করুন:</p>
+<ul>
+<li>AWS: <a href="https://calculator.aws/">https://calculator.aws/</a></li>
+<li>Google Cloud: <a href="https://cloud.google.com/products/calculator">https://cloud.google.com/products/calculator</a></li>
+<li>Azure: <a href="https://azure.microsoft.com/pricing/calculator/">https://azure.microsoft.com/pricing/calculator/</a></li>
+<li>OCI: <a href="https://www.oracle.com/cloud/costestimator.html">https://www.oracle.com/cloud/costestimator.html</a></li>
+</ul>
+</div>
+<h3 id="খরচর-চরট-মল-উৎস">খরচের চারটি মূল উৎস<a class="headerlink" href="#খরচর-চরট-মল-উৎস" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>উৎস</th>
+<th>উদাহরণ</th>
+<th>মনে রাখুন</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Compute</strong></td>
+<td>VM চলার সময়, function invocation</td>
+<td>VM বন্ধ করলে compute-বিল থামে, কিন্তু disk-বিল থামে না</td>
+</tr>
+<tr>
+<td><strong>Storage</strong></td>
+<td>GB-মাস, request সংখ্যা</td>
+<td>কম-ব্যবহৃত data-র জন্য সস্তা class আছে</td>
+</tr>
+<tr>
+<td><strong>Network</strong></td>
+<td>বাইরে যাওয়া data (<strong>egress</strong>)</td>
+<td>ভেতরে আসা (ingress) সাধারণত বিনামূল্যে; বাইরে যাওয়া ও region/AZ-এর মাঝের data পয়সা লাগে</td>
+</tr>
+<tr>
+<td><strong>Managed service</strong></td>
+<td>database, load balancer, NAT gateway</td>
+<td>ঘণ্টা ধরে চলার ফি + ব্যবহার, ঘণ্টাভিত্তিক "রাখার" খরচ আছে</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">লুকানো খরচের তিন বিপদ</p>
+<p>১) <strong>Egress</strong> — অন্য region বা internet-এ data পাঠানো। ২) <strong>NAT gateway / load balancer</strong> — ঘণ্টা ধরে চলে, কেউ ব্যবহার না করলেও।
+৩) <strong>ভুলে-যাওয়া resource</strong> — চালু VM, অব্যবহৃত disk, পুরোনো snapshot, public IP।</p>
+</div>
+<h3 id="তনট-কনর-ধরন">তিনটি কেনার ধরন<a class="headerlink" href="#তনট-কনর-ধরন" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart LR
+    A[কতটা নিশ্চিত যে লাগবে?] --&gt; B{স্থির, দীর্ঘমেয়াদি লোড?}
+    B -- হ্যাঁ --&gt; C[Commitment: Reserved / Savings Plan / CUD]
+    B -- না --&gt; D{কাজ কি যেকোনো সময় থামানো যায়?}
+    D -- হ্যাঁ --&gt; E[Spot / Preemptible]
+    D -- না --&gt; F[On-demand]</code></pre>
+<h4 id="ক-on-demand-pay-as-you-go">ক) On-demand (pay-as-you-go)<a class="headerlink" href="#ক-on-demand-pay-as-you-go" title="Permanent link">&para;</a></h4>
+<p>যখন দরকার তখন নিন, যতটুকু ব্যবহার ততটুকু বিল। কোনো প্রতিশ্রুতি নেই, দাম সবচেয়ে বেশি। নতুন প্রজেক্ট, অনিশ্চিত লোড, পরীক্ষার জন্য ভালো।</p>
+<h4 id="খ-reserved--commitment-আগম-পরতশরত">খ) Reserved / Commitment (আগাম প্রতিশ্রুতি)<a class="headerlink" href="#খ-reserved--commitment-আগম-পরতশরত" title="Permanent link">&para;</a></h4>
+<p>"আমি ১ বা ৩ বছর এই পরিমাণ ব্যবহার করব" — বিনিময়ে বড় ছাড়। বেশিরভাগ production workload-এর জন্য এটিই খরচ কমানোর প্রধান উপায়, <strong>যদি</strong> আপনার baseline লোড স্থির থাকে।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:4"><input checked="checked" id="aws_4" name="__tabbed_5" type="radio" /><input id="gcp_4" name="__tabbed_5" type="radio" /><input id="azure_4" name="__tabbed_5" type="radio" /><input id="oci_4" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="aws_4">AWS</label><label for="gcp_4">GCP</label><label for="azure_4">Azure</label><label for="oci_4">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li><strong>Savings Plans</strong> (Compute Savings Plans — instance family/region বদলালেও প্রযোজ্য; EC2 Instance Savings Plans — নির্দিষ্ট family-র জন্য আরো বেশি ছাড়)</li>
+<li><strong>Reserved Instances (RI)</strong> — পুরোনো, নির্দিষ্ট instance-ভিত্তিক; নতুন কিনলে সাধারণত Savings Plans সুবিধাজনক।</li>
+<li>ঘণ্টাপ্রতি "$/hr" প্রতিশ্রুতি — ব্যবহার না করলেও দিতে হবে।</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Committed Use Discounts (CUD)</strong> — <em>resource-based</em> (নির্দিষ্ট vCPU/RAM) ও <em>spend-based / flexible</em> (খরচের পরিমাণ)।</li>
+<li>কিছু পুরোনো machine family-তে <strong>Sustained Use Discount</strong> (SUD) স্বয়ংক্রিয়ভাবে পাওয়া যায় — মাসের বড় অংশ চালালে আপনাআপনি ছাড়। নতুন family-গুলোয় এটি নেই, তাই CUD দেখুন।</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Azure Reservations</strong> (VM, database ইত্যাদির জন্য ১ বা ৩ বছর)</li>
+<li><strong>Azure Savings Plan for compute</strong> — flexible, ঘণ্টাপ্রতি খরচের প্রতিশ্রুতি।</li>
+<li><strong>Azure Hybrid Benefit</strong> — আপনার আগের Windows Server / SQL Server লাইসেন্স থাকলে cloud-এ ছাড় (লাইসেন্সের শর্ত যাচাই করুন)।</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Universal Credits</strong> — Pay As You Go ও Monthly/Annual Flex; আগাম অর্থ commit করে বিভিন্ন service-এ খরচ করা যায়।</li>
+<li>OCI-র দামের কাঠামো সাধারণত সরল ও সব region-এ একই ধাঁচের — তবু calculator দেখুন।</li>
+</ul>
+</div>
+</div>
+</div>
+<h4 id="গ-spot--preemptible-উদবতত-কষমত">গ) Spot / Preemptible (উদ্বৃত্ত ক্ষমতা)<a class="headerlink" href="#গ-spot--preemptible-উদবতত-কষমত" title="Permanent link">&para;</a></h4>
+<p>Provider-এর অব্যবহৃত ক্ষমতা অনেক কম দামে — কিন্তু <strong>provider যেকোনো সময় কেড়ে নিতে পারে</strong>। Batch job, image প্রসেসিং, CI runner, stateless worker-এর জন্য চমৎকার; database বা একমাত্র API server-এর জন্য নয়।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:4"><input checked="checked" id="aws_5" name="__tabbed_6" type="radio" /><input id="gcp_5" name="__tabbed_6" type="radio" /><input id="azure_5" name="__tabbed_6" type="radio" /><input id="oci_5" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="aws_5">AWS</label><label for="gcp_5">GCP</label><label for="azure_5">Azure</label><label for="oci_5">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>Spot Instances</strong> — কেড়ে নেওয়ার আগে সাধারণত প্রায় ২ মিনিটের সতর্কসংকেত (interruption notice)।</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Spot VMs</strong> (পুরোনো <strong>Preemptible VM</strong>-এর উত্তরসূরি; Preemptible-এ ২৪ ঘণ্টার সীমা ছিল, Spot-এ সেই সীমা নেই)। সতর্কসংকেত সাধারণত প্রায় ৩০ সেকেন্ড।</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Azure Spot VMs</strong> — eviction policy ঠিক করতে পারেন (deallocate বা delete)। সতর্কসংকেত সাধারণত প্রায় ৩০ সেকেন্ড।</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Preemptible Instances</strong> — provider ক্ষমতা ফেরত চাইলে instance terminate হয়। কোন shape সমর্থিত এবং সতর্কসংকেত কতক্ষণের, তা docs-এ দেখে নিন।</p>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">ঠিক ধরন বাছাই</p>
+<p><strong>Baseline</strong> লোড → commitment। <strong>ওঠানামা</strong> → on-demand + autoscaling। <strong>থামানো যায় এমন কাজ</strong> → spot। একই প্রজেক্টে তিনটিই মিশিয়ে ব্যবহার স্বাভাবিক।</p>
+</div>
+<h3 id="billing-এর-ধরন">Billing-এর ধরন<a class="headerlink" href="#billing-এর-ধরন" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Per-second / per-minute / per-hour:</strong> আধুনিক VM সাধারণত সেকেন্ড বা মিনিট ধরে বিল হয় (ন্যূনতম সময় আছে); ঘণ্টার আগের হিসাব এখন কমই দেখা যায়।</li>
+<li><strong>Per-request / per-GB-month:</strong> serverless ও storage।</li>
+<li><strong>Free allocation:</strong> অনেক service-এ মাসিক বিনামূল্যে অংশ (যেমন function-এর কিছু invocation) — free tier-এর অংশ।</li>
+</ul>
+<hr />
+<h2 id="৭-free-tier--নরপদ-শখ">৭. Free tier — নিরাপদে শেখা<a class="headerlink" href="#৭-free-tier--নরপদ-শখ" title="Permanent link">&para;</a></h2>
+<p>প্রতিটি cloud নতুনদের জন্য বিনামূল্যে শেখার সুযোগ দেয়, তবে নিয়ম আলাদা এবং <strong>প্রায়ই বদলায়</strong> — সাইন-আপের আগে official পাতা দেখে নিন।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:4"><input checked="checked" id="aws_6" name="__tabbed_7" type="radio" /><input id="gcp_6" name="__tabbed_7" type="radio" /><input id="azure_6" name="__tabbed_7" type="radio" /><input id="oci_6" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="aws_6">AWS</label><label for="gcp_6">GCP</label><label for="azure_6">Azure</label><label for="oci_6">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>নতুন account-এ সাধারণত একটি <strong>Free plan</strong> — শুরুতে কিছু <strong>credit</strong> ও নির্দিষ্ট মেয়াদ; credit শেষ বা মেয়াদ ফুরালে account বন্ধ হয় অথবা Paid plan-এ যেতে হয় (বর্তমান শর্ত দেখুন)।</li>
+<li>কিছু service-এ <strong>Always Free</strong> সীমা (যেমন Lambda-র মাসিক কিছু request)।</li>
+<li>Official: <a href="https://aws.amazon.com/free/">https://aws.amazon.com/free/</a></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Free Trial</strong>: নতুন গ্রাহকের জন্য সীমিত মেয়াদের credit।</li>
+<li><strong>Always Free</strong>: কিছু service-এ মাসিক সীমা পর্যন্ত বিনামূল্যে (যেমন ছোট একটি VM, কিছু Cloud Storage, Cloud Run-এর কিছু request) — region ও সীমা শর্তাধীন।</li>
+<li>Official: <a href="https://cloud.google.com/free">https://cloud.google.com/free</a></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Free account</strong>: প্রথম ৩০ দিনের জন্য credit, তারপর কিছু জনপ্রিয় service <strong>১২ মাস বিনামূল্যে</strong>, আর কিছু service <strong>সবসময় বিনামূল্যে</strong> (সীমাসহ)।</li>
+<li>ছাত্রদের জন্য আলাদা <strong>Azure for Students</strong> (কার্ড ছাড়াই, যোগ্যতা যাচাইসহ)।</li>
+<li>Official: <a href="https://azure.microsoft.com/free/">https://azure.microsoft.com/free/</a></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Free Trial</strong>: ৩০ দিন মেয়াদি credit।</li>
+<li><strong>Always Free</strong>: সবচেয়ে উদার — Arm-ভিত্তিক Ampere A1 instance, ছোট AMD VM, Autonomous Database, object storage, বাইরে যাওয়া data-র মাসিক সীমা ইত্যাদি। ট্রায়াল শেষেও বিনামূল্যে চলে (সীমার মধ্যে)।</li>
+<li>Official: <a href="https://www.oracle.com/cloud/free/">https://www.oracle.com/cloud/free/</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Free tier-এ বিল এড়ানোর নিয়ম</p>
+<ol>
+<li><strong>প্রথম দিনেই budget alert বসান</strong> (বিস্তারিত <a href="../02-accounts-and-hierarchy/">02 · Account ও Hierarchy</a> ও <a href="../18-cost-management/">18 · Cost Management</a>)।</li>
+<li>যে resource ব্যবহার শেষ, <strong>তখনই মুছুন</strong>। বন্ধ করা (stop) আর মুছে ফেলা (delete) আলাদা — disk ও IP বিল চালিয়ে যায়।</li>
+<li>Free tier-এর সীমা ছাড়ালে নীরবে বিল শুরু হয় — "free" শব্দ দেখে নিশ্চিন্ত হবেন না।</li>
+<li>সাইন-আপে <strong>আন্তর্জাতিক লেনদেনসমর্থিত card</strong> লাগে; বাংলাদেশের অনেক card-এ আগে থেকে international usage চালু করাতে হয়।</li>
+<li>বন্ধ করার আগে region-ভিত্তিক সব resource দেখে নিন — ভুলে অন্য region-এ resource রয়ে যেতে পারে।</li>
+</ol>
+</div>
+<hr />
+<h2 id="৮-চর-provider-এর-শকতর-জযগ">৮. চার provider-এর শক্তির জায়গা<a class="headerlink" href="#৮-চর-provider-এর-শকতর-জযগ" title="Permanent link">&para;</a></h2>
+<p>প্রত্যেকের নিজস্ব ইতিহাস ও মনোভাব আছে — সেটাই তাদের শক্তি-দুর্বলতা ঠিক করে।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:4"><input checked="checked" id="aws_7" name="__tabbed_8" type="radio" /><input id="gcp_7" name="__tabbed_8" type="radio" /><input id="azure_7" name="__tabbed_8" type="radio" /><input id="oci_7" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="aws_7">AWS</label><label for="gcp_7">GCP</label><label for="azure_7">Azure</label><label for="oci_7">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li><strong>সবচেয়ে পুরোনো ও বিস্তৃত:</strong> সবচেয়ে বেশি service, সবচেয়ে বড় community, সবচেয়ে বেশি tutorial ও চাকরির বাজার।</li>
+<li>ছোট ছোট building block দেওয়ার দর্শন — flexible, কিন্তু শেখার চড়াই আছে (একই কাজের জন্য অনেক service)।</li>
+<li><strong>শক্তি:</strong> service-এর গভীরতা, ecosystem, ইন্টারভিউ-সার্টিফিকেশনের চাহিদা, startup-দের জনপ্রিয়তা।</li>
+<li><strong>সতর্কতা:</strong> console ও naming জটিল মনে হতে পারে; data egress খরচ বেশি হতে পারে।</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Data, analytics, AI ও Kubernetes</strong> — Google-এর নিজস্ব অভ্যন্তরীণ প্রযুক্তি থেকে (BigQuery, GKE, Spanner)।</li>
+<li><strong>Global VPC</strong>, ভালো developer-অভিজ্ঞতা, পরিষ্কার project-ভিত্তিক কাঠামো।</li>
+<li><strong>শক্তি:</strong> BigQuery, Vertex AI/Gemini, Kubernetes, Cloud Run-এর সরলতা।</li>
+<li><strong>সতর্কতা:</strong> enterprise/hybrid অংশে AWS/Azure-র চেয়ে কম; কিছু service-এর নাম/সংস্করণ বদলায় (যেমন Cloud Functions → Cloud Run functions)।</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Microsoft ecosystem-এর সাথে গভীর যোগ:</strong> Entra ID, Microsoft 365, Windows Server, .NET, SQL Server, Active Directory।</li>
+<li>Enterprise ও সরকারি বাজারে শক্তিশালী, শক্ত hybrid গল্প (Azure Arc, Azure Stack)।</li>
+<li><strong>শক্তি:</strong> যে কোম্পানি আগে থেকেই Microsoft ব্যবহার করে, তাদের জন্য সবচেয়ে সহজ পথ; Azure OpenAI Service।</li>
+<li><strong>সতর্কতা:</strong> portal-এ অনেক ধারণা (tenant, subscription, resource group, Entra) প্রথমে গুলিয়ে যায়।</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Oracle Database-এর জন্য সেরা ঘর:</strong> Autonomous Database, Exadata Cloud Service।</li>
+<li>সরল ও পূর্বানুমেয় দাম (বিশেষত network egress-এ উদার), উচ্চ-পারফরম্যান্স bare metal, GPU cluster।</li>
+<li><strong>শক্তি:</strong> Oracle workload, দাম-সচেতন প্রজেক্ট, উদার Always Free tier।</li>
+<li><strong>সতর্কতা:</strong> service-এর ব্যাপ্তি ও community ছোট; অনেক জায়গায় compartment-ভিত্তিক নতুন ধারণা শিখতে হয়।</li>
+</ul>
+</div>
+</div>
+</div>
+<h3 id="পশপশ-সরসকষপ">পাশাপাশি সারসংক্ষেপ<a class="headerlink" href="#পশপশ-সরসকষপ" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>মানদণ্ড</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Service ব্যাপ্তি</td>
+<td>সবচেয়ে বেশি</td>
+<td>বড়, data/AI-তে গভীর</td>
+<td>বড়, enterprise-এ গভীর</td>
+<td>অপেক্ষাকৃত ছোট, কেন্দ্রীভূত</td>
+</tr>
+<tr>
+<td>শেখার সহজতা</td>
+<td>মাঝারি (বিশাল)</td>
+<td>তুলনামূলক সহজ</td>
+<td>মাঝারি (ধারণা বেশি)</td>
+<td>মাঝারি</td>
+</tr>
+<tr>
+<td>Kubernetes</td>
+<td>EKS</td>
+<td><strong>GKE (শক্তিশালী)</strong></td>
+<td>AKS</td>
+<td>OKE</td>
+</tr>
+<tr>
+<td>Data warehouse / AI</td>
+<td>Redshift, Bedrock/SageMaker</td>
+<td><strong>BigQuery, Vertex AI</strong></td>
+<td>Synapse/Fabric, Azure OpenAI</td>
+<td>Autonomous DW, OCI Generative AI</td>
+</tr>
+<tr>
+<td>Microsoft ecosystem</td>
+<td>চলবে</td>
+<td>চলবে</td>
+<td><strong>সবচেয়ে ভালো</strong></td>
+<td>চলবে</td>
+</tr>
+<tr>
+<td>Oracle DB</td>
+<td>RDS for Oracle</td>
+<td>সীমিত (Oracle Database@Google Cloud)</td>
+<td>Oracle Database@Azure</td>
+<td><strong>সবচেয়ে ভালো</strong></td>
+</tr>
+<tr>
+<td>বাজার ও চাকরি</td>
+<td><strong>সবচেয়ে বেশি</strong></td>
+<td>বাড়ছে</td>
+<td>বেশি (enterprise)</td>
+<td>কম</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="৯-কভব-বছ-নবন">৯. কীভাবে বেছে নেবেন<a class="headerlink" href="#৯-কভব-বছ-নবন" title="Permanent link">&para;</a></h2>
+<p>সবার জন্য একটি "সেরা cloud" নেই। প্রশ্ন করুন:</p>
+<table>
+<thead>
+<tr>
+<th>আপনার অবস্থা</th>
+<th>সাধারণত ভালো পছন্দ</th>
+<th>কারণ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ক্যারিয়ার শুরু, চাকরি খুঁজছেন</td>
+<td><strong>AWS</strong> (সাথে একটি দ্বিতীয় cloud-এর ধারণা)</td>
+<td>সবচেয়ে বেশি চাকরি ও learning material</td>
+</tr>
+<tr>
+<td>কোম্পানি Microsoft 365 / Active Directory-নির্ভর</td>
+<td><strong>Azure</strong></td>
+<td>Entra ID ও আগের লাইসেন্সের সাথে যোগ</td>
+</tr>
+<tr>
+<td>data analytics, ML, Kubernetes-কেন্দ্রিক</td>
+<td><strong>GCP</strong></td>
+<td>BigQuery, GKE, Vertex AI</td>
+</tr>
+<tr>
+<td>Oracle Database / Oracle ERP-ভিত্তিক</td>
+<td><strong>OCI</strong></td>
+<td>licensing ও পারফরম্যান্স</td>
+</tr>
+<tr>
+<td>বাজেট কম, শেখার জন্য সময়-সীমাহীন free</td>
+<td><strong>OCI Always Free</strong>, GCP Always Free</td>
+<td>উদার বা দীর্ঘস্থায়ী free</td>
+</tr>
+<tr>
+<td>ক্লায়েন্ট নির্দিষ্ট করে দিয়েছে</td>
+<td>ক্লায়েন্টের cloud</td>
+<td>নিজের পছন্দ গৌণ</td>
+</tr>
+<tr>
+<td>সরকারি/ব্যাংক — data residency কড়া</td>
+<td>যে provider-এর compliance ও region মেলে</td>
+<td>আইনি যাচাই আগে</td>
+</tr>
+</tbody>
+</table>
+<h3 id="সদধনতর-চকলসট">সিদ্ধান্তের চেকলিস্ট<a class="headerlink" href="#সদধনতর-চকলসট" title="Permanent link">&para;</a></h3>
+<ol>
+<li>দলের কী দক্ষতা আছে? (শিখতে সময় কম হলে পরিচিতটাই)</li>
+<li>কোন service <strong>না থাকলে</strong> কাজ হবে না? (যেমন নির্দিষ্ট database, GPU)</li>
+<li>Region ও latency আমার user-এর জন্য ঠিক আছে?</li>
+<li>Compliance ও data residency?</li>
+<li>মোট খরচ — commitment, egress, support plan সহ।</li>
+<li>Lock-in কতটা মেনে নেব? (Terraform ও container দিয়ে কমানো যায়, শূন্য করা যায় না)</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Multi-cloud নিয়ে সতর্কতা</p>
+<p>ছোট দলের জন্য শুরুতেই multi-cloud সাধারণত বাড়তি জটিলতা — দুই গুণ শেখা, দুই গুণ security কনফিগারেশন, egress খরচ। আগে একটি cloud ভালো করে শিখুন;
+এই বইয়ের তুলনা আপনাকে ধারণাটি অন্য cloud-এ সহজে তুলে নিতে সাহায্য করবে।</p>
+</div>
+<hr />
+<h2 id="১০-শরর-কজ--cli-ইনসটল-ও-লগইন">১০. শুরুর কাজ — CLI ইনস্টল ও লগইন<a class="headerlink" href="#১০-শরর-কজ--cli-ইনসটল-ও-লগইন" title="Permanent link">&para;</a></h2>
+<p>হাতে-কলমে শেখার প্রথম ধাপ: প্রতিটি cloud-এর command-line tool বসানো ও পরিচয় দেওয়া। বিস্তারিত নির্দেশ <a href="../platforms/aws/">platforms</a>-এর পাতাগুলোতে।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:4"><input checked="checked" id="aws_8" name="__tabbed_9" type="radio" /><input id="gcp_8" name="__tabbed_9" type="radio" /><input id="azure_8" name="__tabbed_9" type="radio" /><input id="oci_8" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="aws_8">AWS</label><label for="gcp_8">GCP</label><label for="azure_8">Azure</label><label for="oci_8">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>Tool:</strong> AWS CLI v2। Console path: <em>IAM Identity Center</em> বা <em>IAM → Security credentials</em>।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>aws<span class="w"> </span>--version
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>aws<span class="w"> </span>configure<span class="w"> </span>sso<span class="w">            </span><span class="c1"># workforce SSO হলে (প্রস্তাবিত)</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity<span class="w">  </span><span class="c1"># "আমি কে?" — প্রথম দিনের সবচেয়ে দরকারি command</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><strong>Tool:</strong> Google Cloud CLI (<code>gcloud</code>)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>gcloud<span class="w"> </span>--version
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>gcloud<span class="w"> </span>init<span class="w">                  </span><span class="c1"># login + default project</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>gcloud<span class="w"> </span>auth<span class="w"> </span>list<span class="w">             </span><span class="c1"># active account কে?</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>gcloud<span class="w"> </span>config<span class="w"> </span>list<span class="w">           </span><span class="c1"># বর্তমান project, region, zone</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><strong>Tool:</strong> Azure CLI (<code>az</code>)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>az<span class="w"> </span>--version
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>az<span class="w"> </span>login
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>az<span class="w"> </span>account<span class="w"> </span>show<span class="w">              </span><span class="c1"># বর্তমান subscription ও tenant</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><strong>Tool:</strong> OCI CLI (<code>oci</code>)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>oci<span class="w"> </span>--version
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>oci<span class="w"> </span>setup<span class="w"> </span>config<span class="w">             </span><span class="c1"># ~/.oci/config ও API key তৈরি</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>oci<span class="w"> </span>iam<span class="w"> </span>region<span class="w"> </span>list<span class="w">          </span><span class="c1"># কাজ করছে কিনা পরীক্ষা</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<hr />
+<h2 id="মল-ও-অমল">মিল ও অমিল<a class="headerlink" href="#মল-ও-অমল" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Region-এর ভেতরের isolation</td>
+<td>AZ (অধিকাংশ region-এ ≥ ৩)</td>
+<td>Zone (সাধারণত ৩)</td>
+<td>AZ ১/২/৩ (সব region-এ নেই)</td>
+<td>AD (১ বা ৩) + Fault Domain (AD প্রতি ৩)</td>
+</tr>
+<tr>
+<td>Zone নামের ধারা</td>
+<td>account-ভেদে physical map আলাদা (AZ ID ব্যবহার করুন)</td>
+<td>সবার জন্য একই (<code>-a</code>, <code>-b</code>)</td>
+<td>subscription-ভেদে logical</td>
+<td>AD নাম tenancy-নির্দিষ্ট prefix-সহ</td>
+</tr>
+<tr>
+<td>Spot-এর নাম</td>
+<td>Spot Instances</td>
+<td>Spot VMs</td>
+<td>Spot VMs</td>
+<td>Preemptible Instances</td>
+</tr>
+<tr>
+<td>স্বয়ংক্রিয় ছাড়</td>
+<td>না</td>
+<td>কিছু পুরোনো family-তে SUD</td>
+<td>না</td>
+<td>না</td>
+</tr>
+<tr>
+<td>নতুন region</td>
+<td>কিছু opt-in</td>
+<td>সাধারণত সরাসরি</td>
+<td>কিছু region সীমিত অ্যাক্সেসে</td>
+<td>সাধারণত সাবস্ক্রাইব করে চালু</td>
+</tr>
+<tr>
+<td>Free tier-এর ধরন</td>
+<td>credit-ভিত্তিক Free plan + Always Free</td>
+<td>Trial credit + Always Free</td>
+<td>credit + ১২ মাস + Always Free</td>
+<td>Trial credit + উদার Always Free</td>
+</tr>
+</tbody>
+</table>
+<p><strong>যে ভুলগুলো মানুষ সবচেয়ে বেশি করে:</strong></p>
+<ul>
+<li><strong>"Zone <code>a</code> সব account-এ একই জায়গা"</strong> ধরে নেওয়া — AWS ও Azure-এ তা নয়; account-জুড়ে মেলানোর দরকার হলে AZ ID / physical zone দেখুন।</li>
+<li><strong>Azure-এর সব region-এ AZ আছে</strong> ভাবা — নেই; তাই <code>centralindia</code> ও <code>westindia</code>-র zone-সমর্থন আলাদা করে যাচাই করুন।</li>
+<li><strong>OCI-তে "multi-AZ" খোঁজা</strong> — OCI-তে AD/FD। Mumbai-র মতো এক-AD region-এ resilience-এর জন্য Fault Domain দিন।</li>
+<li><strong>ভাবা যে region বেছে নিলেই সব service পাওয়া যায়</strong> — কিছু নতুন service শুধু বড় region-এ থাকে।</li>
+<li><strong>Free tier = চিরকালীন নিরাপদ</strong> — সীমা পেরোলেই বিল।</li>
+</ul>
+<hr />
+<h2 id="real-world-shopbd">Real-world: shopbd<a class="headerlink" href="#real-world-shopbd" title="Permanent link">&para;</a></h2>
+<p><code>shopbd</code> একটি ছোট বাংলাদেশি অনলাইন শপ: web frontend (<code>shopbd.example.com</code>), REST API (<code>shopbd-api</code>), PostgreSQL (<code>shopbd-db</code>), product-image storage (<code>shopbd-images</code>), অর্ডার ই-মেইল (<code>ops@example.com</code> থেকে) এবং রাতের sales report।</p>
+<p><strong>ধাপ ১ — কোন মডেল?</strong></p>
+<table>
+<thead>
+<tr>
+<th>উপাদান</th>
+<th>মডেল</th>
+<th>কেন</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frontend (static)</td>
+<td>Object storage + CDN (PaaS-ধাঁচের)</td>
+<td>সার্ভার চালানোর দরকার নেই</td>
+</tr>
+<tr>
+<td>REST API</td>
+<td>PaaS বা serverless container (Cloud Run / App Runner / Container Apps / Container Instances)</td>
+<td>ছোট দল, OS patch নিজে করতে চায় না</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td>Managed database (PaaS)</td>
+<td>backup, patch, failover provider-এর</td>
+</tr>
+<tr>
+<td>Product image</td>
+<td>Object storage</td>
+<td>ছবি জমা ও পরিবেশন</td>
+</tr>
+<tr>
+<td>Order email</td>
+<td>Managed email service বা SaaS (SES / Workspace / ...)</td>
+<td>নিজের mail server বানানো ঝুঁকিপূর্ণ</td>
+</tr>
+<tr>
+<td>Nightly report</td>
+<td>FaaS বা scheduled job</td>
+<td>রাতে ১০ মিনিট চলে, বাকি সময় খরচ শূন্য</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ধাপ ২ — কোন region?</strong> Customer বাংলাদেশে, কাছের option Mumbai। তাই চার cloud-এই Mumbai: <code>ap-south-1</code>, <code>asia-south1</code>, <code>westindia</code> (বা <code>centralindia</code>), <code>ap-mumbai-1</code>। ছবি ও static file CDN দিয়ে Dhaka-র কাছের edge থেকে।</p>
+<p><strong>ধাপ ৩ — কেনার ধরন:</strong></p>
+<ul>
+<li>Database ও ন্যূনতম API instance (সবসময় চলে) → ৬ মাস মাপার পর commitment।</li>
+<li>ঈদ সেলের বাড়তি লোড → on-demand autoscaling।</li>
+<li>ছবি থাম্বনেইল তৈরি / রাতের report → spot বা serverless।</li>
+</ul>
+<p><strong>ধাপ ৪ — চারটি cloud-এ শুরুর রূপ:</strong></p>
+<table>
+<thead>
+<tr>
+<th>প্রয়োজন</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API</td>
+<td>App Runner / ECS Fargate</td>
+<td>Cloud Run</td>
+<td>Container Apps</td>
+<td>Container Instances</td>
+</tr>
+<tr>
+<td>Database</td>
+<td>RDS PostgreSQL</td>
+<td>Cloud SQL for PostgreSQL</td>
+<td>Azure Database for PostgreSQL Flexible Server</td>
+<td>OCI Database with PostgreSQL</td>
+</tr>
+<tr>
+<td>Images</td>
+<td>S3 <code>shopbd-images</code></td>
+<td>Cloud Storage <code>shopbd-images</code></td>
+<td>Blob Storage container <code>shopbd-images</code></td>
+<td>Object Storage bucket <code>shopbd-images</code></td>
+</tr>
+<tr>
+<td>Nightly report</td>
+<td>Lambda + EventBridge Scheduler</td>
+<td>Cloud Run job + Cloud Scheduler</td>
+<td>Functions timer trigger</td>
+<td>OCI Functions + schedule</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">পরের অধ্যায়গুলোতে</p>
+<p>এই তালিকার প্রতিটি সারি একটি পুরো অধ্যায়: compute (04), network (05), storage (06), database (07), serverless (09)।</p>
+</div>
+<hr />
+<h2 id="best-practices">Best practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>শুরুতেই region ঠিক করুন</strong> এবং নথিভুক্ত করুন — পরে region বদলানো মানে data সরানো।</li>
+<li><strong>Production-এ কমপক্ষে দুটি zone/AD/FD ব্যবহার করুন</strong>; একটি zone-এ সবকিছু রাখবেন না।</li>
+<li><strong>Managed service-কে অগ্রাধিকার দিন</strong> — patch, backup, failover-এর কাজ provider-এর হাতে।</li>
+<li><strong>সাইন-আপের প্রথম দিনেই budget alert</strong> বসান।</li>
+<li><strong>Tag/label লাগান</strong> প্রতিটি resource-এ (<code>env</code>, <code>app</code>, <code>owner</code>) — খরচ কার তা বুঝতে (<a href="../02-accounts-and-hierarchy/">02 · Account ও Hierarchy</a>)।</li>
+<li><strong>Shared responsibility ছকটি নিজের প্রজেক্টে মেলান</strong> — প্রতিটি উপাদানে নিজেকে জিজ্ঞেস করুন "এখানে আমার দায় কী?"</li>
+<li><strong>Official calculator</strong> দিয়ে অনুমান করুন; বিল আসার পর অনুমানের সাথে মিলিয়ে দেখুন।</li>
+<li><strong>Learning account আলাদা রাখুন</strong>, production-এর সাথে না মিশিয়ে।</li>
+<li><strong>Infrastructure কোডে লিখুন</strong> (Terraform) — কনসোলের ক্লিক ভুলে যাওয়া সহজ, কোড নয়।</li>
+<li>দাম ও free tier-এর শর্ত <strong>প্রতি কয়েক মাসে</strong> official পাতায় দেখে নিন।</li>
+</ol>
+<hr />
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ভুল</th>
+<th>সমস্যা</th>
+<th>সমাধান</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Cloud-এ গেলে নিরাপত্তা provider-এর"</td>
+<td>misconfiguration থেকে data leak</td>
+<td>Shared responsibility ছক পড়ে নিজের অংশ নিশ্চিত করুন</td>
+</tr>
+<tr>
+<td>VM বন্ধ করে ভাবা বিল থামল</td>
+<td>disk, static IP, snapshot-এর বিল চলতে থাকে</td>
+<td>প্রয়োজন শেষে <strong>delete</strong> করুন, শুধু stop নয়</td>
+</tr>
+<tr>
+<td>সব কিছু একটি zone-এ</td>
+<td>zone-এর সমস্যায় পুরো app বন্ধ</td>
+<td>কমপক্ষে দুটি zone/AD/FD</td>
+</tr>
+<tr>
+<td>দূরের region বেছে নেওয়া</td>
+<td>বেশি latency, বেশি egress</td>
+<td>user-এর কাছের region; static হলে CDN</td>
+</tr>
+<tr>
+<td>বিশাল commitment আগেই কিনে ফেলা</td>
+<td>ব্যবহার কমলেও টাকা যায়</td>
+<td>৩–৬ মাস on-demand-এ মেপে তারপর commit</td>
+</tr>
+<tr>
+<td>Spot VM-এ database চালানো</td>
+<td>হঠাৎ বন্ধ, data ক্ষতি</td>
+<td>Spot শুধু stateless/batch কাজে</td>
+</tr>
+<tr>
+<td>Free tier-এর সীমা না জানা</td>
+<td>নীরবে বিল</td>
+<td>সীমা পড়ুন, budget alert বসান</td>
+</tr>
+<tr>
+<td>Root/Admin দিয়ে সব কাজ</td>
+<td>একটি ভুলেই সর্বনাশ</td>
+<td><a href="../03-identity-and-access/">03 · IAM</a> অনুযায়ী least privilege</td>
+</tr>
+<tr>
+<td>শুধু একটি cloud-এর terminology ধরে বসে থাকা</td>
+<td>অন্য cloud-এ গিয়ে বিভ্রান্তি</td>
+<td>মূল ধারণা শিখুন, নাম পরে মিলিয়ে নিন (এই বইয়ের পদ্ধতি)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ইনটরভউ--সরটফকশন-টপস">ইন্টারভিউ / সার্টিফিকেশন টিপস<a class="headerlink" href="#ইনটরভউ--সরটফকশন-টপস" title="Permanent link">&para;</a></h2>
+<details class="question">
+<summary>Cloud computing-এর পাঁচটি বৈশিষ্ট্য কী কী?</summary>
+<p>On-demand self-service, broad network access, resource pooling, rapid elasticity, measured service (NIST সংজ্ঞা)। ইন্টারভিউয়ে প্রতিটির একটি করে উদাহরণ দিন।</p>
+</details>
+<details class="question">
+<summary>IaaS, PaaS, SaaS-এর পার্থক্য বোঝান।</summary>
+<p>পার্থক্য হলো কতটুকু আপনি manage করেন। IaaS-এ OS থেকে উপরে আপনার (EC2/Compute Engine/Azure VM/OCI Compute); PaaS-এ শুধু code ও data (App Service/Cloud Run/Beanstalk); SaaS-এ শুধু ব্যবহার (Gmail, Microsoft 365)। Serverless/FaaS-এ code-ও function আকারে, ব্যবহারের সময়টুকুর বিল।</p>
+</details>
+<details class="question">
+<summary>Region, Availability Zone ও Edge location-এর পার্থক্য কী?</summary>
+<p>Region = ভৌগোলিক এলাকা; Zone/AZ = region-এর ভেতরের বিচ্ছিন্ন data center গ্রুপ (HA-র জন্য); Edge = user-এর কাছে content cache/network প্রবেশপথ। OCI-তে AZ-এর জায়গায় Availability Domain ও Fault Domain।</p>
+</details>
+<details class="question">
+<summary>Shared responsibility model কী? একটি উদাহরণ দিন।</summary>
+<p>Provider "cloud-এর নিরাপত্তা" (physical, hypervisor, network), গ্রাহক "cloud-এর ভেতরের নিরাপত্তা" (data, IAM, কনফিগারেশন, IaaS হলে OS)। উদাহরণ: S3/Cloud Storage bucket public করা গ্রাহকের দায়।</p>
+</details>
+<details class="question">
+<summary>Spot/Preemptible instance কখন ব্যবহার করবেন, কখন নয়?</summary>
+<p>Fault-tolerant, stateless, থামানো-যায় এমন কাজে (batch, CI, render)। Database, একক production server বা কড়া SLA-র কাজে নয়, কারণ provider যেকোনো সময় ফিরিয়ে নিতে পারে।</p>
+</details>
+<details class="question">
+<summary>Scalability ও Elasticity-র পার্থক্য কী?</summary>
+<p>Scalability = বেশি লোড সামলানোর ক্ষমতা (vertical/horizontal)। Elasticity = লোড অনুযায়ী স্বয়ংক্রিয়ভাবে বাড়া-কমা, যাতে শুধু দরকারের সময় খরচ হয়।</p>
+</details>
+<details class="question">
+<summary>কোনো workload cloud-এ আনা কি সবসময় সস্তা?</summary>
+<p>না। স্থির ও বড় workload-এ on-premise সস্তা হতে পারে। Cloud-এর জোর গতি, নমনীয়তা ও বিশ্বব্যাপী পৌঁছানো। TCO হিসাব করুন এবং commitment/spot ব্যবহারে খরচ কমান।</p>
+</details>
+<details class="question">
+<summary>Egress cost কী এবং কীভাবে কমাবেন?</summary>
+<p>Cloud থেকে বাইরে (internet বা অন্য region) যাওয়া data-র খরচ। কমানোর উপায়: CDN ব্যবহার, একই region-এ সংশ্লিষ্ট service রাখা, data compress করা, প্রয়োজন না হলে cross-region replication না করা।</p>
+</details>
+<details class="question">
+<summary>সার্টিফিকেশন কোথা থেকে শুরু করবেন?</summary>
+<p>শুরুর স্তর: AWS Certified Cloud Practitioner, Google Cloud Digital Leader / Associate Cloud Engineer, Microsoft AZ-900 (Azure Fundamentals), Oracle Cloud Infrastructure Foundations Associate। সবগুলোতেই এই অধ্যায়ের ধারণা (shared responsibility, pricing, global infrastructure) আসে।</p>
+</details>
+<hr />
+<h2 id="সরসকষপ">সারসংক্ষেপ<a class="headerlink" href="#সরসকষপ" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Cloud = ভাড়ায় computing, ব্যবহার অনুযায়ী বিল; CapEx → OpEx।</li>
+<li><strong>IaaS → PaaS → FaaS → SaaS</strong>: যত উপরে, তত কম control ও কম দায়িত্ব। চার cloud-এই প্রতিটি স্তরের service আছে।</li>
+<li><strong>Region → Zone → Edge</strong>: AWS ও Azure-এ AZ, GCP-তে Zone, OCI-তে AD + Fault Domain। বাংলাদেশ থেকে সাধারণত Mumbai বা Singapore।</li>
+<li><strong>Shared responsibility:</strong> Data ও Identity সবসময় আপনার; নিচের স্তর যত provider-এর হাতে যায়, তত কম কাজ।</li>
+<li><strong>খরচ:</strong> on-demand (নমনীয়, দামি), commitment (স্থির লোডে ছাড়), spot (থামানো যায় এমন কাজে সস্তা); egress ও ভুলে-যাওয়া resource লুকানো ঝুঁকি।</li>
+<li><strong>Free tier</strong> শেখার জন্য দারুণ, কিন্তু শর্ত বদলায়; budget alert প্রথম দিনেই।</li>
+<li>সবার জন্য একটি সেরা cloud নেই: দলের দক্ষতা, workload ও compliance দেখে বেছে নিন।</li>
+</ul>
+<p><strong>পরের অধ্যায়:</strong> <a href="../02-accounts-and-hierarchy/">02 · Account, Organization ও Resource hierarchy</a> — cloud-এ আপনার "ঘর" কীভাবে সাজাবেন।</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  উপরে ফিরে যাও
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="ফুটার" >
+        
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="পূর্ববর্তী: হোম">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পূর্ববর্তী
+              </span>
+              <div class="md-ellipsis">
+                হোম
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../02-accounts-and-hierarchy/" class="md-footer__link md-footer__link--next" aria-label="পরে: 02 · Account ও Hierarchy">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পরে
+              </span>
+              <div class="md-ellipsis">
+                02 · Account ও Hierarchy
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Hasib Ahmed — Cloud বাংলা ডকুমেন্টেশন
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Hasib105/cloud-bangla-docs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u09b9\u09df\u09c7\u099b\u09c7", "clipboard.copy": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u0995\u09b0\u09c1\u09a8", "search.result.more.one": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 \u09e7\u099f\u09bf \u0986\u099b\u09c7", "search.result.more.other": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 #\u099f\u09bf \u0986\u099b\u09c7", "search.result.none": "\u0995\u09bf\u099b\u09c1 \u09aa\u09be\u0993\u09df\u09be \u09af\u09be\u09df\u09a8\u09bf", "search.result.one": "\u09e7 \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.other": "# \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.placeholder": "\u09b8\u09be\u09b0\u09cd\u099a \u099f\u09be\u0987\u09aa \u0995\u09b0\u09c1\u09a8", "search.result.term.missing": "\u0985\u09a8\u09c1\u09aa\u09b8\u09cd\u09a5\u09bf\u09a4", "select.version": "\u09b8\u0982\u09b8\u09cd\u0995\u09b0\u09a3 \u09a8\u09bf\u09b0\u09cd\u09ac\u09be\u099a\u09a8 \u0995\u09b0\u09c1\u09a3"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

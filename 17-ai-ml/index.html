@@ -1,0 +1,3897 @@
+
+<!doctype html>
+<html lang="bn" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="এক টপিক, চার cloud — AWS, Google Cloud, Microsoft Azure ও Oracle Cloud (OCI) শূন্য থেকে অ্যাডভান্স, পাশাপাশি তুলনাসহ সম্পূর্ণ বাংলা ডকুমেন্টেশন।">
+      
+      
+        <meta name="author" content="Hasib Ahmed">
+      
+      
+        <link rel="canonical" href="https://hasib105.github.io/cloud-bangla-docs/17-ai-ml/">
+      
+      
+        <link rel="prev" href="../16-data-and-analytics/">
+      
+      
+        <link rel="next" href="../18-cost-management/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>17 · AI ও Machine Learning - Cloud বাংলা — AWS · GCP · Azure · OCI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M6.5%2020q-2.28%200-3.89-1.57Q1%2016.85%201%2014.58q0-1.95%201.17-3.48%201.18-1.53%203.08-1.95.63-2.3%202.5-3.72Q9.63%204%2012%204q2.93%200%204.96%202.04Q19%208.07%2019%2011q1.73.2%202.86%201.5%201.14%201.28%201.14%203%200%201.88-1.31%203.19T18.5%2020m-12-2h12q1.05%200%201.77-.73.73-.72.73-1.77t-.73-1.77Q19.55%2013%2018.5%2013H17v-2q0-2.07-1.46-3.54Q14.08%206%2012%206%209.93%206%208.46%207.46%207%208.93%207%2011h-.5q-1.45%200-2.47%201.03Q3%2013.05%203%2014.5T4.03%2017q1.02%201%202.47%201m5.5-6%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind+Siliguri:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Hind Siliguri";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#17--ai-ও-machine-learning" class="md-skip">
+          কনটেন্টে যান
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="হেডার">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-header__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud বাংলা — AWS · GCP · Azure · OCI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              17 · AI ও Machine Learning
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="ডার্ক মোড"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ডার্ক মোড" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="লাইট মোড"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="লাইট মোড" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="অনুসন্ধান করুন" placeholder="অনুসন্ধান করুন" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="অনুসন্ধান করুন">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="শেয়ার" aria-label="শেয়ার" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="রিসেট" aria-label="রিসেট" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            অনুসন্ধান শুরু করা হচ্ছে
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="ট্যাব" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  হোম
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01-cloud-fundamentals/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  মূল ধারণা
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../platforms/aws/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  প্ল্যাটফর্ম গাইড
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reference/service-map/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  রেফারেন্স
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ন্যাভিগেশন" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-nav__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    Cloud বাংলা — AWS · GCP · Azure · OCI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    হোম
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    মূল ধারণা
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    মূল ধারণা
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-cloud-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Cloud-এর ভিত্তি
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-accounts-and-hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Account ও Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-identity-and-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Identity ও Access (IAM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-compute-vms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Virtual Machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-networking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Networking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-containers-kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Container ও Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-serverless/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Serverless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-load-balancing-scaling-dns-cdn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Load Balancing, DNS ও CDN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-messaging-and-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Messaging ও Event
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Monitoring ও Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-infrastructure-as-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 · Infrastructure as Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-cicd-devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 · CI/CD ও DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-data-and-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 · Data ও Analytics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 · AI ও Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 · AI ও Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-ai-এর-চরট-সতর--কথয-শর-করবন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. AI-এর চারটি স্তর — কোথায় শুরু করবেন?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. AI-এর চারটি স্তর — কোথায় শুরু করবেন?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#কনট-বছ-নবন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        কোনটা বেছে নেবেন
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-prebuilt-ai-api--training-ছডই-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Prebuilt AI API — training ছাড়াই AI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="২. Prebuilt AI API — training ছাড়াই AI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#২১-উদহরণ-shopbd-র-product-ছবত-auto-tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২.১ উদাহরণ: shopbd-র product ছবিতে auto-tag
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#২২-অনবদ-ও-speech--shopbd-ত-কথয-লগ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২.২ অনুবাদ ও speech — shopbd-তে কোথায় লাগে
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-managed-generative-ai--model-ভড-নন-বনবন-ন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Managed Generative AI — model ভাড়া নিন, বানাবেন না
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Managed Generative AI — model ভাড়া নিন, বানাবেন না">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#৩১-model-access-ও-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.১ Model access ও region
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৩২-hello-genai--shopbd-product-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.২ Hello GenAI — shopbd product description
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৩৩-prompt-লখর-নযম-সব-cloud-এ-একই" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.৩ Prompt লেখার নিয়ম (সব cloud-এ একই)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৩৪-terraform-ai-ত-least-privilege-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.৪ Terraform: AI-তে least-privilege access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-rag-agent-ও-guardrail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. RAG, Agent ও Guardrail
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. RAG, Agent ও Guardrail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#৪১-rag-কন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪.১ RAG কেন?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৪২-agent-ও-tool-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪.২ Agent ও tool use
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৪৩-guardrail--ai-র-সমরখ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪.৩ Guardrail — AI-র সীমারেখা
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-ml-platform--নজর-data-নজর-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. ML Platform — নিজের data, নিজের model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৫. ML Platform — নিজের data, নিজের model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#৫১-পলযটফরম-ও-তদর-উপদন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫.১ প্ল্যাটফর্ম ও তাদের উপাদান
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৫২-শরর-কমনড-ও-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫.২ শুরুর কমান্ড ও console
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৫৩-terraform-ml-workspace-এর-ভতত" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫.৩ Terraform: ML workspace-এর ভিত্তি
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-inference--model-চল-করর-চর-উপয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Inference — model চালু করার চার উপায়
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-shopbd-র-sales-forecast--সবচয-সজ-পথ-কনট" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. shopbd-র sales forecast — সবচেয়ে সোজা পথ কোনটা?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৮-gpu-ও-accelerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮. GPU ও accelerator
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৮. GPU ও accelerator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#৮১-gpu-র-খরচ-কমনর-উপয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮.১ GPU-র খরচ কমানোর উপায়
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৯-responsible-ai--দযতবশল-বযবহর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৯. Responsible AI — দায়িত্বশীল ব্যবহার
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১০-mlops-ও-খরচ-নযনতরণর-ছট-চকলসট" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১০. MLOps ও খরচ-নিয়ন্ত্রণের ছোট চেকলিস্ট
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real-world: shopbd">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture--বল-support-chatbot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture — বাংলা support chatbot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-driven-image-tagging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event-driven image tagging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#শরর-পরমরশ-খরচ-কম-রখ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        শুরুর পরামর্শ (খরচ কম রেখে)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-cost-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 · Cost Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-architecture-ha-dr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 · Architecture ও HA/DR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/gcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Cloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/azure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microsoft Azure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/oci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle Cloud (OCI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    রেফারেন্স
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    রেফারেন্স
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/service-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli-cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Cheatsheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-ai-এর-চরট-সতর--কথয-শর-করবন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. AI-এর চারটি স্তর — কোথায় শুরু করবেন?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. AI-এর চারটি স্তর — কোথায় শুরু করবেন?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#কনট-বছ-নবন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        কোনটা বেছে নেবেন
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-prebuilt-ai-api--training-ছডই-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Prebuilt AI API — training ছাড়াই AI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="২. Prebuilt AI API — training ছাড়াই AI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#২১-উদহরণ-shopbd-র-product-ছবত-auto-tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২.১ উদাহরণ: shopbd-র product ছবিতে auto-tag
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#২২-অনবদ-ও-speech--shopbd-ত-কথয-লগ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২.২ অনুবাদ ও speech — shopbd-তে কোথায় লাগে
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-managed-generative-ai--model-ভড-নন-বনবন-ন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Managed Generative AI — model ভাড়া নিন, বানাবেন না
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Managed Generative AI — model ভাড়া নিন, বানাবেন না">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#৩১-model-access-ও-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.১ Model access ও region
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৩২-hello-genai--shopbd-product-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.২ Hello GenAI — shopbd product description
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৩৩-prompt-লখর-নযম-সব-cloud-এ-একই" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.৩ Prompt লেখার নিয়ম (সব cloud-এ একই)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৩৪-terraform-ai-ত-least-privilege-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩.৪ Terraform: AI-তে least-privilege access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-rag-agent-ও-guardrail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. RAG, Agent ও Guardrail
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. RAG, Agent ও Guardrail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#৪১-rag-কন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪.১ RAG কেন?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৪২-agent-ও-tool-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪.২ Agent ও tool use
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৪৩-guardrail--ai-র-সমরখ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪.৩ Guardrail — AI-র সীমারেখা
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-ml-platform--নজর-data-নজর-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. ML Platform — নিজের data, নিজের model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৫. ML Platform — নিজের data, নিজের model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#৫১-পলযটফরম-ও-তদর-উপদন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫.১ প্ল্যাটফর্ম ও তাদের উপাদান
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৫২-শরর-কমনড-ও-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫.২ শুরুর কমান্ড ও console
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#৫৩-terraform-ml-workspace-এর-ভতত" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫.৩ Terraform: ML workspace-এর ভিত্তি
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-inference--model-চল-করর-চর-উপয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Inference — model চালু করার চার উপায়
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-shopbd-র-sales-forecast--সবচয-সজ-পথ-কনট" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. shopbd-র sales forecast — সবচেয়ে সোজা পথ কোনটা?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৮-gpu-ও-accelerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮. GPU ও accelerator
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৮. GPU ও accelerator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#৮১-gpu-র-খরচ-কমনর-উপয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮.১ GPU-র খরচ কমানোর উপায়
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৯-responsible-ai--দযতবশল-বযবহর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৯. Responsible AI — দায়িত্বশীল ব্যবহার
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১০-mlops-ও-খরচ-নযনতরণর-ছট-চকলসট" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১০. MLOps ও খরচ-নিয়ন্ত্রণের ছোট চেকলিস্ট
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real-world: shopbd">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture--বল-support-chatbot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture — বাংলা support chatbot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-driven-image-tagging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event-driven image tagging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#শরর-পরমরশ-খরচ-কম-রখ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        শুরুর পরামর্শ (খরচ কম রেখে)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Hasib105/cloud-bangla-docs/edit/main/docs/17-ai-ml.md" title="এই পেজ এডিট করুন" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="17--ai-ও-machine-learning">17 · AI ও Machine Learning<a class="headerlink" href="#17--ai-ও-machine-learning" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>এই অধ্যায়ে কী শিখবেন</p>
+<ul>
+<li>AI-এর চারটি স্তর: prebuilt AI API, managed Generative AI, ML platform ও নিজের GPU — কখন কোনটা বেছে নেবেন</li>
+<li>চার cloud-এর ML platform (SageMaker AI, Vertex AI, Azure Machine Learning, OCI Data Science) ও training/inference-এর ধরন</li>
+<li>Managed GenAI (Bedrock, Gemini on Vertex AI, Microsoft Foundry / Azure OpenAI, OCI Generative AI) দিয়ে RAG, agent ও guardrail</li>
+<li>Vision, speech, translate ও document-এর prebuilt API দিয়ে বিনা training-এ কাজ চালানো</li>
+<li>GPU/accelerator, quota ও capacity — আর কেন GPU endpoint ভুলে চালু রাখা সবচেয়ে ব্যয়বহুল ভুল</li>
+<li>Responsible AI: privacy, hallucination, bias, guardrail ও cost control</li>
+</ul>
+</blockquote>
+<p><code>shopbd</code> এখন আর শুধু একটা দোকান না — ক্রেতারা বাংলায় প্রশ্ন করে, ম্যানেজার জানতে চান আগামী মাসে কত বিক্রি হবে, আর হাজার হাজার product-এর description লেখার লোক নেই।
+এই চারটা সমস্যাই AI দিয়ে সমাধান করা যায় — কিন্তু প্রতিটার জন্য আলাদা স্তরের tool লাগে। এই অধ্যায়ে আমরা সেটাই শিখব।</p>
+<div class="admonition abstract">
+<p class="admonition-title">এক নজরে — কোন cloud-এ কী নাম</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ML platform (build, train, deploy)</td>
+<td>Amazon SageMaker AI</td>
+<td>Vertex AI</td>
+<td>Azure Machine Learning</td>
+<td>OCI Data Science</td>
+</tr>
+<tr>
+<td>Managed GenAI (model API)</td>
+<td>Amazon Bedrock</td>
+<td>Gemini on Vertex AI + Model Garden</td>
+<td>Microsoft Foundry (Azure OpenAI, Foundry Models)</td>
+<td>OCI Generative AI</td>
+</tr>
+<tr>
+<td>Agent / RAG builder</td>
+<td>Bedrock Knowledge Bases, Agents, AgentCore</td>
+<td>Vertex AI Agent Builder, RAG Engine</td>
+<td>Foundry Agent Service, Azure AI Search</td>
+<td>OCI Generative AI Agents</td>
+</tr>
+<tr>
+<td>Guardrail / safety</td>
+<td>Bedrock Guardrails</td>
+<td>Safety filters, Model Armor</td>
+<td>Azure AI Content Safety</td>
+<td>OCI Generative AI guardrails</td>
+</tr>
+<tr>
+<td>Vision (image tagging, OCR)</td>
+<td>Rekognition, Textract</td>
+<td>Cloud Vision API, Document AI</td>
+<td>Azure AI Vision, Document Intelligence</td>
+<td>OCI Vision, Document Understanding</td>
+</tr>
+<tr>
+<td>Speech</td>
+<td>Transcribe, Polly</td>
+<td>Speech-to-Text, Text-to-Speech</td>
+<td>Azure AI Speech</td>
+<td>OCI Speech</td>
+</tr>
+<tr>
+<td>Translate</td>
+<td>Amazon Translate</td>
+<td>Cloud Translation</td>
+<td>Azure AI Translator</td>
+<td>OCI Language (translation)</td>
+</tr>
+<tr>
+<td>Text analytics (NLP)</td>
+<td>Comprehend</td>
+<td>Natural Language API</td>
+<td>Azure AI Language</td>
+<td>OCI Language</td>
+</tr>
+<tr>
+<td>Forecasting</td>
+<td>SageMaker (Chronos/DeepAR); Amazon Forecast নতুন customer নেয় না</td>
+<td>BigQuery ML (ARIMA_PLUS, TimesFM)</td>
+<td>Azure ML AutoML forecasting</td>
+<td>OCI Forecasting, Data Science AutoML</td>
+</tr>
+<tr>
+<td>Vector search</td>
+<td>OpenSearch, Aurora pgvector, Bedrock KB</td>
+<td>Vertex AI Vector Search, AlloyDB/Cloud SQL pgvector</td>
+<td>Azure AI Search, PostgreSQL pgvector</td>
+<td>OCI Search with OpenSearch, Oracle AI Vector Search, pgvector</td>
+</tr>
+<tr>
+<td>GPU VM</td>
+<td>P5/P4d (training), G5/G6 (inference)</td>
+<td>A3/A4 (training), G2 (inference)</td>
+<td>ND-series (training), NC-series (inference)</td>
+<td>BM.GPU.* bare metal, VM.GPU.*</td>
+</tr>
+<tr>
+<td>নিজস্ব AI chip</td>
+<td>Trainium, Inferentia</td>
+<td>TPU</td>
+<td>Maia (শুধু Microsoft-এর নিজের workload)</td>
+<td>— (NVIDIA ও AMD GPU)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="১-ai-এর-চরট-সতর--কথয-শর-করবন">১. AI-এর চারটি স্তর — কোথায় শুরু করবেন?<a class="headerlink" href="#১-ai-এর-চরট-সতর--কথয-শর-করবন" title="Permanent link">&para;</a></h2>
+<p>"AI করব" বললে অনেকেই সোজা GPU কেনার কথা ভাবেন। আসলে cloud-এ AI চারটা স্তরে পাওয়া যায়, আর <strong>ওপরের স্তরে যত থাকবেন, কাজ তত কম</strong>।
+একটা দোকানের উদাহরণ ভাবুন: ওপরের স্তর হলো তৈরি খাবার কিনে আনা, নিচের স্তর হলো নিজে ধান চাষ করা। বেশিরভাগ সময় আপনার ধান চাষের দরকার নেই।</p>
+<pre class="mermaid"><code>flowchart TB
+    L1["স্তর ১ — Prebuilt AI API&lt;br/&gt;Vision, Speech, Translate, Document&lt;br/&gt;কোনো training লাগে না"]
+    L2["স্তর ২ — Managed GenAI&lt;br/&gt;Bedrock, Gemini, Foundry, OCI GenAI&lt;br/&gt;model ভাড়া, prompt + RAG"]
+    L3["স্তর ৩ — ML platform&lt;br/&gt;SageMaker, Vertex AI, Azure ML, OCI DS&lt;br/&gt;নিজের data, নিজের model"]
+    L4["স্তর ৪ — Raw GPU / TPU&lt;br/&gt;নিজে framework, নিজে cluster"]
+    L1 --&gt; L2 --&gt; L3 --&gt; L4</code></pre>
+<table>
+<thead>
+<tr>
+<th>স্তর</th>
+<th>কী করেন</th>
+<th>দক্ষতা</th>
+<th>খরচের ধরন</th>
+<th>shopbd উদাহরণ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>১. Prebuilt API</td>
+<td>ছবি/অডিও/টেক্সট পাঠান, উত্তর পান</td>
+<td>শুধু API call</td>
+<td>প্রতি request/ছবি/মিনিট</td>
+<td>product ছবির tag, অনুবাদ</td>
+</tr>
+<tr>
+<td>২. Managed GenAI</td>
+<td>prompt লেখেন, RAG বানান</td>
+<td>prompt engineering</td>
+<td>প্রতি token (অথবা reserved capacity)</td>
+<td>description generator, chatbot</td>
+</tr>
+<tr>
+<td>৩. ML platform</td>
+<td>নিজের data দিয়ে model train/deploy</td>
+<td>ML engineer</td>
+<td>training job-ঘণ্টা + endpoint-ঘণ্টা</td>
+<td>sales forecast, recommendation</td>
+</tr>
+<tr>
+<td>৪. Raw GPU</td>
+<td>সব নিজে</td>
+<td>ML infra engineer</td>
+<td>GPU instance-ঘণ্টা</td>
+<td>নিজের Bangla LLM fine-tune</td>
+</tr>
+</tbody>
+</table>
+<h3 id="কনট-বছ-নবন">কোনটা বেছে নেবেন<a class="headerlink" href="#কনট-বছ-নবন" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart TD
+    A["কাজটা কী?"] --&gt; B{"Prebuilt API-তে&lt;br/&gt;কাজটা আছে?&lt;br/&gt;OCR, tag, translate"}
+    B -- "হ্যাঁ, মান যথেষ্ট" --&gt; API["স্তর ১: Prebuilt API"]
+    B -- "না" --&gt; C{"টেক্সট/ছবি তৈরি&lt;br/&gt;বা প্রশ্নোত্তর?"}
+    C -- "হ্যাঁ" --&gt; D{"নিজের data&lt;br/&gt;থেকে উত্তর দিতে হবে?"}
+    D -- "হ্যাঁ" --&gt; RAG["স্তর ২: GenAI + RAG"]
+    D -- "না" --&gt; GEN["স্তর ২: শুধু prompt"]
+    C -- "না, যেমন forecast,&lt;br/&gt;classification" --&gt; E{"Tabular data,&lt;br/&gt;AutoML-এ হবে?"}
+    E -- "হ্যাঁ" --&gt; AUTO["স্তর ৩: AutoML / BigQuery ML"]
+    E -- "না" --&gt; CUSTOM["স্তর ৩/৪: custom training"]</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">নিয়মটা মনে রাখুন</p>
+<p>আগে ওপরের স্তরে চেষ্টা করুন। মান কম হলে তবেই নিচে নামুন। Prebuilt API বা prompt দিয়ে ৮০% কাজ হলে বাকি ২০%-এর জন্য নিজের model বানানো প্রায় কখনোই লাভজনক না।</p>
+</div>
+<h2 id="২-prebuilt-ai-api--training-ছডই-ai">২. Prebuilt AI API — training ছাড়াই AI<a class="headerlink" href="#২-prebuilt-ai-api--training-ছডই-ai" title="Permanent link">&para;</a></h2>
+<p>এগুলো হলো "AI as a REST API"। আপনি ছবি পাঠান, JSON ফেরত আসে। Model কীভাবে চলে, GPU কোথায় — সব cloud দেখে। বিল হয় প্রতি call বা প্রতি ইউনিট-এ।</p>
+<table>
+<thead>
+<tr>
+<th>কাজ</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ছবির label/object</td>
+<td>Rekognition</td>
+<td>Cloud Vision API</td>
+<td>Azure AI Vision (Image Analysis)</td>
+<td>OCI Vision</td>
+</tr>
+<tr>
+<td>ছবি/PDF থেকে লেখা (OCR)</td>
+<td>Textract, Rekognition text</td>
+<td>Vision OCR, Document AI</td>
+<td>Document Intelligence, AI Vision Read</td>
+<td>Document Understanding</td>
+</tr>
+<tr>
+<td>Speech → text</td>
+<td>Transcribe</td>
+<td>Speech-to-Text</td>
+<td>Azure AI Speech</td>
+<td>OCI Speech</td>
+</tr>
+<tr>
+<td>Text → speech</td>
+<td>Polly</td>
+<td>Text-to-Speech</td>
+<td>Azure AI Speech</td>
+<td>— (আলাদা TTS service সীমিত; docs দেখুন)</td>
+</tr>
+<tr>
+<td>অনুবাদ</td>
+<td>Translate</td>
+<td>Cloud Translation</td>
+<td>Azure AI Translator</td>
+<td>OCI Language</td>
+</tr>
+<tr>
+<td>Sentiment, entity</td>
+<td>Comprehend</td>
+<td>Natural Language API</td>
+<td>Azure AI Language</td>
+<td>OCI Language</td>
+</tr>
+<tr>
+<td>Content moderation</td>
+<td>Rekognition moderation</td>
+<td>Vision SafeSearch</td>
+<td>Azure AI Content Safety</td>
+<td>OCI Vision / Language classifiers</td>
+</tr>
+<tr>
+<td>Anomaly detection</td>
+<td>Lookout (সীমিত), SageMaker</td>
+<td>Vertex AI</td>
+<td>Azure AI (Anomaly Detector retired)</td>
+<td>OCI Anomaly Detection</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">বাংলা ভাষার সাপোর্ট আলাদা আলাদা</p>
+<p>Translate সব cloud-এ বাংলা (<code>bn</code>) সাপোর্ট করে। কিন্তু speech-to-text, sentiment বা entity extraction-এ বাংলার মান ও locale (<code>bn-BD</code> বনাম <code>bn-IN</code>) cloud ও সময়ভেদে বদলায়।
+<strong>Production-এ নেওয়ার আগে নিজের প্রকৃত বাংলা নমুনা দিয়ে চার cloud-এই পরীক্ষা করুন</strong> — language list-এর তালিকা দেখেই সিদ্ধান্ত নেবেন না।</p>
+</div>
+<h3 id="২১-উদহরণ-shopbd-র-product-ছবত-auto-tag">২.১ উদাহরণ: shopbd-র product ছবিতে auto-tag<a class="headerlink" href="#২১-উদহরণ-shopbd-র-product-ছবত-auto-tag" title="Permanent link">&para;</a></h3>
+<p><code>shopbd-images</code> bucket-এ বিক্রেতারা ছবি তোলেন। আমরা চাই প্রতিটা ছবি থেকে "saree", "cotton", "red" — এ ধরনের tag বের হোক, যাতে search ভালো হয়।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="aws" name="__tabbed_1" type="radio" /><input id="gcp" name="__tabbed_1" type="radio" /><input id="azure" name="__tabbed_1" type="radio" /><input id="oci" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="aws">AWS</label><label for="gcp">GCP</label><label for="azure">Azure</label><label for="oci">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Service: <strong>Amazon Rekognition</strong> — <code>DetectLabels</code>। ছবি S3-তে থাকলে সরাসরি reference দেওয়া যায়, ডাউনলোড লাগে না।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>aws<span class="w"> </span>rekognition<span class="w"> </span>detect-labels<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>--region<span class="w"> </span>ap-south-1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>--image<span class="w"> </span><span class="s1">'{"S3Object":{"Bucket":"shopbd-images","Name":"products/1001.jpg"}}'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>--max-labels<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span>--min-confidence<span class="w"> </span><span class="m">80</span>
+</span></code></pre></div>
+<p>Console: Rekognition → Label detection → ছবি upload করে demo দেখা যায়।</p>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Cloud Vision API</strong> — label detection। আগে API enable করতে হয়।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>gcloud<span class="w"> </span>services<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>vision.googleapis.com
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>gcloud<span class="w"> </span>ml<span class="w"> </span>vision<span class="w"> </span>detect-labels<span class="w"> </span>gs://shopbd-images/products/1001.jpg
+</span></code></pre></div>
+<p>Console: APIs &amp; Services → Cloud Vision API; অথবা Vision-এর "Try it" পাতা।</p>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Azure AI Vision</strong> — Image Analysis (<code>tags</code> feature)। Resource বানিয়ে key বা Entra ID দিয়ে call করতে হয়।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>az<span class="w"> </span>cognitiveservices<span class="w"> </span>account<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-vision<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-ai-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>--kind<span class="w"> </span>ComputerVision<span class="w"> </span>--sku<span class="w"> </span>S1<span class="w"> </span>--location<span class="w"> </span>centralindia
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="s2">"https://shopbd-vision.cognitiveservices.azure.com/computervision/imageanalysis:analyze?api-version=2024-02-01&amp;features=tags"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Ocp-Apim-Subscription-Key: </span><span class="nv">$VISION_KEY</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{"url":"https://shopbd.example.com/img/1001.jpg"}'</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>OCI Vision</strong> — image classification/object detection। Object Storage-এর ছবি সরাসরি reference করা যায়। Python SDK সবচেয়ে সহজ পথ।</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">oci</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">config</span> <span class="o">=</span> <span class="n">oci</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_file</span><span class="p">()</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">client</span> <span class="o">=</span> <span class="n">oci</span><span class="o">.</span><span class="n">ai_vision</span><span class="o">.</span><span class="n">AIServiceVisionClient</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">details</span> <span class="o">=</span> <span class="n">oci</span><span class="o">.</span><span class="n">ai_vision</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">AnalyzeImageDetails</span><span class="p">(</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">compartment_id</span><span class="o">=</span><span class="s2">"ocid1.compartment.oc1..example"</span><span class="p">,</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">features</span><span class="o">=</span><span class="p">[</span><span class="n">oci</span><span class="o">.</span><span class="n">ai_vision</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ImageClassificationFeature</span><span class="p">(</span><span class="n">max_results</span><span class="o">=</span><span class="mi">10</span><span class="p">)],</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">image</span><span class="o">=</span><span class="n">oci</span><span class="o">.</span><span class="n">ai_vision</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ObjectStorageImageDetails</span><span class="p">(</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>        <span class="n">namespace_name</span><span class="o">=</span><span class="s2">"my-namespace"</span><span class="p">,</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="n">bucket_name</span><span class="o">=</span><span class="s2">"shopbd-images"</span><span class="p">,</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="n">object_name</span><span class="o">=</span><span class="s2">"products/1001.jpg"</span><span class="p">,</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="p">),</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="p">)</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="nb">print</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">analyze_image</span><span class="p">(</span><span class="n">details</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="২২-অনবদ-ও-speech--shopbd-ত-কথয-লগ">২.২ অনুবাদ ও speech — shopbd-তে কোথায় লাগে<a class="headerlink" href="#২২-অনবদ-ও-speech--shopbd-ত-কথয-লগ" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Translate:</strong> ইংরেজি product title থেকে বাংলা title বানানো, বা ক্রেতার বাংলা review ইংরেজিতে অনুবাদ করে analytics-এ পাঠানো।</li>
+<li><strong>Speech-to-text:</strong> কাস্টমার কেয়ারের ফোন কলের recording থেকে transcript বানিয়ে "অভিযোগ কোন বিষয়ে" বের করা। বাংলা উচ্চারণ ও আঞ্চলিকতায় মান কমতে পারে — sample দিয়ে WER (word error rate) মেপে নিন।</li>
+<li><strong>Document AI:</strong> supplier-এর চালান/invoice-এর ছবি থেকে নম্বর, তারিখ, টাকার অঙ্ক বের করা।</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="aws_1" name="__tabbed_2" type="radio" /><input id="gcp_1" name="__tabbed_2" type="radio" /><input id="azure_1" name="__tabbed_2" type="radio" /><input id="oci_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="aws_1">AWS</label><label for="gcp_1">GCP</label><label for="azure_1">Azure</label><label for="oci_1">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>aws<span class="w"> </span>translate<span class="w"> </span>translate-text<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>--region<span class="w"> </span>ap-south-1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span>--text<span class="w"> </span><span class="s2">"Handloom cotton saree, free delivery in Dhaka"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span>--source-language-code<span class="w"> </span>en<span class="w"> </span>--target-language-code<span class="w"> </span>bn
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">"https://translation.googleapis.com/language/translate/v2"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="k">$(</span>gcloud<span class="w"> </span>auth<span class="w"> </span>print-access-token<span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"x-goog-user-project: my-project-id"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{"q":"Handloom cotton saree, free delivery in Dhaka","source":"en","target":"bn","format":"text"}'</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">"https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&amp;from=en&amp;to=bn"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Ocp-Apim-Subscription-Key: </span><span class="nv">$TRANSLATOR_KEY</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Ocp-Apim-Subscription-Region: centralindia"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'[{"Text":"Handloom cotton saree, free delivery in Dhaka"}]'</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>OCI-তে অনুবাদ <strong>OCI Language</strong> service-এর অংশ। Console: Analytics &amp; AI → Language → Text translation। Programmatic ব্যবহারে <code>oci.ai_language.AIServiceLanguageClient</code>-এর batch translation API আছে; সমর্থিত ভাষার তালিকা (বাংলা সহ) আপনার region-এর docs-এ মিলিয়ে নিন।</p>
+</div>
+</div>
+</div>
+<h2 id="৩-managed-generative-ai--model-ভড-নন-বনবন-ন">৩. Managed Generative AI — model ভাড়া নিন, বানাবেন না<a class="headerlink" href="#৩-managed-generative-ai--model-ভড-নন-বনবন-ন" title="Permanent link">&para;</a></h2>
+<p><strong>Generative AI (GenAI)</strong> মানে এমন model যা টেক্সট, ছবি, কোড তৈরি করে (LLM — Large Language Model)। এই model train করতে কোটি কোটি টাকার GPU লাগে, তাই cloud আপনাকে <strong>API হিসেবে ভাড়া</strong> দেয়। আপনি prompt পাঠান, প্রতি <strong>token</strong> (শব্দের টুকরো; বাংলায় একটা শব্দে প্রায়ই একাধিক token যায়) হিসাবে বিল দেওয়া হয়।</p>
+<table>
+<thead>
+<tr>
+<th>বৈশিষ্ট্য</th>
+<th>AWS Bedrock</th>
+<th>GCP Vertex AI</th>
+<th>Azure Foundry</th>
+<th>OCI Generative AI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>নিজস্ব model</td>
+<td>Amazon Nova, Titan embeddings</td>
+<td>Gemini, Imagen, Veo, Gemma (open)</td>
+<td>— (OpenAI model হোস্ট করে; Microsoft-এর নিজস্ব model-ও আছে)</td>
+<td>— (Cohere, Meta Llama, xAI ইত্যাদি হোস্ট করে)</td>
+</tr>
+<tr>
+<td>তৃতীয় পক্ষের model</td>
+<td>Anthropic, Meta, Mistral, Cohere ইত্যাদি</td>
+<td>Model Garden: Anthropic Claude, Llama, Mistral ইত্যাদি</td>
+<td>OpenAI, Meta, Mistral, DeepSeek ইত্যাদি (Foundry Models)</td>
+<td>Cohere, Meta Llama ইত্যাদি</td>
+</tr>
+<tr>
+<td>Unified API</td>
+<td>Converse API</td>
+<td>Gemini API / Gen AI SDK</td>
+<td>OpenAI-compatible API</td>
+<td>Generative AI Inference API (chat)</td>
+</tr>
+<tr>
+<td>On-demand (pay per token)</td>
+<td>হ্যাঁ</td>
+<td>হ্যাঁ</td>
+<td>Standard / Global Standard</td>
+<td>On-demand</td>
+</tr>
+<tr>
+<td>Reserved capacity</td>
+<td>Provisioned Throughput</td>
+<td>Provisioned Throughput</td>
+<td>Provisioned (PTU)</td>
+<td>Dedicated AI Cluster</td>
+</tr>
+<tr>
+<td>Batch (সস্তা, ধীর)</td>
+<td>Batch inference</td>
+<td>Batch prediction</td>
+<td>Batch deployment</td>
+<td>— (docs দেখুন)</td>
+</tr>
+<tr>
+<td>Fine-tuning</td>
+<td>Custom models / fine-tuning</td>
+<td>Supervised tuning</td>
+<td>Foundry fine-tuning</td>
+<td>Dedicated AI Cluster-এ fine-tune</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">নাম বদলের হিসাব</p>
+<ul>
+<li>Azure-এর পুরোনো নাম: <strong>Azure AI Studio → Azure AI Foundry → Microsoft Foundry</strong>। পুরোনো ব্লগে যেকোনো একটা দেখতে পারেন। "Azure OpenAI Service" নামটা এখনও চলে, তবে এখন এটা Foundry Models-এর ভেতরের একটা ধরন।</li>
+<li>AWS-এর <strong>SageMaker</strong> এখন <strong>Amazon SageMaker AI</strong> নামে পরিচিত; "SageMaker" নামটা বৃহত্তর data+AI প্ল্যাটফর্ম (Unified Studio) বোঝাতেও ব্যবহার হয়।</li>
+<li>Model-এর নাম ও ভার্সন খুব দ্রুত বদলায় ও পুরোনো model retire হয়। Code-এ model ID hardcode না করে config-এ রাখুন।</li>
+</ul>
+</div>
+<h3 id="৩১-model-access-ও-region">৩.১ Model access ও region<a class="headerlink" href="#৩১-model-access-ও-region" title="Permanent link">&para;</a></h3>
+<ul>
+<li>প্রতিটা model সব region-এ নেই। Bangladesh থেকে latency-র জন্য Mumbai (<code>ap-south-1</code>, <code>asia-south1</code>, <code>centralindia</code>, <code>ap-mumbai-1</code>) ভালো, কিন্তু <strong>model availability আগে console-এ দেখুন</strong>।</li>
+<li>AWS-এ <strong>cross-region inference profile</strong> দিয়ে request অন্য region-এ route হতে পারে। GCP-তে <code>global</code> endpoint আছে। Azure-এ <strong>Global Standard</strong> deployment ডেটা প্রসেসিংয়ে region বদলাতে পারে। অর্থাৎ <strong>data residency কড়া হলে এই অপশনগুলো বন্ধ রাখুন</strong> বা docs পড়ে নিশ্চিত হোন।</li>
+<li>কিছু model প্রথমবার ব্যবহারে use-case form বা Marketplace subscription/EULA গ্রহণ করতে হয়।</li>
+</ul>
+<h3 id="৩২-hello-genai--shopbd-product-description">৩.২ Hello GenAI — shopbd product description<a class="headerlink" href="#৩২-hello-genai--shopbd-product-description" title="Permanent link">&para;</a></h3>
+<p>কাজ: product-এর কিছু attribute থেকে বাংলায় ৩ লাইনের description তৈরি।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="aws_2" name="__tabbed_3" type="radio" /><input id="gcp_2" name="__tabbed_3" type="radio" /><input id="azure_2" name="__tabbed_3" type="radio" /><input id="oci_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="aws_2">AWS</label><label for="gcp_2">GCP</label><label for="azure_2">Azure</label><label for="oci_2">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Service: <strong>Amazon Bedrock</strong> — <code>Converse</code> API (সব model-এর জন্য একই আকার)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>aws<span class="w"> </span>bedrock<span class="w"> </span>list-foundation-models<span class="w"> </span>--region<span class="w"> </span>ap-south-1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>--query<span class="w"> </span><span class="s2">"modelSummaries[].modelId"</span><span class="w"> </span>--output<span class="w"> </span>text
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># MODEL_ID: a model or inference profile ID available in your region</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>aws<span class="w"> </span>bedrock-runtime<span class="w"> </span>converse<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span>--region<span class="w"> </span>ap-south-1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span>--model-id<span class="w"> </span><span class="s2">"</span><span class="nv">$MODEL_ID</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">  </span>--messages<span class="w"> </span><span class="s1">'[{"role":"user","content":[{"text":"Write a 3-line Bangla product description: handloom cotton saree, red, 6.3m."}]}]'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">  </span>--inference-config<span class="w"> </span><span class="s1">'{"maxTokens":300,"temperature":0.4}'</span>
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s2">"bedrock-runtime"</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="s2">"ap-south-1"</span><span class="p">)</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">converse</span><span class="p">(</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="n">modelId</span><span class="o">=</span><span class="s2">"MODEL_ID"</span><span class="p">,</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"text"</span><span class="p">:</span> <span class="s2">"Describe: handloom cotton saree, red"</span><span class="p">}]}],</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="n">inferenceConfig</span><span class="o">=</span><span class="p">{</span><span class="s2">"maxTokens"</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span> <span class="s2">"temperature"</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">},</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="p">)</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="p">[</span><span class="s2">"output"</span><span class="p">][</span><span class="s2">"message"</span><span class="p">][</span><span class="s2">"content"</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">"text"</span><span class="p">])</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Gemini on Vertex AI</strong>। প্রথমে API enable করুন, তারপর Google Gen AI SDK দিয়ে Vertex মোডে call করুন।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>gcloud<span class="w"> </span>services<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>aiplatform.googleapis.com
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>gcloud<span class="w"> </span>auth<span class="w"> </span>application-default<span class="w"> </span>login
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>pip<span class="w"> </span>install<span class="w"> </span>google-genai
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">google</span><span class="w"> </span><span class="kn">import</span> <span class="n">genai</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">genai</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">vertexai</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">project</span><span class="o">=</span><span class="s2">"my-project-id"</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s2">"asia-south1"</span><span class="p">)</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">generate_content</span><span class="p">(</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="n">model</span><span class="o">=</span><span class="s2">"gemini-2.5-flash"</span><span class="p">,</span>  <span class="c1"># replace with a currently available model</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    <span class="n">contents</span><span class="o">=</span><span class="s2">"Write a 3-line Bangla product description: handloom cotton saree, red, 6.3m."</span><span class="p">,</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="p">)</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Microsoft Foundry / Azure OpenAI</strong>। আগে resource, তারপর model <strong>deployment</strong> বানাতে হয় — call করার সময় model-এর নাম নয়, <strong>deployment-এর নাম</strong> দিতে হয়।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>az<span class="w"> </span>cognitiveservices<span class="w"> </span>account<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-openai<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-ai-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span>--kind<span class="w"> </span>OpenAI<span class="w"> </span>--sku<span class="w"> </span>S0<span class="w"> </span>--location<span class="w"> </span>swedencentral<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span>--custom-domain<span class="w"> </span>shopbd-openai
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>az<span class="w"> </span>cognitiveservices<span class="w"> </span>account<span class="w"> </span>deployment<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-openai<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-ai-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">  </span>--deployment-name<span class="w"> </span>shopbd-desc<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">  </span>--model-name<span class="w"> </span>gpt-4o-mini<span class="w"> </span>--model-version<span class="w"> </span><span class="s2">"2024-07-18"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">  </span>--model-format<span class="w"> </span>OpenAI<span class="w"> </span>--sku-name<span class="w"> </span>Standard<span class="w"> </span>--sku-capacity<span class="w"> </span><span class="m">10</span>
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">azure.identity</span><span class="w"> </span><span class="kn">import</span> <span class="n">DefaultAzureCredential</span><span class="p">,</span> <span class="n">get_bearer_token_provider</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureOpenAI</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="n">token_provider</span> <span class="o">=</span> <span class="n">get_bearer_token_provider</span><span class="p">(</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="n">DefaultAzureCredential</span><span class="p">(),</span> <span class="s2">"https://cognitiveservices.azure.com/.default"</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="p">)</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="n">client</span> <span class="o">=</span> <span class="n">AzureOpenAI</span><span class="p">(</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>    <span class="n">azure_endpoint</span><span class="o">=</span><span class="s2">"https://shopbd-openai.openai.azure.com"</span><span class="p">,</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    <span class="n">azure_ad_token_provider</span><span class="o">=</span><span class="n">token_provider</span><span class="p">,</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>    <span class="n">api_version</span><span class="o">=</span><span class="s2">"2024-10-21"</span><span class="p">,</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="p">)</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>    <span class="n">model</span><span class="o">=</span><span class="s2">"shopbd-desc"</span><span class="p">,</span>  <span class="c1"># deployment name</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>    <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="s2">"Write a 3-line Bangla description: handloom cotton saree"</span><span class="p">}],</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="p">)</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>OCI Generative AI</strong> — on-demand model, ঠিক কোন model কোন region-এ আছে তা docs/console-এ দেখুন (সব region-এ নেই)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>oci<span class="w"> </span>generative-ai<span class="w"> </span>model-collection<span class="w"> </span>list-models<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">oci</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">oci.generative_ai_inference</span><span class="w"> </span><span class="kn">import</span> <span class="n">GenerativeAiInferenceClient</span><span class="p">,</span> <span class="n">models</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">config</span> <span class="o">=</span> <span class="n">oci</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_file</span><span class="p">()</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="n">client</span> <span class="o">=</span> <span class="n">GenerativeAiInferenceClient</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">service_endpoint</span><span class="o">=</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    <span class="s2">"https://inference.generativeai.us-chicago-1.oci.oraclecloud.com"</span><span class="p">)</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="n">chat</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ChatDetails</span><span class="p">(</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>    <span class="n">compartment_id</span><span class="o">=</span><span class="s2">"ocid1.compartment.oc1..example"</span><span class="p">,</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>    <span class="n">serving_mode</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">OnDemandServingMode</span><span class="p">(</span><span class="n">model_id</span><span class="o">=</span><span class="s2">"MODEL_ID"</span><span class="p">),</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>    <span class="n">chat_request</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">GenericChatRequest</span><span class="p">(</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>        <span class="n">messages</span><span class="o">=</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">UserMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">TextContent</span><span class="p">(</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>            <span class="n">text</span><span class="o">=</span><span class="s2">"Write a 3-line Bangla description: handloom cotton saree"</span><span class="p">)])],</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>        <span class="n">max_tokens</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>    <span class="p">),</span>
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="p">)</span>
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="nb">print</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">chat</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="৩৩-prompt-লখর-নযম-সব-cloud-এ-একই">৩.৩ Prompt লেখার নিয়ম (সব cloud-এ একই)<a class="headerlink" href="#৩৩-prompt-লখর-নযম-সব-cloud-এ-একই" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Role ও লক্ষ্য</strong> — "তুমি shopbd-র copywriter; ৩ লাইনে বাংলায় লেখো।"</li>
+<li><strong>Context দাও</strong> — attribute list, brand tone, নিষিদ্ধ শব্দ।</li>
+<li><strong>Format বলে দাও</strong> — "JSON ফেরত দাও: <code>{title, description, tags}</code>"।</li>
+<li><strong>Temperature</strong> — তথ্যভিত্তিক কাজে কম (০–০.৪), সৃজনশীল কাজে বেশি।</li>
+<li><strong>Few-shot</strong> — দুটো ভালো উদাহরণ দেখান।</li>
+<li><strong>System prompt-এ secret রাখবেন না</strong> — user প্রায়ই তা বের করে ফেলে।</li>
+</ol>
+<h3 id="৩৪-terraform-ai-ত-least-privilege-access">৩.৪ Terraform: AI-তে least-privilege access<a class="headerlink" href="#৩৪-terraform-ai-ত-least-privilege-access" title="Permanent link">&para;</a></h3>
+<p>GenAI-র সবচেয়ে সাধারণ security ভুল হলো "সবাইকে admin" দেওয়া। নিচে shopbd API-এর জন্য শুধু model call করার অধিকার দেওয়া হলো।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="aws_3" name="__tabbed_4" type="radio" /><input id="gcp_3" name="__tabbed_4" type="radio" /><input id="azure_3" name="__tabbed_4" type="radio" /><input id="oci_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="aws_3">AWS</label><label for="gcp_3">GCP</label><label for="azure_3">Azure</label><label for="oci_3">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kr">data</span><span class="w"> </span><span class="nc">"aws_iam_policy_document"</span><span class="w"> </span><span class="nv">"shopbd_bedrock_invoke"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span><span class="nb">statement</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="na">actions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">      </span><span class="s2">"bedrock:InvokeModel"</span><span class="p">,</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">      </span><span class="s2">"bedrock:InvokeModelWithResponseStream"</span><span class="p">,</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">    </span><span class="p">]</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">    </span><span class="na">resources</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">      </span><span class="s2">"arn:aws:bedrock:ap-south-1::foundation-model/*"</span><span class="p">,</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">      </span><span class="s2">"arn:aws:bedrock:ap-south-1:123456789012:inference-profile/*"</span><span class="p">,</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">    </span><span class="p">]</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="p">}</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_iam_policy"</span><span class="w"> </span><span class="nv">"shopbd_bedrock_invoke"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">  </span><span class="na">name</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-bedrock-invoke"</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">  </span><span class="na">policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_iam_policy_document.shopbd_bedrock_invoke.json</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="p">}</span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="c1"># attach to the shopbd-api task/instance role</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_project_service"</span><span class="w"> </span><span class="nv">"aiplatform"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span><span class="na">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my-project-id"</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span><span class="na">service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"aiplatform.googleapis.com"</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="p">}</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_service_account"</span><span class="w"> </span><span class="nv">"shopbd_ai"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">  </span><span class="na">project</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"my-project-id"</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">  </span><span class="na">account_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-ai"</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="p">}</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_project_iam_member"</span><span class="w"> </span><span class="nv">"shopbd_ai_user"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w">  </span><span class="na">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my-project-id"</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">  </span><span class="na">role</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"roles/aiplatform.user"</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="w">  </span><span class="na">member</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"serviceAccount:${google_service_account.shopbd_ai.email}"</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_cognitive_account"</span><span class="w"> </span><span class="nv">"shopbd_openai"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-openai"</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span><span class="na">location</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s2">"swedencentral"</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.ai.name</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">  </span><span class="na">kind</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="s2">"OpenAI"</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">  </span><span class="na">sku_name</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s2">"S0"</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">  </span><span class="na">custom_subdomain_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-openai"</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="p">}</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_cognitive_deployment"</span><span class="w"> </span><span class="nv">"desc"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">  </span><span class="na">name</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-desc"</span>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">  </span><span class="na">cognitive_account_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_cognitive_account.shopbd_openai.id</span>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">  </span><span class="nb">model</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">    </span><span class="na">format</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"OpenAI"</span>
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="w">    </span><span class="na">name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"gpt-4o-mini"</span>
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="w">    </span><span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2024-07-18"</span>
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="w">  </span><span class="nb">sku</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a><span class="w">    </span><span class="na">name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"Standard"</span>
+</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a><span class="w">    </span><span class="na">capacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
+</span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-17-22"><a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a><span class="p">}</span>
+</span><span id="__span-17-23"><a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a>
+</span><span id="__span-17-24"><a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_role_assignment"</span><span class="w"> </span><span class="nv">"api_openai_user"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-25"><a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a><span class="w">  </span><span class="na">scope</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_cognitive_account.shopbd_openai.id</span>
+</span><span id="__span-17-26"><a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a><span class="w">  </span><span class="na">role_definition_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Cognitive Services OpenAI User"</span>
+</span><span id="__span-17-27"><a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a><span class="w">  </span><span class="na">principal_id</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_user_assigned_identity.shopbd_api.principal_id</span>
+</span><span id="__span-17-28"><a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"oci_identity_policy"</span><span class="w"> </span><span class="nv">"shopbd_genai"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span><span class="na">compartment_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.tenancy_ocid</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span><span class="na">name</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-genai-access"</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">  </span><span class="na">description</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd API may call Generative AI"</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">  </span><span class="na">statements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">    </span><span class="s2">"allow dynamic-group shopbd-api-dg to use generative-ai-family in compartment shopbd-prod"</span><span class="p">,</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">  </span><span class="p">]</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><code>shopbd-api-dg</code> হলো একটা dynamic group (instance principal)। Policy statement parent compartment বা tenancy-তে রাখতে হয়।</p>
+</div>
+</div>
+</div>
+<h2 id="৪-rag-agent-ও-guardrail">৪. RAG, Agent ও Guardrail<a class="headerlink" href="#৪-rag-agent-ও-guardrail" title="Permanent link">&para;</a></h2>
+<h3 id="৪১-rag-কন">৪.১ RAG কেন?<a class="headerlink" href="#৪১-rag-কন" title="Permanent link">&para;</a></h3>
+<p>LLM আপনার shopbd-র return policy, স্টক বা ডেলিভারি চার্জ জানে না। না জানলে সে <strong>অনুমান করে বানিয়ে বলে</strong> (hallucination)। সমাধান: <strong>RAG (Retrieval-Augmented Generation)</strong> — উত্তর দেওয়ার আগে নিজের নথি থেকে প্রাসঙ্গিক অংশ খুঁজে prompt-এ জুড়ে দেওয়া।</p>
+<p>উপমা: পরীক্ষায় <strong>open-book exam</strong>। ছাত্র (LLM) সব মুখস্থ জানে না, কিন্তু বই (আপনার নথি) খুলে দেখে লিখতে পারে।</p>
+<pre class="mermaid"><code>flowchart LR
+    U["ক্রেতা&lt;br/&gt;বাংলায় প্রশ্ন"] --&gt; API["shopbd-api"]
+    API --&gt; E["Embedding model&lt;br/&gt;প্রশ্ন → vector"]
+    E --&gt; V[("Vector store&lt;br/&gt;FAQ, policy, product")]
+    V --&gt; API
+    API --&gt; L["LLM&lt;br/&gt;প্রশ্ন + পাওয়া অংশ"]
+    L --&gt; G["Guardrail&lt;br/&gt;PII, বিষয়, বিষাক্ত ভাষা"]
+    G --&gt; U
+    D["shopbd-docs&lt;br/&gt;bucket"] -. "chunk + embed" .-&gt; V</code></pre>
+<p><strong>ধাপগুলো:</strong> (১) নথি ছোট <strong>chunk</strong>-এ ভাঙুন (২) প্রতিটা chunk-কে <strong>embedding</strong> (সংখ্যার vector) বানান (৩) vector database-এ রাখুন (৪) প্রশ্ন এলে প্রশ্নকেও embed করে সবচেয়ে কাছের chunk খুঁজুন (৫) সেই chunk-সহ LLM-কে দিন।</p>
+<table>
+<thead>
+<tr>
+<th>উপাদান</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Managed RAG</td>
+<td>Bedrock Knowledge Bases</td>
+<td>Vertex AI RAG Engine, Agent Builder Search</td>
+<td>Azure AI Search + Foundry "On your data"</td>
+<td>OCI Generative AI Agents (RAG)</td>
+</tr>
+<tr>
+<td>Embedding model</td>
+<td>Titan/Cohere embeddings</td>
+<td>Gemini embedding / text-embedding</td>
+<td>OpenAI text-embedding</td>
+<td>Cohere embed</td>
+</tr>
+<tr>
+<td>Vector store</td>
+<td>OpenSearch Serverless, Aurora/RDS pgvector, S3 Vectors</td>
+<td>Vector Search, AlloyDB/Cloud SQL pgvector</td>
+<td>AI Search, PostgreSQL pgvector, Cosmos DB</td>
+<td>OpenSearch, Oracle AI Vector Search, pgvector</td>
+</tr>
+<tr>
+<td>নথির উৎস</td>
+<td>S3</td>
+<td>Cloud Storage</td>
+<td>Blob Storage</td>
+<td>Object Storage</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">ছোট shopbd-র জন্য সহজ পথ</p>
+<p>ইতিমধ্যে PostgreSQL আছে (<code>shopbd-db</code>)? <strong>pgvector extension</strong> চালু করে একই database-এ vector রাখুন — আলাদা vector DB-র খরচ ও ঝামেলা নেই। হাজার-দশ হাজার chunk পর্যন্ত এটা যথেষ্ট ভালো।</p>
+</div>
+<h3 id="৪২-agent-ও-tool-use">৪.২ Agent ও tool use<a class="headerlink" href="#৪২-agent-ও-tool-use" title="Permanent link">&para;</a></h3>
+<p><strong>Agent</strong> হলো এমন LLM যা শুধু কথা বলে না, <strong>tool/function call</strong> করে কাজও করে — যেমন "অর্ডার #1001-এর স্ট্যাটাস কী?" শুনে <code>get_order_status(1001)</code> API ডাকে, ফলাফল পড়ে উত্তর দেয়।</p>
+<ul>
+<li>LLM-কে tool-এর নাম, কাজ ও parameter schema বলে দেওয়া হয়; সে JSON আকারে বলে কোন tool কোন argument-এ ডাকতে হবে; <strong>আপনার code</strong> সেটা চালায় এবং ফল ফেরত দেয়।</li>
+<li>ঝুঁকি: agent ভুল tool ডাকতে বা prompt injection-এ প্রতারিত হতে পারে। তাই tool-এর IAM অধিকার <strong>ন্যূনতম</strong> রাখুন, টাকা-পয়সা/মুছে ফেলার কাজে <strong>human approval</strong> রাখুন।</li>
+<li>Managed agent: AWS Bedrock Agents ও AgentCore, GCP Vertex AI Agent Builder (Agent Development Kit), Azure Foundry Agent Service, OCI Generative AI Agents।</li>
+<li><strong>MCP (Model Context Protocol)</strong> এখন tool সংযোগের জনপ্রিয় মান; চারটি cloud-ই কোনো না কোনো আকারে সাপোর্ট করে — আপনার বেছে নেওয়া service-এর docs দেখুন।</li>
+</ul>
+<h3 id="৪৩-guardrail--ai-র-সমরখ">৪.৩ Guardrail — AI-র সীমারেখা<a class="headerlink" href="#৪৩-guardrail--ai-র-সমরখ" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>কী আটকাবেন</th>
+<th>উদাহরণ (shopbd chatbot)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>বিষয়ের বাইরে প্রশ্ন</td>
+<td>চ্যাটবট রাজনীতি বা চিকিৎসা-পরামর্শ দেবে না</td>
+</tr>
+<tr>
+<td>বিষাক্ত/অশালীন ভাষা</td>
+<td>ক্রেতার গালি বা hate speech ফিল্টার</td>
+</tr>
+<tr>
+<td>PII (ব্যক্তিগত তথ্য)</td>
+<td>ফোন নম্বর, NID, কার্ড নম্বর উত্তর বা log থেকে মাস্ক</td>
+</tr>
+<tr>
+<td>Prompt injection</td>
+<td>"আগের নির্দেশ ভুলে যাও" ধরনের আক্রমণ</td>
+</tr>
+<tr>
+<td>Hallucination</td>
+<td>context-এর বাইরে উত্তর হলে "জানি না" বলা (grounding check)</td>
+</tr>
+</tbody>
+</table>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:4"><input checked="checked" id="aws_4" name="__tabbed_5" type="radio" /><input id="gcp_4" name="__tabbed_5" type="radio" /><input id="azure_4" name="__tabbed_5" type="radio" /><input id="oci_4" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="aws_4">AWS</label><label for="gcp_4">GCP</label><label for="azure_4">Azure</label><label for="oci_4">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>Bedrock Guardrails</strong> — denied topics, content filters, PII redaction, contextual grounding check। একটা guardrail বানিয়ে <code>Converse</code> call-এ <code>guardrailConfig</code> দিয়ে জুড়ে দেওয়া যায়। এটা শুধু Bedrock model না, <code>ApplyGuardrail</code> API দিয়ে অন্য model-এর আউটপুটেও চালানো যায়।</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Gemini safety settings</strong> (harm category threshold) এবং <strong>Model Armor</strong> (prompt injection, sensitive data, malicious URL screening)। Sensitive data আটকাতে <strong>Sensitive Data Protection (DLP)</strong> ব্যবহার করা যায়।</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Azure AI Content Safety</strong> — content filter প্রতিটা Azure OpenAI deployment-এ ডিফল্টে চালু; <strong>Prompt Shields</strong> jailbreak/injection ধরে; <strong>Groundedness detection</strong> hallucination ধরে। Filter-এর threshold deployment-এ কাস্টমাইজ করা যায়।</p>
+</div>
+<div class="tabbed-block">
+<p><strong>OCI Generative AI</strong>-তে content moderation, prompt injection ও PII-এর guardrail আছে। কোন model ও region-এ কোনটা পাওয়া যায় তা docs-এ মিলিয়ে নিন; না থাকলে নিজের code-এ আগে/পরে একটা যাচাই ধাপ বসান।</p>
+</div>
+</div>
+</div>
+<h2 id="৫-ml-platform--নজর-data-নজর-model">৫. ML Platform — নিজের data, নিজের model<a class="headerlink" href="#৫-ml-platform--নজর-data-নজর-model" title="Permanent link">&para;</a></h2>
+<p>যখন prebuilt API বা prompt যথেষ্ট না — যেমন shopbd-র নিজস্ব বিক্রির data থেকে <strong>আগামী মাসের বিক্রি অনুমান</strong> — তখন ML platform লাগে। এটা হলো ML-এর পুরো জীবনচক্রের জন্য একটা workbench।</p>
+<pre class="mermaid"><code>flowchart LR
+    D["Data&lt;br/&gt;Object Storage + warehouse"] --&gt; P["Prepare&lt;br/&gt;clean, feature"]
+    P --&gt; T["Train&lt;br/&gt;job বা AutoML"]
+    T --&gt; R["Register&lt;br/&gt;model registry"]
+    R --&gt; DP["Deploy&lt;br/&gt;endpoint বা batch"]
+    DP --&gt; M["Monitor&lt;br/&gt;drift, quality"]
+    M -. "retrain" .-&gt; P</code></pre>
+<h3 id="৫১-পলযটফরম-ও-তদর-উপদন">৫.১ প্ল্যাটফর্ম ও তাদের উপাদান<a class="headerlink" href="#৫১-পলযটফরম-ও-তদর-উপদন" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>কাজ</th>
+<th>AWS SageMaker AI</th>
+<th>GCP Vertex AI</th>
+<th>Azure Machine Learning</th>
+<th>OCI Data Science</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Notebook</td>
+<td>Studio, Notebook Instances</td>
+<td>Workbench, Colab Enterprise</td>
+<td>Compute Instance, Notebooks</td>
+<td>Notebook Session</td>
+</tr>
+<tr>
+<td>Training job</td>
+<td>Training Job</td>
+<td>Custom Training Job</td>
+<td>Job (command/sweep)</td>
+<td>Jobs</td>
+</tr>
+<tr>
+<td>AutoML</td>
+<td>Autopilot / Canvas</td>
+<td>Vertex AutoML</td>
+<td>Automated ML</td>
+<td>AutoML (Accelerated Data Science)</td>
+</tr>
+<tr>
+<td>Pipeline</td>
+<td>SageMaker Pipelines</td>
+<td>Vertex AI Pipelines</td>
+<td>Azure ML Pipelines</td>
+<td>ML Pipelines</td>
+</tr>
+<tr>
+<td>Model registry</td>
+<td>Model Registry</td>
+<td>Model Registry</td>
+<td>Model Registry</td>
+<td>Model Catalog</td>
+</tr>
+<tr>
+<td>Online endpoint</td>
+<td>Real-time Endpoint</td>
+<td>Endpoint</td>
+<td>Managed Online Endpoint</td>
+<td>Model Deployment</td>
+</tr>
+<tr>
+<td>Batch inference</td>
+<td>Batch Transform</td>
+<td>Batch Prediction</td>
+<td>Batch Endpoint</td>
+<td>Batch via Jobs</td>
+</tr>
+<tr>
+<td>Feature store</td>
+<td>Feature Store</td>
+<td>Vertex AI Feature Store / BigQuery</td>
+<td>Managed Feature Store</td>
+<td>— (docs দেখুন)</td>
+</tr>
+<tr>
+<td>Monitoring</td>
+<td>Model Monitor, Clarify</td>
+<td>Model Monitoring</td>
+<td>Model monitoring, Responsible AI dashboard</td>
+<td>Model Monitoring (সীমিত)</td>
+</tr>
+<tr>
+<td>Experiment tracking</td>
+<td>SageMaker with MLflow</td>
+<td>Vertex AI Experiments</td>
+<td>MLflow built-in</td>
+<td>MLflow integration</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">MLflow আছে সবখানে</p>
+<p><strong>MLflow</strong> একটা open-source experiment tracking tool। চার cloud-ই কোনো না কোনোভাবে সাপোর্ট করে — তাই MLflow-তে অভ্যস্ত হলে platform বদলালে কম কষ্ট হবে। একইভাবে <strong>ONNX</strong>, <strong>PyTorch</strong>, <strong>scikit-learn</strong> portable।</p>
+</div>
+<h3 id="৫২-শরর-কমনড-ও-console">৫.২ শুরুর কমান্ড ও console<a class="headerlink" href="#৫২-শরর-কমনড-ও-console" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:4"><input checked="checked" id="aws_5" name="__tabbed_6" type="radio" /><input id="gcp_5" name="__tabbed_6" type="radio" /><input id="azure_5" name="__tabbed_6" type="radio" /><input id="oci_5" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="aws_5">AWS</label><label for="gcp_5">GCP</label><label for="azure_5">Azure</label><label for="oci_5">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Console: SageMaker AI → Studio (প্রথমে একটা <strong>Domain</strong> বানাতে হয়, তারপর user profile)।
+Domain বানানো IAM role, VPC ও subnet চায় — নতুনদের জন্য console-এর "quick setup" সহজ।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>aws<span class="w"> </span>sagemaker<span class="w"> </span>list-endpoints<span class="w"> </span>--region<span class="w"> </span>ap-south-1
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>aws<span class="w"> </span>sagemaker<span class="w"> </span>list-training-jobs<span class="w"> </span>--region<span class="w"> </span>ap-south-1<span class="w"> </span>--max-results<span class="w"> </span><span class="m">5</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>aws<span class="w"> </span>sagemaker<span class="w"> </span>list-models<span class="w"> </span>--region<span class="w"> </span>ap-south-1
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Console: Vertex AI → Dashboard। শুরুতে API enable, তারপর Workbench instance বা সরাসরি custom job।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>gcloud<span class="w"> </span>services<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>aiplatform.googleapis.com
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>gcloud<span class="w"> </span>ai<span class="w"> </span>endpoints<span class="w"> </span>list<span class="w"> </span>--region<span class="o">=</span>asia-south1
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>gcloud<span class="w"> </span>ai<span class="w"> </span>models<span class="w"> </span>list<span class="w"> </span>--region<span class="o">=</span>asia-south1
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>gcloud<span class="w"> </span>ai<span class="w"> </span>custom-jobs<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">  </span>--region<span class="o">=</span>asia-south1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">  </span>--display-name<span class="o">=</span>shopbd-forecast-train<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">  </span>--worker-pool-spec<span class="o">=</span>machine-type<span class="o">=</span>n1-standard-8,replica-count<span class="o">=</span><span class="m">1</span>,container-image-uri<span class="o">=</span>asia-south1-docker.pkg.dev/my-project-id/shopbd/train:latest
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Console: Azure Machine Learning studio (ml.azure.com)। Workspace বানাতে Storage Account, Key Vault ও Application Insights লাগে (CLI সেগুলো automatic বানিয়ে নেয়)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>az<span class="w"> </span>extension<span class="w"> </span>add<span class="w"> </span>--name<span class="w"> </span>ml
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>az<span class="w"> </span>ml<span class="w"> </span>workspace<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>shopbd-ml<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-ai-rg<span class="w"> </span>--location<span class="w"> </span>centralindia
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>az<span class="w"> </span>ml<span class="w"> </span>compute<span class="w"> </span>list<span class="w"> </span>--workspace-name<span class="w"> </span>shopbd-ml<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-ai-rg
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>az<span class="w"> </span>ml<span class="w"> </span>online-endpoint<span class="w"> </span>list<span class="w"> </span>--workspace-name<span class="w"> </span>shopbd-ml<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-ai-rg
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Console: Analytics &amp; AI → Data Science → Project → Notebook Session / Job / Model Deployment। কাজ শুরুর আগে dynamic group ও policy লাগে (<code>data-science-family</code>)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>oci<span class="w"> </span>data-science<span class="w"> </span>project<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">  </span>--display-name<span class="w"> </span>shopbd-ml
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>oci<span class="w"> </span>data-science<span class="w"> </span>model-deployment<span class="w"> </span>list<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="৫৩-terraform-ml-workspace-এর-ভতত">৫.৩ Terraform: ML workspace-এর ভিত্তি<a class="headerlink" href="#৫৩-terraform-ml-workspace-এর-ভতত" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:4"><input checked="checked" id="aws_6" name="__tabbed_7" type="radio" /><input id="gcp_6" name="__tabbed_7" type="radio" /><input id="azure_6" name="__tabbed_7" type="radio" /><input id="oci_6" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="aws_6">AWS</label><label for="gcp_6">GCP</label><label for="azure_6">Azure</label><label for="oci_6">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># SageMaker needs an execution role the service can assume.</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_iam_role"</span><span class="w"> </span><span class="nv">"sagemaker_exec"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-sagemaker-exec"</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">  </span><span class="na">assume_role_policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">jsonencode</span><span class="p">({</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">    </span><span class="na">Version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2012-10-17"</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">    </span><span class="na">Statement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[{</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="w">      </span><span class="na">Effect</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"Allow"</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="w">      </span><span class="nb">Principal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="na">Service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sagemaker.amazonaws.com"</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="w">      </span><span class="na">Action</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"sts:AssumeRole"</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="w">    </span><span class="p">}]</span>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="w">  </span><span class="p">})</span>
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="p">}</span>
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>
+</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_iam_role_policy_attachment"</span><span class="w"> </span><span class="nv">"sagemaker_full"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a><span class="w">  </span><span class="na">role</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_role.sagemaker_exec.name</span>
+</span><span id="__span-23-16"><a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a><span class="w">  </span><span class="na">policy_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"arn:aws:iam::aws:policy/AmazonSageMakerFullAccess"</span>
+</span><span id="__span-23-17"><a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_vertex_ai_dataset"</span><span class="w"> </span><span class="nv">"sales"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">  </span><span class="na">display_name</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-sales"</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">  </span><span class="na">metadata_schema_uri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gs://google-cloud-aiplatform/schema/dataset/metadata/tabular_1.0.0.yaml"</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">  </span><span class="na">region</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s2">"asia-south1"</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_machine_learning_workspace"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-ml"</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">  </span><span class="na">location</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.ai.location</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.ai.name</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="w">  </span><span class="na">application_insights_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_application_insights.ml.id</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">  </span><span class="na">key_vault_id</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_key_vault.ml.id</span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="w">  </span><span class="na">storage_account_id</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_storage_account.ml.id</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="w">  </span><span class="nb">identity</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="w">    </span><span class="na">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"SystemAssigned"</span>
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"oci_datascience_project"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">  </span><span class="na">compartment_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.compartment_id</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">  </span><span class="na">display_name</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-ml"</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">  </span><span class="na">description</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd forecasting and recommendations"</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="p">}</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"oci_datascience_notebook_session"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="w">  </span><span class="na">compartment_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.compartment_id</span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="w">  </span><span class="na">project_id</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">oci_datascience_project.shopbd.id</span>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="w">  </span><span class="na">display_name</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-notebook"</span>
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="w">  </span><span class="nb">notebook_session_configuration_details</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a><span class="w">    </span><span class="na">shape</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"VM.Standard.E4.Flex"</span>
+</span><span id="__span-26-13"><a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="w">    </span><span class="na">subnet_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.subnet_id</span>
+</span><span id="__span-26-14"><a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a><span class="w">    </span><span class="nb">notebook_session_shape_config_details</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-26-15"><a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a><span class="w">      </span><span class="na">ocpus</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+</span><span id="__span-26-16"><a id="__codelineno-26-16" name="__codelineno-26-16" href="#__codelineno-26-16"></a><span class="w">      </span><span class="na">memory_in_gbs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span>
+</span><span id="__span-26-17"><a id="__codelineno-26-17" name="__codelineno-26-17" href="#__codelineno-26-17"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-26-18"><a id="__codelineno-26-18" name="__codelineno-26-18" href="#__codelineno-26-18"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-26-19"><a id="__codelineno-26-19" name="__codelineno-26-19" href="#__codelineno-26-19"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="৬-inference--model-চল-করর-চর-উপয">৬. Inference — model চালু করার চার উপায়<a class="headerlink" href="#৬-inference--model-চল-করর-চর-উপয" title="Permanent link">&para;</a></h2>
+<p>Model train হলো, এখন সেটা দিয়ে <strong>prediction</strong> (inference) দিতে হবে। কত দ্রুত, কত ঘন ঘন, কত টাকায় — এই তিন প্রশ্নে চারটা পথ আছে।</p>
+<table>
+<thead>
+<tr>
+<th>ধরন</th>
+<th>কখন</th>
+<th>উদাহরণ</th>
+<th>খরচের স্বভাব</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Real-time endpoint</strong></td>
+<td>মিলিসেকেন্ডে উত্তর</td>
+<td>cart-এ "এটাও কিনেছেন অনেকে"</td>
+<td>endpoint চললেই বিল — ব্যবহার না হলেও</td>
+</tr>
+<tr>
+<td><strong>Serverless inference</strong></td>
+<td>অনিয়মিত, ছোট traffic</td>
+<td>মাঝে মাঝে ছবির classification</td>
+<td>ব্যবহারে বিল, cold start আছে</td>
+</tr>
+<tr>
+<td><strong>Async inference</strong></td>
+<td>বড় payload, কয়েক মিনিট ঠিক আছে</td>
+<td>বড় PDF analysis</td>
+<td>queue-ভিত্তিক, শূন্য instance-এ নামতে পারে</td>
+</tr>
+<tr>
+<td><strong>Batch inference</strong></td>
+<td>সবকিছু একসাথে, রাতে</td>
+<td>রাতের forecast, সব product-এর embedding</td>
+<td>job চলা পর্যন্ত বিল</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>ধরন</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Real-time</td>
+<td>SageMaker Endpoint</td>
+<td>Vertex Endpoint</td>
+<td>Managed Online Endpoint</td>
+<td>Model Deployment</td>
+</tr>
+<tr>
+<td>Serverless</td>
+<td>SageMaker Serverless Inference</td>
+<td>Cloud Run-এ নিজের container</td>
+<td>AML-এ নেই (Container Apps/Functions ব্যবহার)</td>
+<td>OCI Functions / Container Instances</td>
+</tr>
+<tr>
+<td>Async</td>
+<td>Async Inference</td>
+<td>Batch/Cloud Tasks + Run</td>
+<td>— (batch endpoint)</td>
+<td>Jobs</td>
+</tr>
+<tr>
+<td>Batch</td>
+<td>Batch Transform</td>
+<td>Batch Prediction</td>
+<td>Batch Endpoint</td>
+<td>Jobs</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition danger">
+<p class="admonition-title">সবচেয়ে ব্যয়বহুল ভুল</p>
+<p>GPU endpoint <strong>ভুলে চালু রেখে</strong> যাওয়া। Notebook instance, dev endpoint, ছোট্ট experiment-এর GPU — সপ্তাহান্তে কেউ খেয়াল না করলে বিল আকাশছোঁয়া হয়।
+Auto-stop/idle shutdown চালু করুন, শূন্য-এ নামানো যায় এমন scaling রাখুন, আর <strong>budget alert</strong> দিন (<a href="../18-cost-management/">Cost Management</a> অধ্যায়)।</p>
+</div>
+<h2 id="৭-shopbd-র-sales-forecast--সবচয-সজ-পথ-কনট">৭. shopbd-র sales forecast — সবচেয়ে সোজা পথ কোনটা?<a class="headerlink" href="#৭-shopbd-র-sales-forecast--সবচয-সজ-পথ-কনট" title="Permanent link">&para;</a></h2>
+<p>ম্যানেজারের প্রশ্ন: "আগামী ৩০ দিনে প্রতিদিন কত টাকার বিক্রি হবে?" এটা <strong>time-series forecasting</strong>। Data: <code>daily_sales(order_date, total_sales)</code>।</p>
+<ul>
+<li><strong>AWS:</strong> <em>Amazon Forecast</em> নতুন customer নেয় না (২০২৪ থেকে বন্ধ); বর্তমান পথ হলো SageMaker AI-তে forecasting model (যেমন Chronos বা DeepAR) বা Canvas-এর time-series forecasting। এই নামটা পুরোনো ব্লগে পাবেন বলে জানিয়ে রাখলাম।</li>
+<li><strong>GCP:</strong> data যদি BigQuery-তে থাকে, <strong>BigQuery ML</strong> দিয়ে SQL-এই model train ও forecast হয় — কোনো ML platform ছাড়াই।</li>
+<li><strong>Azure:</strong> Azure ML <strong>Automated ML</strong>-এ forecasting task type নির্বাচন করলেই হয়।</li>
+<li><strong>OCI:</strong> <strong>OCI Forecasting</strong> service বা Data Science-এর AutoML।</li>
+</ul>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1">-- BigQuery ML: train a time-series model, then forecast 30 days</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="n">MODEL</span><span class="w"> </span><span class="o">`</span><span class="n">my</span><span class="o">-</span><span class="n">project</span><span class="o">-</span><span class="n">id</span><span class="p">.</span><span class="n">shopbd</span><span class="p">.</span><span class="n">sales_forecast</span><span class="o">`</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w">  </span><span class="n">model_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'ARIMA_PLUS'</span><span class="p">,</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="w">  </span><span class="n">time_series_timestamp_col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'order_date'</span><span class="p">,</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="w">  </span><span class="n">time_series_data_col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'total_sales'</span>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="p">)</span><span class="w"> </span><span class="k">AS</span>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">order_date</span><span class="p">,</span><span class="w"> </span><span class="n">total_sales</span>
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="k">FROM</span><span class="w"> </span><span class="o">`</span><span class="n">my</span><span class="o">-</span><span class="n">project</span><span class="o">-</span><span class="n">id</span><span class="p">.</span><span class="n">shopbd</span><span class="p">.</span><span class="n">daily_sales</span><span class="o">`</span><span class="p">;</span>
+</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>
+</span><span id="__span-27-11"><a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+</span><span id="__span-27-12"><a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a><span class="k">FROM</span><span class="w"> </span><span class="n">ML</span><span class="p">.</span><span class="n">FORECAST</span><span class="p">(</span>
+</span><span id="__span-27-13"><a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a><span class="w">  </span><span class="n">MODEL</span><span class="w"> </span><span class="o">`</span><span class="n">my</span><span class="o">-</span><span class="n">project</span><span class="o">-</span><span class="n">id</span><span class="p">.</span><span class="n">shopbd</span><span class="p">.</span><span class="n">sales_forecast</span><span class="o">`</span><span class="p">,</span>
+</span><span id="__span-27-14"><a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a><span class="w">  </span><span class="n">STRUCT</span><span class="p">(</span><span class="mi">30</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">horizon</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">9</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">confidence_level</span><span class="p">)</span>
+</span><span id="__span-27-15"><a id="__codelineno-27-15" name="__codelineno-27-15" href="#__codelineno-27-15"></a><span class="p">);</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">ঈদ ও পহেলা বৈশাখ</p>
+<p>বাংলাদেশের e-commerce-এ ঈদ, পহেলা বৈশাখ, ১১.১১ sale-এ বিক্রি লাফিয়ে ওঠে। Forecast model-কে <strong>holiday/event column</strong> দিন (ARIMA_PLUS-এ holiday region সেট করা যায়; AutoML-এ covariate হিসেবে দিন)। না দিলে model প্রতিবার "অস্বাভাবিক" ভাববে।</p>
+</div>
+<h2 id="৮-gpu-ও-accelerator">৮. GPU ও accelerator<a class="headerlink" href="#৮-gpu-ও-accelerator" title="Permanent link">&para;</a></h2>
+<p>LLM ও deep learning-এর হিসাব মূলত matrix গুণ — এটা CPU-তে ধীর, GPU-তে হাজার গুণ দ্রুত। Training-এর জন্য বড় GPU/accelerator, inference-এর জন্য ছোট (সস্তা) GPU বা বিশেষ chip।</p>
+<table>
+<thead>
+<tr>
+<th>ব্যবহার</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>বড় training</td>
+<td>P5 / P4d (NVIDIA H100/A100), Trn1/Trn2 (Trainium)</td>
+<td>A3 / A4 (NVIDIA H100/H200/B200), TPU</td>
+<td>ND-series (H100 ইত্যাদি)</td>
+<td>BM.GPU.H100.8, BM.GPU.A100, BM.GPU.H200.8, AMD MI300X</td>
+</tr>
+<tr>
+<td>Inference / fine-tune</td>
+<td>G5 / G6 (A10G/L4), Inf2 (Inferentia)</td>
+<td>G2 (L4), TPU</td>
+<td>NC-series</td>
+<td>VM.GPU.A10.1, VM.GPU.*</td>
+</tr>
+<tr>
+<td>Managed cluster</td>
+<td>SageMaker HyperPod</td>
+<td>GKE + TPU/GPU, Dynamic Workload Scheduler</td>
+<td>AKS/CycleCloud/AML compute cluster</td>
+<td>OKE + GPU, Supercluster</td>
+</tr>
+<tr>
+<td>Capacity বুক করা</td>
+<td>EC2 Capacity Blocks for ML, On-Demand Capacity Reservation</td>
+<td>Reservations, Dynamic Workload Scheduler</td>
+<td>Capacity Reservation</td>
+<td>Capacity Reservations</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">GPU quota ডিফল্টে শূন্য থাকতে পারে</p>
+<p>নতুন account-এ GPU quota প্রায়ই <strong>০</strong> বা খুব কম থাকে। Quota বাড়ানোর request করতে কয়েক ঘণ্টা থেকে কয়েক দিন লাগে, আর চাহিদা বেশি হলে approved quota-তেও capacity না-ও পাওয়া যেতে পারে। প্রজেক্ট শুরুর <strong>আগেই</strong> quota দেখুন।</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:4"><input checked="checked" id="aws_7" name="__tabbed_8" type="radio" /><input id="gcp_7" name="__tabbed_8" type="radio" /><input id="azure_7" name="__tabbed_8" type="radio" /><input id="oci_7" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="aws_7">AWS</label><label for="gcp_7">GCP</label><label for="azure_7">Azure</label><label for="oci_7">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>aws<span class="w"> </span>service-quotas<span class="w"> </span>list-service-quotas<span class="w"> </span>--service-code<span class="w"> </span>ec2<span class="w"> </span>--region<span class="w"> </span>ap-south-1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">  </span>--query<span class="w"> </span><span class="s2">"Quotas[?contains(QuotaName, 'G and VT') || contains(QuotaName, 'P instances')].[QuotaName,Value]"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">  </span>--output<span class="w"> </span>table
+</span></code></pre></div>
+<p>Quota বাড়াতে: Service Quotas console → EC2 → ঐ quota → Request increase।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>accelerator-types<span class="w"> </span>list<span class="w"> </span>--filter<span class="o">=</span><span class="s2">"zone:asia-south1-a"</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>regions<span class="w"> </span>describe<span class="w"> </span>asia-south1<span class="w"> </span>--format<span class="o">=</span><span class="s2">"yaml(quotas)"</span>
+</span></code></pre></div>
+<p>Quota বাড়াতে: IAM &amp; Admin → Quotas &amp; System Limits → GPU filter করে edit।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>az<span class="w"> </span>vm<span class="w"> </span>list-usage<span class="w"> </span>--location<span class="w"> </span>centralindia<span class="w"> </span>--output<span class="w"> </span>table
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>az<span class="w"> </span>vm<span class="w"> </span>list-skus<span class="w"> </span>--location<span class="w"> </span>centralindia<span class="w"> </span>--size<span class="w"> </span>Standard_NC<span class="w"> </span>--output<span class="w"> </span>table
+</span></code></pre></div>
+<p>Quota বাড়াতে: Portal → Quotas → Compute → Request increase (VM family অনুযায়ী আলাদা)।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>oci<span class="w"> </span>limits<span class="w"> </span>value<span class="w"> </span>list<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.tenancy.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">  </span>--service-name<span class="w"> </span>compute<span class="w"> </span>--all
+</span></code></pre></div>
+<p>আউটপুটে <code>gpu</code> যুক্ত limit খুঁজুন। বাড়াতে: Governance → Limits, Quotas and Usage → Request a service limit increase।</p>
+</div>
+</div>
+</div>
+<h3 id="৮১-gpu-র-খরচ-কমনর-উপয">৮.১ GPU-র খরচ কমানোর উপায়<a class="headerlink" href="#৮১-gpu-র-খরচ-কমনর-উপয" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Right-size:</strong> inference-এর জন্য H100 লাগে না; ছোট model L4/A10G-তে চলে।</li>
+<li><strong>Spot/preemptible</strong> GPU training-এ (checkpoint রেখে) বড় সাশ্রয়; endpoint-এ ঝুঁকিপূর্ণ।</li>
+<li><strong>Quantization</strong> (model ছোট করা), <strong>batching</strong>, <strong>caching</strong> (একই prompt বারবার না ডাকা)।</li>
+<li>ছোট কাজের জন্য <strong>managed GenAI (token-based)</strong> প্রায়ই নিজের GPU-র চেয়ে সস্তা — যতক্ষণ না আপনার volume অনেক বড়।</li>
+<li>কাজ শেষে <code>stop</code>/<code>delete</code>; notebook-এ idle timeout।</li>
+</ul>
+<h2 id="৯-responsible-ai--দযতবশল-বযবহর">৯. Responsible AI — দায়িত্বশীল ব্যবহার<a class="headerlink" href="#৯-responsible-ai--দযতবশল-বযবহর" title="Permanent link">&para;</a></h2>
+<p>AI ভুল করে, পক্ষপাত করে, আর আপনার ক্রেতার তথ্য নিয়ে কাজ করে। তাই কয়েকটা নিয়ম শুরু থেকেই মানুন।</p>
+<table>
+<thead>
+<tr>
+<th>ঝুঁকি</th>
+<th>কী হতে পারে</th>
+<th>প্রতিকার</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hallucination</strong></td>
+<td>chatbot ভুল return policy বলল</td>
+<td>RAG + grounding check + "নিশ্চিত না হলে জানি না বলো"</td>
+</tr>
+<tr>
+<td><strong>Privacy</strong></td>
+<td>ক্রেতার ফোন/ঠিকানা prompt বা log-এ গেল</td>
+<td>PII mask করে পাঠান, log সংরক্ষণ নিয়ন্ত্রণ, data residency</td>
+</tr>
+<tr>
+<td><strong>Bias</strong></td>
+<td>recommendation বা credit-সদৃশ সিদ্ধান্তে একটা গোষ্ঠী বঞ্চিত</td>
+<td>data audit, fairness মাপা (Clarify / Responsible AI dashboard), human review</td>
+</tr>
+<tr>
+<td><strong>Prompt injection</strong></td>
+<td>ক্রেতার লেখায় লুকানো নির্দেশে bot ভুল কাজ করল</td>
+<td>input/output guardrail, tool-এ least privilege</td>
+</tr>
+<tr>
+<td><strong>Copyright/ভুয়া ছবি</strong></td>
+<td>GenAI ছবি আসল বলে চালানো</td>
+<td>AI-generated চিহ্নিত করুন</td>
+</tr>
+<tr>
+<td><strong>Over-reliance</strong></td>
+<td>কেউ AI-র উত্তর যাচাই না করে ব্যবহার করল</td>
+<td>গুরুত্বপূর্ণ সিদ্ধান্তে human-in-the-loop</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Privacy-র গুরুত্বপূর্ণ প্রশ্ন:</strong> "আমার prompt কি model-কে train করতে ব্যবহার হয়?" চারটা প্ল্যাটফর্মেরই enterprise GenAI service-এর নীতি হলো ডিফল্টে আপনার data দিয়ে base model train হয় না — কিন্তু <strong>নিজের service ও region-এর সর্বশেষ data-privacy docs পড়ে নিশ্চিত হোন</strong>, বিশেষ করে abuse monitoring, logging ও cross-region inference নিয়ে। Bangladesh-এর ব্যক্তিগত তথ্য সুরক্ষা সংক্রান্ত আইন/নীতিমালার দিকেও নজর রাখুন।</p>
+<div class="admonition example">
+<p class="admonition-title">shopbd chatbot-এর ন্যূনতম নিয়ম</p>
+<ol>
+<li>শুধু FAQ ও policy নথি থেকে উত্তর; না পেলে মানুষ agent-এর কাছে পাঠাও।</li>
+<li>অর্ডার/টাকা সংক্রান্ত কাজ tool দিয়ে, read-only; refund-এর অনুমোদন মানুষ দেয়।</li>
+<li>ফোন/NID prompt-এর আগে মাস্ক।</li>
+<li>প্রতিটা উত্তরে "এটি AI সহকারী" লেখা।</li>
+<li>মাসিক নমুনা-যাচাই: ১০০টা কথোপকথন পড়ে ভুলের হার মাপা।</li>
+</ol>
+</div>
+<h2 id="১০-mlops-ও-খরচ-নযনতরণর-ছট-চকলসট">১০. MLOps ও খরচ-নিয়ন্ত্রণের ছোট চেকলিস্ট<a class="headerlink" href="#১০-mlops-ও-খরচ-নযনতরণর-ছট-চকলসট" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Version everything:</strong> data, code, model, prompt — চারটাই। Prompt বদলালেও আচরণ বদলায়।</li>
+<li><strong>Evaluation:</strong> GenAI-তেও test set রাখুন (২০–৫০টা প্রশ্ন + আদর্শ উত্তর), model বা prompt বদলালে আবার চালান।</li>
+<li><strong>Monitoring:</strong> latency, error rate, token ব্যবহার, ব্যবহারকারীর 👍/👎, data drift।</li>
+<li><strong>Cost allocation:</strong> tag/label দিন (<code>app=shopbd</code>, <code>env=prod</code>, <code>feature=chatbot</code>) — কোন feature কত token খেল বোঝা যাবে।</li>
+<li><strong>Rate limit ও retry:</strong> quota-র কারণে <code>429</code> আসবে; exponential backoff রাখুন।</li>
+<li><strong>Cache:</strong> একই FAQ প্রশ্নের উত্তর cache করুন (Redis)।</li>
+<li><strong>ছোট model আগে:</strong> সহজ কাজে (classification, রূপান্তর) ছোট/সস্তা model; কঠিন কাজে বড়।</li>
+</ul>
+<h2 id="মল-ও-অমল">মিল ও অমিল<a class="headerlink" href="#মল-ও-অমল" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GenAI-র দর্শন</td>
+<td>অনেক provider-এর model, এক API (Bedrock)</td>
+<td>নিজস্ব Gemini কেন্দ্রে, Model Garden-এ বাকিরা</td>
+<td>OpenAI-ঘনিষ্ঠ, Microsoft ecosystem-এর সাথে গভীর</td>
+<td>Cohere/Llama, Oracle DB-র সাথে বাঁধা</td>
+</tr>
+<tr>
+<td>ML platform-এর ভিত্তি</td>
+<td>IAM role + S3</td>
+<td>project + GCS + BigQuery</td>
+<td>workspace + Storage + Key Vault</td>
+<td>project + compartment + Object Storage</td>
+</tr>
+<tr>
+<td>Data analytics-এর সাথে মিল</td>
+<td>Athena/Redshift → SageMaker</td>
+<td><strong>BigQuery ML</strong> সবচেয়ে সহজ</td>
+<td>Fabric/Synapse → AML</td>
+<td>Autonomous DB-র ভেতরে ML</td>
+</tr>
+<tr>
+<td>নিজস্ব chip</td>
+<td>Trainium/Inferentia</td>
+<td>TPU</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Model-এ কী access লাগে</td>
+<td>model enable/use-case form (model ভেদে)</td>
+<td>API enable + IAM</td>
+<td>resource + deployment + quota</td>
+<td>policy + region-এ model আছে কি না</td>
+</tr>
+<tr>
+<td>Quota-র ধরন</td>
+<td>RPM/TPM per model per region</td>
+<td>per model per region</td>
+<td><strong>TPM per deployment/subscription</strong></td>
+<td>service limit/dedicated cluster</td>
+</tr>
+</tbody>
+</table>
+<p><strong>যেসব বিষয়ে মানুষ হোঁচট খায়:</strong></p>
+<ul>
+<li><strong>Azure:</strong> call করতে হয় <em>deployment-এর নাম</em> দিয়ে, model-এর নাম দিয়ে নয়। Model আছে কিন্তু quota ০ — তখন <code>429</code> বা deployment ব্যর্থ হয়।</li>
+<li><strong>AWS:</strong> SageMaker Domain/Studio-র ধাপ নতুনদের কাছে ভারী; Bedrock-এ region ও inference profile মেলাতে হয়।</li>
+<li><strong>GCP:</strong> API enable না করলেই "403 / API not enabled"; model-এর region মিলতে হয়, অনেক সময় <code>global</code> endpoint লাগে।</li>
+<li><strong>OCI:</strong> সবকিছু compartment OCID-এর সাথে বাঁধা; GenAI সব region-এ নেই, তাই inference endpoint-এর region আলাদা হতে পারে।</li>
+<li>সব cloud: <strong>GPU quota ও capacity</strong>; model retire হওয়ার ঘোষণা (পুরোনো model ID হঠাৎ বন্ধ)।</li>
+</ul>
+<h2 id="real-world-shopbd">Real-world: shopbd<a class="headerlink" href="#real-world-shopbd" title="Permanent link">&para;</a></h2>
+<p>shopbd-র চারটি AI কাজ ও কোন স্তরে কী:</p>
+<table>
+<thead>
+<tr>
+<th>কাজ</th>
+<th>স্তর</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Product description লেখা</td>
+<td>২ — GenAI</td>
+<td>Bedrock Converse</td>
+<td>Gemini on Vertex AI</td>
+<td>Foundry deployment</td>
+<td>OCI Generative AI</td>
+</tr>
+<tr>
+<td>ছবি auto-tag (<code>shopbd-images</code>)</td>
+<td>১ — Prebuilt</td>
+<td>Rekognition</td>
+<td>Cloud Vision</td>
+<td>Azure AI Vision</td>
+<td>OCI Vision</td>
+</tr>
+<tr>
+<td>বিক্রির forecast</td>
+<td>৩ — ML/AutoML</td>
+<td>SageMaker (Chronos/DeepAR)</td>
+<td>BigQuery ML</td>
+<td>Azure ML AutoML</td>
+<td>OCI Forecasting / Data Science</td>
+</tr>
+<tr>
+<td>বাংলা সাপোর্ট chatbot</td>
+<td>২ — GenAI + RAG</td>
+<td>Bedrock KB + Guardrails</td>
+<td>Vertex RAG Engine + Model Armor</td>
+<td>Foundry + AI Search + Content Safety</td>
+<td>GenAI Agents</td>
+</tr>
+</tbody>
+</table>
+<h3 id="architecture--বল-support-chatbot">Architecture — বাংলা support chatbot<a class="headerlink" href="#architecture--বল-support-chatbot" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart LR
+    C["ক্রেতা&lt;br/&gt;shopbd.example.com"] --&gt; FE["Frontend"]
+    FE --&gt; API["shopbd-api&lt;br/&gt;/chat"]
+    API --&gt; GR1["Input guardrail&lt;br/&gt;PII mask"]
+    GR1 --&gt; RAG["Retrieve&lt;br/&gt;vector store"]
+    RAG --&gt; LLM["Managed GenAI"]
+    LLM --&gt; GR2["Output guardrail"]
+    GR2 --&gt; API
+    API --&gt; TOOL["Order API&lt;br/&gt;read-only tool"]
+    API --&gt; LOG[("Logs&lt;br/&gt;PII ছাড়া")]
+    DOCS[("shopbd-docs&lt;br/&gt;FAQ, policy")] -. "nightly sync" .-&gt; RAG</code></pre>
+<h3 id="event-driven-image-tagging">Event-driven image tagging<a class="headerlink" href="#event-driven-image-tagging" title="Permanent link">&para;</a></h3>
+<p>নতুন ছবি আপলোড হলে স্বয়ংক্রিয়ভাবে tag বসানো: object storage event → function → vision API → tag <code>shopbd-db</code>-তে।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:4"><input checked="checked" id="aws_8" name="__tabbed_9" type="radio" /><input id="gcp_8" name="__tabbed_9" type="radio" /><input id="azure_8" name="__tabbed_9" type="radio" /><input id="oci_8" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="aws_8">AWS</label><label for="gcp_8">GCP</label><label for="azure_8">Azure</label><label for="oci_8">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>S3 (<code>shopbd-images</code>) event → <strong>Lambda</strong> → Rekognition <code>DetectLabels</code> → tags PostgreSQL-এ। ছবি বড় হলে SQS বসিয়ে retry/DLQ।</p>
+</div>
+<div class="tabbed-block">
+<p>Cloud Storage event → <strong>Eventarc</strong> → Cloud Run function → Vision API → Cloud SQL।</p>
+</div>
+<div class="tabbed-block">
+<p>Blob Storage event → <strong>Event Grid</strong> → Azure Function → Azure AI Vision → PostgreSQL Flexible Server।</p>
+</div>
+<div class="tabbed-block">
+<p>Object Storage event → <strong>OCI Events</strong> → OCI Function → OCI Vision → database।
+Function-এর IAM-এর জন্য resource principal ব্যবহার করুন।</p>
+</div>
+</div>
+</div>
+<p>এই pattern-এর বিস্তারিত: <a href="../11-messaging-and-events/">Messaging ও Event</a> ও <a href="../09-serverless/">Serverless</a>।</p>
+<h3 id="শরর-পরমরশ-খরচ-কম-রখ">শুরুর পরামর্শ (খরচ কম রেখে)<a class="headerlink" href="#শরর-পরমরশ-খরচ-কম-রখ" title="Permanent link">&para;</a></h3>
+<ol>
+<li>প্রথমে শুধু <strong>Prebuilt API + managed GenAI</strong> — নিজের GPU কিনবেন না।</li>
+<li>Chatbot-এর জন্য pgvector + একটা ছোট/সস্তা model; মান মাপুন।</li>
+<li>Forecast-এর জন্য AutoML/BigQuery ML — প্রথমে সবচেয়ে সহজ baseline (গত বছরের একই সপ্তাহ) বানিয়ে দেখুন AI আদৌ তার চেয়ে ভালো কি না।</li>
+<li>Budget alert ও প্রতি-feature tag প্রথম দিন থেকেই।</li>
+</ol>
+<h2 id="best-practices">Best practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>ওপরের স্তর আগে:</strong> Prebuilt → GenAI → AutoML → custom।</li>
+<li><strong>Identity-based access:</strong> API key নয়; IAM role / service account / managed identity / instance principal (<a href="../03-identity-and-access/">IAM</a>)।</li>
+<li><strong>Private connectivity:</strong> সম্ভব হলে private endpoint (PrivateLink, Private Service Connect, Private Endpoint, OCI private endpoint) দিয়ে model call।</li>
+<li><strong>Config-এ model ID:</strong> code-এ hardcode নয়; model retire হলে শুধু config বদলাবে।</li>
+<li><strong>Evaluation set</strong> রাখুন এবং model/prompt বদলের আগে-পরে চালান।</li>
+<li><strong>Guardrail + grounding + human-in-the-loop</strong> — ঝুঁকিপূর্ণ কাজে।</li>
+<li><strong>Region ও data residency</strong> আগে ঠিক করুন; cross-region inference বুঝে চালু করুন।</li>
+<li><strong>Tag/label</strong> দিয়ে feature-ভিত্তিক খরচ মাপুন; token ও GPU-ঘণ্টায় budget alert।</li>
+<li><strong>IaC:</strong> endpoint, deployment, policy সব Terraform-এ (<a href="../14-infrastructure-as-code/">IaC</a>)।</li>
+<li><strong>Idle শূন্য:</strong> notebook ও dev endpoint auto-shutdown।</li>
+</ul>
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ভুল</th>
+<th>কেন সমস্যা</th>
+<th>সমাধান</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>শুরুতেই নিজের model train করা</td>
+<td>সময় ও GPU খরচ, মান প্রায়ই prebuilt-এর চেয়ে কম</td>
+<td>আগে API/prompt/RAG</td>
+</tr>
+<tr>
+<td>GPU endpoint/notebook চালু রেখে যাওয়া</td>
+<td>নীরবে বিশাল বিল</td>
+<td>auto-stop, budget alert, নিয়মিত cleanup</td>
+</tr>
+<tr>
+<td>LLM-কে "সত্যের উৎস" ভাবা</td>
+<td>hallucination</td>
+<td>RAG + উৎস-উদ্ধৃতি + guardrail</td>
+</tr>
+<tr>
+<td>PII সরাসরি prompt-এ পাঠানো</td>
+<td>privacy ও আইনি ঝুঁকি</td>
+<td>mask/redact, ন্যূনতম তথ্য</td>
+</tr>
+<tr>
+<td>API key code বা Git-এ রাখা</td>
+<td>key leak</td>
+<td>managed identity/IAM role, secret manager</td>
+</tr>
+<tr>
+<td>শুধু একটা region-এ model quota-র ওপর নির্ভর</td>
+<td><code>429</code>, capacity শেষ</td>
+<td>retry+backoff, fallback model/region, quota আগে বাড়ানো</td>
+</tr>
+<tr>
+<td>Model ID hardcode</td>
+<td>model retire হলে production ভাঙে</td>
+<td>config + deprecation ঘোষণায় নজর</td>
+</tr>
+<tr>
+<td>Test ছাড়া prompt বদল</td>
+<td>আচরণ অজান্তে বদলায়</td>
+<td>evaluation set + prompt version control</td>
+</tr>
+<tr>
+<td>Azure-এ model নামে call</td>
+<td><code>DeploymentNotFound</code></td>
+<td>deployment-এর নাম ব্যবহার করুন</td>
+</tr>
+<tr>
+<td>Forecast-এ ঈদ/ছুটি উপেক্ষা</td>
+<td>বড় sale-এ ভুল পূর্বাভাস</td>
+<td>event/holiday feature</td>
+</tr>
+<tr>
+<td>Agent-কে বেশি অধিকার</td>
+<td>prompt injection-এ ক্ষতি</td>
+<td>read-only tool, approval ধাপ</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ইনটরভউ--সরটফকশন-টপস">ইন্টারভিউ / সার্টিফিকেশন টিপস<a class="headerlink" href="#ইনটরভউ--সরটফকশন-টপস" title="Permanent link">&para;</a></h2>
+<details class="question">
+<summary>Prebuilt AI API, managed GenAI ও ML platform — কখন কোনটা?</summary>
+<p>কাজটা prebuilt API-তে থাকলে (OCR, অনুবাদ, label) সেটাই — সবচেয়ে সস্তা ও দ্রুত। টেক্সট/ছবি তৈরি বা প্রশ্নোত্তরে managed GenAI (সাথে নিজের data লাগলে RAG)। নিজের tabular/time-series data থেকে নির্দিষ্ট পূর্বাভাসে ML platform (AutoML আগে)। Raw GPU শুধু বড় ও বিশেষ training-এ।</p>
+</details>
+<details class="question">
+<summary>RAG কী এবং fine-tuning-এর সাথে পার্থক্য কী?</summary>
+<p>RAG: উত্তরের সময় প্রাসঙ্গিক নথি খুঁজে prompt-এ জোড়া — data সহজে হালনাগাদ হয়, উৎস দেখানো যায়। Fine-tuning: model-এর আচরণ/স্টাইল বদলায়, নতুন তথ্য শেখানোর ভালো উপায় না। তথ্য-ভিত্তিক প্রশ্নে সাধারণত আগে RAG।</p>
+</details>
+<details class="question">
+<summary>Hallucination কমাতে কী করবেন?</summary>
+<p>RAG দিয়ে context দেওয়া, "context-এ না থাকলে জানি না বলো" নির্দেশ, কম temperature, grounding check (Bedrock Guardrails / Azure Groundedness), উৎস উদ্ধৃতি, আর গুরুত্বপূর্ণ ক্ষেত্রে human review।</p>
+</details>
+<details class="question">
+<summary>Azure OpenAI-তে <code>429</code> আসছে অথচ মাত্র কয়েকটা request — কেন?</summary>
+<p>Quota হলো deployment-ভিত্তিক TPM/RPM; ছোট capacity দিয়ে deployment বানালে সামান্য burst-এই সীমা ছোঁয়। Capacity বাড়ান, retry+backoff রাখুন, প্রয়োজনে Provisioned (PTU) বা আরেক deployment/region-এ fallback।</p>
+</details>
+<details class="question">
+<summary>On-demand (per-token) বনাম Provisioned Throughput কখন?</summary>
+<p>অনিয়মিত বা কম traffic-এ on-demand সস্তা ও সহজ। স্থির, বেশি ও latency-সংবেদনশীল traffic-এ reserved capacity (Provisioned Throughput / PTU / Dedicated AI Cluster) predictable latency ও প্রতি-token খরচ কম দিতে পারে — তবে ব্যবহার না হলেও টাকা যায়।</p>
+</details>
+<details class="question">
+<summary>SageMaker AI, Vertex AI, Azure ML — তিনটির কেন্দ্রীয় ধারণা মিলিয়ে বলুন।</summary>
+<p>তিনটিতেই: managed notebook, training job (container), AutoML, pipeline, model registry, endpoint (real-time/batch), monitoring। পার্থক্য মূলত ecosystem-এ — SageMaker AWS IAM/S3-এর সাথে, Vertex AI BigQuery/GCS-এর সাথে, Azure ML Entra/Storage/Key Vault ও Fabric-এর সাথে। OCI Data Science একই ধারণার ছোট সংস্করণ।</p>
+</details>
+<details class="question">
+<summary>GPU quota কেন সমস্যা?</summary>
+<p>নতুন account-এ ডিফল্ট quota কম/শূন্য, অনুমোদনে সময় লাগে, আর অনুমোদনের পরও চাহিদায় capacity না থাকতে পারে। সমাধান: আগে quota চাওয়া, reservation/Capacity Block, একাধিক region/instance-family-র পরিকল্পনা, আর সম্ভব হলে managed GenAI।</p>
+</details>
+<details class="question">
+<summary>Amazon Forecast-এর কী হলো, বিকল্প কী?</summary>
+<p>Amazon Forecast নতুন customer নেওয়া বন্ধ করেছে। বিকল্প: SageMaker AI-তে Chronos/DeepAR বা Canvas forecasting; অন্য cloud-এ BigQuery ML, Azure ML AutoML বা OCI Forecasting।</p>
+</details>
+<details class="question">
+<summary>Prompt injection কী ও কীভাবে ঠেকাবেন?</summary>
+<p>ব্যবহারকারীর (বা retrieved নথির) টেক্সটে লুকানো নির্দেশ যা model-কে ভুল কাজে প্ররোচিত করে। ঠেকাতে: input/output guardrail (Prompt Shields, Model Armor, Bedrock Guardrails), user-data ও system নির্দেশ আলাদা রাখা, tool-এ least privilege, ঝুঁকিপূর্ণ action-এ human approval।</p>
+</details>
+<h2 id="সরসকষপ">সারসংক্ষেপ<a class="headerlink" href="#সরসকষপ" title="Permanent link">&para;</a></h2>
+<ul>
+<li>AI-র <strong>চার স্তর</strong>: Prebuilt API → Managed GenAI → ML platform → Raw GPU। সবসময় ওপর থেকে শুরু করুন।</li>
+<li><strong>ML platform:</strong> SageMaker AI, Vertex AI, Azure ML, OCI Data Science — একই জীবনচক্র (data → train → register → deploy → monitor), আলাদা ecosystem।</li>
+<li><strong>Managed GenAI:</strong> Bedrock, Gemini on Vertex AI, Microsoft Foundry/Azure OpenAI, OCI Generative AI — প্রতি token বিল, ঐচ্ছিক reserved capacity। Model/region availability ও নাম প্রায়ই বদলায়।</li>
+<li><strong>RAG</strong> নিজের data দিয়ে hallucination কমায়; <strong>agent</strong> tool ডাকে; <strong>guardrail</strong> সীমা টানে।</li>
+<li><strong>GPU:</strong> quota ও capacity আগে দেখুন; ভুলে-চালু-রাখা endpoint/notebook সবচেয়ে বড় খরচের উৎস।</li>
+<li><strong>Responsible AI:</strong> privacy, bias, hallucination, injection — প্রতিটার জন্য আগে থেকে পরিকল্পনা ও human-in-the-loop।</li>
+<li>shopbd-র জন্য পথ: ছবি tag → Prebuilt, description ও chatbot → GenAI (+RAG), forecast → AutoML/BigQuery ML।</li>
+</ul>
+<p>পরবর্তী: <a href="../18-cost-management/">18 · Cost Management</a> — AI-র খরচ নিয়ন্ত্রণে রাখার কৌশল, আর <a href="../19-architecture-ha-dr/">19 · Architecture, HA/DR</a> — সব মিলিয়ে সম্পূর্ণ architecture।</p>
+<p>আরও পড়ুন (official docs):</p>
+<ul>
+<li>AWS: <a href="https://docs.aws.amazon.com/bedrock/">https://docs.aws.amazon.com/bedrock/</a> · <a href="https://docs.aws.amazon.com/sagemaker/">https://docs.aws.amazon.com/sagemaker/</a></li>
+<li>GCP: <a href="https://cloud.google.com/vertex-ai/docs">https://cloud.google.com/vertex-ai/docs</a></li>
+<li>Azure: <a href="https://learn.microsoft.com/azure/ai-foundry/">https://learn.microsoft.com/azure/ai-foundry/</a> · <a href="https://learn.microsoft.com/azure/machine-learning/">https://learn.microsoft.com/azure/machine-learning/</a></li>
+<li>OCI: <a href="https://docs.oracle.com/iaas/Content/generative-ai/home.htm">https://docs.oracle.com/iaas/Content/generative-ai/home.htm</a> · <a href="https://docs.oracle.com/iaas/data-science/home.htm">https://docs.oracle.com/iaas/data-science/home.htm</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  উপরে ফিরে যাও
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="ফুটার" >
+        
+          
+          <a href="../16-data-and-analytics/" class="md-footer__link md-footer__link--prev" aria-label="পূর্ববর্তী: 16 · Data ও Analytics">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পূর্ববর্তী
+              </span>
+              <div class="md-ellipsis">
+                16 · Data ও Analytics
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../18-cost-management/" class="md-footer__link md-footer__link--next" aria-label="পরে: 18 · Cost Management">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পরে
+              </span>
+              <div class="md-ellipsis">
+                18 · Cost Management
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Hasib Ahmed — Cloud বাংলা ডকুমেন্টেশন
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Hasib105/cloud-bangla-docs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u09b9\u09df\u09c7\u099b\u09c7", "clipboard.copy": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u0995\u09b0\u09c1\u09a8", "search.result.more.one": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 \u09e7\u099f\u09bf \u0986\u099b\u09c7", "search.result.more.other": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 #\u099f\u09bf \u0986\u099b\u09c7", "search.result.none": "\u0995\u09bf\u099b\u09c1 \u09aa\u09be\u0993\u09df\u09be \u09af\u09be\u09df\u09a8\u09bf", "search.result.one": "\u09e7 \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.other": "# \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.placeholder": "\u09b8\u09be\u09b0\u09cd\u099a \u099f\u09be\u0987\u09aa \u0995\u09b0\u09c1\u09a8", "search.result.term.missing": "\u0985\u09a8\u09c1\u09aa\u09b8\u09cd\u09a5\u09bf\u09a4", "select.version": "\u09b8\u0982\u09b8\u09cd\u0995\u09b0\u09a3 \u09a8\u09bf\u09b0\u09cd\u09ac\u09be\u099a\u09a8 \u0995\u09b0\u09c1\u09a3"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

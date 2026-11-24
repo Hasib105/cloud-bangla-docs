@@ -1,0 +1,3871 @@
+
+<!doctype html>
+<html lang="bn" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="এক টপিক, চার cloud — AWS, Google Cloud, Microsoft Azure ও Oracle Cloud (OCI) শূন্য থেকে অ্যাডভান্স, পাশাপাশি তুলনাসহ সম্পূর্ণ বাংলা ডকুমেন্টেশন।">
+      
+      
+        <meta name="author" content="Hasib Ahmed">
+      
+      
+        <link rel="canonical" href="https://hasib105.github.io/cloud-bangla-docs/platforms/azure/">
+      
+      
+        <link rel="prev" href="../gcp/">
+      
+      
+        <link rel="next" href="../oci/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Microsoft Azure - Cloud বাংলা — AWS · GCP · Azure · OCI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M6.5%2020q-2.28%200-3.89-1.57Q1%2016.85%201%2014.58q0-1.95%201.17-3.48%201.18-1.53%203.08-1.95.63-2.3%202.5-3.72Q9.63%204%2012%204q2.93%200%204.96%202.04Q19%208.07%2019%2011q1.73.2%202.86%201.5%201.14%201.28%201.14%203%200%201.88-1.31%203.19T18.5%2020m-12-2h12q1.05%200%201.77-.73.73-.72.73-1.77t-.73-1.77Q19.55%2013%2018.5%2013H17v-2q0-2.07-1.46-3.54Q14.08%206%2012%206%209.93%206%208.46%207.46%207%208.93%207%2011h-.5q-1.45%200-2.47%201.03Q3%2013.05%203%2014.5T4.03%2017q1.02%201%202.47%201m5.5-6%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind+Siliguri:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Hind Siliguri";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#azure--microsoft-azure-গইড" class="md-skip">
+          কনটেন্টে যান
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="হেডার">
+    <a href="../.." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-header__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud বাংলা — AWS · GCP · Azure · OCI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Microsoft Azure
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="ডার্ক মোড"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ডার্ক মোড" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="লাইট মোড"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="লাইট মোড" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="অনুসন্ধান করুন" placeholder="অনুসন্ধান করুন" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="অনুসন্ধান করুন">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="শেয়ার" aria-label="শেয়ার" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="রিসেট" aria-label="রিসেট" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            অনুসন্ধান শুরু করা হচ্ছে
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="ট্যাব" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  হোম
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../01-cloud-fundamentals/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  মূল ধারণা
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../aws/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  প্ল্যাটফর্ম গাইড
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../reference/service-map/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  রেফারেন্স
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ন্যাভিগেশন" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-nav__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../../assets/logo.svg" alt="logo">
+
+    </a>
+    Cloud বাংলা — AWS · GCP · Azure · OCI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    হোম
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    মূল ধারণা
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    মূল ধারণা
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-cloud-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Cloud-এর ভিত্তি
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-accounts-and-hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Account ও Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-identity-and-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Identity ও Access (IAM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-compute-vms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Virtual Machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-networking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Networking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-containers-kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Container ও Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-serverless/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Serverless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-load-balancing-scaling-dns-cdn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Load Balancing, DNS ও CDN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-messaging-and-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Messaging ও Event
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Monitoring ও Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../14-infrastructure-as-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 · Infrastructure as Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../15-cicd-devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 · CI/CD ও DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../16-data-and-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 · Data ও Analytics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../17-ai-ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 · AI ও Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../18-cost-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 · Cost Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../19-architecture-ha-dr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 · Architecture ও HA/DR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Cloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microsoft Azure
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microsoft Azure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-azure-এর-মনসকত--ক-আলদ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. Azure-এর মানসিকতা — কী আলাদা?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. Azure-এর মানসিকতা — কী আলাদা?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#অফসর-পরচত-ঘরবডর-মত" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        অফিসের পরিচিত ঘরবাড়ির মতো
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#য-বষযগল-azure-ক-আলদ-কর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        যে বিষয়গুলো Azure-কে আলাদা করে
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#বক-তন-cloud-এর-তলনয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        বাকি তিন cloud-এর তুলনায়
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-sign-up-subscription-ও-free-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Sign-up, Subscription ও Free Account
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="২. Sign-up, Subscription ও Free Account">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#account-খল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Account খোলা
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscription-এর-ধরন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subscription-এর ধরন
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#free-account--কভব-ভববন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Free Account — কীভাবে ভাববেন
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-azure-portal-ঘর-দখ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Azure portal ঘুরে দেখা
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Azure portal ঘুরে দেখা">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#region--বলদশর-জনয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Region — বাংলাদেশের জন্য
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-cli-install-ও-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. CLI install ও authentication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. CLI install ও authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#azure-cli-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Azure CLI install
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#login--az-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Login — az login
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-location-ও-group-সট-কর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default location ও group সেট করা
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-principal-ও-managed-identity-কডci-র-জনয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service principal ও managed identity (কোড/CI-র জন্য)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azure-powershell-বকলপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Azure PowerShell (বিকল্প)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-পরথম-subscription-ও-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. প্রথম subscription ও hierarchy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৫. প্রথম subscription ও hierarchy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shopbd-র-পরথম-কযকট-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shopbd-র প্রথম কয়েকটা command
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-naming-quirks--azure-এর-বশষ-বযপর-সযপর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Naming quirks — Azure-এর বিশেষ ব্যাপার-স্যাপার
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-azure-এর-service-তলক-category-অনযয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. Azure-এর service তালিকা (category অনুযায়ী)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৭. Azure-এর service তালিকা (category অনুযায়ী)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Networking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-ও-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Container ও Kubernetes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serverless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Serverless
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#messaging-ও-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Messaging ও Event
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-ও-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security ও Identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infrastructure-as-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Infrastructure as Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-ও-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data ও Analytics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai-ও-machine-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI ও Machine Learning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cost-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cost Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৮-shopbd-azure-এ-কমন-দখয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮. shopbd Azure-এ কেমন দেখায়
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৯-certification-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৯. Certification path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১০-শখর-উৎস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১০. শেখার উৎস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১১-পরথম-দনর-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১১. প্রথম দিনের checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১২-সচরচর-ভল-azure-এ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১২. সচরাচর ভুল (Azure-এ)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle Cloud (OCI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    রেফারেন্স
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    রেফারেন্স
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/service-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/cli-cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Cheatsheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-azure-এর-মনসকত--ক-আলদ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. Azure-এর মানসিকতা — কী আলাদা?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. Azure-এর মানসিকতা — কী আলাদা?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#অফসর-পরচত-ঘরবডর-মত" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        অফিসের পরিচিত ঘরবাড়ির মতো
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#য-বষযগল-azure-ক-আলদ-কর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        যে বিষয়গুলো Azure-কে আলাদা করে
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#বক-তন-cloud-এর-তলনয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        বাকি তিন cloud-এর তুলনায়
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-sign-up-subscription-ও-free-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Sign-up, Subscription ও Free Account
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="২. Sign-up, Subscription ও Free Account">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#account-খল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Account খোলা
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscription-এর-ধরন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subscription-এর ধরন
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#free-account--কভব-ভববন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Free Account — কীভাবে ভাববেন
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-azure-portal-ঘর-দখ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Azure portal ঘুরে দেখা
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Azure portal ঘুরে দেখা">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#region--বলদশর-জনয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Region — বাংলাদেশের জন্য
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-cli-install-ও-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. CLI install ও authentication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. CLI install ও authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#azure-cli-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Azure CLI install
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#login--az-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Login — az login
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-location-ও-group-সট-কর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default location ও group সেট করা
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-principal-ও-managed-identity-কডci-র-জনয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service principal ও managed identity (কোড/CI-র জন্য)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azure-powershell-বকলপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Azure PowerShell (বিকল্প)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-পরথম-subscription-ও-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. প্রথম subscription ও hierarchy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৫. প্রথম subscription ও hierarchy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shopbd-র-পরথম-কযকট-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shopbd-র প্রথম কয়েকটা command
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-naming-quirks--azure-এর-বশষ-বযপর-সযপর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Naming quirks — Azure-এর বিশেষ ব্যাপার-স্যাপার
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-azure-এর-service-তলক-category-অনযয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. Azure-এর service তালিকা (category অনুযায়ী)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৭. Azure-এর service তালিকা (category অনুযায়ী)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Networking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-ও-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Container ও Kubernetes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serverless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Serverless
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#messaging-ও-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Messaging ও Event
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-ও-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security ও Identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infrastructure-as-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Infrastructure as Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-ও-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data ও Analytics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai-ও-machine-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI ও Machine Learning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cost-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cost Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৮-shopbd-azure-এ-কমন-দখয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮. shopbd Azure-এ কেমন দেখায়
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৯-certification-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৯. Certification path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১০-শখর-উৎস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১০. শেখার উৎস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১১-পরথম-দনর-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১১. প্রথম দিনের checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১২-সচরচর-ভল-azure-এ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১২. সচরাচর ভুল (Azure-এ)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Hasib105/cloud-bangla-docs/edit/main/docs/platforms/azure.md" title="এই পেজ এডিট করুন" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="azure--microsoft-azure-গইড">Azure · Microsoft Azure গাইড<a class="headerlink" href="#azure--microsoft-azure-গইড" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>এই পাতায় শুধু <strong>Microsoft Azure</strong> নিয়ে কথা। আপনি এখানে শিখবেন:</p>
+<ul>
+<li>Azure-এর মানসিকতা — enterprise, Microsoft ecosystem ও <strong>Resource Group</strong>-কেন্দ্রিক ভাবনা</li>
+<li>Account/subscription খোলা, free account বোঝা, Azure portal ঘুরে দেখা</li>
+<li>Azure CLI install ও login (<code>az login</code>), PowerShell বিকল্প</li>
+<li>Tenant → Management group → Subscription → Resource group hierarchy</li>
+<li>Azure-এর সব প্রধান service — category অনুযায়ী, বিস্তারিত অধ্যায়ের লিংকসহ</li>
+<li>Certification path (AZ-900 থেকে), শেখার উৎস ও <strong>প্রথম দিনের checklist</strong></li>
+</ul>
+</blockquote>
+<div class="admonition abstract">
+<p class="admonition-title">এক নজরে — Azure</p>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>Azure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Provider</td>
+<td>Microsoft</td>
+</tr>
+<tr>
+<td>সবচেয়ে বড় শক্তি</td>
+<td>Microsoft ecosystem (Windows, SQL Server, Microsoft 365), Entra ID, hybrid ও enterprise</td>
+</tr>
+<tr>
+<td>Hierarchy-র মাথা</td>
+<td>Entra tenant → Management group → <strong>Subscription</strong> → Resource group</td>
+</tr>
+<tr>
+<td>বাংলাদেশের কাছের region</td>
+<td><code>centralindia</code> (Pune), <code>southindia</code> (Chennai), <code>southeastasia</code> (Singapore)</td>
+</tr>
+<tr>
+<td>Web console</td>
+<td><a href="https://portal.azure.com">portal.azure.com</a></td>
+</tr>
+<tr>
+<td>CLI</td>
+<td><code>az</code> (Azure CLI) এবং Azure PowerShell</td>
+</tr>
+<tr>
+<td>নিজস্ব IaC</td>
+<td>ARM templates ও <strong>Bicep</strong> (Terraform-ও জনপ্রিয়)</td>
+</tr>
+<tr>
+<td>Free পাতা</td>
+<td><a href="https://azure.microsoft.com/free/">azure.microsoft.com/free</a></td>
+</tr>
+<tr>
+<td>Pricing পাতা</td>
+<td><a href="https://azure.microsoft.com/pricing/">azure.microsoft.com/pricing</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+<h2 id="১-azure-এর-মনসকত--ক-আলদ">১. Azure-এর মানসিকতা — কী আলাদা?<a class="headerlink" href="#১-azure-এর-মনসকত--ক-আলদ" title="Permanent link">&para;</a></h2>
+<h3 id="অফসর-পরচত-ঘরবডর-মত">অফিসের পরিচিত ঘরবাড়ির মতো<a class="headerlink" href="#অফসর-পরচত-ঘরবডর-মত" title="Permanent link">&para;</a></h3>
+<p>কোম্পানির কর্মীরা আগে থেকেই Windows, Active Directory, Outlook, Teams, SQL Server ব্যবহার করে — Azure এই জগতেরই cloud-এ সম্প্রসারণ।
+তাই এখানে <strong>identity (Microsoft Entra ID)</strong> সবকিছুর কেন্দ্র, আর অনেক প্রতিষ্ঠান Azure-এ আসে শুধু এই পরিচিত পরিবেশের কারণেই।</p>
+<h3 id="য-বষযগল-azure-ক-আলদ-কর">যে বিষয়গুলো Azure-কে আলাদা করে<a class="headerlink" href="#য-বষযগল-azure-ক-আলদ-কর" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Subscription ও Resource Group।</strong> Subscription হলো billing ও access-এর একক; তার ভেতরে <strong>Resource Group</strong> — কিছু resource-কে একসঙ্গে
+  একটা "ফোল্ডার"-এ রাখার জায়গা। একটা app-এর সব resource এক group-এ রাখলে মুছে ফেলাও একসঙ্গে সহজ।</li>
+<li><strong>Microsoft Entra ID</strong> (আগের নাম Azure Active Directory / Azure AD) — মানুষের identity ও SSO। Azure RBAC role এর ওপর বসে।</li>
+<li><strong>Hybrid-এ জোর।</strong> অন-প্রেম Windows Server/SQL Server-এর লাইসেন্স Azure-এ আনলে ছাড় (Azure Hybrid Benefit), Azure Arc দিয়ে নিজের server-ও Azure থেকে পরিচালনা।</li>
+<li><strong>Portal-প্রধান অভিজ্ঞতা।</strong> Portal খুব সমৃদ্ধ; অনেক কাজ ক্লিক-ক্লিক করেই হয়, আবার ARM/Bicep ও CLI আছে।</li>
+<li><strong>Resource provider।</strong> প্রতিটা service একটা "provider"-এর (যেমন <code>Microsoft.Network</code>) অধীন; subscription-এ provider <strong>registered</strong> না থাকলে resource তৈরি হয় না।</li>
+<li><strong>Quota আছে, region-ভিত্তিক।</strong> প্রতিটা subscription-এ প্রতি region-এ vCPU-র সীমা থাকে; অনেকে প্রথম VM বানাতে গিয়ে quota error পায়।</li>
+<li><strong>Enterprise-এর সঙ্গে ভালো মেলে।</strong> Microsoft 365, Dynamics, Power Platform, GitHub, Azure DevOps — সবই একই পরিবারে।</li>
+</ul>
+<h3 id="বক-তন-cloud-এর-তলনয">বাকি তিন cloud-এর তুলনায়<a class="headerlink" href="#বক-তন-cloud-এর-তলনয" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>Azure-এর অবস্থান</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Isolation unit</td>
+<td>Subscription (এবং তার ভেতরে Resource Group)</td>
+</tr>
+<tr>
+<td>Network</td>
+<td>VNet <strong>regional</strong></td>
+</tr>
+<tr>
+<td>Identity</td>
+<td>Microsoft Entra ID (tenant) + Azure RBAC; এটা Azure-এর আলাদা শক্তি</td>
+</tr>
+<tr>
+<td>কোথায় সবচেয়ে জোরালো</td>
+<td>Windows/.NET/SQL Server, hybrid, enterprise ও Microsoft 365 সংযোগ</td>
+</tr>
+<tr>
+<td>কোথায় খেয়াল রাখবেন</td>
+<td>নাম-বদল ও নতুন branding ঘনঘন; "Azure AD", "Azure Security Center" ধরনের পুরোনো নাম বহু ব্লগে</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">পুরোনো নামের সতর্কতা</p>
+<p><strong>Azure Active Directory → Microsoft Entra ID</strong>, <strong>Azure Security Center → Microsoft Defender for Cloud</strong>,
+<strong>Azure Cache for Redis → Azure Managed Redis</strong> (migration দিকে), <strong>Azure AD B2C → Microsoft Entra External ID</strong>।
+AI-র দিকে <strong>Azure AI Foundry</strong> এখন <strong>Microsoft Foundry</strong> নামেও পাবেন। পুরোনো লেখায় এই নামগুলো দেখলে নতুন নামে খুঁজুন।</p>
+</div>
+<hr />
+<h2 id="২-sign-up-subscription-ও-free-account">২. Sign-up, Subscription ও Free Account<a class="headerlink" href="#২-sign-up-subscription-ও-free-account" title="Permanent link">&para;</a></h2>
+<h3 id="account-খল">Account খোলা<a class="headerlink" href="#account-খল" title="Permanent link">&para;</a></h3>
+<ol>
+<li><a href="https://azure.microsoft.com/free/">azure.microsoft.com/free</a> এ <strong>Try Azure for free</strong> চাপুন।</li>
+<li>একটা <strong>Microsoft account</strong> (বা কোম্পানির Entra ID account) দিয়ে sign in করুন।</li>
+<li>তথ্য ও phone verification, তারপর <strong>card</strong> — বাংলাদেশ থেকে international/dual-currency card লাগে; যাচাইয়ের জন্য অস্থায়ী hold পড়তে পারে।</li>
+<li>শেষে একটা <strong>Subscription</strong> (যেমন <code>Azure subscription 1</code> বা <code>Free Trial</code>) ও একটা Entra <strong>tenant</strong> তৈরি হয়।</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">ছাত্র হলে</p>
+<p><strong>Azure for Students</strong> নামে আলাদা একটা offer আছে যেখানে সাধারণত card লাগে না; শিক্ষা-প্রতিষ্ঠানের email দিয়ে যোগ্যতা যাচাই হয়।
+বর্তমান শর্ত অফিশিয়াল পাতায় দেখুন।</p>
+</div>
+<h3 id="subscription-এর-ধরন">Subscription-এর ধরন<a class="headerlink" href="#subscription-এর-ধরন" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>ধরন</th>
+<th>মানে</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Free Trial / Free account</td>
+<td>শেখার জন্য; সীমিত সময়ের credit ও সীমিত service</td>
+</tr>
+<tr>
+<td>Pay-As-You-Go</td>
+<td>যতটুকু ব্যবহার ততটুকু বিল; card-এ</td>
+</tr>
+<tr>
+<td>Enterprise Agreement / CSP / MCA</td>
+<td>বড় প্রতিষ্ঠান বা partner মারফত চুক্তি-ভিত্তিক</td>
+</tr>
+<tr>
+<td>Visual Studio / Dev-Test benefit</td>
+<td>Developer-দের জন্য মাসিক credit (যোগ্য হলে)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="free-account--কভব-ভববন">Free Account — কীভাবে ভাববেন<a class="headerlink" href="#free-account--কভব-ভববন" title="Permanent link">&para;</a></h3>
+<p>সংখ্যা ও শর্ত বদলায়, তাই কোনো মান লিখছি না — <a href="https://azure.microsoft.com/free/">অফিশিয়াল Free পাতা</a> দেখুন। গঠনটা:</p>
+<table>
+<thead>
+<tr>
+<th>ধরন</th>
+<th>মানে</th>
+<th>মনে রাখুন</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>শুরুর credit</td>
+<td>নতুন account-এ নির্দিষ্ট সময়ের জন্য ব্যবহারযোগ্য credit</td>
+<td>Credit শেষ বা মেয়াদ গেলে paid-এ যেতে (upgrade) আপনাকে সম্মতি দিতে হয়; না দিলে resource বন্ধ হয়ে যায়, নীরবে বিল আসে না</td>
+</tr>
+<tr>
+<td>জনপ্রিয় service-এর 12 মাসের free অংশ</td>
+<td>কিছু service-এর নির্দিষ্ট মাসিক ঘণ্টা/ক্ষমতা প্রথম বছর free</td>
+<td>কোনটা কী, কত — অফিশিয়াল তালিকায়</td>
+</tr>
+<tr>
+<td>Always Free</td>
+<td>কিছু service-এ চিরকাল ছোট সীমা free</td>
+<td>সীমার বাইরে হলে সাধারণ দামে</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Credit থাকলেও খরচের হিসাব রাখুন</p>
+<p>Credit শেষ হওয়ার পর <strong>Pay-As-You-Go</strong>-তে upgrade করলে সব resource পুরো দামে চলে। প্রথম দিনেই <strong>Cost Management → Budgets</strong>
+বানিয়ে নিন — বিস্তারিত <a href="../../18-cost-management/">Cost Management</a>।</p>
+</div>
+<hr />
+<h2 id="৩-azure-portal-ঘর-দখ">৩. Azure portal ঘুরে দেখা<a class="headerlink" href="#৩-azure-portal-ঘর-দখ" title="Permanent link">&para;</a></h2>
+<p>Portal: <a href="https://portal.azure.com">portal.azure.com</a>।</p>
+<table>
+<thead>
+<tr>
+<th>জায়গা</th>
+<th>কী আছে</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ওপরের <strong>Search bar</strong></td>
+<td>Service, resource, doc খোঁজা — সবচেয়ে দ্রুত navigation</td>
+</tr>
+<tr>
+<td>☰ <strong>Portal menu</strong></td>
+<td>Favorites, All services, Resource groups, Subscriptions</td>
+</tr>
+<tr>
+<td><strong>Cloud Shell</strong> (<code>&gt;_</code>)</td>
+<td>Browser-এ Bash বা PowerShell; <code>az</code> আগে থেকে ইনস্টল ও login করা</td>
+</tr>
+<tr>
+<td><strong>Directory + subscription</strong> filter</td>
+<td>কোন tenant ও কোন subscription দেখছেন তা বাছাই</td>
+</tr>
+<tr>
+<td><strong>Resource groups</strong></td>
+<td>এখানে app-ভিত্তিক resource দেখা, মুছে ফেলা</td>
+</tr>
+<tr>
+<td><strong>Microsoft Entra ID</strong></td>
+<td>ব্যবহারকারী, group, app registration, Conditional Access</td>
+</tr>
+<tr>
+<td><strong>Cost Management + Billing</strong></td>
+<td>খরচ বিশ্লেষণ, budget, invoice</td>
+</tr>
+<tr>
+<td><strong>Azure Monitor</strong></td>
+<td>Metrics, logs, alert</td>
+</tr>
+<tr>
+<td><strong>Microsoft Defender for Cloud</strong></td>
+<td>নিরাপত্তা posture</td>
+</tr>
+<tr>
+<td><strong>Azure Advisor</strong></td>
+<td>Cost, security, reliability-র পরামর্শ</td>
+</tr>
+<tr>
+<td><strong>Copilot in Azure</strong> (থাকলে)</td>
+<td>Portal-এর ভেতরে AI সহায়ক — ফলাফল যাচাই করে নিন</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">দুটো filter আগে দেখুন</p>
+<p>ভুল <strong>subscription</strong> বা ভুল <strong>tenant</strong>-এ কাজ করা Azure-এর সবচেয়ে পরিচিত বিভ্রান্তি। কাজ শুরুর আগে portal-এর filter ও
+CLI-তে <code>az account show</code> দেখে নিন।</p>
+</div>
+<h3 id="region--বলদশর-জনয">Region — বাংলাদেশের জন্য<a class="headerlink" href="#region--বলদশর-জনয" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Region</th>
+<th>কোড</th>
+<th>মন্তব্য</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Central India</td>
+<td><code>centralindia</code></td>
+<td>বাংলাদেশের কাছের জনপ্রিয় বিকল্প; আমাদের উদাহরণে এটা</td>
+</tr>
+<tr>
+<td>South India</td>
+<td><code>southindia</code></td>
+<td>বিকল্প / DR</td>
+</tr>
+<tr>
+<td>Southeast Asia</td>
+<td><code>southeastasia</code></td>
+<td>Singapore; অনেক service-এ বেশি বিকল্প</td>
+</tr>
+</tbody>
+</table>
+<p>কিছু region-এ <strong>Availability Zone</strong> আছে, সব-তে নেই — VM/service বানানোর আগে region-এ AZ ও service সমর্থিত কিনা দেখুন। Region/zone ধারণা:
+<a href="../../01-cloud-fundamentals/">Cloud-এর ভিত্তি</a>।</p>
+<hr />
+<h2 id="৪-cli-install-ও-authentication">৪. CLI install ও authentication<a class="headerlink" href="#৪-cli-install-ও-authentication" title="Permanent link">&para;</a></h2>
+<h3 id="azure-cli-install">Azure CLI install<a class="headerlink" href="#azure-cli-install" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="windows" name="__tabbed_1" type="radio" /><input id="macos" name="__tabbed_1" type="radio" /><input id="linux-debianubuntu" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="windows">Windows</label><label for="macos">macOS</label><label for="linux-debianubuntu">Linux (Debian/Ubuntu)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">winget</span> <span class="n">install</span> <span class="p">-</span><span class="o">-exact</span> <span class="p">-</span><span class="n">-id</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">AzureCLI</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">az</span> <span class="n">version</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>brew<span class="w"> </span>install<span class="w"> </span>azure-cli
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>az<span class="w"> </span>version
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl<span class="w"> </span>-sL<span class="w"> </span>https://aka.ms/InstallAzureCLIDeb<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>bash
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>az<span class="w"> </span>version
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="login--az-login">Login — <code>az login</code><a class="headerlink" href="#login--az-login" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># browser খুলে login</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>az<span class="w"> </span>login
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># browser নেই (SSH/server) হলে device code</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>az<span class="w"> </span>login<span class="w"> </span>--use-device-code
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># কোন subscription-এ আছি?</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>az<span class="w"> </span>account<span class="w"> </span>show
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>az<span class="w"> </span>account<span class="w"> </span>list<span class="w"> </span>--output<span class="w"> </span>table
+</span></code></pre></div>
+<p>যদি একাধিক subscription থাকে, কোনটা default হবে তা ঠিক করুন:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>az<span class="w"> </span>account<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--subscription<span class="w"> </span><span class="s2">"00000000-0000-0000-0000-000000000000"</span>
+</span></code></pre></div>
+<h3 id="default-location-ও-group-সট-কর">Default location ও group সেট করা<a class="headerlink" href="#default-location-ও-group-সট-কর" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>az<span class="w"> </span>configure<span class="w"> </span>--defaults<span class="w"> </span><span class="nv">location</span><span class="o">=</span>centralindia<span class="w"> </span><span class="nv">group</span><span class="o">=</span>shopbd-prod-rg
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>az<span class="w"> </span>configure<span class="w"> </span>--list-defaults
+</span></code></pre></div>
+<h3 id="service-principal-ও-managed-identity-কডci-র-জনয">Service principal ও managed identity (কোড/CI-র জন্য)<a class="headerlink" href="#service-principal-ও-managed-identity-কডci-র-জনয" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Managed identity</strong> — Azure VM, App Service, Functions ইত্যাদি নিজে identity পায়, secret লাগে না। সবচেয়ে প্রস্তাবিত।</li>
+<li><strong>Service principal</strong> — app/CI-র জন্য আলাদা identity; secret/certificate-এর বদলে <strong>federated credential (OIDC)</strong> পছন্দ করুন।</li>
+<li>GitHub Actions থেকে key ছাড়া ঢোকা: <a href="../../15-cicd-devops/">CI/CD ও DevOps</a>; বিস্তারিত IAM: <a href="../../03-identity-and-access/">Identity ও Access</a>।</li>
+</ul>
+<h3 id="azure-powershell-বকলপ">Azure PowerShell (বিকল্প)<a class="headerlink" href="#azure-powershell-বকলপ" title="Permanent link">&para;</a></h3>
+<p>Windows-নির্ভর team-এ PowerShell জনপ্রিয়:</p>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">Az</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-Repository</span> <span class="n">PSGallery</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">Connect-AzAccount</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nb">Get-AzSubscription</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">Set-AzContext</span> <span class="n">-Subscription</span> <span class="s2">"00000000-0000-0000-0000-000000000000"</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">দ্রুত শুরু: Cloud Shell</p>
+<p>Portal-এর <code>&gt;_</code> চাপলে আলাদা install ছাড়াই <code>az</code> ও PowerShell পাবেন, আর আপনি আগে থেকেই login করা। প্রথমবার একটা storage account বানাতে বলতে পারে।</p>
+</div>
+<hr />
+<h2 id="৫-পরথম-subscription-ও-hierarchy">৫. প্রথম subscription ও hierarchy<a class="headerlink" href="#৫-পরথম-subscription-ও-hierarchy" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart TD
+    T["Microsoft Entra tenant (example.com)"]
+    T --&gt; MG["Management group: shopbd-mg"]
+    MG --&gt; S1["Subscription: shopbd-prod"]
+    MG --&gt; S2["Subscription: shopbd-dev"]
+    S1 --&gt; RG1["Resource group: shopbd-prod-rg"]
+    RG1 --&gt; VN["VNet: shopbd-prod-vnet"]
+    RG1 --&gt; ST["Storage account: shopbdimages"]</code></pre>
+<table>
+<thead>
+<tr>
+<th>স্তর</th>
+<th>মানে</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tenant (Entra ID)</strong></td>
+<td>ব্যবহারকারী ও identity-র ঘর; প্রতিষ্ঠানের "পরিচয়-সীমানা"</td>
+</tr>
+<tr>
+<td><strong>Management group</strong></td>
+<td>একাধিক subscription-এর গ্রুপ; এখানে policy ও RBAC বসে</td>
+</tr>
+<tr>
+<td><strong>Subscription</strong></td>
+<td>Billing, quota ও access-এর একক</td>
+</tr>
+<tr>
+<td><strong>Resource group</strong></td>
+<td>Resource-এর লজিক্যাল গ্রুপ (একই lifecycle-এর); একটা resource ঠিক একটা group-এ থাকে</td>
+</tr>
+<tr>
+<td><strong>Resource</strong></td>
+<td>VM, storage, database ইত্যাদি</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Resource group-এর location</p>
+<p>Resource group-এর নিজস্ব একটা location থাকে (metadata কোথায় রাখা হবে), কিন্তু ভেতরের resource অন্য region-এও থাকতে পারে।
+গোলমাল এড়াতে সাধারণত একই region ব্যবহার করুন।</p>
+</div>
+<h3 id="shopbd-র-পরথম-কযকট-command">shopbd-র প্রথম কয়েকটা command<a class="headerlink" href="#shopbd-র-পরথম-কযকট-command" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># resource group (প্রায় সবকিছুর আগে)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>az<span class="w"> </span>group<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>shopbd-prod-rg<span class="w"> </span>--location<span class="w"> </span>centralindia
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># প্রয়োজনীয় resource provider নিবন্ধন (একবার)</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>az<span class="w"> </span>provider<span class="w"> </span>register<span class="w"> </span>--namespace<span class="w"> </span>Microsoft.Network
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>az<span class="w"> </span>provider<span class="w"> </span>register<span class="w"> </span>--namespace<span class="w"> </span>Microsoft.Storage
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="c1"># storage account (নাম: ছোট হাতের অক্ষর+সংখ্যা, ৩–২৪ অক্ষর, globally unique)</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>az<span class="w"> </span>storage<span class="w"> </span>account<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>shopbdimages001<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-prod-rg<span class="w"> </span>--location<span class="w"> </span>centralindia<span class="w"> </span>--sku<span class="w"> </span>Standard_LRS
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="c1"># resource group মুছলে ভেতরের সব মুছে যায় — পরীক্ষার পর পরিষ্কার করার সেরা উপায়</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>az<span class="w"> </span>group<span class="w"> </span>delete<span class="w"> </span>--name<span class="w"> </span>shopbd-prod-rg<span class="w"> </span>--yes<span class="w"> </span>--no-wait
+</span></code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">Resource group মুছলে সবই যায়</p>
+<p><code>az group delete</code> ভেতরের <strong>সব</strong> resource মুছে ফেলে। production group-এ <strong>Resource lock</strong> (<code>CanNotDelete</code>) বসানো ভালো অভ্যাস।</p>
+</div>
+<p>Management group, subscription ও tag-এর গভীর আলোচনা: <a href="../../02-accounts-and-hierarchy/">Account, Organization ও Resource hierarchy</a>।</p>
+<hr />
+<h2 id="৬-naming-quirks--azure-এর-বশষ-বযপর-সযপর">৬. Naming quirks — Azure-এর বিশেষ ব্যাপার-স্যাপার<a class="headerlink" href="#৬-naming-quirks--azure-এর-বশষ-বযপর-সযপর" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>কী ঘটে</th>
+<th>টিপস</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Storage account name</strong></td>
+<td>৩–২৪ অক্ষর, শুধু ছোট হাতের অক্ষর ও সংখ্যা (hyphen চলে না), globally unique</td>
+<td><code>shopbdimages001</code></td>
+</tr>
+<tr>
+<td><strong>Resource ID</strong></td>
+<td><code>/subscriptions/&lt;id&gt;/resourceGroups/&lt;rg&gt;/providers/...</code> — পাথরের মতো লম্বা</td>
+<td>RBAC ও CLI-তে scope এভাবে দেওয়া হয়</td>
+</tr>
+<tr>
+<td><strong>Resource group</strong></td>
+<td>সব resource-এর বাধ্যতামূলক "ঘর"</td>
+<td>AWS/GCP-তে এই ধারণা সরাসরি নেই</td>
+</tr>
+<tr>
+<td><strong>Resource provider registration</strong></td>
+<td>Subscription-এ provider registered না থাকলে error</td>
+<td><code>az provider register --namespace …</code></td>
+</tr>
+<tr>
+<td><strong>NSG</strong> (Network Security Group)</td>
+<td>Subnet বা NIC-এ attach হয়; stateful; priority-ভিত্তিক rule</td>
+<td>AWS Security Group-এর মতো শুধু allow নয়, deny-ও আছে</td>
+</tr>
+<tr>
+<td><strong>VM size</strong></td>
+<td><code>Standard_B2s</code>, <code>Standard_D4s_v5</code> — family+আকার+version</td>
+<td>বিস্তারিত: <a href="../../04-compute-vms/">Virtual Machine</a></td>
+</tr>
+<tr>
+<td><strong>Azure Database for PostgreSQL – Flexible Server</strong></td>
+<td>আগের "Single Server" retire; এখন Flexible Server</td>
+<td>পুরোনো ব্লগে "Single Server" দেখলে ভাববেন এটা পুরোনো</td>
+</tr>
+<tr>
+<td><strong>Defender, Entra, Foundry</strong></td>
+<td>নতুন branding — আগের নামও ছড়িয়ে আছে</td>
+<td>পুরোনো নামের তালিকা ওপরে</td>
+</tr>
+<tr>
+<td><strong>Tag</strong></td>
+<td>Resource, Resource Group ও Subscription-এ key-value</td>
+<td>Tag <strong>নিজে থেকে নিচে inherit হয় না</strong>; Azure Policy দিয়ে বাধ্য করুন</td>
+</tr>
+<tr>
+<td><strong>Naming convention</strong></td>
+<td>Microsoft-এর Cloud Adoption Framework-এ সংক্ষেপ-উপসর্গ আছে (<code>rg-</code>, <code>vnet-</code>, <code>st</code>)</td>
+<td>আমরা এই সাইটে <code>shopbd-prod-…</code> ধাঁচ রেখেছি</td>
+</tr>
+<tr>
+<td><strong>Quota</strong></td>
+<td>Region ও VM family অনুযায়ী vCPU সীমা</td>
+<td>Portal → Quotas থেকে বাড়ানোর অনুরোধ করুন</td>
+</tr>
+<tr>
+<td><strong>Classic vs ARM</strong></td>
+<td>পুরোনো "classic" resource আছে</td>
+<td>নতুন কাজ সবসময় Azure Resource Manager (ARM) মডেলে</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="৭-azure-এর-service-তলক-category-অনযয">৭. Azure-এর service তালিকা (category অনুযায়ী)<a class="headerlink" href="#৭-azure-এর-service-তলক-category-অনযয" title="Permanent link">&para;</a></h2>
+<p>"বিস্তারিত" কলামের লিংকে চার cloud-এর তুলনাসহ পূর্ণ আলোচনা। সব service পাশাপাশি: <a href="../../reference/service-map/">Service Map</a>।</p>
+<h3 id="compute">Compute<a class="headerlink" href="#compute" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Azure Virtual Machines</strong></td>
+<td>Virtual machine; size, image, disk</td>
+<td><a href="../../04-compute-vms/">Virtual Machine</a></td>
+</tr>
+<tr>
+<td><strong>Virtual Machine Scale Sets (VMSS)</strong></td>
+<td>VM-এর দল, autoscaling</td>
+<td><a href="../../10-load-balancing-scaling-dns-cdn/">Load Balancing ও Autoscaling</a></td>
+</tr>
+<tr>
+<td><strong>Spot VMs</strong></td>
+<td>কম দামে, কেড়ে নেওয়া যেতে পারে</td>
+<td><a href="../../04-compute-vms/">Virtual Machine</a></td>
+</tr>
+<tr>
+<td><strong>Dedicated Host / bare metal</strong></td>
+<td>নিজস্ব physical host</td>
+<td><a href="../../04-compute-vms/">Virtual Machine</a></td>
+</tr>
+<tr>
+<td><strong>Azure App Service</strong></td>
+<td>Web app ও API-র জন্য PaaS</td>
+<td><a href="../../09-serverless/">Serverless</a></td>
+</tr>
+<tr>
+<td><strong>Azure Batch</strong></td>
+<td>Batch/HPC job</td>
+<td><a href="../../04-compute-vms/">Virtual Machine</a></td>
+</tr>
+<tr>
+<td><strong>Azure Arc / Azure Local</strong></td>
+<td>অন-প্রেম ও অন্য cloud-এর resource Azure থেকে পরিচালনা</td>
+<td><a href="../../19-architecture-ha-dr/">Architecture, HA/DR ও Multi-cloud</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="networking">Networking<a class="headerlink" href="#networking" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Virtual Network (VNet)</strong></td>
+<td>Private network; subnet</td>
+<td><a href="../../05-networking/">Networking</a></td>
+</tr>
+<tr>
+<td><strong>Network Security Group (NSG)</strong></td>
+<td>Subnet/NIC-স্তরের firewall rule</td>
+<td><a href="../../05-networking/">Networking</a></td>
+</tr>
+<tr>
+<td><strong>NAT Gateway</strong></td>
+<td>Private subnet থেকে বাইরে যাওয়া</td>
+<td><a href="../../05-networking/">Networking</a></td>
+</tr>
+<tr>
+<td><strong>VNet Peering / Virtual WAN</strong></td>
+<td>VNet জোড়া; hub-and-spoke ও branch connectivity</td>
+<td><a href="../../05-networking/">Networking</a></td>
+</tr>
+<tr>
+<td><strong>Private Link / Private Endpoint</strong></td>
+<td>Internet ছাড়া private পথে PaaS ধরা</td>
+<td><a href="../../05-networking/">Networking</a></td>
+</tr>
+<tr>
+<td><strong>VPN Gateway / ExpressRoute</strong></td>
+<td>VPN ও dedicated লাইন</td>
+<td><a href="../../05-networking/">Networking</a></td>
+</tr>
+<tr>
+<td><strong>Azure Load Balancer / Application Gateway</strong></td>
+<td>L4 ও L7 load balancer</td>
+<td><a href="../../10-load-balancing-scaling-dns-cdn/">Load Balancing, DNS ও CDN</a></td>
+</tr>
+<tr>
+<td><strong>Azure Front Door</strong></td>
+<td>Global entry, CDN ও WAF একসঙ্গে</td>
+<td><a href="../../10-load-balancing-scaling-dns-cdn/">Load Balancing, DNS ও CDN</a></td>
+</tr>
+<tr>
+<td><strong>Azure DNS</strong></td>
+<td>Managed DNS</td>
+<td><a href="../../10-load-balancing-scaling-dns-cdn/">Load Balancing, DNS ও CDN</a></td>
+</tr>
+<tr>
+<td><strong>Azure Firewall</strong></td>
+<td>Managed network firewall</td>
+<td><a href="../../13-security/">Security</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="storage">Storage<a class="headerlink" href="#storage" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Blob Storage</strong></td>
+<td>Object storage; Hot, Cool, Cold, Archive tier</td>
+<td><a href="../../06-storage/">Storage</a></td>
+</tr>
+<tr>
+<td><strong>Managed Disks</strong></td>
+<td>VM-এর block disk, snapshot</td>
+<td><a href="../../06-storage/">Storage</a></td>
+</tr>
+<tr>
+<td><strong>Azure Files</strong></td>
+<td>Managed SMB/NFS file share</td>
+<td><a href="../../06-storage/">Storage</a></td>
+</tr>
+<tr>
+<td><strong>Azure NetApp Files / Elastic SAN</strong></td>
+<td>উচ্চ-ক্ষমতার file ও block storage</td>
+<td><a href="../../06-storage/">Storage</a></td>
+</tr>
+<tr>
+<td><strong>Azure Backup</strong></td>
+<td>কেন্দ্রীয় backup</td>
+<td><a href="../../06-storage/">Storage</a></td>
+</tr>
+<tr>
+<td><strong>Data Box / Azure Storage Mover</strong></td>
+<td>বড় data সরানো</td>
+<td><a href="../../06-storage/">Storage</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="database">Database<a class="headerlink" href="#database" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Azure Database for PostgreSQL – Flexible Server</strong></td>
+<td>Managed PostgreSQL</td>
+<td><a href="../../07-databases/">Database</a></td>
+</tr>
+<tr>
+<td><strong>Azure Database for MySQL – Flexible Server</strong></td>
+<td>Managed MySQL</td>
+<td><a href="../../07-databases/">Database</a></td>
+</tr>
+<tr>
+<td><strong>Azure SQL Database / Managed Instance</strong></td>
+<td>Microsoft SQL Server-এর managed রূপ</td>
+<td><a href="../../07-databases/">Database</a></td>
+</tr>
+<tr>
+<td><strong>Azure Cosmos DB</strong></td>
+<td>Globally-distributed multi-model NoSQL</td>
+<td><a href="../../07-databases/">Database</a></td>
+</tr>
+<tr>
+<td><strong>Azure Managed Redis (আগে Azure Cache for Redis)</strong></td>
+<td>Managed Redis cache</td>
+<td><a href="../../07-databases/">Database</a></td>
+</tr>
+<tr>
+<td><strong>Azure Database Migration Service</strong></td>
+<td>Database Azure-এ সরানো</td>
+<td><a href="../../19-architecture-ha-dr/">Architecture, HA/DR ও Multi-cloud</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="container-ও-kubernetes">Container ও Kubernetes<a class="headerlink" href="#container-ও-kubernetes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Azure Container Registry (ACR)</strong></td>
+<td>Container image registry</td>
+<td><a href="../../08-containers-kubernetes/">Container ও Kubernetes</a></td>
+</tr>
+<tr>
+<td><strong>Azure Kubernetes Service (AKS)</strong></td>
+<td>Managed Kubernetes</td>
+<td><a href="../../08-containers-kubernetes/">Container ও Kubernetes</a></td>
+</tr>
+<tr>
+<td><strong>Azure Container Apps</strong></td>
+<td>Serverless container (Kubernetes না ছুঁয়ে)</td>
+<td><a href="../../09-serverless/">Serverless</a></td>
+</tr>
+<tr>
+<td><strong>Azure Container Instances (ACI)</strong></td>
+<td>Server ছাড়া একক container</td>
+<td><a href="../../09-serverless/">Serverless</a></td>
+</tr>
+<tr>
+<td><strong>Azure Red Hat OpenShift</strong></td>
+<td>Managed OpenShift</td>
+<td><a href="../../08-containers-kubernetes/">Container ও Kubernetes</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="serverless">Serverless<a class="headerlink" href="#serverless" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Azure Functions</strong></td>
+<td>Event/HTTP function</td>
+<td><a href="../../09-serverless/">Serverless</a></td>
+</tr>
+<tr>
+<td><strong>Azure Container Apps</strong></td>
+<td>Serverless container, scale-to-zero</td>
+<td><a href="../../09-serverless/">Serverless</a></td>
+</tr>
+<tr>
+<td><strong>Azure App Service</strong></td>
+<td>PaaS web hosting</td>
+<td><a href="../../09-serverless/">Serverless</a></td>
+</tr>
+<tr>
+<td><strong>API Management (APIM)</strong></td>
+<td>API gateway ও ব্যবস্থাপনা</td>
+<td><a href="../../09-serverless/">Serverless</a></td>
+</tr>
+<tr>
+<td><strong>Logic Apps / Durable Functions</strong></td>
+<td>Workflow ও long-running orchestration</td>
+<td><a href="../../11-messaging-and-events/">Messaging ও Event</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="messaging-ও-event">Messaging ও Event<a class="headerlink" href="#messaging-ও-event" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Azure Service Bus</strong></td>
+<td>Enterprise queue ও topic (DLQ-সহ)</td>
+<td><a href="../../11-messaging-and-events/">Messaging ও Event</a></td>
+</tr>
+<tr>
+<td><strong>Azure Storage Queues</strong></td>
+<td>সরল ও সস্তা queue</td>
+<td><a href="../../11-messaging-and-events/">Messaging ও Event</a></td>
+</tr>
+<tr>
+<td><strong>Azure Event Grid</strong></td>
+<td>Event routing ও pub/sub</td>
+<td><a href="../../11-messaging-and-events/">Messaging ও Event</a></td>
+</tr>
+<tr>
+<td><strong>Azure Event Hubs</strong></td>
+<td>বড় মাপের event streaming (Kafka-compatible)</td>
+<td><a href="../../11-messaging-and-events/">Messaging ও Event</a></td>
+</tr>
+<tr>
+<td><strong>Azure Notification Hubs</strong></td>
+<td>Mobile push notification</td>
+<td><a href="../../11-messaging-and-events/">Messaging ও Event</a></td>
+</tr>
+<tr>
+<td><strong>Azure Communication Services (Email)</strong></td>
+<td>Transactional email/SMS (shopbd-র order email)</td>
+<td><a href="../../11-messaging-and-events/">Messaging ও Event</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="observability">Observability<a class="headerlink" href="#observability" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Azure Monitor</strong></td>
+<td>Metrics, alert, dashboard — মূল ছাতা</td>
+<td><a href="../../12-observability/">Monitoring, Logging ও Tracing</a></td>
+</tr>
+<tr>
+<td><strong>Log Analytics workspace (KQL)</strong></td>
+<td>Log জমা ও Kusto query</td>
+<td><a href="../../12-observability/">Monitoring, Logging ও Tracing</a></td>
+</tr>
+<tr>
+<td><strong>Application Insights</strong></td>
+<td>App-এর APM ও distributed tracing</td>
+<td><a href="../../12-observability/">Monitoring, Logging ও Tracing</a></td>
+</tr>
+<tr>
+<td><strong>Activity Log</strong></td>
+<td>Subscription-স্তরের audit log (কে কী করল)</td>
+<td><a href="../../12-observability/">Monitoring, Logging ও Tracing</a></td>
+</tr>
+<tr>
+<td><strong>Managed Grafana / Managed Prometheus</strong></td>
+<td>Open-source stack, managed</td>
+<td><a href="../../12-observability/">Monitoring, Logging ও Tracing</a></td>
+</tr>
+<tr>
+<td><strong>Azure Service Health</strong></td>
+<td>Azure-এর দিকের সমস্যা ও রক্ষণাবেক্ষণের খবর</td>
+<td><a href="../../12-observability/">Monitoring, Logging ও Tracing</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="security-ও-identity">Security ও Identity<a class="headerlink" href="#security-ও-identity" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Microsoft Entra ID</strong></td>
+<td>Identity, SSO, MFA, Conditional Access</td>
+<td><a href="../../03-identity-and-access/">Identity ও Access</a></td>
+</tr>
+<tr>
+<td><strong>Azure RBAC</strong></td>
+<td>Role assignment (scope অনুযায়ী)</td>
+<td><a href="../../03-identity-and-access/">Identity ও Access</a></td>
+</tr>
+<tr>
+<td><strong>Managed Identities</strong></td>
+<td>Secret ছাড়া Azure resource-এর identity</td>
+<td><a href="../../03-identity-and-access/">Identity ও Access</a></td>
+</tr>
+<tr>
+<td><strong>Azure Policy / Management groups</strong></td>
+<td>নিয়ম বাধ্য করা, guardrail</td>
+<td><a href="../../02-accounts-and-hierarchy/">Account, Organization ও Hierarchy</a></td>
+</tr>
+<tr>
+<td><strong>Azure Key Vault</strong></td>
+<td>Key, secret ও certificate</td>
+<td><a href="../../13-security/">Security</a></td>
+</tr>
+<tr>
+<td><strong>Azure WAF / DDoS Protection</strong></td>
+<td>Web firewall ও DDoS সুরক্ষা</td>
+<td><a href="../../13-security/">Security</a></td>
+</tr>
+<tr>
+<td><strong>Microsoft Defender for Cloud / Sentinel</strong></td>
+<td>Posture ও threat detection; SIEM</td>
+<td><a href="../../13-security/">Security</a></td>
+</tr>
+<tr>
+<td><strong>Microsoft Entra External ID</strong></td>
+<td>App-ব্যবহারকারীর sign-up/login (আগের Azure AD B2C)</td>
+<td><a href="../../03-identity-and-access/">Identity ও Access</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="infrastructure-as-code">Infrastructure as Code<a class="headerlink" href="#infrastructure-as-code" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ARM templates</strong></td>
+<td>JSON দিয়ে declarative deploy</td>
+<td><a href="../../14-infrastructure-as-code/">Infrastructure as Code</a></td>
+</tr>
+<tr>
+<td><strong>Bicep</strong></td>
+<td>ARM-এর সহজ ভাষা (এটাই এখন প্রস্তাবিত native পথ)</td>
+<td><a href="../../14-infrastructure-as-code/">Infrastructure as Code</a></td>
+</tr>
+<tr>
+<td><strong>Terraform / OpenTofu (<code>azurerm</code> provider)</strong></td>
+<td>Multi-cloud IaC</td>
+<td><a href="../../14-infrastructure-as-code/">Infrastructure as Code</a></td>
+</tr>
+<tr>
+<td><strong>Azure Blueprints → Template Specs / Deployment Stacks</strong></td>
+<td>Template সংরক্ষণ ও পুনর্ব্যবহার</td>
+<td><a href="../../14-infrastructure-as-code/">Infrastructure as Code</a></td>
+</tr>
+<tr>
+<td><strong>Azure Automation / Azure Resource Graph</strong></td>
+<td>Automation ও resource query</td>
+<td><a href="../../14-infrastructure-as-code/">Infrastructure as Code</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="cicd">CI/CD<a class="headerlink" href="#cicd" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Azure DevOps (Pipelines, Repos, Boards)</strong></td>
+<td>CI/CD ও project management</td>
+<td><a href="../../15-cicd-devops/">CI/CD ও DevOps</a></td>
+</tr>
+<tr>
+<td><strong>GitHub Actions</strong></td>
+<td>Microsoft-এর GitHub-এর CI/CD; Azure-এ OIDC দিয়ে deploy</td>
+<td><a href="../../15-cicd-devops/">CI/CD ও DevOps</a></td>
+</tr>
+<tr>
+<td><strong>Azure Container Registry</strong></td>
+<td>Image ও artifact registry</td>
+<td><a href="../../15-cicd-devops/">CI/CD ও DevOps</a></td>
+</tr>
+<tr>
+<td><strong>Azure Artifacts</strong></td>
+<td>Package feed (npm, PyPI, NuGet…)</td>
+<td><a href="../../15-cicd-devops/">CI/CD ও DevOps</a></td>
+</tr>
+<tr>
+<td><strong>Azure Deployment Environments / Load Testing</strong></td>
+<td>পরীক্ষার environment ও load test</td>
+<td><a href="../../15-cicd-devops/">CI/CD ও DevOps</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="data-ও-analytics">Data ও Analytics<a class="headerlink" href="#data-ও-analytics" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Microsoft Fabric</strong></td>
+<td>একীভূত data platform (lakehouse, warehouse, BI)</td>
+<td><a href="../../16-data-and-analytics/">Data ও Analytics</a></td>
+</tr>
+<tr>
+<td><strong>Azure Synapse Analytics</strong></td>
+<td>Warehouse ও big-data analytics (Fabric-এর দিকে ঝোঁক)</td>
+<td><a href="../../16-data-and-analytics/">Data ও Analytics</a></td>
+</tr>
+<tr>
+<td><strong>Azure Data Lake Storage Gen2</strong></td>
+<td>Blob-এর ওপর data lake</td>
+<td><a href="../../16-data-and-analytics/">Data ও Analytics</a></td>
+</tr>
+<tr>
+<td><strong>Azure Data Factory</strong></td>
+<td>ETL/ELT pipeline</td>
+<td><a href="../../16-data-and-analytics/">Data ও Analytics</a></td>
+</tr>
+<tr>
+<td><strong>Azure Databricks</strong></td>
+<td>Managed Spark/lakehouse</td>
+<td><a href="../../16-data-and-analytics/">Data ও Analytics</a></td>
+</tr>
+<tr>
+<td><strong>Power BI</strong></td>
+<td>BI dashboard</td>
+<td><a href="../../16-data-and-analytics/">Data ও Analytics</a></td>
+</tr>
+<tr>
+<td><strong>Azure Stream Analytics / Data Explorer</strong></td>
+<td>Stream ও log-ধরনের data বিশ্লেষণ</td>
+<td><a href="../../16-data-and-analytics/">Data ও Analytics</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ai-ও-machine-learning">AI ও Machine Learning<a class="headerlink" href="#ai-ও-machine-learning" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Azure Machine Learning</strong></td>
+<td>ML platform</td>
+<td><a href="../../17-ai-ml/">AI ও Machine Learning</a></td>
+</tr>
+<tr>
+<td><strong>Azure OpenAI / Microsoft Foundry (আগে Azure AI Foundry)</strong></td>
+<td>Managed GenAI model ও agent platform</td>
+<td><a href="../../17-ai-ml/">AI ও Machine Learning</a></td>
+</tr>
+<tr>
+<td><strong>Azure AI Services</strong></td>
+<td>Vision, Speech, Language, Translator, Document Intelligence API</td>
+<td><a href="../../17-ai-ml/">AI ও Machine Learning</a></td>
+</tr>
+<tr>
+<td><strong>Azure AI Search</strong></td>
+<td>Search ও RAG-এর retrieval</td>
+<td><a href="../../17-ai-ml/">AI ও Machine Learning</a></td>
+</tr>
+<tr>
+<td><strong>GPU VMs (N-series)</strong></td>
+<td>ML-এর জন্য GPU</td>
+<td><a href="../../17-ai-ml/">AI ও Machine Learning</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="cost-management">Cost Management<a class="headerlink" href="#cost-management" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>কাজ</th>
+<th>বিস্তারিত</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cost Management + Billing</strong></td>
+<td>খরচ বিশ্লেষণ, invoice, payment</td>
+<td><a href="../../18-cost-management/">Cost Management</a></td>
+</tr>
+<tr>
+<td><strong>Budgets / Cost alerts</strong></td>
+<td>Budget ও threshold alert</td>
+<td><a href="../../18-cost-management/">Cost Management</a></td>
+</tr>
+<tr>
+<td><strong>Cost allocation / Tags</strong></td>
+<td>Tag দিয়ে খরচ ভাগ</td>
+<td><a href="../../18-cost-management/">Cost Management</a></td>
+</tr>
+<tr>
+<td><strong>Reservations / Savings Plan for compute</strong></td>
+<td>দীর্ঘমেয়াদি commitment-এ ছাড়</td>
+<td><a href="../../18-cost-management/">Cost Management</a></td>
+</tr>
+<tr>
+<td><strong>Azure Hybrid Benefit</strong></td>
+<td>অন-প্রেম Windows/SQL লাইসেন্স Azure-এ ব্যবহার করে ছাড়</td>
+<td><a href="../../18-cost-management/">Cost Management</a></td>
+</tr>
+<tr>
+<td><strong>Azure Advisor / Pricing Calculator</strong></td>
+<td>Rightsizing পরামর্শ ও আগাম খরচ অনুমান</td>
+<td><a href="../../18-cost-management/">Cost Management</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="৮-shopbd-azure-এ-কমন-দখয">৮. shopbd Azure-এ কেমন দেখায়<a class="headerlink" href="#৮-shopbd-azure-এ-কমন-দখয" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>shopbd-র অংশ</th>
+<th>Azure service</th>
+<th>নাম</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Web frontend (static)</td>
+<td>Blob Storage static website + Front Door (বা Static Web Apps)</td>
+<td><code>shopbd-web</code></td>
+</tr>
+<tr>
+<td>REST API</td>
+<td>Azure Container Apps বা App Service</td>
+<td><code>shopbd-api</code></td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td>Azure Database for PostgreSQL – Flexible Server</td>
+<td><code>shopbd-db</code></td>
+</tr>
+<tr>
+<td>Product image</td>
+<td>Blob Storage container</td>
+<td><code>shopbd-images</code></td>
+</tr>
+<tr>
+<td>Order email</td>
+<td>Azure Communication Services Email</td>
+<td>sender <code>ops@example.com</code></td>
+</tr>
+<tr>
+<td>Nightly sales report</td>
+<td>Container Apps job বা Functions timer trigger</td>
+<td><code>shopbd-nightly-report</code></td>
+</tr>
+<tr>
+<td>Network</td>
+<td>VNet + NSG</td>
+<td><code>shopbd-prod-vnet</code></td>
+</tr>
+<tr>
+<td>Domain</td>
+<td>Azure DNS</td>
+<td><code>shopbd.example.com</code></td>
+</tr>
+<tr>
+<td>Monitoring</td>
+<td>Azure Monitor alert → action group → email</td>
+<td><code>ops@example.com</code></td>
+</tr>
+</tbody>
+</table>
+<p>পূর্ণ architecture: <a href="../../19-architecture-ha-dr/">Architecture, HA/DR ও Multi-cloud</a>।</p>
+<hr />
+<h2 id="৯-certification-path">৯. Certification path<a class="headerlink" href="#৯-certification-path" title="Permanent link">&para;</a></h2>
+<p>Microsoft certification-এর কোড ও তালিকা বদলায় — <a href="https://learn.microsoft.com/credentials/">learn.microsoft.com/credentials</a> দেখে নিন।</p>
+<table>
+<thead>
+<tr>
+<th>স্তর</th>
+<th>Certification</th>
+<th>কার জন্য</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fundamentals</td>
+<td><strong>AZ-900</strong> Azure Fundamentals</td>
+<td>সবার জন্য প্রথম ধাপ; non-tech-ও পারে</td>
+</tr>
+<tr>
+<td>Fundamentals</td>
+<td><strong>AI-900</strong>, <strong>DP-900</strong>, <strong>SC-900</strong></td>
+<td>AI, data, security-র ভিত্তি</td>
+</tr>
+<tr>
+<td>Associate</td>
+<td><strong>AZ-104</strong> Azure Administrator</td>
+<td>Admin/DevOps; সবচেয়ে চাহিদাপূর্ণ hands-on exam</td>
+</tr>
+<tr>
+<td>Associate</td>
+<td><strong>AZ-204</strong> Azure Developer</td>
+<td>Developer; Functions, App Service, storage</td>
+</tr>
+<tr>
+<td>Associate</td>
+<td><strong>AZ-500</strong>, <strong>AZ-700</strong>, <strong>DP-203/DP-700</strong>, <strong>AI-102</strong></td>
+<td>Security, network, data, AI-তে বিশেষায়ন (কোডের নাম পরিবর্তন হতে পারে)</td>
+</tr>
+<tr>
+<td>Expert</td>
+<td><strong>AZ-305</strong> Solutions Architect Expert</td>
+<td>Architecture design; AZ-104 পরে</td>
+</tr>
+<tr>
+<td>Expert</td>
+<td><strong>AZ-400</strong> DevOps Engineer Expert</td>
+<td>CI/CD ও DevOps</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">শুরুর পরামর্শ</p>
+<p><strong>AZ-900 → AZ-104</strong> — এই দুটো দিয়েই বেশিরভাগ job-ready ভিত্তি তৈরি হয়। <a href="https://learn.microsoft.com/training/">Microsoft Learn</a>-এর free path ও
+sandbox lab দিয়ে হাতে-কলমে করুন।</p>
+</div>
+<hr />
+<h2 id="১০-শখর-উৎস">১০. শেখার উৎস<a class="headerlink" href="#১০-শখর-উৎস" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>উৎস</th>
+<th>কী পাবেন</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://learn.microsoft.com/azure/">Microsoft Learn</a></td>
+<td>সব service-এর অফিশিয়াল doc, free learning path ও sandbox</td>
+</tr>
+<tr>
+<td><a href="https://learn.microsoft.com/azure/architecture/">Azure Architecture Center</a></td>
+<td>Reference architecture, Azure Well-Architected Framework</td>
+</tr>
+<tr>
+<td><a href="https://learn.microsoft.com/azure/cloud-adoption-framework/">Cloud Adoption Framework</a></td>
+<td>Landing zone, governance, naming convention</td>
+</tr>
+<tr>
+<td><a href="https://learn.microsoft.com/cli/azure/">Azure CLI reference</a></td>
+<td>সব <code>az</code> command</td>
+</tr>
+<tr>
+<td><a href="https://learn.microsoft.com/azure/azure-resource-manager/bicep/">Bicep documentation</a></td>
+<td>Bicep শেখা</td>
+</tr>
+<tr>
+<td><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs">Terraform AzureRM provider docs</a></td>
+<td>Terraform resource reference</td>
+</tr>
+<tr>
+<td><a href="https://azure.microsoft.com/updates/">Azure Updates</a></td>
+<td>নতুন feature ও পরিবর্তন</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="১১-পরথম-দনর-checklist">১১. প্রথম দিনের checklist<a class="headerlink" href="#১১-পরথম-দনর-checklist" title="Permanent link">&para;</a></h2>
+<p><strong>Account ও subscription</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Microsoft account/Entra account-এ MFA চালু করেছি</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Portal-এ কোন tenant ও কোন subscription দেখছি তা জানি</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Free account-এর credit ও মেয়াদ অফিশিয়াল পাতা ও Cost Management-এ দেখেছি</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Cost Management → Budgets</strong>-এ একটা budget ও alert (<code>ops@example.com</code> ধরনের ঠিকানায়) বানিয়েছি</li>
+</ul>
+<p><strong>Identity</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> নিজেকে সবসময় Owner না রেখে ছোট role দেওয়ার কথা ভেবেছি — <a href="../../03-identity-and-access/">Identity ও Access</a></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> কোড/CI-র জন্য secret না নিয়ে managed identity বা federated credential ভেবেছি</li>
+</ul>
+<p><strong>CLI</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Azure CLI install করেছি (<code>az version</code>)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>az login</code> করেছি (server হলে <code>--use-device-code</code>)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>az account show</code> দিয়ে সঠিক subscription যাচাই করেছি</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>az configure --defaults location=centralindia</code> দিয়েছি</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Cloud Shell একবার খুলে দেখেছি</li>
+</ul>
+<p><strong>প্রথম resource</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> একটা <strong>Resource Group</strong> (<code>shopbd-prod-rg</code>) বানিয়েছি</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> দরকারি <strong>resource provider</strong> registered আছে কিনা দেখেছি</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> একটা Storage account ও Blob container বানিয়ে ছবি upload করেছি</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Resource-এ tag (<code>project=shopbd</code>, <code>env=prod</code>) দিয়েছি</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Activity Log-এ নিজের কাজ দেখেছি</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> পরীক্ষার শেষে Resource Group মুছে পরিষ্কার করেছি</li>
+</ul>
+<hr />
+<h2 id="১২-সচরচর-ভল-azure-এ">১২. সচরাচর ভুল (Azure-এ)<a class="headerlink" href="#১২-সচরচর-ভল-azure-এ" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ভুল</th>
+<th>ফল</th>
+<th>সমাধান</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ভুল subscription/tenant-এ কাজ</td>
+<td>Resource "হারিয়ে" যায়, বা ভুল জায়গায় বিল</td>
+<td><code>az account show</code>, portal filter দেখুন</td>
+</tr>
+<tr>
+<td>Resource provider register না করা</td>
+<td><code>MissingSubscriptionRegistration</code> error</td>
+<td><code>az provider register --namespace …</code></td>
+</tr>
+<tr>
+<td>VM বানাতে গিয়ে quota error</td>
+<td>Deploy ব্যর্থ</td>
+<td>অন্য size/region বা quota increase</td>
+</tr>
+<tr>
+<td>NSG-তে <code>Any → 22/3389</code> খোলা</td>
+<td>Brute-force আক্রমণ</td>
+<td>নিজের IP, Bastion বা Just-in-time access</td>
+</tr>
+<tr>
+<td>Client secret expire হওয়া</td>
+<td>Production হঠাৎ বন্ধ</td>
+<td>Managed identity/federated credential</td>
+</tr>
+<tr>
+<td>Resource lock ছাড়া production group</td>
+<td>ভুলে মুছে ফেলা</td>
+<td><code>CanNotDelete</code> lock</td>
+</tr>
+<tr>
+<td>Storage account public blob access</td>
+<td>Data leak</td>
+<td>Anonymous access বন্ধ, private endpoint/SAS</td>
+</tr>
+<tr>
+<td>Credit শেষে upgrade করে ভুলে যাওয়া</td>
+<td>বড় bill</td>
+<td>Budget ও idle resource মুছে ফেলা</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="সরসকষপ">সারসংক্ষেপ<a class="headerlink" href="#সরসকষপ" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Azure মানে <strong>Entra ID + Subscription + Resource Group</strong>-এর ত্রয়ী; Microsoft ecosystem ও hybrid-এ সবচেয়ে শক্ত।</li>
+<li>প্রতিটা resource একটা Resource Group-এ থাকে; পরীক্ষার পরে group মুছলেই সব পরিষ্কার।</li>
+<li>প্রথম দিনে <strong>MFA, Budget, সঠিক subscription যাচাই</strong> — এই তিনটা করুন; <code>az login</code> ও <code>az account show</code> অভ্যাস করুন।</li>
+<li>নাম-বদল খেয়াল রাখুন: Azure AD → Entra ID, Security Center → Defender for Cloud, Cache for Redis → Managed Redis।</li>
+<li>পরের ধাপ: <a href="../../02-accounts-and-hierarchy/">Account ও Hierarchy</a> → <a href="../../03-identity-and-access/">IAM</a> → <a href="../../05-networking/">Networking</a>।</li>
+</ul>
+<p>অন্য cloud দেখতে: <a href="../aws/">AWS</a> · <a href="../gcp/">GCP</a> · <a href="../oci/">OCI</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  উপরে ফিরে যাও
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="ফুটার" >
+        
+          
+          <a href="../gcp/" class="md-footer__link md-footer__link--prev" aria-label="পূর্ববর্তী: Google Cloud">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পূর্ববর্তী
+              </span>
+              <div class="md-ellipsis">
+                Google Cloud
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../oci/" class="md-footer__link md-footer__link--next" aria-label="পরে: Oracle Cloud (OCI)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পরে
+              </span>
+              <div class="md-ellipsis">
+                Oracle Cloud (OCI)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Hasib Ahmed — Cloud বাংলা ডকুমেন্টেশন
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Hasib105/cloud-bangla-docs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit", "toc.follow"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u09b9\u09df\u09c7\u099b\u09c7", "clipboard.copy": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u0995\u09b0\u09c1\u09a8", "search.result.more.one": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 \u09e7\u099f\u09bf \u0986\u099b\u09c7", "search.result.more.other": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 #\u099f\u09bf \u0986\u099b\u09c7", "search.result.none": "\u0995\u09bf\u099b\u09c1 \u09aa\u09be\u0993\u09df\u09be \u09af\u09be\u09df\u09a8\u09bf", "search.result.one": "\u09e7 \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.other": "# \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.placeholder": "\u09b8\u09be\u09b0\u09cd\u099a \u099f\u09be\u0987\u09aa \u0995\u09b0\u09c1\u09a8", "search.result.term.missing": "\u0985\u09a8\u09c1\u09aa\u09b8\u09cd\u09a5\u09bf\u09a4", "select.version": "\u09b8\u0982\u09b8\u09cd\u0995\u09b0\u09a3 \u09a8\u09bf\u09b0\u09cd\u09ac\u09be\u099a\u09a8 \u0995\u09b0\u09c1\u09a3"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

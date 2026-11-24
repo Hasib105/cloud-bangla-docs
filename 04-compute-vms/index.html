@@ -1,0 +1,4034 @@
+
+<!doctype html>
+<html lang="bn" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="এক টপিক, চার cloud — AWS, Google Cloud, Microsoft Azure ও Oracle Cloud (OCI) শূন্য থেকে অ্যাডভান্স, পাশাপাশি তুলনাসহ সম্পূর্ণ বাংলা ডকুমেন্টেশন।">
+      
+      
+        <meta name="author" content="Hasib Ahmed">
+      
+      
+        <link rel="canonical" href="https://hasib105.github.io/cloud-bangla-docs/04-compute-vms/">
+      
+      
+        <link rel="prev" href="../03-identity-and-access/">
+      
+      
+        <link rel="next" href="../05-networking/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>04 · Virtual Machine - Cloud বাংলা — AWS · GCP · Azure · OCI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M6.5%2020q-2.28%200-3.89-1.57Q1%2016.85%201%2014.58q0-1.95%201.17-3.48%201.18-1.53%203.08-1.95.63-2.3%202.5-3.72Q9.63%204%2012%204q2.93%200%204.96%202.04Q19%208.07%2019%2011q1.73.2%202.86%201.5%201.14%201.28%201.14%203%200%201.88-1.31%203.19T18.5%2020m-12-2h12q1.05%200%201.77-.73.73-.72.73-1.77t-.73-1.77Q19.55%2013%2018.5%2013H17v-2q0-2.07-1.46-3.54Q14.08%206%2012%206%209.93%206%208.46%207.46%207%208.93%207%2011h-.5q-1.45%200-2.47%201.03Q3%2013.05%203%2014.5T4.03%2017q1.02%201%202.47%201m5.5-6%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind+Siliguri:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Hind Siliguri";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#04--virtual-machine-compute" class="md-skip">
+          কনটেন্টে যান
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="হেডার">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-header__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud বাংলা — AWS · GCP · Azure · OCI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              04 · Virtual Machine
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="ডার্ক মোড"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ডার্ক মোড" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="লাইট মোড"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="লাইট মোড" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="অনুসন্ধান করুন" placeholder="অনুসন্ধান করুন" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="অনুসন্ধান করুন">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="শেয়ার" aria-label="শেয়ার" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="রিসেট" aria-label="রিসেট" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            অনুসন্ধান শুরু করা হচ্ছে
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="ট্যাব" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  হোম
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01-cloud-fundamentals/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  মূল ধারণা
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../platforms/aws/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  প্ল্যাটফর্ম গাইড
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reference/service-map/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  রেফারেন্স
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ন্যাভিগেশন" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-nav__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    Cloud বাংলা — AWS · GCP · Azure · OCI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    হোম
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    মূল ধারণা
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    মূল ধারণা
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-cloud-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Cloud-এর ভিত্তি
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-accounts-and-hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Account ও Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-identity-and-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Identity ও Access (IAM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Virtual Machine
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Virtual Machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-virtual-machine-ক-এব-কন-দরকর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. Virtual Machine কী এবং কেন দরকার
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. Virtual Machine কী এবং কেন দরকার">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vm-কন-সবচয-মলক" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM কেন সবচেয়ে মৌলিক
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#কখন-vm-কখন-managed-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        কখন VM, কখন managed service?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vm-এর-lifecycle-চর-cloud-এ-পরয-একই" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM-এর lifecycle (চার cloud-এ প্রায় একই)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-machine-family-shape-ও-size--সঠক-আকর-বছ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Machine family, shape ও size — সঠিক আকার বাছা
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="২. Machine family, shape ও size — সঠিক আকার বাছা">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#নমর-গঠন-বঝ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        নামের গঠন বোঝা
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#তলনমলক-family-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        তুলনামূলক family map
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shopbd-কন-size-নব" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shopbd কোন size নেবে?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-image--vm-এর-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Image — VM-এর template
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Image — VM-এর template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#image-family--সবসময-সরবশষ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Image family — "সবসময় সর্বশেষ"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-image-তর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom image তৈরি
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-vm-তর-কর--console-ও-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. VM তৈরি করা — Console ও CLI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. VM তৈরি করা — Console ও CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cli-দয-shopbd-api-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI দিয়ে shopbd-api VM
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-ssh-ও-vm-এ-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. SSH ও VM-এ login
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-metadata-ও-startup-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Metadata ও startup script
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৬. Metadata ও startup script">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadata-ক" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata কী
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#startup-script-boot-time-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Startup script (boot-time automation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-disk--vm-এর-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. Disk — VM-এর storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৮-ip-address-ও-network-এর-সথ-vm-এর-সমপরক" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮. IP address ও network-এর সাথে VM-এর সম্পর্ক
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৯-vm-এ-identity--key-ছড-cloud-api-ডক" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৯. VM-এ identity — key ছাড়া cloud API ডাকা
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১০-lifecycle-ও-billing--কখন-কত-টক" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১০. Lifecycle ও billing — কখন কত টাকা?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১১-pricing-মডল--on-demand-commitment-ও-spot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১১. Pricing মডেল — On-demand, Commitment ও Spot
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১১. Pricing মডেল — On-demand, Commitment ও Spot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spot-কথয-চল-কথয-চল-ন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spot কোথায় চলে, কোথায় চলে না
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১২-instance-group--অনক-vm-একসথ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১২. Instance group — অনেক VM একসাথে
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১২. Instance group — অনেক VM একসাথে">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cli--instance-group-তর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI — instance group তৈরি
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১৩-dedicated-host-ও-bare-metal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১৩. Dedicated host ও bare metal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১৪-placement-ও-high-availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১৪. Placement ও High Availability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১৫-terraform--shopbd-api-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১৫. Terraform — shopbd-api VM
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="মিল ও অমিল">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#যসব-gotcha-সবচয-বশ-ঘট" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        যেসব gotcha সবচেয়ে বেশি ঘটে
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-networking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Networking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-containers-kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Container ও Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-serverless/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Serverless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-load-balancing-scaling-dns-cdn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Load Balancing, DNS ও CDN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-messaging-and-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Messaging ও Event
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Monitoring ও Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-infrastructure-as-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 · Infrastructure as Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-cicd-devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 · CI/CD ও DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-data-and-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 · Data ও Analytics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-ai-ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 · AI ও Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-cost-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 · Cost Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-architecture-ha-dr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 · Architecture ও HA/DR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/gcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Cloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/azure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microsoft Azure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/oci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle Cloud (OCI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    রেফারেন্স
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    রেফারেন্স
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/service-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli-cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Cheatsheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-virtual-machine-ক-এব-কন-দরকর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. Virtual Machine কী এবং কেন দরকার
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. Virtual Machine কী এবং কেন দরকার">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vm-কন-সবচয-মলক" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM কেন সবচেয়ে মৌলিক
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#কখন-vm-কখন-managed-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        কখন VM, কখন managed service?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vm-এর-lifecycle-চর-cloud-এ-পরয-একই" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM-এর lifecycle (চার cloud-এ প্রায় একই)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-machine-family-shape-ও-size--সঠক-আকর-বছ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Machine family, shape ও size — সঠিক আকার বাছা
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="২. Machine family, shape ও size — সঠিক আকার বাছা">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#নমর-গঠন-বঝ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        নামের গঠন বোঝা
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#তলনমলক-family-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        তুলনামূলক family map
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shopbd-কন-size-নব" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shopbd কোন size নেবে?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-image--vm-এর-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Image — VM-এর template
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Image — VM-এর template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#image-family--সবসময-সরবশষ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Image family — "সবসময় সর্বশেষ"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-image-তর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom image তৈরি
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-vm-তর-কর--console-ও-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. VM তৈরি করা — Console ও CLI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. VM তৈরি করা — Console ও CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cli-দয-shopbd-api-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI দিয়ে shopbd-api VM
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-ssh-ও-vm-এ-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. SSH ও VM-এ login
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-metadata-ও-startup-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Metadata ও startup script
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৬. Metadata ও startup script">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadata-ক" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata কী
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#startup-script-boot-time-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Startup script (boot-time automation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-disk--vm-এর-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. Disk — VM-এর storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৮-ip-address-ও-network-এর-সথ-vm-এর-সমপরক" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮. IP address ও network-এর সাথে VM-এর সম্পর্ক
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৯-vm-এ-identity--key-ছড-cloud-api-ডক" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৯. VM-এ identity — key ছাড়া cloud API ডাকা
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১০-lifecycle-ও-billing--কখন-কত-টক" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১০. Lifecycle ও billing — কখন কত টাকা?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১১-pricing-মডল--on-demand-commitment-ও-spot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১১. Pricing মডেল — On-demand, Commitment ও Spot
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১১. Pricing মডেল — On-demand, Commitment ও Spot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spot-কথয-চল-কথয-চল-ন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spot কোথায় চলে, কোথায় চলে না
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১২-instance-group--অনক-vm-একসথ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১২. Instance group — অনেক VM একসাথে
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১২. Instance group — অনেক VM একসাথে">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cli--instance-group-তর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI — instance group তৈরি
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১৩-dedicated-host-ও-bare-metal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১৩. Dedicated host ও bare metal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১৪-placement-ও-high-availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১৪. Placement ও High Availability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১৫-terraform--shopbd-api-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১৫. Terraform — shopbd-api VM
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="মিল ও অমিল">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#যসব-gotcha-সবচয-বশ-ঘট" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        যেসব gotcha সবচেয়ে বেশি ঘটে
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Hasib105/cloud-bangla-docs/edit/main/docs/04-compute-vms.md" title="এই পেজ এডিট করুন" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="04--virtual-machine-compute">04 · Virtual Machine (Compute)<a class="headerlink" href="#04--virtual-machine-compute" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>এই অধ্যায়ে কী শিখবেন</strong></p>
+<ul>
+<li>Virtual machine (VM) কী, কেন সব cloud-এর সবচেয়ে মৌলিক service, আর এর lifecycle কেমন</li>
+<li>Machine family / shape / size কীভাবে বাছবেন — AWS EC2, GCP Compute Engine, Azure VMs, OCI Compute-এ</li>
+<li>Image, SSH key, metadata ও startup script, disk — চার cloud-এ কোনটা কী নামে</li>
+<li>Spot / preemptible VM, instance group (ASG / MIG / VMSS / instance pool), dedicated host ও bare metal</li>
+<li><code>shopbd</code>-র API server চার cloud-এ CLI ও Terraform দিয়ে তৈরি করা, আর কোথায় মানুষ ভুল করে</li>
+</ul>
+</blockquote>
+<div class="admonition abstract">
+<p class="admonition-title">এক নজরে — কোন cloud-এ কী নাম</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Virtual machine service</td>
+<td>Amazon EC2</td>
+<td>Compute Engine</td>
+<td>Azure Virtual Machines</td>
+<td>OCI Compute</td>
+</tr>
+<tr>
+<td>VM-এর আকার</td>
+<td>Instance type (<code>t3.small</code>)</td>
+<td>Machine type (<code>e2-small</code>)</td>
+<td>VM size (<code>Standard_B2s</code>)</td>
+<td>Shape (<code>VM.Standard.E4.Flex</code>)</td>
+</tr>
+<tr>
+<td>Template image</td>
+<td>AMI</td>
+<td>Image / image family</td>
+<td>Marketplace image / Azure Compute Gallery image</td>
+<td>Platform / custom image</td>
+</tr>
+<tr>
+<td>SSH key রাখার জায়গা</td>
+<td>Key pair</td>
+<td>Project/instance metadata, OS Login</td>
+<td>VM-এর <code>admin_ssh_key</code></td>
+<td><code>ssh_authorized_keys</code> metadata</td>
+</tr>
+<tr>
+<td>Boot-time script</td>
+<td>User data (cloud-init)</td>
+<td><code>startup-script</code> metadata</td>
+<td>Custom data (cloud-init), Custom Script Extension</td>
+<td>cloud-init <code>user_data</code></td>
+</tr>
+<tr>
+<td>Metadata endpoint</td>
+<td><code>169.254.169.254</code> (IMDSv2)</td>
+<td><code>metadata.google.internal</code></td>
+<td><code>169.254.169.254</code> (IMDS)</td>
+<td><code>169.254.169.254/opc/v2</code></td>
+</tr>
+<tr>
+<td>Block disk</td>
+<td>EBS</td>
+<td>Persistent Disk / Hyperdisk</td>
+<td>Managed Disks</td>
+<td>Block Volume / Boot Volume</td>
+</tr>
+<tr>
+<td>VM-এ attach হওয়া identity</td>
+<td>Instance profile (IAM role)</td>
+<td>Service account</td>
+<td>Managed identity</td>
+<td>Instance principal</td>
+</tr>
+<tr>
+<td>Spot / সস্তা interruptible</td>
+<td>Spot Instances</td>
+<td>Spot VMs (পুরনো নাম Preemptible)</td>
+<td>Spot VMs</td>
+<td>Preemptible instances</td>
+</tr>
+<tr>
+<td>VM-এর group + autoscale</td>
+<td>Auto Scaling Group (ASG)</td>
+<td>Managed Instance Group (MIG)</td>
+<td>VM Scale Set (VMSS)</td>
+<td>Instance pool + autoscaling configuration</td>
+</tr>
+<tr>
+<td>একা ভাড়া নেওয়া physical server</td>
+<td>Dedicated Hosts</td>
+<td>Sole-tenant nodes</td>
+<td>Azure Dedicated Host</td>
+<td>Dedicated Virtual Machine Host</td>
+</tr>
+<tr>
+<td>Bare metal</td>
+<td><code>.metal</code> instance</td>
+<td><code>-metal</code> machine type, Bare Metal Solution</td>
+<td>(সীমিত) BareMetal Infrastructure</td>
+<td><code>BM.*</code> shape</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+<h2 id="১-virtual-machine-ক-এব-কন-দরকর">১. Virtual Machine কী এবং কেন দরকার<a class="headerlink" href="#১-virtual-machine-ক-এব-কন-দরকর" title="Permanent link">&para;</a></h2>
+<p><strong>Virtual machine (VM)</strong> হলো cloud-এর ভেতরে ভাড়া নেওয়া একটা "কম্পিউটার" — নিজের CPU, RAM, disk, network আর operating system সহ। আসলে একটা বড় physical server-এর ওপর <strong>hypervisor</strong> নামের সফটওয়্যার সেই server-কে অনেকগুলো আলাদা, বিচ্ছিন্ন VM-এ ভাগ করে দেয়। আপনি মনে করেন পুরো কম্পিউটারটাই আপনার, অথচ পাশের VM অন্য কারও।</p>
+<div class="admonition note">
+<p class="admonition-title">Analogy: বহুতল ভবনে ফ্ল্যাট ভাড়া</p>
+<p>একটা বিল্ডিং (physical server) কিনে পুরোটায় থাকার দরকার নেই। আপনি একটা ফ্ল্যাট (VM) ভাড়া নেন — নিজের দরজা, নিজের তালা, নিজের ঘর। বিদ্যুৎ-পানির লাইন (hardware, data center) বাড়িওয়ালার (cloud provider) দায়িত্ব; ঘরের ভেতরের সাজসজ্জা (OS, software, patch) আপনার।</p>
+</div>
+<h3 id="vm-কন-সবচয-মলক">VM কেন সবচেয়ে মৌলিক<a class="headerlink" href="#vm-কন-সবচয-মলক" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Container, Kubernetes node, database, load balancer — অনেক managed service-ও ভেতরে VM-এর ওপরই দাঁড়িয়ে আছে।</li>
+<li><strong>IaaS</strong>-এর (দেখুন <a href="../01-cloud-fundamentals/">01 · Cloud-এর ভিত্তি</a>) সবচেয়ে সরাসরি রূপ: OS থেকে ওপরের সব কিছুর control আপনার, আবার সব দায়িত্বও আপনার (shared responsibility)।</li>
+<li>যেকোনো সফটওয়্যার চলে — legacy app, বিশেষ license-ওয়ালা software, নিজের মতো করে tuning করা server।</li>
+</ul>
+<h3 id="কখন-vm-কখন-managed-service">কখন VM, কখন managed service?<a class="headerlink" href="#কখন-vm-কখন-managed-service" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>পরিস্থিতি</th>
+<th>কী বেছে নেবেন</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OS-level control, বিশেষ software, lift-and-shift</td>
+<td><strong>VM</strong></td>
+</tr>
+<tr>
+<td>শুধু code চালাতে চান, server দেখতে চান না</td>
+<td>Serverless / container platform (<a href="../09-serverless/">09</a>)</td>
+</tr>
+<tr>
+<td>PostgreSQL/MySQL চালাতে চান, backup-patch নিজে করতে চান না</td>
+<td>Managed database (<a href="../07-databases/">07</a>)</td>
+</tr>
+<tr>
+<td>অনেক container orchestrate</td>
+<td>Kubernetes (<a href="../08-containers-kubernetes/">08</a>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vm-এর-lifecycle-চর-cloud-এ-পরয-একই">VM-এর lifecycle (চার cloud-এ প্রায় একই)<a class="headerlink" href="#vm-এর-lifecycle-চর-cloud-এ-পরয-একই" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; Provisioning : create / launch
+    Provisioning --&gt; Running : boot সম্পন্ন
+    Running --&gt; Stopped : stop / deallocate
+    Stopped --&gt; Running : start
+    Running --&gt; Running : reboot
+    Running --&gt; Terminated : terminate / delete
+    Stopped --&gt; Terminated : terminate / delete
+    Terminated --&gt; [*]</code></pre>
+<table>
+<thead>
+<tr>
+<th>অবস্থা</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>তৈরি হচ্ছে</td>
+<td><code>pending</code></td>
+<td><code>PROVISIONING</code> / <code>STAGING</code></td>
+<td><code>Creating</code></td>
+<td><code>PROVISIONING</code></td>
+</tr>
+<tr>
+<td>চলছে</td>
+<td><code>running</code></td>
+<td><code>RUNNING</code></td>
+<td><code>Running</code></td>
+<td><code>RUNNING</code></td>
+</tr>
+<tr>
+<td>থামানো</td>
+<td><code>stopped</code></td>
+<td><code>TERMINATED</code> (হ্যাঁ, GCP-তে stopped VM-কে এই নামে দেখায়!)</td>
+<td><code>Stopped</code> বনাম <strong><code>Deallocated</code></strong></td>
+<td><code>STOPPED</code></td>
+</tr>
+<tr>
+<td>মুছে ফেলা</td>
+<td><code>terminated</code></td>
+<td>instance delete</td>
+<td>VM delete</td>
+<td><code>TERMINATED</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">চার cloud-এ stop মানে এক জিনিস নয়</p>
+<ul>
+<li><strong>AWS:</strong> stop করলে compute charge বন্ধ, কিন্তু EBS volume আর Elastic IP-র খরচ চলে। Terminate করলে instance চিরতরে শেষ।</li>
+<li><strong>GCP:</strong> stop করলে compute বন্ধ, disk-এর খরচ চলে। Status-এ <code>TERMINATED</code> দেখালে ঘাবড়াবেন না — এটা শুধু "বন্ধ", delete নয়।</li>
+<li><strong>Azure:</strong> OS-এর ভেতর থেকে shutdown করলে VM <strong>Stopped</strong> থাকে কিন্তু compute resource ধরে রাখে — <strong>বিল চলতেই থাকে</strong>। Portal/CLI থেকে <strong>Deallocate</strong> করলে তবেই compute বিল বন্ধ।</li>
+<li><strong>OCI:</strong> বেশির ভাগ standard shape stop করলে compute বিল থামে, কিন্তু কিছু shape (যেমন Dense I/O, GPU, bare metal) থামানো অবস্থাতেও বিল হতে পারে — আপনার shape-এর docs দেখে নিন।</li>
+</ul>
+</div>
+<hr />
+<h2 id="২-machine-family-shape-ও-size--সঠক-আকর-বছ">২. Machine family, shape ও size — সঠিক আকার বাছা<a class="headerlink" href="#২-machine-family-shape-ও-size--সঠক-আকর-বছ" title="Permanent link">&para;</a></h2>
+<p>প্রতিটি cloud অনেক ধরনের VM দেয়। আপনার কাজ হলো <strong>workload-এর ধরন</strong> (CPU-heavy, memory-heavy, GPU…) বুঝে সঠিক "পরিবার" ও তারপর "আকার" বাছা।</p>
+<h3 id="নমর-গঠন-বঝ">নামের গঠন বোঝা<a class="headerlink" href="#নমর-গঠন-বঝ" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="aws" name="__tabbed_1" type="radio" /><input id="gcp" name="__tabbed_1" type="radio" /><input id="azure" name="__tabbed_1" type="radio" /><input id="oci" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="aws">AWS</label><label for="gcp">GCP</label><label for="azure">Azure</label><label for="oci">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><code>m7g.2xlarge</code> — <strong>family</strong> <code>m</code> (general purpose), <strong>generation</strong> <code>7</code>, <strong>extra</strong> <code>g</code> (Graviton / Arm processor), <strong>size</strong> <code>2xlarge</code>।</p>
+<ul>
+<li>প্রধান family: <code>t</code> (burstable), <code>m</code> (general), <code>c</code> (compute), <code>r</code>/<code>x</code> (memory), <code>i</code>/<code>d</code> (storage), <code>p</code>/<code>g</code>/<code>inf</code>/<code>trn</code> (GPU ও accelerator)।</li>
+<li>শেষে <code>a</code> = AMD, <code>g</code> = Graviton (Arm), <code>i</code> = Intel; <code>d</code> = local NVMe disk, <code>n</code> = বেশি network।</li>
+<li><code>.metal</code> size মানে bare metal (নিচে দেখুন)।</li>
+<li>Nitro system-এর ওপর চলে — hypervisor-এর overhead কম।</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><code>n2-standard-4</code> — <strong>series</strong> <code>n2</code>, <strong>type</strong> <code>standard</code>, <strong>vCPU</strong> <code>4</code>। <code>standard</code> = প্রতি vCPU-তে ৪ GB RAM, <code>highmem</code> = ৮ GB, <code>highcpu</code> = কম RAM।</p>
+<ul>
+<li><strong>General purpose:</strong> E2 (সস্তা, shared-core আছে), N2/N2D, N4, C3/C4, T2D, Tau।</li>
+<li><strong>Compute-optimized:</strong> C2, H3। <strong>Memory-optimized:</strong> M-series। <strong>Storage-optimized:</strong> Z3।</li>
+<li><strong>Accelerator-optimized:</strong> A-series (A2, A3…), G2 — GPU workload।</li>
+<li><strong>Custom machine type:</strong> vCPU ও RAM নিজের মতো ঠিক করা যায় (যেমন <code>n2-custom-6-20480</code>) — GCP-র বিশেষ সুবিধা।</li>
+<li>Arm: Tau T2A ও Axion-based series।</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><code>Standard_D4s_v5</code> — <strong>series</strong> <code>D</code> (general purpose), <strong>vCPU</strong> <code>4</code>, <strong>feature</strong> <code>s</code> (Premium SSD সমর্থন), <strong>version</strong> <code>v5</code>।</p>
+<ul>
+<li>প্রধান series: <code>B</code> (burstable), <code>D</code> (general), <code>F</code> (compute), <code>E</code>/<code>M</code> (memory), <code>L</code> (storage), <code>N</code> (GPU), <code>H</code> (HPC)।</li>
+<li>ছোট হরফ: <code>a</code> = AMD, <code>p</code> = Arm (Azure Cobalt-ভিত্তিক), <code>d</code> = local temp disk, <code>s</code> = Premium storage।</li>
+<li>একই size বিভিন্ন version-এ (<code>v4</code>, <code>v5</code>, <code>v6</code>) থাকে — নতুন version সাধারণত ভালো price/performance।</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><code>VM.Standard.E4.Flex</code> — <strong>VM</strong> (virtual machine; <code>BM</code> হলে bare metal), <strong>family</strong> <code>Standard</code>, <strong>processor</strong> <code>E4</code> (AMD EPYC), <strong>Flex</strong> = আপনি OCPU ও memory নিজে ঠিক করেন।</p>
+<ul>
+<li><code>E</code> = AMD, <code>A</code> = Ampere Arm (<code>VM.Standard.A1.Flex</code>), অন্য Intel shape-ও আছে।</li>
+<li><strong>OCPU</strong> = একটা physical core। x86 shape-এ ১ OCPU ≈ ২ vCPU (hyper-thread); Ampere A-series-এ ১ OCPU = ১ vCPU।</li>
+<li>Flex shape-এ OCPU ও GB RAM আলাদা slider — GCP custom machine type-এর মতো সুবিধা।</li>
+<li>Fixed shape ও GPU shape (<code>VM.GPU…</code>, <code>BM.GPU…</code>) আছে।</li>
+</ul>
+</div>
+</div>
+</div>
+<h3 id="তলনমলক-family-map">তুলনামূলক family map<a class="headerlink" href="#তলনমলক-family-map" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>ধরন</th>
+<th>কীসের জন্য</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Burstable / shared-core</td>
+<td>ছোট, কম-ব্যবহৃত workload</td>
+<td><code>t3</code>, <code>t4g</code></td>
+<td><code>e2-micro/small/medium</code></td>
+<td><code>B</code>-series</td>
+<td>(Flex shape-এ কম OCPU)</td>
+</tr>
+<tr>
+<td>General purpose</td>
+<td>web, API, ছোট DB</td>
+<td><code>m6i</code>, <code>m7g</code></td>
+<td><code>n2</code>, <code>n4</code>, <code>c3</code></td>
+<td><code>D</code>-series</td>
+<td><code>VM.Standard.E4/E5.Flex</code></td>
+</tr>
+<tr>
+<td>Compute optimized</td>
+<td>CPU-heavy, encoding</td>
+<td><code>c6i</code>, <code>c7g</code></td>
+<td><code>c2</code>, <code>h3</code></td>
+<td><code>F</code>-series</td>
+<td><code>VM.Optimized3.Flex</code></td>
+</tr>
+<tr>
+<td>Memory optimized</td>
+<td>in-memory DB, analytics</td>
+<td><code>r6i</code>, <code>x2idn</code></td>
+<td><code>m3</code>, <code>m4</code></td>
+<td><code>E</code>, <code>M</code>-series</td>
+<td><code>VM.Standard.E4.Flex</code> (বেশি RAM দিয়ে)</td>
+</tr>
+<tr>
+<td>Storage optimized</td>
+<td>দ্রুত local NVMe</td>
+<td><code>i4i</code>, <code>d3</code></td>
+<td><code>z3</code></td>
+<td><code>L</code>-series</td>
+<td><code>VM.DenseIO.E4.Flex</code></td>
+</tr>
+<tr>
+<td>GPU / accelerator</td>
+<td>ML, rendering</td>
+<td><code>p5</code>, <code>g5</code>, <code>inf2</code></td>
+<td><code>a3</code>, <code>g2</code></td>
+<td><code>N</code>-series</td>
+<td><code>VM.GPU…</code>, <code>BM.GPU…</code></td>
+</tr>
+<tr>
+<td>Arm</td>
+<td>কম খরচ, কম power</td>
+<td>Graviton (<code>*g</code>)</td>
+<td>Tau T2A, Axion</td>
+<td>Cobalt (<code>p</code> series)</td>
+<td>Ampere (<code>A1</code>/<code>A2</code>)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Burstable কীভাবে কাজ করে</p>
+<p><code>t3</code> / <code>e2</code> / Azure <code>B</code>-series সাধারণত কম CPU ব্যবহার করে "credit" জমায়, হঠাৎ লোড এলে সেই credit খরচ করে দ্রুত চলে। credit ফুরিয়ে গেলে performance নেমে আসে (AWS <code>t3</code> default-এ unlimited mode-এ গিয়ে বাড়তি খরচ হতে পারে)। ছোট ও spiky workload-এ সস্তা, কিন্তু সারাক্ষণ ৮০% CPU চললে এই family ভুল পছন্দ।</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Right-sizing-এর নিয়ম</p>
+<p>ছোট দিয়ে শুরু করুন, monitoring (CPU, memory, network) দেখে বাড়ান। Cloud-এ resize সহজ; বেশি কিনে ফেলে রাখলে টাকা নষ্ট। বিস্তারিত: <a href="../18-cost-management/">18 · Cost Management</a> ও <a href="../12-observability/">12 · Monitoring</a>।</p>
+</div>
+<h3 id="shopbd-কন-size-নব"><code>shopbd</code> কোন size নেবে?<a class="headerlink" href="#shopbd-কন-size-নব" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>কী লাগে</th>
+<th>শুরুর পছন্দ (উদাহরণ)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>shopbd-api</code> (REST API)</td>
+<td>২ vCPU, ২–৪ GB RAM</td>
+<td>AWS <code>t3.small</code> · GCP <code>e2-small</code> · Azure <code>Standard_B2s</code> · OCI <code>VM.Standard.E4.Flex</code> (১ OCPU, ৮ GB)</td>
+</tr>
+<tr>
+<td>Nightly report job</td>
+<td>সামান্য সময় ধরে বেশি CPU</td>
+<td>Spot / preemptible VM (নিচে দেখুন)</td>
+</tr>
+</tbody>
+</table>
+<p>কোন region-এ কত দাম — <strong>exact দাম এখানে দেওয়া হয়নি</strong>, কারণ বদলায়। দেখুন: <a href="https://aws.amazon.com/ec2/pricing/">AWS EC2 pricing</a>, <a href="https://cloud.google.com/products/calculator">GCP pricing calculator</a>, <a href="https://azure.microsoft.com/pricing/calculator/">Azure pricing calculator</a>, <a href="https://www.oracle.com/cloud/costestimator.html">OCI cost estimator</a>।</p>
+<hr />
+<h2 id="৩-image--vm-এর-template">৩. Image — VM-এর template<a class="headerlink" href="#৩-image--vm-এর-template" title="Permanent link">&para;</a></h2>
+<p><strong>Image</strong> হলো একটা তৈরি করা disk template: OS (আর চাইলে software ও configuration) ভেতরে থাকে। VM তৈরির সময় image থেকে boot disk কপি হয়।</p>
+<table>
+<thead>
+<tr>
+<th>প্রকার</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Provider-র দেওয়া</td>
+<td>AWS-provided AMI (Amazon Linux 2023, Ubuntu…)</td>
+<td>Public images (<code>debian-cloud</code>, <code>ubuntu-os-cloud</code>…)</td>
+<td>Marketplace image (Canonical, Red Hat…)</td>
+<td>Platform images (Oracle Linux, Ubuntu…)</td>
+</tr>
+<tr>
+<td>Marketplace</td>
+<td>AWS Marketplace</td>
+<td>Cloud Marketplace</td>
+<td>Azure Marketplace</td>
+<td>OCI Marketplace</td>
+</tr>
+<tr>
+<td>নিজের বানানো</td>
+<td>Custom AMI</td>
+<td>Custom image / machine image</td>
+<td>Managed image / Azure Compute Gallery image version</td>
+<td>Custom image</td>
+</tr>
+<tr>
+<td>Share করা</td>
+<td>AMI permission</td>
+<td>Image IAM</td>
+<td>Compute Gallery sharing</td>
+<td>Custom image export / share</td>
+</tr>
+</tbody>
+</table>
+<h3 id="image-family--সবসময-সরবশষ">Image family — "সবসময় সর্বশেষ"<a class="headerlink" href="#image-family--সবসময-সরবশষ" title="Permanent link">&para;</a></h3>
+<p>GCP-তে <code>--image-family=debian-12</code> দিলে সর্বশেষ patched image আসে। Azure-তে <code>:latest</code> version, AWS-তে SSM parameter বা <code>most_recent</code> data source একই কাজ করে। তবে <strong>production-এ নিজের golden image</strong> বানিয়ে version-pin করাই ভালো, নইলে একদিন নতুন image এসে আপনার deploy ভেঙে দিতে পারে।</p>
+<div class="admonition note">
+<p class="admonition-title">Golden image</p>
+<p>আপনার OS + Nginx + runtime + security agent সব install করা একটা image। নতুন VM এক মিনিটেই তৈরি আর সবগুলো হুবহু একই। Packer দিয়ে এই কাজ automate করা যায় (চার cloud-ই সমর্থিত)। Autoscaling-এ এটা প্রায় বাধ্যতামূলক।</p>
+</div>
+<h3 id="custom-image-তর">Custom image তৈরি<a class="headerlink" href="#custom-image-তর" title="Permanent link">&para;</a></h3>
+<p>চলমান (বা বন্ধ) VM থেকে image বানানোর কমান্ড: <code>aws ec2 create-image --instance-id … --name shopbd-api-v1</code>, <code>gcloud compute images create shopbd-api-v1 --source-disk=shopbd-api --source-disk-zone=asia-south1-a</code>, Azure-এ আগে <code>az vm deallocate</code> ও <code>az vm generalize</code> তারপর <code>az image create</code> (বা বড় setup-এ <strong>Azure Compute Gallery</strong>), আর OCI-তে <code>oci compute image create --instance-id …</code>। Production-এর জন্য হাতে না বানিয়ে Packer pipeline ব্যবহার করুন।</p>
+<hr />
+<h2 id="৪-vm-তর-কর--console-ও-cli">৪. VM তৈরি করা — Console ও CLI<a class="headerlink" href="#৪-vm-তর-কর--console-ও-cli" title="Permanent link">&para;</a></h2>
+<p><strong>Console-এ:</strong> AWS — <em>EC2 → Launch instances</em>; GCP — <em>Compute Engine → VM instances → Create instance</em>; Azure — <em>Virtual machines → Create</em>; OCI — <em>Compute → Instances → Create instance</em> (সঠিক compartment বাছুন)। প্রতিবার region/zone আর network ঠিক আছে কিনা দেখে নিন।</p>
+<h3 id="cli-দয-shopbd-api-vm">CLI দিয়ে <code>shopbd-api</code> VM<a class="headerlink" href="#cli-দয-shopbd-api-vm" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="aws_1" name="__tabbed_2" type="radio" /><input id="gcp_1" name="__tabbed_2" type="radio" /><input id="azure_1" name="__tabbed_2" type="radio" /><input id="oci_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="aws_1">AWS</label><label for="gcp_1">GCP</label><label for="azure_1">Azure</label><label for="oci_1">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>aws<span class="w"> </span>ec2<span class="w"> </span>run-instances<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>--region<span class="w"> </span>ap-south-1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>--image-id<span class="w"> </span>ami-0abcdef1234567890<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>--instance-type<span class="w"> </span>t3.small<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span>--key-name<span class="w"> </span>shopbd-key<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span>--subnet-id<span class="w"> </span>subnet-0123456789abcdef0<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span>--security-group-ids<span class="w"> </span>sg-0123456789abcdef0<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span>--iam-instance-profile<span class="w"> </span><span class="nv">Name</span><span class="o">=</span>shopbd-api-profile<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span>--metadata-options<span class="w"> </span><span class="nv">HttpTokens</span><span class="o">=</span>required<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span>--user-data<span class="w"> </span>file://user-data.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span>--tag-specifications<span class="w"> </span><span class="s1">'ResourceType=instance,Tags=[{Key=Name,Value=shopbd-api},{Key=project,Value=shopbd}]'</span>
+</span></code></pre></div>
+<p>অবস্থা দেখা ও থামানো:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>aws<span class="w"> </span>ec2<span class="w"> </span>describe-instances<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>--filters<span class="w"> </span><span class="s2">"Name=tag:Name,Values=shopbd-api"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>--query<span class="w"> </span><span class="s2">"Reservations[].Instances[].{ID:InstanceId,State:State.Name,PrivateIP:PrivateIpAddress}"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>--output<span class="w"> </span>table
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>aws<span class="w"> </span>ec2<span class="w"> </span>stop-instances<span class="w">      </span>--instance-ids<span class="w"> </span>i-0abcd1234efgh5678
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>aws<span class="w"> </span>ec2<span class="w"> </span>start-instances<span class="w">     </span>--instance-ids<span class="w"> </span>i-0abcd1234efgh5678
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>aws<span class="w"> </span>ec2<span class="w"> </span>terminate-instances<span class="w"> </span>--instance-ids<span class="w"> </span>i-0abcd1234efgh5678
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>create<span class="w"> </span>shopbd-api<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>--zone<span class="o">=</span>asia-south1-a<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>--machine-type<span class="o">=</span>e2-small<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>--image-family<span class="o">=</span>debian-12<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>--image-project<span class="o">=</span>debian-cloud<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span>--subnet<span class="o">=</span>shopbd-private-mumbai<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span>--no-address<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span>--tags<span class="o">=</span>shopbd-api<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span>--labels<span class="o">=</span><span class="nv">project</span><span class="o">=</span>shopbd<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span>--service-account<span class="o">=</span>shopbd-api@my-project-id.iam.gserviceaccount.com<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span>--scopes<span class="o">=</span>cloud-platform<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span>--metadata-from-file<span class="o">=</span>startup-script<span class="o">=</span>startup.sh
+</span></code></pre></div>
+<p><code>--no-address</code> মানে public IP নেই। অবস্থা দেখা ও থামানো:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>list<span class="w"> </span>--filter<span class="o">=</span><span class="s2">"labels.project=shopbd"</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>stop<span class="w">   </span>shopbd-api<span class="w"> </span>--zone<span class="o">=</span>asia-south1-a
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>start<span class="w">  </span>shopbd-api<span class="w"> </span>--zone<span class="o">=</span>asia-south1-a
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>delete<span class="w"> </span>shopbd-api<span class="w"> </span>--zone<span class="o">=</span>asia-south1-a
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>az<span class="w"> </span>group<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>shopbd-prod-rg<span class="w"> </span>--location<span class="w"> </span>centralindia
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>az<span class="w"> </span>vm<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-prod-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-api<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span>--image<span class="w"> </span>Canonical:ubuntu-24_04-lts:server:latest<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span>--size<span class="w"> </span>Standard_B2s<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span>--admin-username<span class="w"> </span>azureuser<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span>--generate-ssh-keys<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span>--vnet-name<span class="w"> </span>shopbd-prod-vnet<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">  </span>--subnet<span class="w"> </span>private-app-a<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">  </span>--public-ip-address<span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">  </span>--assign-identity<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">  </span>--custom-data<span class="w"> </span>cloud-init.yaml<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">  </span>--tags<span class="w"> </span><span class="nv">project</span><span class="o">=</span>shopbd
+</span></code></pre></div>
+<p><code>--public-ip-address ""</code> মানে public IP নেই। অবস্থা দেখা, থামানো ও deallocate:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>az<span class="w"> </span>vm<span class="w"> </span>list<span class="w"> </span>-g<span class="w"> </span>shopbd-prod-rg<span class="w"> </span>-d<span class="w"> </span>-o<span class="w"> </span>table
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>az<span class="w"> </span>vm<span class="w"> </span>deallocate<span class="w"> </span>-g<span class="w"> </span>shopbd-prod-rg<span class="w"> </span>-n<span class="w"> </span>shopbd-api<span class="w">   </span><span class="c1"># বিল বন্ধ করতে</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>az<span class="w"> </span>vm<span class="w"> </span>start<span class="w">      </span>-g<span class="w"> </span>shopbd-prod-rg<span class="w"> </span>-n<span class="w"> </span>shopbd-api
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>az<span class="w"> </span>vm<span class="w"> </span>delete<span class="w">     </span>-g<span class="w"> </span>shopbd-prod-rg<span class="w"> </span>-n<span class="w"> </span>shopbd-api<span class="w"> </span>--yes
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>oci<span class="w"> </span>compute<span class="w"> </span>instance<span class="w"> </span>launch<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>--availability-domain<span class="w"> </span><span class="s2">"xxxx:AP-MUMBAI-1-AD-1"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span>--shape<span class="w"> </span>VM.Standard.E4.Flex<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span>--shape-config<span class="w"> </span><span class="s1">'{"ocpus": 1, "memoryInGBs": 8}'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span>--image-id<span class="w"> </span>ocid1.image.oc1.ap-mumbai-1.example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span>--subnet-id<span class="w"> </span>ocid1.subnet.oc1.ap-mumbai-1.example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span>--assign-public-ip<span class="w"> </span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">  </span>--display-name<span class="w"> </span>shopbd-api<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">  </span>--ssh-authorized-keys-file<span class="w"> </span>~/.ssh/id_ed25519.pub<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">  </span>--user-data-file<span class="w"> </span>cloud-init.yaml
+</span></code></pre></div>
+<p>অবস্থা দেখা ও থামানো:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>oci<span class="w"> </span>compute<span class="w"> </span>instance<span class="w"> </span>list<span class="w"> </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span>--output<span class="w"> </span>table
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>oci<span class="w"> </span>compute<span class="w"> </span>instance<span class="w"> </span>action<span class="w"> </span>--instance-id<span class="w"> </span>ocid1.instance.oc1.ap-mumbai-1.example<span class="w"> </span>--action<span class="w"> </span>STOP
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>oci<span class="w"> </span>compute<span class="w"> </span>instance<span class="w"> </span>terminate<span class="w"> </span>--instance-id<span class="w"> </span>ocid1.instance.oc1.ap-mumbai-1.example
+</span></code></pre></div>
+<p>OCI-তে availability domain (AD)-এর নাম tenancy-ভেদে আলাদা প্রিফিক্স সহ আসে; <code>oci iam availability-domain list</code> দিয়ে আপনারটা দেখে নিন। Mumbai-র মতো অনেক region-এ মাত্র একটি AD থাকে।</p>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Zone / AD / fault domain</p>
+<p>AWS ও GCP-তে VM একটা <strong>zone</strong>-এ (যেমন <code>ap-south-1a</code>, <code>asia-south1-a</code>) থাকে। Azure-তে optional <strong>availability zone</strong> (১/২/৩)। OCI-তে আছে <strong>availability domain</strong> এবং তার ভেতরে তিনটি <strong>fault domain</strong> (আলাদা hardware group) — একটা AD-ওয়ালা region-এও fault domain দিয়ে ছড়ানো যায়। HA-র বিস্তারিত: <a href="../19-architecture-ha-dr/">19 · Architecture, HA ও DR</a>।</p>
+</div>
+<hr />
+<h2 id="৫-ssh-ও-vm-এ-login">৫. SSH ও VM-এ login<a class="headerlink" href="#৫-ssh-ও-vm-এ-login" title="Permanent link">&para;</a></h2>
+<p>Linux VM-এ ঢোকার প্রধান পথ <strong>SSH</strong>। public key VM-এ থাকে, private key আপনার কাছে — private key কখনো share/commit করবেন না। Windows VM-এ সাধারণত RDP।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="aws_2" name="__tabbed_3" type="radio" /><input id="gcp_2" name="__tabbed_3" type="radio" /><input id="azure_2" name="__tabbed_3" type="radio" /><input id="oci_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="aws_2">AWS</label><label for="gcp_2">GCP</label><label for="azure_2">Azure</label><label for="oci_2">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>Key pair তৈরি: <code>aws ec2 create-key-pair --key-name shopbd-key --key-type ed25519 --query KeyMaterial --output text &gt; shopbd-key.pem</code> তারপর <code>chmod 400 shopbd-key.pem</code>।</li>
+<li>Default user: Amazon Linux-এ <code>ec2-user</code>, Ubuntu-তে <code>ubuntu</code>।</li>
+<li>Key ছাড়া ও port 22 না খুলে ঢুকতে চাইলে <strong>AWS Systems Manager Session Manager</strong> (IAM দিয়ে control, audit log সহ) বা <strong>EC2 Instance Connect</strong>।</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ssh<span class="w"> </span>-i<span class="w"> </span>shopbd-key.pem<span class="w"> </span>ec2-user@&lt;private-or-public-ip&gt;
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>aws<span class="w"> </span>ssm<span class="w"> </span>start-session<span class="w"> </span>--target<span class="w"> </span>i-0abcd1234efgh5678
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><code>gcloud compute ssh</code> নিজেই key বানিয়ে VM-এ বসায়।</li>
+<li><strong>OS Login</strong> চালু থাকলে SSH access IAM role দিয়ে (<code>roles/compute.osLogin</code>) নিয়ন্ত্রণ হয় — key ম্যানুয়ালি ঘোরাতে হয় না।</li>
+<li>Public IP ছাড়া VM-এ <strong>IAP TCP forwarding</strong> দিয়ে ঢোকা যায়।</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>ssh<span class="w"> </span>shopbd-api<span class="w"> </span>--zone<span class="o">=</span>asia-south1-a<span class="w"> </span>--tunnel-through-iap
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><code>--generate-ssh-keys</code> বা <code>--ssh-key-values</code> দিয়ে VM তৈরির সময় public key বসে; user <code>azureuser</code> (আপনার দেওয়া নাম)।</li>
+<li>Public IP ছাড়া ও port 22 না খুলে ঢুকতে <strong>Azure Bastion</strong> (portal-ভিত্তিক) ব্যবহার করা যায়।</li>
+<li>চাইলে Microsoft Entra ID দিয়ে SSH login-এর extension আছে।</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>ssh<span class="w"> </span>azureuser@&lt;ip-address&gt;
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>Instance তৈরির সময় public key দিতে হয়; default user <code>opc</code> (Oracle Linux) বা <code>ubuntu</code> (Ubuntu image)।</li>
+<li>Private subnet-এর VM-এ ঢুকতে <strong>OCI Bastion service</strong> (সময়সীমাওয়ালা session)।</li>
+<li>SSH না চললে <strong>Console connection</strong> দিয়ে serial console-এ ঢোকা যায়।</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ssh<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_ed25519<span class="w"> </span>opc@&lt;ip-address&gt;
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Port 22 গোটা ইন্টারনেটে খোলা রাখবেন না</p>
+<p><code>0.0.0.0/0</code> থেকে SSH খোলা থাকলে কয়েক মিনিটেই brute-force শুরু হয়। বিকল্প: bastion / Session Manager / IAP / Azure Bastion / OCI Bastion, অথবা শুধু আপনার অফিসের IP। নেটওয়ার্ক-নিয়ম: <a href="../05-networking/">05 · Networking</a>।</p>
+</div>
+<hr />
+<h2 id="৬-metadata-ও-startup-script">৬. Metadata ও startup script<a class="headerlink" href="#৬-metadata-ও-startup-script" title="Permanent link">&para;</a></h2>
+<h3 id="metadata-ক">Metadata কী<a class="headerlink" href="#metadata-ক" title="Permanent link">&para;</a></h3>
+<p>প্রতিটি VM একটা <strong>লিংক-লোকাল metadata endpoint</strong>-এ নিজের সম্পর্কে তথ্য পায় — instance id, zone, network, tag, আর (role থাকলে) অস্থায়ী credential। এই endpoint VM-এর বাইরে থেকে পৌঁছানো যায় না।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="aws_3" name="__tabbed_4" type="radio" /><input id="gcp_3" name="__tabbed_4" type="radio" /><input id="azure_3" name="__tabbed_4" type="radio" /><input id="oci_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="aws_3">AWS</label><label for="gcp_3">GCP</label><label for="azure_3">Azure</label><label for="oci_3">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>IMDSv2 — আগে token নিতে হয় (SSRF-এর বিরুদ্ধে নিরাপদ):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nv">TOKEN</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span><span class="s2">"http://169.254.169.254/latest/api/token"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"X-aws-ec2-metadata-token-ttl-seconds: 21600"</span><span class="k">)</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>curl<span class="w"> </span>-s<span class="w"> </span>-H<span class="w"> </span><span class="s2">"X-aws-ec2-metadata-token: </span><span class="nv">$TOKEN</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span>http://169.254.169.254/latest/meta-data/instance-id
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-H<span class="w"> </span><span class="s2">"Metadata-Flavor: Google"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="s2">"http://metadata.google.internal/computeMetadata/v1/instance/zone"</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-H<span class="w"> </span><span class="s2">"Metadata:true"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span><span class="s2">"http://169.254.169.254/metadata/instance?api-version=2021-02-01"</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer Oracle"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span>http://169.254.169.254/opc/v2/instance/
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Metadata endpoint = credential-এর দরজা</p>
+<p>VM-এ role/identity থাকলে এই endpoint থেকে অস্থায়ী token মেলে। App-এ SSRF bug থাকলে আক্রমণকারী সেটা চুরি করতে পারে। তাই AWS-এ <strong>IMDSv2 বাধ্যতামূলক</strong> (<code>HttpTokens=required</code>) করুন; অন্য cloud-এও VM-এ যতটুকু দরকার ততটুকুই permission দিন।</p>
+</div>
+<h3 id="startup-script-boot-time-automation">Startup script (boot-time automation)<a class="headerlink" href="#startup-script-boot-time-automation" title="Permanent link">&para;</a></h3>
+<p>VM চালু হওয়ার সময় script চালিয়ে software install করা যায়। বেশির ভাগ Linux image-এ <strong>cloud-init</strong> থাকে — তাই <code>#cloud-config</code> YAML বা সাধারণ shell script — দুটোই দেওয়া যায়।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:4"><input checked="checked" id="aws_4" name="__tabbed_5" type="radio" /><input id="gcp_4" name="__tabbed_5" type="radio" /><input id="azure_4" name="__tabbed_5" type="radio" /><input id="oci_4" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="aws_4">AWS</label><label for="gcp_4">GCP</label><label for="azure_4">Azure</label><label for="oci_4">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>User data</strong> — default-এ শুধু <strong>প্রথম boot-এ</strong> চলে, root হিসেবে; আকারে ছোট (১৬ KB সীমা)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nginx
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>nginx
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Metadata key <strong><code>startup-script</code></strong> — <strong>প্রতিবার boot-এ</strong> চলে (এবং <code>shutdown-script</code> বন্ধের সময়)। বড় script Cloud Storage থেকে <code>startup-script-url</code> দিয়ে আনা যায়।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nginx
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>nginx
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><strong>Custom data</strong> (cloud-init, base64 হয়ে যায়; CLI-তে <code>--custom-data</code>)। পরে চালাতে চাইলে <strong>Custom Script Extension</strong> বা <code>az vm run-command</code>।</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1">#cloud-config</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nt">package_update</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="nt">packages</span><span class="p">:</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="nt">runcmd</span><span class="p">:</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">systemctl enable --now nginx</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><code>user_data</code> (cloud-init, base64) metadata-তে; CLI-তে <code>--user-data-file</code>। Oracle Linux-এ firewalld default-এ চালু — script-এ port খুলতে ভুলবেন না।</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1">#cloud-config</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nt">packages</span><span class="p">:</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="nt">runcmd</span><span class="p">:</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">systemctl enable --now nginx</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">firewall-cmd --permanent --add-service=http</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">firewall-cmd --reload</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Script-এ secret রাখবেন না</p>
+<p>User data / metadata সাধারণত VM-এর ভেতর থেকে যে কেউ পড়তে পারে, কখনো console-এও দেখা যায়। Password, API key এখানে লিখবেন না — secret manager ব্যবহার করুন (<a href="../13-security/">13 · Security</a>)।</p>
+</div>
+<hr />
+<h2 id="৭-disk--vm-এর-storage">৭. Disk — VM-এর storage<a class="headerlink" href="#৭-disk--vm-এর-storage" title="Permanent link">&para;</a></h2>
+<p>VM-এর disk দুই রকম: <strong>network-attached block disk</strong> (VM মুছলেও disk বাঁচিয়ে রাখা যায়) আর <strong>local / ephemeral disk</strong> (VM-এর সাথে বাঁধা, VM বন্ধ হলে data যায়)। বিস্তারিত পরের অধ্যায়ে — <a href="../06-storage/">06 · Storage</a>। এখানে VM-এর দৃষ্টিকোণ থেকে মূল কথা:</p>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boot (root) disk</td>
+<td>EBS root volume</td>
+<td>Boot disk (Persistent Disk)</td>
+<td>OS disk (Managed Disk)</td>
+<td>Boot volume</td>
+</tr>
+<tr>
+<td>বাড়তি data disk</td>
+<td>EBS volume</td>
+<td>Persistent Disk / Hyperdisk</td>
+<td>Data disk (Managed Disk)</td>
+<td>Block volume</td>
+</tr>
+<tr>
+<td>সাধারণ SSD প্রকার</td>
+<td><code>gp3</code> (সাধারণ), <code>io2</code> (উচ্চ IOPS)</td>
+<td><code>pd-balanced</code>, <code>pd-ssd</code>, Hyperdisk</td>
+<td>Standard SSD, Premium SSD, Premium SSD v2, Ultra Disk</td>
+<td>Balanced / Higher Performance / Ultra High Performance (VPU দিয়ে)</td>
+</tr>
+<tr>
+<td>Local (ephemeral) disk</td>
+<td>Instance store (<code>d</code>/<code>i</code> family)</td>
+<td>Local SSD</td>
+<td>Temporary disk (<code>D:</code> বা <code>/dev/sdb</code>)</td>
+<td>Local NVMe (DenseIO shape)</td>
+</tr>
+<tr>
+<td>Snapshot</td>
+<td>EBS snapshot</td>
+<td>Disk snapshot</td>
+<td>Disk snapshot</td>
+<td>Boot/block volume backup</td>
+</tr>
+<tr>
+<td>VM delete করলে root disk</td>
+<td>default-এ মুছে যায় (<code>DeleteOnTermination</code>)</td>
+<td>default-এ মুছে যায় (অপশন আছে)</td>
+<td>CLI/ARM-এ সাধারণত থেকে যায় (<code>deleteOption</code> দিয়ে ঠিক করা যায়; portal-এর default আলাদা হতে পারে)</td>
+<td>terminate করার সময় boot volume রাখা বা মোছা বেছে নিতে হয় ("preserve boot volume")</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Local disk-এ গুরুত্বপূর্ণ data রাখবেন না</p>
+<p>Azure-এর temporary disk, AWS instance store, GCP Local SSD, OCI local NVMe — এগুলো cache বা scratch space-এর জন্য। VM deallocate/stop/migrate হলে data মুছে যেতে পারে। Database বা user-upload এখানে রাখলে একদিন সব হারাবেন।</p>
+</div>
+<p>Disk attach করার CLI: <code>aws ec2 attach-volume</code>, <code>gcloud compute instances attach-disk</code>, <code>az vm disk attach</code>, <code>oci compute volume-attachment attach</code>। Attach-এর পরে OS-এর ভেতরে <code>lsblk</code> → <code>mkfs.ext4</code> → <code>mount</code> করে <code>/etc/fstab</code>-এ UUID দিয়ে লিখতে হয় — চার cloud-এই একই।</p>
+<hr />
+<h2 id="৮-ip-address-ও-network-এর-সথ-vm-এর-সমপরক">৮. IP address ও network-এর সাথে VM-এর সম্পর্ক<a class="headerlink" href="#৮-ip-address-ও-network-এর-সথ-vm-এর-সমপরক" title="Permanent link">&para;</a></h2>
+<p>প্রতিটি VM একটা <strong>virtual network interface (NIC)</strong> দিয়ে network-এ যুক্ত হয়, আর সেই NIC একটা subnet থেকে <strong>private IP</strong> পায়। Internet থেকে সরাসরি পৌঁছাতে চাইলে <strong>public IP</strong> লাগে। বেশির ভাগ ভালো design-এ app server-এর public IP থাকে না — সামনে load balancer থাকে।</p>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NIC</td>
+<td>ENI (Elastic Network Interface)</td>
+<td>NIC (network interface)</td>
+<td>NIC (network interface)</td>
+<td>VNIC</td>
+</tr>
+<tr>
+<td>Public IP নাম</td>
+<td>Public IPv4 / <strong>Elastic IP</strong> (স্থির)</td>
+<td>Ephemeral / <strong>Static external IP</strong></td>
+<td><strong>Public IP</strong> (Standard SKU, static)</td>
+<td>Ephemeral / <strong>Reserved public IP</strong></td>
+</tr>
+<tr>
+<td>VM বন্ধ করলে সাধারণ public IP</td>
+<td>বদলে যায় (Elastic IP বদলায় না)</td>
+<td>ephemeral হলে বদলে যায়</td>
+<td>Basic dynamic হলে বদলে যায়; static হলে থাকে</td>
+<td>ephemeral হলে বদলে যায়</td>
+</tr>
+<tr>
+<td>Network-এর স্তর</td>
+<td>VPC → subnet (zone-ভিত্তিক)</td>
+<td>VPC → subnet (region-ভিত্তিক)</td>
+<td>VNet → subnet</td>
+<td>VCN → subnet</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Public IP-ও টাকা লাগে</p>
+<p>AWS এখন in-use ও idle সব public IPv4 address-এর জন্য আলাদা charge করে। তাই "সব VM-কে একটা করে public IP" অভ্যাসটা খরচও বাড়ায়, ঝুঁকিও। Private IP + load balancer + NAT-ই নিয়ম হোক। পুরো network ডিজাইন: <a href="../05-networking/">05 · Networking</a>।</p>
+</div>
+<hr />
+<h2 id="৯-vm-এ-identity--key-ছড-cloud-api-ডক">৯. VM-এ identity — key ছাড়া cloud API ডাকা<a class="headerlink" href="#৯-vm-এ-identity--key-ছড-cloud-api-ডক" title="Permanent link">&para;</a></h2>
+<p>VM-এর ভেতরের app যদি S3/Cloud Storage/Blob/Object Storage থেকে ছবি পড়তে চায়, সবচেয়ে খারাপ উপায় হলো access key কোডে বা <code>.env</code>-এ রাখা। সঠিক উপায়: <strong>VM-এর সাথে identity জুড়ে দেওয়া</strong> — cloud সেই VM-কে অস্থায়ী credential দেয় যা নিজে নিজে ঘোরে (rotate হয়)।</p>
+<table>
+<thead>
+<tr>
+<th>Cloud</th>
+<th>VM-এর identity</th>
+<th>কীভাবে permission দেন</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AWS</td>
+<td><strong>Instance profile</strong> (ভেতরে IAM role)</td>
+<td>role-এ IAM policy attach</td>
+</tr>
+<tr>
+<td>GCP</td>
+<td><strong>Service account</strong></td>
+<td>service account-কে IAM role binding</td>
+</tr>
+<tr>
+<td>Azure</td>
+<td><strong>Managed identity</strong> (system-assigned বা user-assigned)</td>
+<td>Azure RBAC role assignment</td>
+</tr>
+<tr>
+<td>OCI</td>
+<td><strong>Instance principal</strong> (dynamic group-এর সদস্য)</td>
+<td>dynamic group-এর জন্য policy statement</td>
+</tr>
+</tbody>
+</table>
+<p>বিস্তারিত তত্ত্ব ও least-privilege: <a href="../03-identity-and-access/">03 · Identity ও Access</a>।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:4"><input checked="checked" id="aws_5" name="__tabbed_6" type="radio" /><input id="gcp_5" name="__tabbed_6" type="radio" /><input id="azure_5" name="__tabbed_6" type="radio" /><input id="oci_5" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="aws_5">AWS</label><label for="gcp_5">GCP</label><label for="azure_5">Azure</label><label for="oci_5">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>aws<span class="w"> </span>iam<span class="w"> </span>create-instance-profile<span class="w"> </span>--instance-profile-name<span class="w"> </span>shopbd-api-profile
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>aws<span class="w"> </span>iam<span class="w"> </span>add-role-to-instance-profile<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">  </span>--instance-profile-name<span class="w"> </span>shopbd-api-profile<span class="w"> </span>--role-name<span class="w"> </span>shopbd-api-role
+</span></code></pre></div>
+<p>Launch-এ <code>--iam-instance-profile Name=shopbd-api-profile</code> দিন (উপরে দেখুন)।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>gcloud<span class="w"> </span>iam<span class="w"> </span>service-accounts<span class="w"> </span>create<span class="w"> </span>shopbd-api<span class="w"> </span>--display-name<span class="o">=</span><span class="s2">"shopbd API VM"</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>gcloud<span class="w"> </span>projects<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>my-project-id<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">  </span>--member<span class="o">=</span><span class="s2">"serviceAccount:shopbd-api@my-project-id.iam.gserviceaccount.com"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">  </span>--role<span class="o">=</span><span class="s2">"roles/storage.objectViewer"</span>
+</span></code></pre></div>
+<p>VM-এ <code>--service-account=</code> দিয়ে বসান। Default Compute Engine service account-এ বেশি অধিকার থাকে — নিজের আলাদা SA বানান।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>az<span class="w"> </span>vm<span class="w"> </span>identity<span class="w"> </span>assign<span class="w"> </span>-g<span class="w"> </span>shopbd-prod-rg<span class="w"> </span>-n<span class="w"> </span>shopbd-api
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>az<span class="w"> </span>role<span class="w"> </span>assignment<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">  </span>--assignee<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>az<span class="w"> </span>vm<span class="w"> </span>show<span class="w"> </span>-g<span class="w"> </span>shopbd-prod-rg<span class="w"> </span>-n<span class="w"> </span>shopbd-api<span class="w"> </span>--query<span class="w"> </span>identity.principalId<span class="w"> </span>-o<span class="w"> </span>tsv<span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">  </span>--role<span class="w"> </span><span class="s2">"Storage Blob Data Reader"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">  </span>--scope<span class="w"> </span>/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/shopbd-prod-rg
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>VM-কে আগে একটা <strong>dynamic group</strong>-এ ফেলতে হয়, তারপর policy লিখতে হয়:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a># Dynamic group matching rule
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>ALL {instance.compartment.id = 'ocid1.compartment.oc1..example'}
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a># Policy statement
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>Allow dynamic-group shopbd-api-dg to read objects in compartment shopbd-prod where target.bucket.name='shopbd-images'
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<hr />
+<h2 id="১০-lifecycle-ও-billing--কখন-কত-টক">১০. Lifecycle ও billing — কখন কত টাকা?<a class="headerlink" href="#১০-lifecycle-ও-billing--কখন-কত-টক" title="Permanent link">&para;</a></h2>
+<p>VM-এর বিল কয়েকটা আলাদা অংশে ভাগ হয়: <strong>compute</strong> (VM চলার সময়), <strong>disk</strong> (যতদিন disk আছে), <strong>public IP</strong>, আর <strong>network egress</strong>। VM "বন্ধ" করলেও disk আর IP-র বিল থেকে যায়।</p>
+<table>
+<thead>
+<tr>
+<th>কাজ</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compute বিল থামানো</td>
+<td><code>stop</code></td>
+<td><code>stop</code></td>
+<td><strong><code>deallocate</code></strong></td>
+<td><code>STOP</code> (shape ভেদে দেখুন)</td>
+</tr>
+<tr>
+<td>সবকিছু শেষ</td>
+<td><code>terminate</code></td>
+<td><code>delete</code></td>
+<td>VM + attached disk/NIC/IP আলাদা delete</td>
+<td><code>terminate</code> (boot volume আলাদা ঠিক করুন)</td>
+</tr>
+<tr>
+<td>ঘুমন্ত অবস্থা সংরক্ষণ</td>
+<td>Hibernate (সমর্থিত instance-এ)</td>
+<td>Suspend</td>
+<td>(সীমিত)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Accidental delete ঠেকানো</td>
+<td>Termination protection</td>
+<td>Deletion protection</td>
+<td>Resource lock</td>
+<td>(policy/tag ও IAM দিয়ে)</td>
+</tr>
+</tbody>
+</table>
+<p>Dev/test VM রাতে ও ছুটিতে schedule করে বন্ধ রাখলে compute খরচ অনেক কমে।</p>
+<hr />
+<h2 id="১১-pricing-মডল--on-demand-commitment-ও-spot">১১. Pricing মডেল — On-demand, Commitment ও Spot<a class="headerlink" href="#১১-pricing-মডল--on-demand-commitment-ও-spot" title="Permanent link">&para;</a></h2>
+<p>মূল তিনটি পথ (দেখুন <a href="../01-cloud-fundamentals/">01</a>): <strong>On-demand</strong> (সেকেন্ড/মিনিট ধরে, কোনো প্রতিশ্রুতি নেই), <strong>Commitment</strong> (১ বা ৩ বছরের প্রতিশ্রুতি → ছাড়), <strong>Spot</strong> (উদ্বৃত্ত ক্ষমতা, অনেক সস্তা, কিন্তু যেকোনো সময় কেড়ে নিতে পারে)।</p>
+<table>
+<thead>
+<tr>
+<th>মডেল</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>On-demand</td>
+<td>On-Demand</td>
+<td>On-demand (+ কিছু family-তে <strong>sustained use discount</strong> স্বয়ংক্রিয়)</td>
+<td>Pay-as-you-go</td>
+<td>Pay-as-you-go</td>
+</tr>
+<tr>
+<td>Commitment</td>
+<td><strong>Savings Plans</strong>, Reserved Instances</td>
+<td><strong>Committed use discounts (CUD)</strong></td>
+<td><strong>Reservations</strong>, Savings plan for compute</td>
+<td>Universal Credits-এ commit; Capacity reservation (ক্ষমতা নিশ্চিত করতে)</td>
+</tr>
+<tr>
+<td>Spot</td>
+<td><strong>Spot Instances</strong></td>
+<td><strong>Spot VMs</strong> (পুরনো Preemptible, সর্বোচ্চ ২৪ ঘণ্টা সীমা ছিল)</td>
+<td><strong>Spot VMs</strong></td>
+<td><strong>Preemptible instances</strong></td>
+</tr>
+<tr>
+<td>কেড়ে নেওয়ার আগে সতর্কতা</td>
+<td>২ মিনিট</td>
+<td>~৩০ সেকেন্ড</td>
+<td>~৩০ সেকেন্ড (Scheduled Events)</td>
+<td>সংক্ষিপ্ত (shutdown signal)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="spot-কথয-চল-কথয-চল-ন">Spot কোথায় চলে, কোথায় চলে না<a class="headerlink" href="#spot-কথয-চল-কথয-চল-ন" title="Permanent link">&para;</a></h3>
+<p><strong>চলে:</strong> batch job, image resize, nightly report, CI runner, stateless worker, test environment — যা মাঝপথে থামলে আবার শুরু করা যায়।
+<strong>চলে না:</strong> একক database, session জমানো server, ছোট্ট একটা API server যার সামনে কোনো load balancer নেই।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:4"><input checked="checked" id="aws_6" name="__tabbed_7" type="radio" /><input id="gcp_6" name="__tabbed_7" type="radio" /><input id="azure_6" name="__tabbed_7" type="radio" /><input id="oci_6" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="aws_6">AWS</label><label for="gcp_6">GCP</label><label for="azure_6">Azure</label><label for="oci_6">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>aws<span class="w"> </span>ec2<span class="w"> </span>run-instances<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">  </span>--image-id<span class="w"> </span>ami-0abcdef1234567890<span class="w"> </span>--instance-type<span class="w"> </span>c6i.large<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">  </span>--instance-market-options<span class="w"> </span><span class="s1">'MarketType=spot'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">  </span>--subnet-id<span class="w"> </span>subnet-0123456789abcdef0
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>create<span class="w"> </span>shopbd-report<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">  </span>--zone<span class="o">=</span>asia-south1-a<span class="w"> </span>--machine-type<span class="o">=</span>e2-standard-2<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">  </span>--provisioning-model<span class="o">=</span>SPOT<span class="w"> </span>--instance-termination-action<span class="o">=</span>STOP
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>az<span class="w"> </span>vm<span class="w"> </span>create<span class="w"> </span>-g<span class="w"> </span>shopbd-prod-rg<span class="w"> </span>-n<span class="w"> </span>shopbd-report<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">  </span>--image<span class="w"> </span>Canonical:ubuntu-24_04-lts:server:latest<span class="w"> </span>--size<span class="w"> </span>Standard_D2s_v5<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">  </span>--priority<span class="w"> </span>Spot<span class="w"> </span>--eviction-policy<span class="w"> </span>Deallocate<span class="w"> </span>--max-price<span class="w"> </span>-1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">  </span>--admin-username<span class="w"> </span>azureuser<span class="w"> </span>--generate-ssh-keys
+</span></code></pre></div>
+<p><code>--max-price -1</code> মানে "on-demand দামের বেশি না হলে চালিয়ে যাও"।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>oci<span class="w"> </span>compute<span class="w"> </span>instance<span class="w"> </span>launch<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">  </span>--availability-domain<span class="w"> </span><span class="s2">"xxxx:AP-MUMBAI-1-AD-1"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w">  </span>--shape<span class="w"> </span>VM.Standard.E4.Flex<span class="w"> </span>--shape-config<span class="w"> </span><span class="s1">'{"ocpus": 2, "memoryInGBs": 16}'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="w">  </span>--image-id<span class="w"> </span>ocid1.image.oc1.ap-mumbai-1.example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="w">  </span>--subnet-id<span class="w"> </span>ocid1.subnet.oc1.ap-mumbai-1.example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="w">  </span>--preemptible-instance-config<span class="w"> </span><span class="s1">'{"preemptionAction": {"type": "TERMINATE", "preserveBootVolume": false}}'</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Spot-এ code লেখার নিয়ম</p>
+<p>১) কাজের অবস্থা (checkpoint) বাইরে — queue বা object storage-এ — রাখুন। ২) Interrupt সংকেত ধরে নিরাপদে থামুন। ৩) একই কাজ দুবার চললেও যেন ক্ষতি না হয় (idempotent)। Queue-র নিয়ম: <a href="../11-messaging-and-events/">11 · Messaging</a>।</p>
+</div>
+<p>আরও বিস্তারিত খরচ-নিয়ন্ত্রণ: <a href="../18-cost-management/">18 · Cost Management</a>। Pricing পাতা: <a href="https://aws.amazon.com/ec2/pricing/">EC2</a>, <a href="https://cloud.google.com/compute/all-pricing">Compute Engine</a>, <a href="https://azure.microsoft.com/pricing/details/virtual-machines/linux/">Azure VMs</a>, <a href="https://www.oracle.com/cloud/compute/pricing/">OCI Compute</a>।</p>
+<hr />
+<h2 id="১২-instance-group--অনক-vm-একসথ">১২. Instance group — অনেক VM একসাথে<a class="headerlink" href="#১২-instance-group--অনক-vm-একসথ" title="Permanent link">&para;</a></h2>
+<p>একটা VM মরলে app বন্ধ — এটা production-এর জন্য অগ্রহণযোগ্য। সমাধান: <strong>একই রকম অনেক VM</strong> একটা group-এ, সামনে load balancer, আর group নিজেই মরা VM বদলায় ও লোড বুঝে VM বাড়ায়-কমায় (autoscaling)।</p>
+<pre class="mermaid"><code>flowchart LR
+    U[User] --&gt; LB[Load balancer]
+    LB --&gt; V1[VM 1 - zone A]
+    LB --&gt; V2[VM 2 - zone B]
+    LB --&gt; V3[VM 3 - zone C]
+    T[Template&lt;br/&gt;image + size + startup script] -.-&gt; G[Instance group]
+    G --&gt; V1
+    G --&gt; V2
+    G --&gt; V3
+    M[Autoscaler&lt;br/&gt;CPU / schedule] -.-&gt; G</code></pre>
+<table>
+<thead>
+<tr>
+<th>ধারণা</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VM-এর নকশা (template)</td>
+<td><strong>Launch template</strong></td>
+<td><strong>Instance template</strong></td>
+<td>VMSS model (profile)</td>
+<td><strong>Instance configuration</strong></td>
+</tr>
+<tr>
+<td>Group</td>
+<td><strong>Auto Scaling Group (ASG)</strong></td>
+<td><strong>Managed Instance Group (MIG)</strong> (zonal বা regional)</td>
+<td><strong>Virtual Machine Scale Set (VMSS)</strong></td>
+<td><strong>Instance pool</strong></td>
+</tr>
+<tr>
+<td>Autoscaling</td>
+<td>ASG scaling policy</td>
+<td>MIG autoscaler</td>
+<td>VMSS autoscale rules</td>
+<td>Autoscaling configuration</td>
+</tr>
+<tr>
+<td>Self-healing</td>
+<td>ASG health check</td>
+<td>Autohealing health check</td>
+<td>Automatic instance repair</td>
+<td>Instance pool health (load balancer health check)</td>
+</tr>
+<tr>
+<td>Rolling update</td>
+<td>Instance refresh</td>
+<td>Rolling update</td>
+<td>Rolling upgrade policy</td>
+<td>Instance pool-এ configuration বদলে rolling replace</td>
+</tr>
+</tbody>
+</table>
+<p>Azure-এর পুরনো <strong>availability set</strong> এখন কম ব্যবহৃত — নতুন কাজে availability zone + VMSS নিন।</p>
+<h3 id="cli--instance-group-তর">CLI — instance group তৈরি<a class="headerlink" href="#cli--instance-group-তর" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:4"><input checked="checked" id="aws_7" name="__tabbed_8" type="radio" /><input id="gcp_7" name="__tabbed_8" type="radio" /><input id="azure_7" name="__tabbed_8" type="radio" /><input id="oci_7" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="aws_7">AWS</label><label for="gcp_7">GCP</label><label for="azure_7">Azure</label><label for="oci_7">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>aws<span class="w"> </span>ec2<span class="w"> </span>create-launch-template<span class="w"> </span>--launch-template-name<span class="w"> </span>shopbd-api-lt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">  </span>--launch-template-data<span class="w"> </span><span class="s1">'{"ImageId":"ami-0abcdef1234567890","InstanceType":"t3.small"}'</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>aws<span class="w"> </span>autoscaling<span class="w"> </span>create-auto-scaling-group<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">  </span>--auto-scaling-group-name<span class="w"> </span>shopbd-api-asg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">  </span>--launch-template<span class="w"> </span><span class="nv">LaunchTemplateName</span><span class="o">=</span>shopbd-api-lt,Version<span class="o">=</span><span class="s1">'$Latest'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="w">  </span>--min-size<span class="w"> </span><span class="m">2</span><span class="w"> </span>--max-size<span class="w"> </span><span class="m">4</span><span class="w"> </span>--desired-capacity<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="w">  </span>--vpc-zone-identifier<span class="w"> </span><span class="s2">"subnet-0aaa,subnet-0bbb"</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>instance-templates<span class="w"> </span>create<span class="w"> </span>shopbd-api-tpl<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">  </span>--machine-type<span class="o">=</span>e2-small<span class="w"> </span>--image-family<span class="o">=</span>debian-12<span class="w"> </span>--image-project<span class="o">=</span>debian-cloud<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">  </span>--subnet<span class="o">=</span>shopbd-private-mumbai<span class="w"> </span>--region<span class="o">=</span>asia-south1<span class="w"> </span>--no-address
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>instance-groups<span class="w"> </span>managed<span class="w"> </span>create<span class="w"> </span>shopbd-api-mig<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="w">  </span>--template<span class="o">=</span>shopbd-api-tpl<span class="w"> </span>--size<span class="o">=</span><span class="m">2</span><span class="w"> </span>--region<span class="o">=</span>asia-south1
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>instance-groups<span class="w"> </span>managed<span class="w"> </span>set-autoscaling<span class="w"> </span>shopbd-api-mig<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="w">  </span>--region<span class="o">=</span>asia-south1<span class="w"> </span>--min-num-replicas<span class="o">=</span><span class="m">2</span><span class="w"> </span>--max-num-replicas<span class="o">=</span><span class="m">4</span><span class="w"> </span>--target-cpu-utilization<span class="o">=</span><span class="m">0</span>.6
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>az<span class="w"> </span>vmss<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-prod-rg<span class="w"> </span>--name<span class="w"> </span>shopbd-api-vmss<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">  </span>--image<span class="w"> </span>Canonical:ubuntu-24_04-lts:server:latest<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="w">  </span>--vm-sku<span class="w"> </span>Standard_B2s<span class="w"> </span>--instance-count<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="w">  </span>--admin-username<span class="w"> </span>azureuser<span class="w"> </span>--generate-ssh-keys<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="w">  </span>--zones<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span>
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>az<span class="w"> </span>monitor<span class="w"> </span>autoscale<span class="w"> </span>create<span class="w"> </span>-g<span class="w"> </span>shopbd-prod-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="w">  </span>--resource<span class="w"> </span>shopbd-api-vmss<span class="w"> </span>--resource-type<span class="w"> </span>Microsoft.Compute/virtualMachineScaleSets<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-30-10"><a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-api-autoscale<span class="w"> </span>--min-count<span class="w"> </span><span class="m">2</span><span class="w"> </span>--max-count<span class="w"> </span><span class="m">4</span><span class="w"> </span>--count<span class="w"> </span><span class="m">2</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>oci<span class="w"> </span>compute-management<span class="w"> </span>instance-configuration<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">  </span>--display-name<span class="w"> </span>shopbd-api-config<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="w">  </span>--instance-details<span class="w"> </span>file://instance-details.json
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>oci<span class="w"> </span>compute-management<span class="w"> </span>instance-pool<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a><span class="w">  </span>--instance-configuration-id<span class="w"> </span>ocid1.instanceconfiguration.oc1.ap-mumbai-1.example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-9"><a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a><span class="w">  </span>--size<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-10"><a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a><span class="w">  </span>--placement-configurations<span class="w"> </span>file://placement.json
+</span></code></pre></div>
+<p><code>instance-details.json</code>-এ shape, image, subnet ইত্যাদি থাকে; <code>placement.json</code>-এ AD ও subnet। Autoscaling-এর policy আলাদা <code>oci autoscaling configuration create</code> দিয়ে।</p>
+</div>
+</div>
+</div>
+<p>Load balancer ও autoscaling-এর policy নিয়ে বিস্তারিত: <a href="../10-load-balancing-scaling-dns-cdn/">10 · Load Balancing, Autoscaling, DNS ও CDN</a>।</p>
+<hr />
+<h2 id="১৩-dedicated-host-ও-bare-metal">১৩. Dedicated host ও bare metal<a class="headerlink" href="#১৩-dedicated-host-ও-bare-metal" title="Permanent link">&para;</a></h2>
+<p>সাধারণ VM-এ একটা physical server-এ আপনার VM-এর পাশে অন্য customer-এর VM-ও থাকতে পারে (multi-tenant)। তাতে hypervisor বিচ্ছিন্নতা নিশ্চিত করে, তবু কিছু ক্ষেত্রে আরও দরকার:</p>
+<ul>
+<li><strong>Compliance / regulation:</strong> "আমার workload অন্যের সাথে server share করবে না"</li>
+<li><strong>License:</strong> per-socket / per-core software license (যেমন Windows Server, Oracle, SQL Server) — physical core গুনে license</li>
+<li><strong>Performance:</strong> hypervisor-এর স্তর ছাড়া সরাসরি hardware (low latency, বিশেষ driver)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>বিকল্প</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>পুরো physical server ভাড়া, ওপরে নিজের VM</td>
+<td><strong>Dedicated Hosts</strong> (এবং কম নিয়ন্ত্রণের <strong>Dedicated Instances</strong>)</td>
+<td><strong>Sole-tenant nodes</strong> (node group)</td>
+<td><strong>Azure Dedicated Host</strong></td>
+<td><strong>Dedicated Virtual Machine Host</strong></td>
+</tr>
+<tr>
+<td>Hypervisor ছাড়া bare metal</td>
+<td><code>.metal</code> instance (যেমন <code>m5.metal</code>)</td>
+<td><code>-metal</code> machine type (কিছু series-এ); <strong>Bare Metal Solution</strong> (বিশেষ workload, যেমন Oracle)</td>
+<td><strong>BareMetal Infrastructure</strong> (সীমিত বিশেষ workload)</td>
+<td><strong><code>BM.*</code> shape</strong> — প্রথম শ্রেণির, নিয়মিত bare metal</td>
+</tr>
+<tr>
+<td>BYOL (নিজের license) সুবিধা</td>
+<td>হ্যাঁ, host affinity সহ</td>
+<td>হ্যাঁ</td>
+<td>হ্যাঁ (Azure Hybrid Benefit-ও আলাদা)</td>
+<td>হ্যাঁ</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">OCI-এর বৈশিষ্ট্য</p>
+<p>OCI-তে bare metal একটা সাধারণ shape-এর মতোই — console থেকে <code>BM.Standard…</code> বেছে নিলেই হয়। কিছু ক্ষেত্রে (যেমন নিজের hypervisor চালানো বা Oracle RAC) এটা মূল আকর্ষণ।</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Dedicated মানে অনেক বেশি খরচ</p>
+<p>এটা শুরুতেই দরকার হয় না। <code>shopbd</code> ধরনের ছোট দোকানের এটা লাগবে না — compliance বা license-এর কারণ না থাকলে সাধারণ VM যথেষ্ট।</p>
+</div>
+<hr />
+<h2 id="১৪-placement-ও-high-availability">১৪. Placement ও High Availability<a class="headerlink" href="#১৪-placement-ও-high-availability" title="Permanent link">&para;</a></h2>
+<p>একটা VM একটা zone-এ থাকে। সেই zone-এর power বা network গেলে আপনার VM-ও যাবে। তাই:</p>
+<ul>
+<li><strong>কমপক্ষে ২টি zone-এ</strong> VM ছড়ান (ASG/MIG/VMSS/pool দিয়ে)।</li>
+<li><strong>Placement control</strong> চাইলে: AWS <strong>placement group</strong> (<code>cluster</code> কাছাকাছি/কম latency, <code>spread</code> আলাদা hardware, <code>partition</code>); GCP <strong>compact / spread placement policy</strong>; Azure <strong>proximity placement group</strong> / zones; OCI <strong>fault domain</strong> ও cluster network।</li>
+<li>Maintenance: GCP-র <strong>live migration</strong> (VM না থামিয়ে host বদল) বেশির ভাগ VM-এ স্বয়ংক্রিয়; AWS/Azure/OCI-তে scheduled event/ maintenance notification আসে — group + load balancer থাকলে সমস্যা নেই।</li>
+</ul>
+<p>পুরো HA/DR কৌশল: <a href="../19-architecture-ha-dr/">19 · Architecture, HA ও DR</a>।</p>
+<hr />
+<h2 id="১৫-terraform--shopbd-api-vm">১৫. Terraform — <code>shopbd-api</code> VM<a class="headerlink" href="#১৫-terraform--shopbd-api-vm" title="Permanent link">&para;</a></h2>
+<p>Terraform দিয়ে VM লিখে রাখলে যেকোনো সময় একই infrastructure আবার তৈরি করা যায়, আর পরিবর্তন code review হয়। Terraform-এর পূর্ণ আলোচনা: <a href="../14-infrastructure-as-code/">14 · Infrastructure as Code</a>। নিচের উদাহরণ ধরে নিচ্ছে আপনার network (subnet, security group/firewall) আগে থেকে আছে — সেটা <a href="../05-networking/">05 · Networking</a>-এ আছে।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:4"><input checked="checked" id="aws_8" name="__tabbed_9" type="radio" /><input id="gcp_8" name="__tabbed_9" type="radio" /><input id="azure_8" name="__tabbed_9" type="radio" /><input id="oci_8" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="aws_8">AWS</label><label for="gcp_8">GCP</label><label for="azure_8">Azure</label><label for="oci_8">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">"aws"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">  </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ap-south-1"</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="p">}</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="c1"># সর্বশেষ Amazon Linux 2023 AMI (SSM public parameter থেকে)</span>
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="kr">data</span><span class="w"> </span><span class="nc">"aws_ssm_parameter"</span><span class="w"> </span><span class="nv">"al2023"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64"</span>
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="p">}</span>
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a>
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_instance"</span><span class="w"> </span><span class="nv">"api"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-32-11"><a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a><span class="w">  </span><span class="na">ami</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_ssm_parameter.al2023.value</span>
+</span><span id="__span-32-12"><a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a><span class="w">  </span><span class="na">instance_type</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">"t3.small"</span>
+</span><span id="__span-32-13"><a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a><span class="w">  </span><span class="na">subnet_id</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_subnet.private_a.id</span>
+</span><span id="__span-32-14"><a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a><span class="w">  </span><span class="na">vpc_security_group_ids</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nv">aws_security_group.api.id</span><span class="p">]</span>
+</span><span id="__span-32-15"><a id="__codelineno-32-15" name="__codelineno-32-15" href="#__codelineno-32-15"></a><span class="w">  </span><span class="na">iam_instance_profile</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_iam_instance_profile.api.name</span>
+</span><span id="__span-32-16"><a id="__codelineno-32-16" name="__codelineno-32-16" href="#__codelineno-32-16"></a><span class="w">  </span><span class="na">user_data</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="nf">file</span><span class="p">(</span><span class="s2">"${path.module}/user-data.sh"</span><span class="p">)</span>
+</span><span id="__span-32-17"><a id="__codelineno-32-17" name="__codelineno-32-17" href="#__codelineno-32-17"></a>
+</span><span id="__span-32-18"><a id="__codelineno-32-18" name="__codelineno-32-18" href="#__codelineno-32-18"></a><span class="w">  </span><span class="nb">metadata_options</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-32-19"><a id="__codelineno-32-19" name="__codelineno-32-19" href="#__codelineno-32-19"></a><span class="w">    </span><span class="na">http_tokens</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"required"</span><span class="c1"> # IMDSv2 only</span>
+</span><span id="__span-32-20"><a id="__codelineno-32-20" name="__codelineno-32-20" href="#__codelineno-32-20"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-32-21"><a id="__codelineno-32-21" name="__codelineno-32-21" href="#__codelineno-32-21"></a>
+</span><span id="__span-32-22"><a id="__codelineno-32-22" name="__codelineno-32-22" href="#__codelineno-32-22"></a><span class="w">  </span><span class="nb">root_block_device</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-32-23"><a id="__codelineno-32-23" name="__codelineno-32-23" href="#__codelineno-32-23"></a><span class="w">    </span><span class="na">volume_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gp3"</span>
+</span><span id="__span-32-24"><a id="__codelineno-32-24" name="__codelineno-32-24" href="#__codelineno-32-24"></a><span class="w">    </span><span class="na">volume_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span>
+</span><span id="__span-32-25"><a id="__codelineno-32-25" name="__codelineno-32-25" href="#__codelineno-32-25"></a><span class="w">    </span><span class="na">encrypted</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-32-26"><a id="__codelineno-32-26" name="__codelineno-32-26" href="#__codelineno-32-26"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-32-27"><a id="__codelineno-32-27" name="__codelineno-32-27" href="#__codelineno-32-27"></a>
+</span><span id="__span-32-28"><a id="__codelineno-32-28" name="__codelineno-32-28" href="#__codelineno-32-28"></a><span class="w">  </span><span class="nb">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-32-29"><a id="__codelineno-32-29" name="__codelineno-32-29" href="#__codelineno-32-29"></a><span class="w">    </span><span class="na">Name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-api"</span>
+</span><span id="__span-32-30"><a id="__codelineno-32-30" name="__codelineno-32-30" href="#__codelineno-32-30"></a><span class="w">    </span><span class="na">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd"</span>
+</span><span id="__span-32-31"><a id="__codelineno-32-31" name="__codelineno-32-31" href="#__codelineno-32-31"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-32-32"><a id="__codelineno-32-32" name="__codelineno-32-32" href="#__codelineno-32-32"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">"google"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">  </span><span class="na">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my-project-id"</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="w">  </span><span class="na">region</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"asia-south1"</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="p">}</span>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_service_account"</span><span class="w"> </span><span class="nv">"api"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="w">  </span><span class="na">account_id</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-api"</span>
+</span><span id="__span-33-8"><a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="w">  </span><span class="na">display_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd API VM"</span>
+</span><span id="__span-33-9"><a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a><span class="p">}</span>
+</span><span id="__span-33-10"><a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a>
+</span><span id="__span-33-11"><a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_compute_instance"</span><span class="w"> </span><span class="nv">"api"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-12"><a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a><span class="w">  </span><span class="na">name</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-api"</span>
+</span><span id="__span-33-13"><a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a><span class="w">  </span><span class="na">machine_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"e2-small"</span>
+</span><span id="__span-33-14"><a id="__codelineno-33-14" name="__codelineno-33-14" href="#__codelineno-33-14"></a><span class="w">  </span><span class="na">zone</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">"asia-south1-a"</span>
+</span><span id="__span-33-15"><a id="__codelineno-33-15" name="__codelineno-33-15" href="#__codelineno-33-15"></a><span class="w">  </span><span class="na">tags</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"shopbd-api"</span><span class="p">]</span>
+</span><span id="__span-33-16"><a id="__codelineno-33-16" name="__codelineno-33-16" href="#__codelineno-33-16"></a><span class="w">  </span><span class="nb">labels</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="na">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd"</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-33-17"><a id="__codelineno-33-17" name="__codelineno-33-17" href="#__codelineno-33-17"></a>
+</span><span id="__span-33-18"><a id="__codelineno-33-18" name="__codelineno-33-18" href="#__codelineno-33-18"></a><span class="w">  </span><span class="nb">boot_disk</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-19"><a id="__codelineno-33-19" name="__codelineno-33-19" href="#__codelineno-33-19"></a><span class="w">    </span><span class="nb">initialize_params</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-20"><a id="__codelineno-33-20" name="__codelineno-33-20" href="#__codelineno-33-20"></a><span class="w">      </span><span class="na">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"debian-cloud/debian-12"</span>
+</span><span id="__span-33-21"><a id="__codelineno-33-21" name="__codelineno-33-21" href="#__codelineno-33-21"></a><span class="w">      </span><span class="na">size</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="m">20</span>
+</span><span id="__span-33-22"><a id="__codelineno-33-22" name="__codelineno-33-22" href="#__codelineno-33-22"></a><span class="w">      </span><span class="na">type</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"pd-balanced"</span>
+</span><span id="__span-33-23"><a id="__codelineno-33-23" name="__codelineno-33-23" href="#__codelineno-33-23"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-33-24"><a id="__codelineno-33-24" name="__codelineno-33-24" href="#__codelineno-33-24"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-33-25"><a id="__codelineno-33-25" name="__codelineno-33-25" href="#__codelineno-33-25"></a>
+</span><span id="__span-33-26"><a id="__codelineno-33-26" name="__codelineno-33-26" href="#__codelineno-33-26"></a><span class="w">  </span><span class="nb">network_interface</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-27"><a id="__codelineno-33-27" name="__codelineno-33-27" href="#__codelineno-33-27"></a><span class="w">    </span><span class="na">subnetwork</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">google_compute_subnetwork.private_mumbai.id</span>
+</span><span id="__span-33-28"><a id="__codelineno-33-28" name="__codelineno-33-28" href="#__codelineno-33-28"></a><span class="c1">    # access_config নেই = public IP নেই</span>
+</span><span id="__span-33-29"><a id="__codelineno-33-29" name="__codelineno-33-29" href="#__codelineno-33-29"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-33-30"><a id="__codelineno-33-30" name="__codelineno-33-30" href="#__codelineno-33-30"></a>
+</span><span id="__span-33-31"><a id="__codelineno-33-31" name="__codelineno-33-31" href="#__codelineno-33-31"></a><span class="w">  </span><span class="nb">service_account</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-32"><a id="__codelineno-33-32" name="__codelineno-33-32" href="#__codelineno-33-32"></a><span class="w">    </span><span class="na">email</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">google_service_account.api.email</span>
+</span><span id="__span-33-33"><a id="__codelineno-33-33" name="__codelineno-33-33" href="#__codelineno-33-33"></a><span class="w">    </span><span class="na">scopes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"cloud-platform"</span><span class="p">]</span>
+</span><span id="__span-33-34"><a id="__codelineno-33-34" name="__codelineno-33-34" href="#__codelineno-33-34"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-33-35"><a id="__codelineno-33-35" name="__codelineno-33-35" href="#__codelineno-33-35"></a>
+</span><span id="__span-33-36"><a id="__codelineno-33-36" name="__codelineno-33-36" href="#__codelineno-33-36"></a><span class="w">  </span><span class="na">metadata_startup_script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file</span><span class="p">(</span><span class="s2">"${path.module}/startup.sh"</span><span class="p">)</span>
+</span><span id="__span-33-37"><a id="__codelineno-33-37" name="__codelineno-33-37" href="#__codelineno-33-37"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">"azurerm"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">  </span><span class="nb">features</span><span class="w"> </span><span class="p">{}</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="w">  </span><span class="na">subscription_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"00000000-0000-0000-0000-000000000000"</span>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="p">}</span>
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_network_interface"</span><span class="w"> </span><span class="nv">"api"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-api-nic"</span>
+</span><span id="__span-34-8"><a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a><span class="w">  </span><span class="na">location</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.main.location</span>
+</span><span id="__span-34-9"><a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.main.name</span>
+</span><span id="__span-34-10"><a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a>
+</span><span id="__span-34-11"><a id="__codelineno-34-11" name="__codelineno-34-11" href="#__codelineno-34-11"></a><span class="w">  </span><span class="nb">ip_configuration</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-34-12"><a id="__codelineno-34-12" name="__codelineno-34-12" href="#__codelineno-34-12"></a><span class="w">    </span><span class="na">name</span><span class="w">                          </span><span class="o">=</span><span class="w"> </span><span class="s2">"internal"</span>
+</span><span id="__span-34-13"><a id="__codelineno-34-13" name="__codelineno-34-13" href="#__codelineno-34-13"></a><span class="w">    </span><span class="na">subnet_id</span><span class="w">                     </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_subnet.private_app_a.id</span>
+</span><span id="__span-34-14"><a id="__codelineno-34-14" name="__codelineno-34-14" href="#__codelineno-34-14"></a><span class="w">    </span><span class="na">private_ip_address_allocation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Dynamic"</span>
+</span><span id="__span-34-15"><a id="__codelineno-34-15" name="__codelineno-34-15" href="#__codelineno-34-15"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-34-16"><a id="__codelineno-34-16" name="__codelineno-34-16" href="#__codelineno-34-16"></a><span class="p">}</span>
+</span><span id="__span-34-17"><a id="__codelineno-34-17" name="__codelineno-34-17" href="#__codelineno-34-17"></a>
+</span><span id="__span-34-18"><a id="__codelineno-34-18" name="__codelineno-34-18" href="#__codelineno-34-18"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_linux_virtual_machine"</span><span class="w"> </span><span class="nv">"api"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-34-19"><a id="__codelineno-34-19" name="__codelineno-34-19" href="#__codelineno-34-19"></a><span class="w">  </span><span class="na">name</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-api"</span>
+</span><span id="__span-34-20"><a id="__codelineno-34-20" name="__codelineno-34-20" href="#__codelineno-34-20"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.main.name</span>
+</span><span id="__span-34-21"><a id="__codelineno-34-21" name="__codelineno-34-21" href="#__codelineno-34-21"></a><span class="w">  </span><span class="na">location</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.main.location</span>
+</span><span id="__span-34-22"><a id="__codelineno-34-22" name="__codelineno-34-22" href="#__codelineno-34-22"></a><span class="w">  </span><span class="na">size</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="s2">"Standard_B2s"</span>
+</span><span id="__span-34-23"><a id="__codelineno-34-23" name="__codelineno-34-23" href="#__codelineno-34-23"></a><span class="w">  </span><span class="na">admin_username</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">"azureuser"</span>
+</span><span id="__span-34-24"><a id="__codelineno-34-24" name="__codelineno-34-24" href="#__codelineno-34-24"></a><span class="w">  </span><span class="na">network_interface_ids</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nv">azurerm_network_interface.api.id</span><span class="p">]</span>
+</span><span id="__span-34-25"><a id="__codelineno-34-25" name="__codelineno-34-25" href="#__codelineno-34-25"></a><span class="w">  </span><span class="na">custom_data</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="nf">base64encode</span><span class="p">(</span><span class="nf">file</span><span class="p">(</span><span class="s2">"${path.module}/cloud-init.yaml"</span><span class="p">))</span>
+</span><span id="__span-34-26"><a id="__codelineno-34-26" name="__codelineno-34-26" href="#__codelineno-34-26"></a>
+</span><span id="__span-34-27"><a id="__codelineno-34-27" name="__codelineno-34-27" href="#__codelineno-34-27"></a><span class="w">  </span><span class="nb">admin_ssh_key</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-34-28"><a id="__codelineno-34-28" name="__codelineno-34-28" href="#__codelineno-34-28"></a><span class="w">    </span><span class="na">username</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">"azureuser"</span>
+</span><span id="__span-34-29"><a id="__codelineno-34-29" name="__codelineno-34-29" href="#__codelineno-34-29"></a><span class="w">    </span><span class="na">public_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file</span><span class="p">(</span><span class="s2">"~/.ssh/id_ed25519.pub"</span><span class="p">)</span>
+</span><span id="__span-34-30"><a id="__codelineno-34-30" name="__codelineno-34-30" href="#__codelineno-34-30"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-34-31"><a id="__codelineno-34-31" name="__codelineno-34-31" href="#__codelineno-34-31"></a>
+</span><span id="__span-34-32"><a id="__codelineno-34-32" name="__codelineno-34-32" href="#__codelineno-34-32"></a><span class="w">  </span><span class="nb">os_disk</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-34-33"><a id="__codelineno-34-33" name="__codelineno-34-33" href="#__codelineno-34-33"></a><span class="w">    </span><span class="na">caching</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s2">"ReadWrite"</span>
+</span><span id="__span-34-34"><a id="__codelineno-34-34" name="__codelineno-34-34" href="#__codelineno-34-34"></a><span class="w">    </span><span class="na">storage_account_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Premium_LRS"</span>
+</span><span id="__span-34-35"><a id="__codelineno-34-35" name="__codelineno-34-35" href="#__codelineno-34-35"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-34-36"><a id="__codelineno-34-36" name="__codelineno-34-36" href="#__codelineno-34-36"></a>
+</span><span id="__span-34-37"><a id="__codelineno-34-37" name="__codelineno-34-37" href="#__codelineno-34-37"></a><span class="w">  </span><span class="nb">source_image_reference</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-34-38"><a id="__codelineno-34-38" name="__codelineno-34-38" href="#__codelineno-34-38"></a><span class="w">    </span><span class="na">publisher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Canonical"</span>
+</span><span id="__span-34-39"><a id="__codelineno-34-39" name="__codelineno-34-39" href="#__codelineno-34-39"></a><span class="w">    </span><span class="na">offer</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"ubuntu-24_04-lts"</span>
+</span><span id="__span-34-40"><a id="__codelineno-34-40" name="__codelineno-34-40" href="#__codelineno-34-40"></a><span class="w">    </span><span class="na">sku</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s2">"server"</span>
+</span><span id="__span-34-41"><a id="__codelineno-34-41" name="__codelineno-34-41" href="#__codelineno-34-41"></a><span class="w">    </span><span class="na">version</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">"latest"</span>
+</span><span id="__span-34-42"><a id="__codelineno-34-42" name="__codelineno-34-42" href="#__codelineno-34-42"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-34-43"><a id="__codelineno-34-43" name="__codelineno-34-43" href="#__codelineno-34-43"></a>
+</span><span id="__span-34-44"><a id="__codelineno-34-44" name="__codelineno-34-44" href="#__codelineno-34-44"></a><span class="w">  </span><span class="nb">identity</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-34-45"><a id="__codelineno-34-45" name="__codelineno-34-45" href="#__codelineno-34-45"></a><span class="w">    </span><span class="na">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"SystemAssigned"</span>
+</span><span id="__span-34-46"><a id="__codelineno-34-46" name="__codelineno-34-46" href="#__codelineno-34-46"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-34-47"><a id="__codelineno-34-47" name="__codelineno-34-47" href="#__codelineno-34-47"></a>
+</span><span id="__span-34-48"><a id="__codelineno-34-48" name="__codelineno-34-48" href="#__codelineno-34-48"></a><span class="w">  </span><span class="nb">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="na">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd"</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-34-49"><a id="__codelineno-34-49" name="__codelineno-34-49" href="#__codelineno-34-49"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">"oci"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">  </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ap-mumbai-1"</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="p">}</span>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"oci_core_instance"</span><span class="w"> </span><span class="nv">"api"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="w">  </span><span class="na">compartment_id</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">var.compartment_ocid</span>
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="w">  </span><span class="na">availability_domain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.availability_domain</span>
+</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a><span class="w">  </span><span class="na">display_name</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-api"</span>
+</span><span id="__span-35-9"><a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a><span class="w">  </span><span class="na">shape</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">"VM.Standard.E4.Flex"</span>
+</span><span id="__span-35-10"><a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a>
+</span><span id="__span-35-11"><a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a><span class="w">  </span><span class="nb">shape_config</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-35-12"><a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a><span class="w">    </span><span class="na">ocpus</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+</span><span id="__span-35-13"><a id="__codelineno-35-13" name="__codelineno-35-13" href="#__codelineno-35-13"></a><span class="w">    </span><span class="na">memory_in_gbs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span>
+</span><span id="__span-35-14"><a id="__codelineno-35-14" name="__codelineno-35-14" href="#__codelineno-35-14"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-35-15"><a id="__codelineno-35-15" name="__codelineno-35-15" href="#__codelineno-35-15"></a>
+</span><span id="__span-35-16"><a id="__codelineno-35-16" name="__codelineno-35-16" href="#__codelineno-35-16"></a><span class="w">  </span><span class="nb">source_details</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-35-17"><a id="__codelineno-35-17" name="__codelineno-35-17" href="#__codelineno-35-17"></a><span class="w">    </span><span class="na">source_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"image"</span>
+</span><span id="__span-35-18"><a id="__codelineno-35-18" name="__codelineno-35-18" href="#__codelineno-35-18"></a><span class="w">    </span><span class="na">source_id</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">var.image_ocid</span>
+</span><span id="__span-35-19"><a id="__codelineno-35-19" name="__codelineno-35-19" href="#__codelineno-35-19"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-35-20"><a id="__codelineno-35-20" name="__codelineno-35-20" href="#__codelineno-35-20"></a>
+</span><span id="__span-35-21"><a id="__codelineno-35-21" name="__codelineno-35-21" href="#__codelineno-35-21"></a><span class="w">  </span><span class="nb">create_vnic_details</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-35-22"><a id="__codelineno-35-22" name="__codelineno-35-22" href="#__codelineno-35-22"></a><span class="w">    </span><span class="na">subnet_id</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">oci_core_subnet.private_app.id</span>
+</span><span id="__span-35-23"><a id="__codelineno-35-23" name="__codelineno-35-23" href="#__codelineno-35-23"></a><span class="w">    </span><span class="na">assign_public_ip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
+</span><span id="__span-35-24"><a id="__codelineno-35-24" name="__codelineno-35-24" href="#__codelineno-35-24"></a><span class="w">    </span><span class="na">nsg_ids</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nv">oci_core_network_security_group.api.id</span><span class="p">]</span>
+</span><span id="__span-35-25"><a id="__codelineno-35-25" name="__codelineno-35-25" href="#__codelineno-35-25"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-35-26"><a id="__codelineno-35-26" name="__codelineno-35-26" href="#__codelineno-35-26"></a>
+</span><span id="__span-35-27"><a id="__codelineno-35-27" name="__codelineno-35-27" href="#__codelineno-35-27"></a><span class="w">  </span><span class="nb">metadata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-35-28"><a id="__codelineno-35-28" name="__codelineno-35-28" href="#__codelineno-35-28"></a><span class="w">    </span><span class="na">ssh_authorized_keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file</span><span class="p">(</span><span class="s2">"~/.ssh/id_ed25519.pub"</span><span class="p">)</span>
+</span><span id="__span-35-29"><a id="__codelineno-35-29" name="__codelineno-35-29" href="#__codelineno-35-29"></a><span class="w">    </span><span class="na">user_data</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="nf">base64encode</span><span class="p">(</span><span class="nf">file</span><span class="p">(</span><span class="s2">"${path.module}/cloud-init.yaml"</span><span class="p">))</span>
+</span><span id="__span-35-30"><a id="__codelineno-35-30" name="__codelineno-35-30" href="#__codelineno-35-30"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-35-31"><a id="__codelineno-35-31" name="__codelineno-35-31" href="#__codelineno-35-31"></a>
+</span><span id="__span-35-32"><a id="__codelineno-35-32" name="__codelineno-35-32" href="#__codelineno-35-32"></a><span class="w">  </span><span class="nb">freeform_tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="na">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd"</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-35-33"><a id="__codelineno-35-33" name="__codelineno-35-33" href="#__codelineno-35-33"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<hr />
+<h2 id="মল-ও-অমল">মিল ও অমিল<a class="headerlink" href="#মল-ও-অমল" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Size বাছা</td>
+<td>Fixed instance type</td>
+<td>Fixed বা <strong>custom</strong> (vCPU + RAM)</td>
+<td>Fixed size</td>
+<td><strong>Flex shape</strong> (OCPU + RAM)</td>
+</tr>
+<tr>
+<td>VM কোথায় থাকে</td>
+<td>AZ-তে</td>
+<td>Zone-এ</td>
+<td>Region-এ (optional zone)</td>
+<td>AD-তে (+ fault domain)</td>
+</tr>
+<tr>
+<td>Group-এর পরিধি</td>
+<td>ASG একাধিক AZ</td>
+<td><strong>Regional MIG</strong> একাধিক zone</td>
+<td>VMSS zone-spread</td>
+<td>Pool একাধিক AD/subnet</td>
+</tr>
+<tr>
+<td>Default SSH</td>
+<td>Key pair</td>
+<td>Project metadata / OS Login</td>
+<td>তৈরির সময় key</td>
+<td>তৈরির সময় key</td>
+</tr>
+<tr>
+<td>Boot script</td>
+<td>প্রথম boot-এ</td>
+<td><strong>প্রতি boot-এ</strong></td>
+<td>cloud-init (প্রথম boot)</td>
+<td>cloud-init (প্রথম boot)</td>
+</tr>
+<tr>
+<td>Network-এর সম্পর্ক</td>
+<td>Security group NIC-তে</td>
+<td>Firewall VPC-তে (tag/SA দিয়ে target)</td>
+<td>NSG subnet বা NIC-তে</td>
+<td>NSG VNIC-তে / Security list subnet-এ</td>
+</tr>
+<tr>
+<td>Stop = বিল বন্ধ?</td>
+<td>হ্যাঁ (disk ছাড়া)</td>
+<td>হ্যাঁ (disk ছাড়া)</td>
+<td>শুধু <strong>Deallocate</strong> হলে</td>
+<td>shape ভেদে</td>
+</tr>
+<tr>
+<td>Cost-এর বিশেষত্ব</td>
+<td>Savings Plans, public IPv4 charge</td>
+<td>Sustained use discount, CUD</td>
+<td>Hybrid Benefit, Reservations</td>
+<td>কম egress, শক্তিশালী Always Free</td>
+</tr>
+</tbody>
+</table>
+<h3 id="যসব-gotcha-সবচয-বশ-ঘট">যেসব gotcha সবচেয়ে বেশি ঘটে<a class="headerlink" href="#যসব-gotcha-সবচয-বশ-ঘট" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Azure: Stopped ≠ Deallocated</p>
+<p>OS থেকে shutdown করলে VM "Stopped" থাকে কিন্তু compute resource ধরে রাখে — বিল চলে। সবসময় <code>az vm deallocate</code> ব্যবহার করুন।</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">GCP: stopped VM দেখায় <code>TERMINATED</code></p>
+<p>এটা শুধু বন্ধ অবস্থা; VM মুছে যায়নি। আর GCP VM-এর <code>startup-script</code> প্রতিবার boot-এ চলে — script idempotent রাখুন; AWS user data শুধু প্রথম boot-এ চলে।</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">OCI: OCPU ≠ vCPU, আর compartment OCID সর্বত্র</p>
+<p>x86 shape-এ ১ OCPU = ২ vCPU, তাই তুলনার সময় হিসাব মেলান। প্রতিটি command-এ <code>--compartment-id</code> লাগে; ভুল compartment-এ resource বানিয়ে ফেলা খুব সাধারণ ভুল। Always Free <code>VM.Standard.A1.Flex</code> Arm capacity মাঝে মাঝে "Out of host capacity" দেখায় — অন্য সময়ে বা অন্য AD/region-এ চেষ্টা করুন।</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">AWS: instance-এ public IP ও IMDS</p>
+<p>Default VPC-র subnet-এ launch করলে সাধারণত public IP বসে যায়, এবং নতুন launch-এও IMDSv1 চালু থাকতে পারে — template-এ <code>HttpTokens=required</code> দিন।</p>
+</div>
+<hr />
+<h2 id="real-world-shopbd">Real-world: <code>shopbd</code><a class="headerlink" href="#real-world-shopbd" title="Permanent link">&para;</a></h2>
+<p><code>shopbd</code>-র ট্রাফিক সামান্য — সন্ধ্যায় বাড়ে, বিক্রির দিনে (যেমন ঈদের আগে) অনেক বাড়ে। VM-সংক্রান্ত সিদ্ধান্তগুলো এমন:</p>
+<pre class="mermaid"><code>flowchart TB
+    LB[Public load balancer&lt;br/&gt;shopbd.example.com] --&gt; G[shopbd-api group&lt;br/&gt;2 VMs, 2 zones]
+    G --&gt; DB[(shopbd-db&lt;br/&gt;managed PostgreSQL)]
+    G --&gt; IMG[(shopbd-images&lt;br/&gt;object storage)]
+    J[Nightly report VM&lt;br/&gt;Spot] --&gt; DB
+    J --&gt; MAIL[Order e-mail / report to ops@example.com]</code></pre>
+<table>
+<thead>
+<tr>
+<th>কাজ</th>
+<th>VM-সিদ্ধান্ত</th>
+<th>কারণ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>shopbd-api</code></td>
+<td>২টি ছোট VM (burstable বা Flex), দুই zone, private subnet, public IP নেই</td>
+<td>HA + কম খরচ</td>
+</tr>
+<tr>
+<td>Image</td>
+<td>নিজের golden image (Packer)</td>
+<td>অটোস্কেলে দ্রুত boot, একই রকম server</td>
+</tr>
+<tr>
+<td>Login</td>
+<td>Session Manager / IAP / Azure Bastion / OCI Bastion</td>
+<td>port 22 বন্ধ</td>
+</tr>
+<tr>
+<td>Storage access</td>
+<td>Instance profile / service account / managed identity / instance principal</td>
+<td>কোডে কোনো key নেই</td>
+</tr>
+<tr>
+<td>Nightly report</td>
+<td>Spot / preemptible VM, রাত ২টায় চালু, শেষে বন্ধ</td>
+<td>সস্তা; ব্যর্থ হলে আবার চালানো যায়</td>
+</tr>
+<tr>
+<td>Database</td>
+<td>VM-এ নয় — managed service (<a href="../07-databases/">07</a>)</td>
+<td>backup, patch, failover নিজে সামলানোর ঝামেলা নেই</td>
+</tr>
+<tr>
+<td>Dev/test</td>
+<td>রাতে ও ছুটিতে বন্ধ</td>
+<td>খরচ কমে</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="best-practices">Best practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Private by default:</strong> app VM-এর public IP নেই; load balancer/bastion/Session Manager দিয়ে ঢুকুন।</li>
+<li><strong>Image দিয়ে immutable infrastructure:</strong> চলমান VM-এ হাতে-কলমে বদল না করে নতুন image বানিয়ে VM বদলান।</li>
+<li><strong>Identity দিয়ে permission:</strong> VM-এর role/service account/managed identity/instance principal — কোডে long-lived key নয়।</li>
+<li><strong>Tag / label:</strong> <code>project</code>, <code>env</code>, <code>owner</code> — খরচের হিসাব ও automation-এর ভিত্তি (<a href="../02-accounts-and-hierarchy/">02</a>, <a href="../18-cost-management/">18</a>)।</li>
+<li><strong>Right-size ও schedule:</strong> monitoring দেখে ছোট করুন; dev VM বন্ধ রাখুন।</li>
+<li><strong>Multi-zone group:</strong> একক VM-কে কখনো production ভরসা বানাবেন না।</li>
+<li><strong>Patch:</strong> OS-এর security update স্বয়ংক্রিয় করুন (AWS Systems Manager Patch Manager, GCP VM Manager, Azure Update Manager, OCI OS Management Hub)।</li>
+<li><strong>Backup:</strong> disk snapshot-এর schedule রাখুন; data disk আলাদা রাখুন।</li>
+<li><strong>Metadata hardening:</strong> AWS-এ IMDSv2 বাধ্যতামূলক; script-এ secret নয়।</li>
+<li><strong>Spot শুধু stateless কাজে</strong>, আর interrupt সামলে code লিখুন।</li>
+<li><strong>Terraform-এ সব:</strong> Console-এ হাতে বানানো VM দুই মাস পরে কেউ মনে রাখে না।</li>
+</ul>
+<hr />
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ভুল</th>
+<th>ফল</th>
+<th>সমাধান</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SSH <code>0.0.0.0/0</code>-তে খোলা</td>
+<td>brute-force, compromise</td>
+<td>Bastion / Session Manager / IAP / শুধু নিজের IP</td>
+</tr>
+<tr>
+<td>Private key (<code>.pem</code>) Git-এ commit</td>
+<td>সবাই VM-এ ঢুকতে পারে</td>
+<td>key সরান, নতুন key, secret scan চালু</td>
+</tr>
+<tr>
+<td>Azure VM শুধু shutdown, deallocate নয়</td>
+<td>বিল চলতেই থাকে</td>
+<td><code>az vm deallocate</code></td>
+</tr>
+<tr>
+<td>Elastic IP / static IP / disk ফেলে রাখা</td>
+<td>অকারণ বিল</td>
+<td>VM delete-এর পর orphan resource মুছুন</td>
+</tr>
+<tr>
+<td>Instance store / temp disk-এ data</td>
+<td>VM বদলালে data শেষ</td>
+<td>persistent disk বা managed service</td>
+</tr>
+<tr>
+<td>বড় size দিয়ে শুরু</td>
+<td>খরচ নষ্ট</td>
+<td>ছোট দিয়ে শুরু, metric দেখে বাড়ান</td>
+</tr>
+<tr>
+<td><code>t3</code>/B-series-এ সারাক্ষণ ভারী CPU</td>
+<td>credit শেষ, ধীর</td>
+<td>General purpose / compute family</td>
+</tr>
+<tr>
+<td>Single VM, single zone, auto-recovery নেই</td>
+<td>zone গেলেই app বন্ধ</td>
+<td>ASG/MIG/VMSS/pool, ২+ zone</td>
+</tr>
+<tr>
+<td>Script-এ DB password</td>
+<td>metadata থেকে ফাঁস</td>
+<td>secret manager</td>
+</tr>
+<tr>
+<td>OCI: ভুল compartment</td>
+<td>resource পাওয়া যায় না, policy খাটে না</td>
+<td><code>--compartment-id</code> সচেতনভাবে দিন</td>
+</tr>
+<tr>
+<td>Spot-এ একমাত্র API/DB</td>
+<td>যেকোনো সময় বন্ধ</td>
+<td>on-demand + group; spot শুধু batch</td>
+</tr>
+<tr>
+<td>Default service account/instance profile-এ বেশি অধিকার</td>
+<td>VM compromise = পুরো project</td>
+<td>আলাদা, কম অধিকারের identity</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ইনটরভউ--সরটফকশন-টপস">ইন্টারভিউ / সার্টিফিকেশন টিপস<a class="headerlink" href="#ইনটরভউ--সরটফকশন-টপস" title="Permanent link">&para;</a></h2>
+<details class="question">
+<summary>EC2 stop আর terminate-এর পার্থক্য কী? Azure-তে এর সমতুল্য কী?</summary>
+<p>Stop-এ instance আবার চালু করা যায়, compute বিল বন্ধ, কিন্তু EBS ও Elastic IP-র খরচ থাকে। Terminate-এ instance শেষ (root volume default-এ মুছে যায়)। Azure-তে stop ≈ <strong>Deallocate</strong> (বিল বন্ধ); OS shutdown শুধু "Stopped", বিল চলে। GCP-তে stop-এর অবস্থা <code>TERMINATED</code>, delete আলাদা।</p>
+</details>
+<details class="question">
+<summary>Spot / preemptible VM কখন ব্যবহার করবেন, কখন না?</summary>
+<p>Stateless, fault-tolerant, পুনরায়-চালানো-যায় এমন কাজে (batch, CI, worker) — অনেক সস্তা। Single API/DB-তে নয়। Interrupt notice (AWS ২ মিনিট, GCP/Azure ~৩০ সেকেন্ড) ধরে checkpoint করুন।</p>
+</details>
+<details class="question">
+<summary>Burstable (t3 / e2 / B-series) instance কীভাবে কাজ করে?</summary>
+<p>কম লোডে CPU credit জমে, লোড এলে খরচ হয়। credit শেষ হলে throttle (বা AWS unlimited mode-এ বাড়তি চার্জ)। সারাক্ষণ বেশি CPU লাগলে general purpose নিন।</p>
+</details>
+<details class="question">
+<summary>VM থেকে cloud API ডাকতে access key কেন নয়? বিকল্প কী?</summary>
+<p>Key কোডে/ফাইলে থাকলে leak হয় ও ঘোরানো কঠিন। বিকল্প: AWS instance profile, GCP service account, Azure managed identity, OCI instance principal — অস্থায়ী credential, স্বয়ংক্রিয় rotation।</p>
+</details>
+<details class="question">
+<summary>AWS IMDSv2 কী, কেন গুরুত্বপূর্ণ?</summary>
+<p>Metadata পড়ার আগে session token (PUT request) লাগে — SSRF দিয়ে metadata-র credential চুরি অনেক কঠিন হয়। Launch template-এ <code>HttpTokens=required</code> দিন।</p>
+</details>
+<details class="question">
+<summary>GCP custom machine type আর OCI Flex shape-এর মিল কী?</summary>
+<p>দুটোতেই fixed size না নিয়ে CPU ও memory আলাদাভাবে বেছে নেওয়া যায়, ফলে অপচয় কমে। AWS ও Azure-এ fixed size-এর মধ্য থেকে বাছতে হয়।</p>
+</details>
+<details class="question">
+<summary>ASG / MIG / VMSS / instance pool — একটি ছবিতে তফাত বলুন।</summary>
+<p>চারটিই "template + একাধিক VM + (autoscale) + self-heal"। নাম আলাদা: Launch template→ASG, Instance template→MIG (regional MIG একাধিক zone), VMSS (Flexible orchestration), Instance configuration→Instance pool। সামনে load balancer থাকে।</p>
+</details>
+<details class="question">
+<summary>OCPU আর vCPU-র পার্থক্য?</summary>
+<p>OCI-তে ১ OCPU = ১ physical core = x86-এ ২ vCPU (hyper-thread)। AWS/GCP/Azure vCPU গোনে। তাই মূল্য তুলনার সময় OCPU × ২ করে মেলাতে হয় (Arm Ampere-এ ১ OCPU = ১ vCPU)।</p>
+</details>
+<hr />
+<h2 id="সরসকষপ">সারসংক্ষেপ<a class="headerlink" href="#সরসকষপ" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>VM = ভাড়া করা virtual কম্পিউটার।</strong> চারটি service: EC2, Compute Engine, Azure VMs, OCI Compute।</li>
+<li>Size বাছার ভাষা আলাদা — instance type / machine type / VM size / shape; GCP custom ও OCI Flex-এ CPU ও RAM আলাদা বাছা যায়।</li>
+<li>Image থেকে VM; golden image + version-pin। SSH-এর বদলে bastion/Session Manager/IAP; secret নয় script-এ।</li>
+<li>Disk: persistent বনাম ephemeral। VM-এ identity জুড়ুন (instance profile / service account / managed identity / instance principal)।</li>
+<li>Billing: stop ≠ বিল বন্ধ সব জায়গায় — Azure-তে <strong>deallocate</strong>। Spot দিয়ে batch সস্তা করুন, commitment দিয়ে স্থির লোড।</li>
+<li>Production মানে group + ২+ zone + load balancer + autoscaling। Dedicated host/bare metal শুধু license, compliance বা বিশেষ performance-এর জন্য।</li>
+<li>Terraform-এ লিখে রাখুন — <code>shopbd-api</code> চার cloud-এই ১০–৩০ লাইনে বর্ণিত।</li>
+</ul>
+<p><strong>পরের অধ্যায়:</strong> VM তো তৈরি হলো, কিন্তু সে কোন network-এ থাকবে, কে তার সাথে কথা বলতে পারবে? → <a href="../05-networking/">05 · Networking</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  উপরে ফিরে যাও
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="ফুটার" >
+        
+          
+          <a href="../03-identity-and-access/" class="md-footer__link md-footer__link--prev" aria-label="পূর্ববর্তী: 03 · Identity ও Access (IAM)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পূর্ববর্তী
+              </span>
+              <div class="md-ellipsis">
+                03 · Identity ও Access (IAM)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../05-networking/" class="md-footer__link md-footer__link--next" aria-label="পরে: 05 · Networking">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পরে
+              </span>
+              <div class="md-ellipsis">
+                05 · Networking
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Hasib Ahmed — Cloud বাংলা ডকুমেন্টেশন
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Hasib105/cloud-bangla-docs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u09b9\u09df\u09c7\u099b\u09c7", "clipboard.copy": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u0995\u09b0\u09c1\u09a8", "search.result.more.one": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 \u09e7\u099f\u09bf \u0986\u099b\u09c7", "search.result.more.other": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 #\u099f\u09bf \u0986\u099b\u09c7", "search.result.none": "\u0995\u09bf\u099b\u09c1 \u09aa\u09be\u0993\u09df\u09be \u09af\u09be\u09df\u09a8\u09bf", "search.result.one": "\u09e7 \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.other": "# \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.placeholder": "\u09b8\u09be\u09b0\u09cd\u099a \u099f\u09be\u0987\u09aa \u0995\u09b0\u09c1\u09a8", "search.result.term.missing": "\u0985\u09a8\u09c1\u09aa\u09b8\u09cd\u09a5\u09bf\u09a4", "select.version": "\u09b8\u0982\u09b8\u09cd\u0995\u09b0\u09a3 \u09a8\u09bf\u09b0\u09cd\u09ac\u09be\u099a\u09a8 \u0995\u09b0\u09c1\u09a3"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3742 @@
+
+<!doctype html>
+<html lang="bn" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="এক টপিক, চার cloud — AWS, Google Cloud, Microsoft Azure ও Oracle Cloud (OCI) শূন্য থেকে অ্যাডভান্স, পাশাপাশি তুলনাসহ সম্পূর্ণ বাংলা ডকুমেন্টেশন।">
+      
+      
+        <meta name="author" content="Hasib Ahmed">
+      
+      
+        <link rel="canonical" href="https://hasib105.github.io/cloud-bangla-docs/18-cost-management/">
+      
+      
+        <link rel="prev" href="../17-ai-ml/">
+      
+      
+        <link rel="next" href="../19-architecture-ha-dr/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>18 · Cost Management - Cloud বাংলা — AWS · GCP · Azure · OCI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M6.5%2020q-2.28%200-3.89-1.57Q1%2016.85%201%2014.58q0-1.95%201.17-3.48%201.18-1.53%203.08-1.95.63-2.3%202.5-3.72Q9.63%204%2012%204q2.93%200%204.96%202.04Q19%208.07%2019%2011q1.73.2%202.86%201.5%201.14%201.28%201.14%203%200%201.88-1.31%203.19T18.5%2020m-12-2h12q1.05%200%201.77-.73.73-.72.73-1.77t-.73-1.77Q19.55%2013%2018.5%2013H17v-2q0-2.07-1.46-3.54Q14.08%206%2012%206%209.93%206%208.46%207.46%207%208.93%207%2011h-.5q-1.45%200-2.47%201.03Q3%2013.05%203%2014.5T4.03%2017q1.02%201%202.47%201m5.5-6%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind+Siliguri:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Hind Siliguri";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#18--cost-management-finops" class="md-skip">
+          কনটেন্টে যান
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="হেডার">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-header__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud বাংলা — AWS · GCP · Azure · OCI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              18 · Cost Management
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="ডার্ক মোড"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ডার্ক মোড" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="লাইট মোড"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="লাইট মোড" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="অনুসন্ধান করুন" placeholder="অনুসন্ধান করুন" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="অনুসন্ধান করুন">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="শেয়ার" aria-label="শেয়ার" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="রিসেট" aria-label="রিসেট" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            অনুসন্ধান শুরু করা হচ্ছে
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="ট্যাব" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  হোম
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01-cloud-fundamentals/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  মূল ধারণা
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../platforms/aws/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  প্ল্যাটফর্ম গাইড
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reference/service-map/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  রেফারেন্স
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ন্যাভিগেশন" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-nav__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    Cloud বাংলা — AWS · GCP · Azure · OCI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    হোম
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    মূল ধারণা
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    মূল ধারণা
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-cloud-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Cloud-এর ভিত্তি
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-accounts-and-hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Account ও Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-identity-and-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Identity ও Access (IAM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-compute-vms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Virtual Machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-networking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Networking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-containers-kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Container ও Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-serverless/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Serverless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-load-balancing-scaling-dns-cdn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Load Balancing, DNS ও CDN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-messaging-and-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Messaging ও Event
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Monitoring ও Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-infrastructure-as-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 · Infrastructure as Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-cicd-devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 · CI/CD ও DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-data-and-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 · Data ও Analytics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-ai-ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 · AI ও Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 · Cost Management
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 · Cost Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-cloud-এর-খরচ-কথ-থক-আস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. Cloud-এর খরচ কোথা থেকে আসে
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. Cloud-এর খরচ কোথা থেকে আসে">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#মল-সতর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মূল সূত্র
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finops-ক" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FinOps কী
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-billing-console-ও-খরচ-দখ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Billing console ও খরচ দেখা
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-tag--label--কর-কত-খরচ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Tag / Label — কার কত খরচ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Tag / Label — কার কত খরচ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#পরসতবত-টযগ-সট-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        প্রস্তাবিত ট্যাগ-সেট (shopbd)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#টযগ-নযম-জর-কর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ট্যাগ নিয়ম জোর করা
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-budget-ও-alert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. Budget ও alert
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. Budget ও alert">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#পরসতবত-alert-সড" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        প্রস্তাবিত alert সিঁড়ি
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-anomaly-detection-ও-forecast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. Anomaly detection ও forecast
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-pricing-model-ও-commitment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Pricing model ও commitment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৬. Pricing model ও commitment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#পরতট-cloud-এর-commitment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        প্রতিটি cloud-এর commitment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commitment-কনর-নযম" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commitment কেনার নিয়ম
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-rightsizing-ও-idle-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. Rightsizing ও idle resource
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৭. Rightsizing ও idle resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#সবচয-সধরণ-অপচয--কলনআপ-তলক" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সবচেয়ে সাধারণ অপচয় — ক্লিনআপ তালিকা
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৮-storage-এর-খরচ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮. Storage-এর খরচ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৯-network-ও-egress-data-transfer-খরচ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৯. Network ও egress (data transfer) খরচ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৯. Network ও egress (data transfer) খরচ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#egress-কমনর-উপয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        egress কমানোর উপায়
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১০-free-tier-ও-trial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১০. Free tier ও trial
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১১-সথপতযগত-খরচ-সদধনত" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১১. স্থাপত্যগত খরচ-সিদ্ধান্ত
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১২-cost-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১২. Cost checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-architecture-ha-dr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 · Architecture ও HA/DR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/gcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Cloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/azure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microsoft Azure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/oci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle Cloud (OCI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    রেফারেন্স
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    রেফারেন্স
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/service-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli-cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Cheatsheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-cloud-এর-খরচ-কথ-থক-আস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. Cloud-এর খরচ কোথা থেকে আসে
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. Cloud-এর খরচ কোথা থেকে আসে">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#মল-সতর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মূল সূত্র
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finops-ক" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FinOps কী
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-billing-console-ও-খরচ-দখ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Billing console ও খরচ দেখা
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-tag--label--কর-কত-খরচ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Tag / Label — কার কত খরচ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Tag / Label — কার কত খরচ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#পরসতবত-টযগ-সট-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        প্রস্তাবিত ট্যাগ-সেট (shopbd)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#টযগ-নযম-জর-কর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ট্যাগ নিয়ম জোর করা
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-budget-ও-alert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. Budget ও alert
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. Budget ও alert">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#পরসতবত-alert-সড" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        প্রস্তাবিত alert সিঁড়ি
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-anomaly-detection-ও-forecast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. Anomaly detection ও forecast
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-pricing-model-ও-commitment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Pricing model ও commitment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৬. Pricing model ও commitment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#পরতট-cloud-এর-commitment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        প্রতিটি cloud-এর commitment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commitment-কনর-নযম" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commitment কেনার নিয়ম
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-rightsizing-ও-idle-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. Rightsizing ও idle resource
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৭. Rightsizing ও idle resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#সবচয-সধরণ-অপচয--কলনআপ-তলক" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সবচেয়ে সাধারণ অপচয় — ক্লিনআপ তালিকা
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৮-storage-এর-খরচ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮. Storage-এর খরচ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৯-network-ও-egress-data-transfer-খরচ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৯. Network ও egress (data transfer) খরচ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৯. Network ও egress (data transfer) খরচ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#egress-কমনর-উপয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        egress কমানোর উপায়
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১০-free-tier-ও-trial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১০. Free tier ও trial
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১১-সথপতযগত-খরচ-সদধনত" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১১. স্থাপত্যগত খরচ-সিদ্ধান্ত
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১২-cost-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১২. Cost checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Hasib105/cloud-bangla-docs/edit/main/docs/18-cost-management.md" title="এই পেজ এডিট করুন" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="18--cost-management-finops">18 · Cost management (FinOps)<a class="headerlink" href="#18--cost-management-finops" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>এই অধ্যায়ে কী শিখবেন</strong></p>
+<ul>
+<li>Cloud-এর খরচ কোথা থেকে আসে এবং <strong>FinOps</strong> কী</li>
+<li>প্রতিটি cloud-এর <strong>billing console</strong> ও খরচ দেখার উপায়, <strong>budget ও alert</strong></li>
+<li><strong>Tag/label</strong> দিয়ে cost allocation — কার কত খরচ</li>
+<li><strong>Commitment</strong>: Savings Plans, CUD, Azure Reservations ও Savings Plan, OCI Universal Credits — এবং Spot/Preemptible</li>
+<li><strong>Rightsizing</strong> টুল, idle resource, <strong>egress (data transfer) খরচ</strong>, <strong>free tier</strong></li>
+<li>একটা পূর্ণ <strong>cost checklist</strong> ও <code>shopbd</code>-র মাসিক খরচ-পর্যালোচনা</li>
+</ul>
+</blockquote>
+<div class="admonition abstract">
+<p class="admonition-title">এক নজরে — কোন cloud-এ কী নাম</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Billing কেন্দ্র</td>
+<td>Billing and Cost Management</td>
+<td>Cloud Billing</td>
+<td>Microsoft Cost Management + Billing</td>
+<td>Billing &amp; Cost Management</td>
+</tr>
+<tr>
+<td>খরচ বিশ্লেষণ</td>
+<td>Cost Explorer</td>
+<td>Billing Reports</td>
+<td>Cost analysis</td>
+<td>Cost Analysis</td>
+</tr>
+<tr>
+<td>Budget ও alert</td>
+<td>AWS Budgets</td>
+<td>Budgets &amp; alerts</td>
+<td>Budgets (Cost Management)</td>
+<td>Budgets + alert rules</td>
+</tr>
+<tr>
+<td>বিস্তারিত ডেটা export</td>
+<td>Cost and Usage Report / Data Exports</td>
+<td>Billing export → BigQuery</td>
+<td>Cost Management exports</td>
+<td>Cost and usage reports (Object Storage) / Usage API</td>
+</tr>
+<tr>
+<td>খরচ ভাগ করার ট্যাগ</td>
+<td>Cost allocation tags</td>
+<td>Labels</td>
+<td>Tags (+ inheritance policy)</td>
+<td>Cost-tracking tags (defined tags), compartments</td>
+</tr>
+<tr>
+<td>অস্বাভাবিক খরচ ধরা</td>
+<td>Cost Anomaly Detection</td>
+<td>Anomaly detection (Billing)</td>
+<td>Cost anomaly alerts</td>
+<td>Budgets + Usage API</td>
+</tr>
+<tr>
+<td>Commitment</td>
+<td>Savings Plans, Reserved Instances</td>
+<td>Committed Use Discounts (CUD)</td>
+<td>Reservations, Savings Plan for compute</td>
+<td>Universal Credits (commitment)</td>
+</tr>
+<tr>
+<td>কম দামের spare capacity</td>
+<td>Spot Instances</td>
+<td>Spot VMs</td>
+<td>Spot VMs</td>
+<td>Preemptible instances</td>
+</tr>
+<tr>
+<td>Rightsizing</td>
+<td>Compute Optimizer, Trusted Advisor</td>
+<td>Recommender / Active Assist</td>
+<td>Azure Advisor</td>
+<td>Cloud Advisor</td>
+</tr>
+<tr>
+<td>Free tier</td>
+<td>Free Tier / Free plan</td>
+<td>Free Trial + Always Free</td>
+<td>Free account + Always free</td>
+<td>Free Trial + Always Free</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+<h2 id="১-cloud-এর-খরচ-কথ-থক-আস">১. Cloud-এর খরচ কোথা থেকে আসে<a class="headerlink" href="#১-cloud-এর-খরচ-কথ-থক-আস" title="Permanent link">&para;</a></h2>
+<p>Cloud-এ "বিদ্যুৎ বিলের মতো" — যত ব্যবহার, তত বিল। কিন্তু বিলটা এক জায়গা থেকে আসে না। মূল কয়েকটা উৎস:</p>
+<table>
+<thead>
+<tr>
+<th>উৎস</th>
+<th>কী কারণে খরচ</th>
+<th><code>shopbd</code>-এ উদাহরণ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Compute</strong></td>
+<td>VM/container কত বড়, কত ঘণ্টা চলছে</td>
+<td><code>shopbd-api</code> VM ২৪ ঘণ্টা চালু</td>
+</tr>
+<tr>
+<td><strong>Storage</strong></td>
+<td>কত GB, কোন class, কত request, snapshot</td>
+<td><code>shopbd-images</code> bucket, পুরনো snapshot</td>
+</tr>
+<tr>
+<td><strong>Database</strong></td>
+<td>instance size, storage, backup, HA/replica</td>
+<td><code>shopbd-db</code> PostgreSQL (Multi-AZ/HA)</td>
+</tr>
+<tr>
+<td><strong>Network</strong></td>
+<td>বাইরে যাওয়া ট্রাফিক (egress), NAT, load balancer ঘণ্টা</td>
+<td>ছবি ডাউনলোড, NAT gateway</td>
+</tr>
+<tr>
+<td><strong>Logging/Monitoring</strong></td>
+<td>কত log ingest ও কত দিন রাখা</td>
+<td>debug log সব রেখে দেওয়া</td>
+</tr>
+<tr>
+<td><strong>Idle জিনিস</strong></td>
+<td>চলছে কিন্তু কেউ ব্যবহার করছে না</td>
+<td>আনঅ্যাটাচড disk, ব্যবহারহীন public IP</td>
+</tr>
+<tr>
+<td><strong>Support ও marketplace</strong></td>
+<td>support plan, তৃতীয় পক্ষের license</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">দৈনন্দিন উপমা</p>
+<p>বাসার বিদ্যুৎ বিল: ফ্যান-লাইট অফ না করে বের হলে মিটার ঘোরে। Cloud-ও তাই — <strong>বন্ধ না করা resource-ই সবচেয়ে বড় অপচয়।</strong> কিন্তু cloud-এ মিটারটা আরও জটিল — ঘণ্টা, GB, request, সব আলাদা মিটার।</p>
+</div>
+<h3 id="মল-সতর">মূল সূত্র<a class="headerlink" href="#মল-সতর" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>খরচ = পরিমাণ × সময় × দর</strong> — আপনি তিনটার একটাই কমাতে পারেন: কম বা ছোট resource (পরিমাণ), দরকার না হলে বন্ধ (সময়), বা সস্তা pricing model (দর)।</p>
+</blockquote>
+<h3 id="finops-ক">FinOps কী<a class="headerlink" href="#finops-ক" title="Permanent link">&para;</a></h3>
+<p><strong>FinOps</strong> = Finance + DevOps। খরচকে শুধু "মাসের শেষে আসা বিল" না ভেবে engineering-এর অংশ করা। তিন ধাপের চক্র:</p>
+<pre class="mermaid"><code>flowchart LR
+    I["Inform&lt;br/&gt;দেখুন ও ভাগ করুন&lt;br/&gt;(tag, report, showback)"] --&gt; O["Optimize&lt;br/&gt;কমান&lt;br/&gt;(rightsizing, commitment, cleanup)"]
+    O --&gt; P["Operate&lt;br/&gt;নিয়মে বাঁধুন&lt;br/&gt;(budget, policy, review)"]
+    P --&gt; I</code></pre>
+<ul>
+<li><strong>Inform</strong> — কার কত খরচ? কোন service, কোন environment?</li>
+<li><strong>Optimize</strong> — অপচয় কমান, সস্তা pricing বেছে নিন।</li>
+<li><strong>Operate</strong> — budget, alert, প্রতি মাসে review — যাতে আবার জমে না যায়।</li>
+</ul>
+<p><strong>Unit economics:</strong> মোট বিলের চেয়ে বেশি অর্থবহ হলো <strong>একক প্রতি খরচ</strong>: "প্রতি অর্ডারে cloud খরচ কত?" ব্যবসা বাড়লে বিল বাড়বেই — সমস্যা তখনই, যখন অর্ডারপ্রতি খরচ বাড়ে।</p>
+<div class="admonition warning">
+<p class="admonition-title">এই অধ্যায়ে দাম নেই</p>
+<p>Cloud-এর দাম বদলায় (region, সময়, ডিসকাউন্ট)। এখানে কোনো নির্দিষ্ট দাম দেওয়া হয়নি — <strong>খরচ কীসে হয়</strong> তা বোঝানো হয়েছে। হিসাবের জন্য দেখুন: <a href="https://calculator.aws">AWS Pricing Calculator</a>, <a href="https://cloud.google.com/products/calculator">Google Cloud Pricing Calculator</a>, <a href="https://azure.microsoft.com/pricing/calculator/">Azure Pricing Calculator</a>, <a href="https://www.oracle.com/cloud/costestimator.html">OCI Cost Estimator</a>।</p>
+</div>
+<hr />
+<h2 id="২-billing-console-ও-খরচ-দখ">২. Billing console ও খরচ দেখা<a class="headerlink" href="#২-billing-console-ও-খরচ-দখ" title="Permanent link">&para;</a></h2>
+<p>প্রথম কাজ — <strong>দেখতে পাওয়া</strong>। যা দেখা যায় না তা কমানো যায় না।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="aws" name="__tabbed_1" type="radio" /><input id="gcp" name="__tabbed_1" type="radio" /><input id="azure" name="__tabbed_1" type="radio" /><input id="oci" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="aws">AWS</label><label for="gcp">GCP</label><label for="azure">Azure</label><label for="oci">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>Billing and Cost Management</strong> console থেকে শুরু। মূল অংশ:</p>
+<ul>
+<li><strong>Cost Explorer</strong> — সময়, service, region, tag অনুযায়ী খরচের চার্ট (প্রথমবার চালু করতে হয়)</li>
+<li><strong>Bills</strong> — চলতি মাসের বিল, service-ভিত্তিক</li>
+<li><strong>Budgets</strong>, <strong>Cost Anomaly Detection</strong>, <strong>Cost allocation tags</strong></li>
+<li><strong>Cost and Usage Report (CUR)</strong> / <strong>Data Exports</strong> — সবচেয়ে বিস্তারিত ডেটা, S3-তে; Athena দিয়ে query</li>
+<li><strong>Free Tier</strong> পাতা — ব্যবহার সীমা কতটা পেরোচ্ছে</li>
+</ul>
+<p>Organization-এ থাকলে <strong>management account</strong> পুরো প্রতিষ্ঠানের consolidated বিল দেখে — <a href="../02-accounts-and-hierarchy/">02 · Account ও Hierarchy</a>।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># সার্ভিস-ভিত্তিক মাসিক খরচ</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>aws<span class="w"> </span>ce<span class="w"> </span>get-cost-and-usage<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>--time-period<span class="w"> </span><span class="nv">Start</span><span class="o">=</span><span class="m">2026</span>-11-01,End<span class="o">=</span><span class="m">2026</span>-11-24<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>--granularity<span class="w"> </span>MONTHLY<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span>--metrics<span class="w"> </span>UnblendedCost<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span>--group-by<span class="w"> </span><span class="nv">Type</span><span class="o">=</span>DIMENSION,Key<span class="o">=</span>SERVICE
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># tag অনুযায়ী</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>aws<span class="w"> </span>ce<span class="w"> </span>get-cost-and-usage<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span>--time-period<span class="w"> </span><span class="nv">Start</span><span class="o">=</span><span class="m">2026</span>-11-01,End<span class="o">=</span><span class="m">2026</span>-11-24<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span>--granularity<span class="w"> </span>MONTHLY<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span>--metrics<span class="w"> </span>UnblendedCost<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span>--group-by<span class="w"> </span><span class="nv">Type</span><span class="o">=</span>TAG,Key<span class="o">=</span>project
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><strong>Cloud Billing</strong> — billing account আলাদা সত্তা; এক বা একাধিক project সেই account-এর সাথে জোড়া থাকে।</p>
+<ul>
+<li><strong>Reports</strong> — সময়, project, service, SKU, label অনুযায়ী ফিল্টার</li>
+<li><strong>Cost table</strong>, <strong>Budgets &amp; alerts</strong>, <strong>Commitments</strong></li>
+<li><strong>Billing export → BigQuery</strong> — সবচেয়ে শক্তিশালী উপায়; আপনি SQL দিয়ে যা খুশি জিজ্ঞেস করতে পারেন (export <strong>চালু করার পর</strong> থেকে ডেটা জমে, পেছনের ডেটা আসে না — তাই প্রথম দিনেই চালু করুন)</li>
+<li><strong>FinOps hub</strong> ও <strong>Recommender</strong>-এর সুপারিশ</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>gcloud<span class="w"> </span>billing<span class="w"> </span>accounts<span class="w"> </span>list
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>gcloud<span class="w"> </span>billing<span class="w"> </span>projects<span class="w"> </span>describe<span class="w"> </span>my-project-id<span class="w">     </span><span class="c1"># কোন billing account-এ জোড়া</span>
+</span></code></pre></div>
+<p>BigQuery export চালু থাকলে, label অনুযায়ী খরচ:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">SELECT</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="n">service</span><span class="p">.</span><span class="n">description</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">service</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="k">SUM</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_cost</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">FROM</span><span class="w"> </span><span class="o">`</span><span class="n">my</span><span class="o">-</span><span class="n">project</span><span class="o">-</span><span class="n">id</span><span class="p">.</span><span class="n">billing_export</span><span class="p">.</span><span class="n">gcp_billing_export_v1_XXXXXX</span><span class="o">`</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">usage_start_time</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">(</span><span class="s1">'2026-11-01'</span><span class="p">)</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">UNNEST</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'project'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'shopbd'</span><span class="p">)</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">service</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">total_cost</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><strong>Microsoft Cost Management + Billing</strong> (Portal-এ "Cost Management")।</p>
+<ul>
+<li><strong>Cost analysis</strong> — scope বেছে নিন (management group / subscription / resource group), তারপর tag, service, location দিয়ে ভাগ</li>
+<li><strong>Budgets</strong>, <strong>Alerts</strong>, <strong>Advisor</strong> (cost recommendations)</li>
+<li><strong>Exports</strong> — নিয়মিত CSV storage account-এ</li>
+<li><strong>Reservations / Savings plans</strong> blade</li>
+</ul>
+<p>Billing-এর ধরন: <strong>MCA (Microsoft Customer Agreement)</strong> বা <strong>EA (Enterprise Agreement)</strong> — account-এর ধরনে billing scope-এর নাম আলাদা হয়।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>az<span class="w"> </span>account<span class="w"> </span>show
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>az<span class="w"> </span>consumption<span class="w"> </span>usage<span class="w"> </span>list<span class="w"> </span>--top<span class="w"> </span><span class="m">10</span><span class="w"> </span>--query<span class="w"> </span><span class="s2">"[].{name:instanceName, cost:pretaxCost}"</span><span class="w"> </span>-o<span class="w"> </span>table
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>az<span class="w"> </span>advisor<span class="w"> </span>recommendation<span class="w"> </span>list<span class="w"> </span>--category<span class="w"> </span>Cost<span class="w"> </span>-o<span class="w"> </span>table
+</span></code></pre></div>
+<p>(<code>az consumption</code> ও <code>az costmanagement</code> extension সাবস্ক্রিপশন/অ্যাকাউন্টের ধরনে আলাদা আচরণ করতে পারে; না পেলে Portal-এর Cost analysis-ই ভরসা।)</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Billing &amp; Cost Management → Cost Analysis</strong> — compartment, service, tag অনুযায়ী খরচ।</p>
+<ul>
+<li><strong>Cost Analysis</strong> (চার্ট), <strong>Budgets</strong>, <strong>Cost and usage reports</strong> (CSV, আপনার tenancy-র জন্য Oracle-এর নিজস্ব Object Storage bucket থেকে ডাউনলোড)</li>
+<li><strong>Usage API</strong> — প্রোগ্রাম্যাটিক query</li>
+<li><strong>Cloud Advisor</strong> — recommendation</li>
+<li><strong>Compartment</strong> নিজেই খরচ ভাগের একক — <a href="../02-accounts-and-hierarchy/">02 · Account ও Hierarchy</a></li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>oci<span class="w"> </span>usage-api<span class="w"> </span>usage-summary<span class="w"> </span>request-summarized-usages<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>--tenant-id<span class="w"> </span>ocid1.tenancy.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span>--time-usage-started<span class="w"> </span><span class="m">2026</span>-11-01T00:00:00Z<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span>--time-usage-ended<span class="w"> </span><span class="m">2026</span>-11-24T00:00:00Z<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span>--granularity<span class="w"> </span>DAILY<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span>--query-type<span class="w"> </span>COST<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span>--group-by<span class="w"> </span><span class="s1">'["service"]'</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">প্রথম সপ্তাহের কাজ</p>
+<p>নতুন account খুললে প্রথম দিনেই: (১) billing alert/budget সেট, (২) খরচ-ডেটা export চালু (CUR / BigQuery export / Azure exports), (৩) কে billing দেখতে পারবে ঠিক করুন, (৪) free tier সীমা মনে রাখুন। দেরি করলে পেছনের ডেটা পাওয়া যায় না।</p>
+</div>
+<hr />
+<h2 id="৩-tag--label--কর-কত-খরচ">৩. Tag / Label — কার কত খরচ<a class="headerlink" href="#৩-tag--label--কর-কত-খরচ" title="Permanent link">&para;</a></h2>
+<p>একটা বিলে "EC2: ১২০০ ডলার" লেখা থাকলে কিছুই বোঝা যায় না — কোন প্রজেক্ট? কোন টিম? কোন environment? <strong>Tag (AWS/Azure/OCI) বা Label (GCP)</strong> হলো resource-এ লাগানো key=value লেবেল, যা দিয়ে খরচ ভাগ করা যায় (<strong>cost allocation</strong>)।</p>
+<h3 id="পরসতবত-টযগ-সট-shopbd">প্রস্তাবিত ট্যাগ-সেট (shopbd)<a class="headerlink" href="#পরসতবত-টযগ-সট-shopbd" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>উদাহরণ</th>
+<th>কেন</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project</code></td>
+<td><code>shopbd</code></td>
+<td>কোন প্রজেক্ট</td>
+</tr>
+<tr>
+<td><code>environment</code></td>
+<td><code>prod</code> / <code>staging</code> / <code>dev</code></td>
+<td>prod vs dev খরচ আলাদা</td>
+</tr>
+<tr>
+<td><code>owner</code></td>
+<td><code>ops@example.com</code></td>
+<td>কে দায়ী</td>
+</tr>
+<tr>
+<td><code>cost-center</code></td>
+<td><code>engineering</code></td>
+<td>হিসাব কোন বিভাগের</td>
+</tr>
+<tr>
+<td><code>managed-by</code></td>
+<td><code>terraform</code></td>
+<td>কোডে আছে কিনা</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">ট্যাগ নিজে নিজে খরচে যুক্ত হয় না</p>
+<ul>
+<li><strong>AWS:</strong> tag লাগানোর পর <strong>Billing → Cost allocation tags</strong>-এ সেই key <strong>activate</strong> করতে হয়; activate-এর <strong>পর</strong> থেকে খরচে দেখা যায়।</li>
+<li><strong>Azure:</strong> tag resource group থেকে ভেতরের resource-এ <strong>নিজে inherit হয় না</strong> — Azure Policy (inherit tag) বা Cost Management-এর tag inheritance সেটিং লাগে।</li>
+<li><strong>GCP:</strong> label billing export-এ আসে; কিছু service-এ label সমর্থন নেই বা আংশিক।</li>
+<li><strong>OCI:</strong> খরচ ভাগের জন্য <strong>cost-tracking</strong> চিহ্নিত defined tag লাগে (tag namespace-এ)। Free-form tag দিয়ে নয়।</li>
+</ul>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="aws_1" name="__tabbed_2" type="radio" /><input id="gcp_1" name="__tabbed_2" type="radio" /><input id="azure_1" name="__tabbed_2" type="radio" /><input id="oci_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="aws_1">AWS</label><label for="gcp_1">GCP</label><label for="azure_1">Azure</label><label for="oci_1">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># tag লাগানো (EC2)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>aws<span class="w"> </span>ec2<span class="w"> </span>create-tags<span class="w"> </span>--resources<span class="w"> </span>i-0123456789abcdef0<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>--tags<span class="w"> </span><span class="nv">Key</span><span class="o">=</span>project,Value<span class="o">=</span>shopbd<span class="w"> </span><span class="nv">Key</span><span class="o">=</span>environment,Value<span class="o">=</span>prod
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># cost allocation-এর জন্য key চালু</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>aws<span class="w"> </span>ce<span class="w"> </span>update-cost-allocation-tags-status<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span>--cost-allocation-tags-status<span class="w"> </span><span class="nv">TagKey</span><span class="o">=</span>project,Status<span class="o">=</span>Active<span class="w"> </span><span class="nv">TagKey</span><span class="o">=</span>environment,Status<span class="o">=</span>Active
+</span></code></pre></div>
+<p>Terraform — provider স্তরে সব resource-এ:</p>
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">"aws"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ap-south-1"</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nb">default_tags</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="nb">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">      </span><span class="na">project</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd"</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">      </span><span class="na">environment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"prod"</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">      </span><span class="na">owner</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s2">"ops@example.com"</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">      </span><span class="na">managed-by</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"terraform"</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><strong>AWS Organizations tag policy</strong> দিয়ে আবশ্যিক key ও মানের তালিকা ঠিক করা যায়।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># label লাগানো (VM)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>add-labels<span class="w"> </span>shopbd-api<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>--zone<span class="o">=</span>asia-south1-a<span class="w"> </span>--labels<span class="o">=</span><span class="nv">project</span><span class="o">=</span>shopbd,environment<span class="o">=</span>prod
+</span></code></pre></div>
+<p>Terraform:</p>
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">"google"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="na">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my-project-id"</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="na">region</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"asia-south1"</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="nb">default_labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="na">project</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd"</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="na">environment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"prod"</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="na">owner</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s2">"ops"</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="na">managed_by</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"terraform"</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Label-এ বড় হাতের অক্ষর/ইমেইল-চিহ্ন (<code>@</code>) চলে না — নিয়ম ছোট হাতের অক্ষর, সংখ্যা, <code>_</code> ও <code>-</code>। সবচেয়ে সরল cost-allocation কৌশল: <strong>প্রতি environment-এর জন্য আলাদা project</strong> — তাহলে project-ই খরচের একক।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># resource group-এ tag</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>az<span class="w"> </span>group<span class="w"> </span>update<span class="w"> </span>--name<span class="w"> </span>shopbd-prod-rg<span class="w"> </span>--tags<span class="w"> </span><span class="nv">project</span><span class="o">=</span>shopbd<span class="w"> </span><span class="nv">environment</span><span class="o">=</span>prod
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># একটা resource-এ</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>az<span class="w"> </span>resource<span class="w"> </span>tag<span class="w"> </span>--tags<span class="w"> </span><span class="nv">project</span><span class="o">=</span>shopbd<span class="w"> </span><span class="nv">environment</span><span class="o">=</span>prod<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span>--ids<span class="w"> </span>/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/shopbd-prod-rg/providers/Microsoft.Compute/virtualMachines/shopbd-api
+</span></code></pre></div>
+<p>Terraform:</p>
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">locals</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="nb">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="na">project</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd"</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="na">environment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"prod"</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="na">owner</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s2">"ops@example.com"</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="na">managed-by</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"terraform"</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="p">}</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_resource_group"</span><span class="w"> </span><span class="nv">"main"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">  </span><span class="na">name</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-prod-rg"</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">  </span><span class="na">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"centralindia"</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">  </span><span class="na">tags</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">local.tags</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Azure-এ tag প্রতিটি resource-এ আলাদা বসাতে হয় (inherit করতে Policy)। <strong>Resource group + subscription</strong> ভাগ নিজেই খরচের স্বাভাবিক একক।</p>
+</div>
+<div class="tabbed-block">
+<p>OCI-তে সবচেয়ে প্রাকৃতিক ভাগ — <strong>compartment</strong> (যেমন <code>shopbd-prod</code>, <code>shopbd-dev</code>)। এর ওপর <strong>tag namespace ও defined tag</strong>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>oci<span class="w"> </span>iam<span class="w"> </span>tag-namespace<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span>--name<span class="w"> </span>shopbd<span class="w"> </span>--description<span class="w"> </span><span class="s2">"shopbd cost tags"</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>oci<span class="w"> </span>iam<span class="w"> </span>tag<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">  </span>--tag-namespace-id<span class="w"> </span>ocid1.tagnamespace.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">  </span>--name<span class="w"> </span>environment<span class="w"> </span>--description<span class="w"> </span><span class="s2">"environment"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">  </span>--is-cost-tracking<span class="w"> </span><span class="nb">true</span>
+</span></code></pre></div>
+<p>Terraform:</p>
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"oci_identity_tag_namespace"</span><span class="w"> </span><span class="nv">"shopbd"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="na">compartment_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.compartment_ocid</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span><span class="na">name</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd"</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="na">description</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd tags"</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">}</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"oci_identity_tag"</span><span class="w"> </span><span class="nv">"environment"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">  </span><span class="na">tag_namespace_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">oci_identity_tag_namespace.shopbd.id</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">  </span><span class="na">name</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s2">"environment"</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">  </span><span class="na">description</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">"environment name"</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">  </span><span class="na">is_cost_tracking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><strong>Tag default</strong> (compartment-এর ভেতরে নতুন resource-এ নিজে tag বসানো) দিয়ে ভুলে যাওয়া ঠেকানো যায়।</p>
+</div>
+</div>
+</div>
+<h3 id="টযগ-নযম-জর-কর">ট্যাগ নিয়ম জোর করা<a class="headerlink" href="#টযগ-নযম-জর-কর" title="Permanent link">&para;</a></h3>
+<p>শুধু অনুরোধ করলে হয় না — <strong>enforce</strong> করুন: AWS tag policy / SCP, GCP Organization Policy ও label চেক, Azure Policy (<code>Require a tag</code> ও <code>Inherit a tag from the resource group</code>), OCI tag default। Terraform-এ <code>default_tags</code> বসালে নতুন resource বাদ পড়ে না; পুরনো resource-এর জন্য ক্লিনআপ করুন।</p>
+<hr />
+<h2 id="৪-budget-ও-alert">৪. Budget ও alert<a class="headerlink" href="#৪-budget-ও-alert" title="Permanent link">&para;</a></h2>
+<p><strong>Budget</strong> = আপনি একটা সীমা ঠিক করেন (যেমন মাসে এই পরিমাণ), আর খরচ কোনো শতাংশ পেরোলে (৫০%, ৮০%, ১০০%) বা <strong>পূর্বাভাস</strong> (forecast) পেরোতে যাচ্ছে বুঝলে email/SMS/chat-এ alert আসে।</p>
+<div class="admonition danger">
+<p class="admonition-title">Budget খরচ থামায় না — শুধু জানায়</p>
+<p>ডিফল্টে budget কেবল <strong>alert</strong> দেয়। সীমা পেরোলে কিছু নিজে বন্ধ হয় না। (AWS Budgets Actions, Azure action group বা GCP-তে Pub/Sub + automation দিয়ে সীমিত স্বয়ংক্রিয় ব্যবস্থা নেওয়া যায়, কিন্তু production বন্ধ করে দেওয়ার ঝুঁকি আছে — সাবধানে।) তাই alert আসলে <strong>একজন মানুষকে</strong> তা দেখতে হবে — alert-এর ঠিকানা এমন কোনো ইনবক্স নয় যা কেউ দেখে না।</p>
+</div>
+<h3 id="পরসতবত-alert-সড">প্রস্তাবিত alert সিঁড়ি<a class="headerlink" href="#পরসতবত-alert-সড" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Threshold</th>
+<th>ধরন</th>
+<th>কাকে</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>৫০%</td>
+<td>actual</td>
+<td>team lead</td>
+</tr>
+<tr>
+<td>৮০%</td>
+<td>actual</td>
+<td>team + ops</td>
+</tr>
+<tr>
+<td>১০০%</td>
+<td>actual</td>
+<td>সবাই + ব্যবস্থাপক</td>
+</tr>
+<tr>
+<td>১০০%</td>
+<td><strong>forecast</strong></td>
+<td>team — মাস শেষের আগেই সতর্কতা</td>
+</tr>
+</tbody>
+</table>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="aws_2" name="__tabbed_3" type="radio" /><input id="gcp_2" name="__tabbed_3" type="radio" /><input id="azure_2" name="__tabbed_3" type="radio" /><input id="oci_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="aws_2">AWS</label><label for="gcp_2">GCP</label><label for="azure_2">Azure</label><label for="oci_2">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># budget.json</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>budget.json<span class="w"> </span><span class="s">&lt;&lt;'EOF'</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="s">{</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="s">  "BudgetName": "shopbd-monthly",</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="s">  "BudgetLimit": { "Amount": "100", "Unit": "USD" },</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="s">  "TimeUnit": "MONTHLY",</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="s">  "BudgetType": "COST"</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="s">}</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="s">EOF</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="c1"># notifications.json</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>notifications.json<span class="w"> </span><span class="s">&lt;&lt;'EOF'</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="s">[</span>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="s">  {</span>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="s">    "Notification": {</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="s">      "NotificationType": "ACTUAL",</span>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="s">      "ComparisonOperator": "GREATER_THAN",</span>
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="s">      "Threshold": 80,</span>
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="s">      "ThresholdType": "PERCENTAGE"</span>
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="s">    },</span>
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="s">    "Subscribers": [ { "SubscriptionType": "EMAIL", "Address": "ops@example.com" } ]</span>
+</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="s">  }</span>
+</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="s">]</span>
+</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a><span class="s">EOF</span>
+</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>
+</span><span id="__span-13-26"><a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a>aws<span class="w"> </span>budgets<span class="w"> </span>create-budget<span class="w"> </span>--account-id<span class="w"> </span><span class="m">123456789012</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-27"><a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a><span class="w">  </span>--budget<span class="w"> </span>file://budget.json<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-28"><a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a><span class="w">  </span>--notifications-with-subscribers<span class="w"> </span>file://notifications.json
+</span></code></pre></div>
+<p>Terraform:</p>
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_budgets_budget"</span><span class="w"> </span><span class="nv">"monthly"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span><span class="na">name</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-monthly"</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span><span class="na">budget_type</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"COST"</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">  </span><span class="na">limit_amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"100"</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">  </span><span class="na">limit_unit</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">"USD"</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">  </span><span class="na">time_unit</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"MONTHLY"</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">  </span><span class="nb">notification</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">    </span><span class="na">comparison_operator</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">"GREATER_THAN"</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">    </span><span class="na">threshold</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="m">80</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">    </span><span class="na">threshold_type</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s2">"PERCENTAGE"</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">    </span><span class="na">notification_type</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">"ACTUAL"</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="w">    </span><span class="na">subscriber_email_addresses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"ops@example.com"</span><span class="p">]</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="w">  </span><span class="nb">notification</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="w">    </span><span class="na">comparison_operator</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">"GREATER_THAN"</span>
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="w">    </span><span class="na">threshold</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="m">100</span>
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="w">    </span><span class="na">threshold_type</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s2">"PERCENTAGE"</span>
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="w">    </span><span class="na">notification_type</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">"FORECASTED"</span>
+</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="w">    </span><span class="na">subscriber_email_addresses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"ops@example.com"</span><span class="p">]</span>
+</span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-14-23"><a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><code>limit_amount</code> আপনার নিজের সিদ্ধান্ত — এটা দাম নয়, সীমা।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>gcloud<span class="w"> </span>billing<span class="w"> </span>budgets<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span>--billing-account<span class="o">=</span><span class="m">000000</span>-AAAAAA-BBBBBB<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span>--display-name<span class="o">=</span><span class="s2">"shopbd-monthly"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">  </span>--budget-amount<span class="o">=</span>100USD<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">  </span>--threshold-rule<span class="o">=</span><span class="nv">percent</span><span class="o">=</span><span class="m">0</span>.5<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">  </span>--threshold-rule<span class="o">=</span><span class="nv">percent</span><span class="o">=</span><span class="m">0</span>.8<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">  </span>--threshold-rule<span class="o">=</span><span class="nv">percent</span><span class="o">=</span><span class="m">1</span>.0
+</span></code></pre></div>
+<p>Terraform:</p>
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_billing_budget"</span><span class="w"> </span><span class="nv">"monthly"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span><span class="na">billing_account</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"000000-AAAAAA-BBBBBB"</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span><span class="na">display_name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-monthly"</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">  </span><span class="nb">budget_filter</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span><span class="na">projects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"projects/123456789012"</span><span class="p">]</span><span class="c1">      # project number</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">  </span><span class="nb">amount</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">    </span><span class="nb">specified_amount</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">      </span><span class="na">currency_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"USD"</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w">      </span><span class="na">units</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">"100"</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="w">  </span><span class="nb">threshold_rules</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="na">threshold_percent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">0.5</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="w">  </span><span class="nb">threshold_rules</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="na">threshold_percent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">0.8</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="w">  </span><span class="nb">threshold_rules</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="w">    </span><span class="na">threshold_percent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">1.0</span>
+</span><span id="__span-16-20"><a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="w">    </span><span class="na">spend_basis</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s2">"FORECASTED_SPEND"</span>
+</span><span id="__span-16-21"><a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-16-22"><a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>ডিফল্টে billing account-এর admin/user-রা email পান; আলাদা ঠিকানা বা Pub/Sub-এ পাঠাতে Cloud Monitoring notification channel সংযুক্ত করুন। Budget API সক্রিয় থাকা লাগে (<code>billingbudgets.googleapis.com</code>)।</p>
+</div>
+<div class="tabbed-block">
+<p>Portal: <strong>Cost Management → Budgets → Add</strong> — scope (subscription/resource group), মাসিক পরিমাণ, alert condition, email/action group।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>az<span class="w"> </span>consumption<span class="w"> </span>budget<span class="w"> </span>list<span class="w"> </span>-o<span class="w"> </span>table
+</span></code></pre></div>
+<p>Terraform (resource group-ভিত্তিক):</p>
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_consumption_budget_resource_group"</span><span class="w"> </span><span class="nv">"monthly"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span><span class="na">name</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-monthly"</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span><span class="na">resource_group_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.main.id</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">  </span><span class="na">amount</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="m">100</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">  </span><span class="na">time_grain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Monthly"</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">  </span><span class="nb">time_period</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">    </span><span class="na">start_date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2026-12-01T00:00:00Z"</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">  </span><span class="nb">notification</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="w">    </span><span class="na">enabled</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">    </span><span class="na">threshold</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="m">80</span>
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="w">    </span><span class="na">operator</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s2">"GreaterThan"</span>
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="w">    </span><span class="na">threshold_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Actual"</span>
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="w">    </span><span class="na">contact_emails</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"ops@example.com"</span><span class="p">]</span>
+</span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>
+</span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a><span class="w">  </span><span class="nb">notification</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a><span class="w">    </span><span class="na">enabled</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-18-22"><a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a><span class="w">    </span><span class="na">threshold</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="m">100</span>
+</span><span id="__span-18-23"><a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a><span class="w">    </span><span class="na">operator</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s2">"GreaterThan"</span>
+</span><span id="__span-18-24"><a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a><span class="w">    </span><span class="na">threshold_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Forecasted"</span>
+</span><span id="__span-18-25"><a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a><span class="w">    </span><span class="na">contact_emails</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"ops@example.com"</span><span class="p">]</span>
+</span><span id="__span-18-26"><a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-18-27"><a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><strong>Action group</strong> জুড়ে দিলে email ছাড়াও webhook/Logic App/Automation চালানো যায়।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># budget (target = compartment)</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>oci<span class="w"> </span>budgets<span class="w"> </span>budget<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.tenancy.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span>--amount<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">  </span>--reset-period<span class="w"> </span>MONTHLY<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">  </span>--target-type<span class="w"> </span>COMPARTMENT<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">  </span>--targets<span class="w"> </span><span class="s1">'["ocid1.compartment.oc1..example"]'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">  </span>--display-name<span class="w"> </span>shopbd-monthly
+</span></code></pre></div>
+<p>(<code>--compartment-id</code> এখানে <strong>tenancy OCID</strong> — budget tenancy-তেই থাকে।)</p>
+<p>Terraform:</p>
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"oci_budget_budget"</span><span class="w"> </span><span class="nv">"monthly"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">  </span><span class="na">compartment_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.tenancy_ocid</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">  </span><span class="na">amount</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="m">100</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">  </span><span class="na">reset_period</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">"MONTHLY"</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">  </span><span class="na">display_name</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-monthly"</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">  </span><span class="na">target_type</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"COMPARTMENT"</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">  </span><span class="na">targets</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nv">var.compartment_ocid</span><span class="p">]</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="p">}</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"oci_budget_alert_rule"</span><span class="w"> </span><span class="nv">"eighty"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="w">  </span><span class="na">budget_id</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">oci_budget_budget.monthly.id</span>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="w">  </span><span class="na">type</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s2">"ACTUAL"</span>
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="w">  </span><span class="na">threshold</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="m">80</span>
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="w">  </span><span class="na">threshold_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"PERCENTAGE"</span>
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="w">  </span><span class="na">recipients</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"ops@example.com"</span>
+</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="w">  </span><span class="na">message</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd has used 80% of its monthly budget"</span>
+</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Budget <strong>tag-ভিত্তিক</strong> (cost-tracking tag) target-ও হতে পারে।</p>
+</div>
+</div>
+</div>
+<hr />
+<h2 id="৫-anomaly-detection-ও-forecast">৫. Anomaly detection ও forecast<a class="headerlink" href="#৫-anomaly-detection-ও-forecast" title="Permanent link">&para;</a></h2>
+<p>Budget মাসিক সীমা দেখে; <strong>anomaly detection</strong> দেখে "আজকের খরচ হঠাৎ অস্বাভাবিক"। কেউ ভুলে বড় GPU VM চালু রেখে গেলে বা একটা loop-এ S3 request লক্ষ লক্ষ হলে — মাস শেষের আগেই ধরা পড়ে।</p>
+<table>
+<thead>
+<tr>
+<th>Cloud</th>
+<th>টুল</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AWS</td>
+<td><strong>Cost Anomaly Detection</strong> — monitor বানান (service/tag/account ভিত্তিক), subscription-এ email/SNS</td>
+</tr>
+<tr>
+<td>GCP</td>
+<td>Billing-এর anomaly/cost insights (FinOps hub), budget-এর forecast alert</td>
+</tr>
+<tr>
+<td>Azure</td>
+<td>Cost Management-এর <strong>anomaly alert</strong> (cost analysis ও Alerts)</td>
+</tr>
+<tr>
+<td>OCI</td>
+<td>Budget alert + Usage API-র daily ডেটা নিজের check; (সুবিধা Cost Analysis-এ বদলায়)</td>
+</tr>
+</tbody>
+</table>
+<p>নিজস্ব সহজ পদ্ধতি (সব cloud-এ): প্রতিদিনের খরচ export থেকে একটা ছোট script বা query — "গতকালের খরচ গত ৭ দিনের গড়ের দেড়গুণের বেশি হলে Slack-এ জানাও।"</p>
+<hr />
+<h2 id="৬-pricing-model-ও-commitment">৬. Pricing model ও commitment<a class="headerlink" href="#৬-pricing-model-ও-commitment" title="Permanent link">&para;</a></h2>
+<p>একই VM তিন ভাবে কেনা যায়:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>কী</th>
+<th>ছাড়ের ধারণা</th>
+<th>ঝুঁকি</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>On-demand</strong></td>
+<td>ঘণ্টা/সেকেন্ডে, কোনো প্রতিশ্রুতি নেই</td>
+<td>কোনো ছাড় নেই</td>
+<td>সবচেয়ে বেশি দর</td>
+</tr>
+<tr>
+<td><strong>Commitment</strong> (Reserved/Savings Plan/CUD)</td>
+<td>১ বা ৩ বছরের জন্য ব্যবহারের প্রতিশ্রুতি</td>
+<td>বড় ছাড়</td>
+<td>ব্যবহার কমে গেলেও টাকা দিতে হয়</td>
+</tr>
+<tr>
+<td><strong>Spot / Preemptible</strong></td>
+<td>cloud-এর অব্যবহৃত capacity, যেকোনো সময় কেড়ে নিতে পারে</td>
+<td>সবচেয়ে বড় ছাড়</td>
+<td>হঠাৎ বন্ধ হতে পারে</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">উপমা</p>
+<p>On-demand = রিকশা ভাড়া (যখন দরকার)। Commitment = মাসিক পাস কেনা (নিয়মিত যাতায়াতে সস্তা, কিন্তু না গেলেও টাকা গেল)। Spot = ফাঁকা সিট — সস্তা, কিন্তু কর্তৃপক্ষ বলতে পারে "নেমে যান"।</p>
+</div>
+<p><strong>সোনালি নিয়ম:</strong> commitment শুধু <strong>স্থির ভিত্তি-ব্যবহার (baseline)</strong>-এর জন্য — যেমন যে VM ২৪×৭ চলবেই। ওঠানামা-করা অংশ on-demand বা autoscaling-এ, ব্যাচ/ফল্ট-সহনশীল কাজ spot-এ।</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph LOAD["shopbd-এর দৈনিক লোড"]
+        S["Spot / Preemptible&lt;br/&gt;ব্যাচ কাজ (nightly report)"]
+        O["On-demand / autoscale&lt;br/&gt;ওঠানামা (সন্ধ্যার peak)"]
+        C["Commitment&lt;br/&gt;স্থির baseline (API, DB)"]
+    end
+    S --- O --- C</code></pre>
+<h3 id="পরতট-cloud-এর-commitment">প্রতিটি cloud-এর commitment<a class="headerlink" href="#পরতট-cloud-এর-commitment" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="aws_3" name="__tabbed_4" type="radio" /><input id="gcp_3" name="__tabbed_4" type="radio" /><input id="azure_3" name="__tabbed_4" type="radio" /><input id="oci_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="aws_3">AWS</label><label for="gcp_3">GCP</label><label for="azure_3">Azure</label><label for="oci_3">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>বিকল্প</th>
+<th>বৈশিষ্ট্য</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Compute Savings Plans</strong></td>
+<td>প্রতি ঘণ্টায় একটা খরচের প্রতিশ্রুতি; EC2 (যেকোনো family/region/OS), Fargate, Lambda — সবচেয়ে নমনীয়</td>
+</tr>
+<tr>
+<td><strong>EC2 Instance Savings Plans</strong></td>
+<td>নির্দিষ্ট family + region; ছাড় বেশি, নমনীয়তা কম</td>
+</tr>
+<tr>
+<td><strong>Reserved Instances (RI)</strong></td>
+<td>নির্দিষ্ট instance type; Standard বা Convertible; RDS/ElastiCache/OpenSearch-এও আছে</td>
+</tr>
+<tr>
+<td><strong>Spot Instances</strong></td>
+<td>spare capacity; ২ মিনিটের আগাম নোটিস; Auto Scaling/ECS/EKS/Batch-এ মিশানো যায়</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>মেয়াদ ১ বা ৩ বছর; payment: No upfront / Partial / All upfront।</li>
+<li>Console: <strong>Billing and Cost Management → Savings Plans</strong> — <em>Recommendations</em> ও <em>Purchase</em>।</li>
+<li>Database-এর জন্য RDS <strong>Reserved Instances</strong> (Savings Plan DB-তে সীমিত)।</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>aws<span class="w"> </span>savingsplans<span class="w"> </span>describe-savings-plans
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>aws<span class="w"> </span>ce<span class="w"> </span>get-savings-plans-purchase-recommendation<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">  </span>--savings-plans-type<span class="w"> </span>COMPUTE_SP<span class="w"> </span>--term-in-years<span class="w"> </span>ONE_YEAR<span class="w"> </span>--payment-option<span class="w"> </span>NO_UPFRONT<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">  </span>--lookback-period-in-days<span class="w"> </span>THIRTY_DAYS
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>বিকল্প</th>
+<th>বৈশিষ্ট্য</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Committed Use Discounts (CUD) — resource-based</strong></td>
+<td>নির্দিষ্ট region-এ vCPU/memory/GPU পরিমাণের প্রতিশ্রুতি</td>
+</tr>
+<tr>
+<td><strong>CUD — spend-based (flexible)</strong></td>
+<td>নির্দিষ্ট খরচের প্রতিশ্রুতি; একাধিক service/machine type-এ প্রযোজ্য (Compute, Cloud SQL ইত্যাদির কিছু)</td>
+</tr>
+<tr>
+<td><strong>Sustained Use Discounts</strong></td>
+<td>মাসে অনেকক্ষণ চালালে নিজে নিজে ছাড় — <strong>শুধু কিছু পুরনো machine family-তে</strong>; নতুন family-তে নেই</td>
+</tr>
+<tr>
+<td><strong>Spot VMs</strong></td>
+<td>সস্তা, যেকোনো সময় preempt; অল্প সময়ের নোটিস</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>মেয়াদ ১ বা ৩ বছর। Billing account → <strong>Commitments</strong>।</li>
+<li>CUD <strong>billing account/project</strong>-এ কেনা হয়, নির্দিষ্ট region-এ (resource-based হলে)।</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>commitments<span class="w"> </span>list
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>create<span class="w"> </span>shopbd-batch<span class="w"> </span>--zone<span class="o">=</span>asia-south1-a<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">  </span>--provisioning-model<span class="o">=</span>SPOT<span class="w"> </span>--instance-termination-action<span class="o">=</span>STOP
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>বিকল্প</th>
+<th>বৈশিষ্ট্য</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Reservations (Reserved VM Instances ইত্যাদি)</strong></td>
+<td>নির্দিষ্ট VM size/region, ১ বা ৩ বছর; SQL, Cosmos DB, Storage ইত্যাদিতেও</td>
+</tr>
+<tr>
+<td><strong>Savings plan for compute</strong></td>
+<td>প্রতি ঘণ্টায় খরচের প্রতিশ্রুতি; VM, App Service, Functions Premium, Container Instances ইত্যাদিতে নমনীয়</td>
+</tr>
+<tr>
+<td><strong>Azure Hybrid Benefit</strong></td>
+<td>আপনার নিজস্ব Windows Server/SQL Server license থাকলে ছাড়</td>
+</tr>
+<tr>
+<td><strong>Spot VMs</strong></td>
+<td>সস্তা, eviction হতে পারে (দাম বা capacity-র কারণে)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Portal: <strong>Reservations</strong> ও <strong>Savings plans</strong> blade; কেনার আগে Advisor-এর সুপারিশ দেখুন।</li>
+<li>Reservation-এ <strong>exchange/refund</strong> সীমিত শর্তে আছে — নিয়ম পরিবর্তনশীল, ডকুমেন্টেশন পড়ুন।</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>az<span class="w"> </span>reservations<span class="w"> </span>reservation-order<span class="w"> </span>list<span class="w"> </span>-o<span class="w"> </span>table
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>az<span class="w"> </span>vm<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>shopbd-batch<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-prod-rg<span class="w"> </span>--image<span class="w"> </span>Ubuntu2404<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">  </span>--priority<span class="w"> </span>Spot<span class="w"> </span>--eviction-policy<span class="w"> </span>Deallocate<span class="w"> </span>--max-price<span class="w"> </span>-1
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>বিকল্প</th>
+<th>বৈশিষ্ট্য</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pay As You Go</strong></td>
+<td>ব্যবহার অনুযায়ী, প্রতিশ্রুতি নেই</td>
+</tr>
+<tr>
+<td><strong>Universal Credits (Annual/Monthly Flex)</strong></td>
+<td>নির্দিষ্ট পরিমাণ credit-এর প্রতিশ্রুতি — সব OCI service-এ খরচ করা যায় (নির্দিষ্ট service-এর জন্য নয়)</td>
+</tr>
+<tr>
+<td><strong>Preemptible instances</strong></td>
+<td>সস্তা, যেকোনো সময় বন্ধ হতে পারে; ব্যাচ/স্টেটলেস কাজের জন্য</td>
+</tr>
+<tr>
+<td><strong>Flex shapes</strong></td>
+<td>OCPU ও memory আলাদা করে ঠিক করুন → বাড়তি অব্যবহৃত resource কম</td>
+</tr>
+</tbody>
+</table>
+<p>OCI-র নমনীয় commitment মডেল ("Universal Credits") মানে আলাদা Reserved Instance পরিচালনা লাগে না। Oracle-এর license (BYOL) থাকলে সেটাও ছাড়ের উৎস। বিস্তারিত দর ও শর্ত Oracle সেলস/ডকুমেন্টেশনের কাছে।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>oci<span class="w"> </span>compute<span class="w"> </span>instance<span class="w"> </span>launch<span class="w"> </span>--availability-domain<span class="w"> </span><span class="s2">"&lt;AD-name&gt;"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">  </span>--shape<span class="w"> </span>VM.Standard.E4.Flex<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">  </span>--shape-config<span class="w"> </span><span class="s1">'{"ocpus":1,"memoryInGBs":8}'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="w">  </span>--subnet-id<span class="w"> </span>ocid1.subnet.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="w">  </span>--image-id<span class="w"> </span>ocid1.image.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="w">  </span>--preemptible-instance-config<span class="w"> </span><span class="s1">'{"preemptionAction":{"type":"TERMINATE","preserveBootVolume":false}}'</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="commitment-কনর-নযম">Commitment কেনার নিয়ম<a class="headerlink" href="#commitment-কনর-নযম" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>আগে rightsizing</strong> — অপচয়ের ওপর commitment কিনলে অপচয় ১–৩ বছরের জন্য আটকে যায়।</li>
+<li><strong>৩০–৯০ দিনের ব্যবহার</strong> দেখুন (cloud-এর recommendation tool)।</li>
+<li><strong>ছোট শুরু</strong> — baseline-এর ~৫০–৭০% দিয়ে; পরে বাড়ান।</li>
+<li><strong>১ বছর দিয়ে শুরু</strong>, ব্যবহার স্থির হলে ৩ বছর।</li>
+<li>নমনীয় টাইপ (Compute SP / flexible CUD / Azure savings plan) বাছুন যদি instance type বদলাবার সম্ভাবনা থাকে।</li>
+<li>Commitment-এর <strong>কভারেজ ও utilization</strong> মাসে একবার মেপে দেখুন।</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Spot/Preemptible কখন নয়</p>
+<p>Database, একমাত্র API server, state-ধারী কাজ — যা হঠাৎ বন্ধ হলে ক্ষতি। Spot দিন stateless, পুনরায় চালানো যায় এমন কাজে: batch, CI runner, image processing, dev/test, Kubernetes worker-এর একাংশ।</p>
+</div>
+<hr />
+<h2 id="৭-rightsizing-ও-idle-resource">৭. Rightsizing ও idle resource<a class="headerlink" href="#৭-rightsizing-ও-idle-resource" title="Permanent link">&para;</a></h2>
+<p><strong>Rightsizing</strong> = প্রকৃত ব্যবহার দেখে resource-এর আকার ঠিক করা। অনেক VM-এর CPU ১০%-এর নিচে ঘোরে অথচ বড় instance কেনা — এটা সবচেয়ে সাধারণ অপচয়।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:4"><input checked="checked" id="aws_4" name="__tabbed_5" type="radio" /><input id="gcp_4" name="__tabbed_5" type="radio" /><input id="azure_4" name="__tabbed_5" type="radio" /><input id="oci_4" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="aws_4">AWS</label><label for="gcp_4">GCP</label><label for="azure_4">Azure</label><label for="oci_4">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li><strong>AWS Compute Optimizer</strong> — EC2, EBS, Lambda, ECS-on-Fargate-এর জন্য ML-ভিত্তিক সুপারিশ (কমান/বাড়ান)</li>
+<li><strong>Trusted Advisor</strong> — idle load balancer, অব্যবহৃত EBS, idle RDS ইত্যাদি (পূর্ণ check Business/Enterprise support-এ)</li>
+<li><strong>Cost Explorer → Rightsizing recommendations</strong></li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>aws<span class="w"> </span>compute-optimizer<span class="w"> </span>get-ec2-instance-recommendations
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>aws<span class="w"> </span>ec2<span class="w"> </span>describe-volumes<span class="w"> </span>--filters<span class="w"> </span><span class="nv">Name</span><span class="o">=</span>status,Values<span class="o">=</span>available<span class="w">   </span><span class="c1"># কোনো VM-এ লাগানো নেই</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>aws<span class="w"> </span>ec2<span class="w"> </span>describe-addresses<span class="w"> </span>--query<span class="w"> </span><span class="s1">'Addresses[?AssociationId==`null`]'</span><span class="w">   </span><span class="c1"># অব্যবহৃত Elastic IP</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Recommender / Active Assist</strong> — idle VM, VM rightsizing, idle disk/IP, idle Cloud SQL ইত্যাদির সুপারিশ</li>
+<li><strong>FinOps hub</strong> — সুপারিশ + সম্ভাব্য সাশ্রয় একসাথে</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>gcloud<span class="w"> </span>recommender<span class="w"> </span>recommendations<span class="w"> </span>list<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">  </span>--project<span class="o">=</span>my-project-id<span class="w"> </span>--location<span class="o">=</span>asia-south1-a<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">  </span>--recommender<span class="o">=</span>google.compute.instance.MachineTypeRecommender
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>disks<span class="w"> </span>list<span class="w"> </span>--filter<span class="o">=</span><span class="s2">"-users:*"</span><span class="w">          </span><span class="c1"># কোনো VM-এ লাগানো নেই</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>addresses<span class="w"> </span>list<span class="w"> </span>--filter<span class="o">=</span><span class="s2">"status=RESERVED"</span><span class="w">  </span><span class="c1"># অব্যবহৃত static IP</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Azure Advisor</strong> → <strong>Cost</strong> — VM shutdown/resize, অব্যবহৃত public IP/disk, reservation সুপারিশ</li>
+<li>Cost Management-এর "<strong>Idle</strong>" ও "<strong>Underutilized</strong>" সংকেত</li>
+<li><strong>Azure Workbooks</strong> — নিজস্ব report</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>az<span class="w"> </span>advisor<span class="w"> </span>recommendation<span class="w"> </span>list<span class="w"> </span>--category<span class="w"> </span>Cost<span class="w"> </span>-o<span class="w"> </span>table
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>az<span class="w"> </span>disk<span class="w"> </span>list<span class="w"> </span>--query<span class="w"> </span><span class="s2">"[?managedBy==null].{name:name,rg:resourceGroup,size:diskSizeGb}"</span><span class="w"> </span>-o<span class="w"> </span>table
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>az<span class="w"> </span>network<span class="w"> </span>public-ip<span class="w"> </span>list<span class="w"> </span>--query<span class="w"> </span><span class="s2">"[?ipConfiguration==null].name"</span><span class="w"> </span>-o<span class="w"> </span>tsv
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Cloud Advisor</strong> — compute/block volume/load balancer/ডেটাবেসের কম-ব্যবহারের সুপারিশ</li>
+<li><strong>Flex shape</strong> — OCPU/memory সরাসরি ঠিক করে "ঠিক-যতটুকু" নিন</li>
+<li><strong>OCI Monitoring</strong> metric দেখে নিজের query</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>oci<span class="w"> </span>bv<span class="w"> </span>volume<span class="w"> </span>list<span class="w"> </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span>--lifecycle-state<span class="w"> </span>AVAILABLE
+</span></code></pre></div>
+<p>Cloud Advisor-এর সুপারিশ Console-এ <strong>Governance &amp; Administration → Cloud Advisor</strong>-এ দেখুন। Block volume <code>AVAILABLE</code> মানে কোনো instance-এ লাগানো নেই কিনা তা volume attachment দেখে যাচাই করুন।</p>
+</div>
+</div>
+</div>
+<h3 id="সবচয-সধরণ-অপচয--কলনআপ-তলক">সবচেয়ে সাধারণ অপচয় — ক্লিনআপ তালিকা<a class="headerlink" href="#সবচয-সধরণ-অপচয--কলনআপ-তলক" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>অপচয়</th>
+<th>কীভাবে ধরবেন</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>বন্ধ VM-এর সাথে লাগানো disk, আনঅ্যাটাচড disk</td>
+<td>"available/unattached" ফিল্টার</td>
+</tr>
+<tr>
+<td>পুরনো snapshot/image/backup</td>
+<td>বয়স অনুযায়ী তালিকা, retention policy</td>
+</tr>
+<tr>
+<td>ব্যবহারহীন public/static IP</td>
+<td>"unassociated" ফিল্টার</td>
+</tr>
+<tr>
+<td>Idle load balancer (কোনো target নেই)</td>
+<td>request-count শূন্য</td>
+</tr>
+<tr>
+<td>NAT gateway যা ব্যবহার হয় না</td>
+<td>bytes processed শূন্য</td>
+</tr>
+<tr>
+<td>Dev/staging ২৪×৭ চলছে</td>
+<td>schedule করে রাত-ছুটিতে বন্ধ</td>
+</tr>
+<tr>
+<td>বড় size VM/DB কম CPU-তে</td>
+<td>rightsizing recommendation</td>
+</tr>
+<tr>
+<td>Log অনির্দিষ্টকাল জমা</td>
+<td>retention সীমা</td>
+</tr>
+<tr>
+<td>পুরনো test project/resource group</td>
+<td>ownership tag + মেয়াদ</td>
+</tr>
+<tr>
+<td>Over-provisioned IOPS/premium disk</td>
+<td>metric মিলিয়ে disk tier কমান</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Dev/Staging বন্ধ রাখার সময়সূচি</p>
+<p>Dev environment রাত ১০টা–সকাল ৮টা এবং শুক্র-শনিবার বন্ধ রাখলে compute-এর অর্ধেকেরও বেশি সময় বাঁচে। Azure VM-এ <strong>Auto-shutdown</strong>, GCP <strong>instance schedule</strong>, AWS <strong>Instance Scheduler</strong> বা EventBridge Scheduler + Lambda, OCI-তে scheduled function/script। মনে রাখুন: VM বন্ধ করলেও <strong>disk, IP, license-এর খরচ চলতে থাকে</strong> — কী কী বিল হয় তা cloud ও shape ভেদে আলাদা, pricing পাতায় দেখুন।</p>
+</div>
+<hr />
+<h2 id="৮-storage-এর-খরচ">৮. Storage-এর খরচ<a class="headerlink" href="#৮-storage-এর-খরচ" title="Permanent link">&para;</a></h2>
+<p>Storage সস্তা মনে হয়, কিন্তু জমে জমে বড় হয়। খরচ আসে: <strong>GB × মাস</strong>, <strong>storage class</strong>, <strong>request/operation সংখ্যা</strong>, <strong>retrieval ফি</strong> (ঠান্ডা class থেকে ফেরত আনলে), <strong>replication</strong>, <strong>snapshot</strong>।</p>
+<ul>
+<li><strong>Storage class/tier</strong> ঠিক করুন — ঘন ঘন ব্যবহৃত ডেটা Standard/Hot, কম ব্যবহৃত Infrequent/Cool, আর্কাইভ Archive। বিস্তারিত: <a href="../06-storage/">06 · Storage</a>।</li>
+<li><strong>Lifecycle policy</strong> দিয়ে স্বয়ংক্রিয়: ৩০ দিন পর ঠান্ডা class-এ, ৩৬৫ দিন পর archive/মোছা।</li>
+<li><strong>Versioning</strong> চালু থাকলে পুরনো version-ও বিল হয় — noncurrent version মোছার নিয়ম দিন।</li>
+<li><strong>অসম্পূর্ণ multipart upload</strong> (AWS) জমে থাকে — lifecycle-এ পরিষ্কার করুন।</li>
+<li><strong>Snapshot/backup</strong> — সংখ্যা ও বয়স সীমা, ডুপ্লিকেট নয়।</li>
+<li><strong>ছোট ফাইল</strong> অনেক হলে request-খরচ বাড়ে; ঠান্ডা class-এ ন্যূনতম আকার/ন্যূনতম সংরক্ষণ-কাল (minimum storage duration) আছে — আগে মুছলেও পুরো মেয়াদের টাকা।</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:4"><input checked="checked" id="aws_5" name="__tabbed_6" type="radio" /><input id="gcp_5" name="__tabbed_6" type="radio" /><input id="azure_5" name="__tabbed_6" type="radio" /><input id="oci_5" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="aws_5">AWS</label><label for="gcp_5">GCP</label><label for="azure_5">Azure</label><label for="oci_5">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-json highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="p">{</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">  </span><span class="nt">"Rules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">      </span><span class="nt">"ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shopbd-images-tiering"</span><span class="p">,</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="w">      </span><span class="nt">"Status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enabled"</span><span class="p">,</span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="w">      </span><span class="nt">"Filter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"Prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uploads/"</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="w">      </span><span class="nt">"Transitions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"Days"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="nt">"StorageClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDARD_IA"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="w">      </span><span class="nt">"NoncurrentVersionExpiration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"NoncurrentDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="w">      </span><span class="nt">"AbortIncompleteMultipartUpload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"DaysAfterInitiation"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a><span class="w">  </span><span class="p">]</span>
+</span><span id="__span-29-12"><a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>aws<span class="w"> </span>s3api<span class="w"> </span>put-bucket-lifecycle-configuration<span class="w"> </span>--bucket<span class="w"> </span>shopbd-images<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">  </span>--lifecycle-configuration<span class="w"> </span>file://lifecycle.json
+</span></code></pre></div>
+<p><strong>S3 Intelligent-Tiering</strong> — প্রবেশাধিকার-ধরন অনির্দিষ্ট হলে নিজে tier বদলায়।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># lifecycle.json: 30 দিন পর Nearline, 365 দিন পর মুছে ফেলা</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>update<span class="w"> </span>gs://shopbd-images<span class="w"> </span>--lifecycle-file<span class="o">=</span>lifecycle.json
+</span></code></pre></div>
+<p><strong>Autoclass</strong> চালু করলে GCS নিজে ব্যবহার দেখে class বদলায়।</p>
+</div>
+<div class="tabbed-block">
+<p>Storage account-এর <strong>Lifecycle management</strong> নিয়ম — Hot → Cool → Cold → Archive, এবং মোছা। Portal: Storage account → <strong>Lifecycle management</strong>। Archive tier-এ blob "rehydrate" করতে সময় ও খরচ লাগে।</p>
+</div>
+<div class="tabbed-block">
+<p>Object Storage <strong>Lifecycle policy</strong> — Standard → Infrequent Access → Archive, ও মোছা। <strong>Auto-tiering</strong> bucket-এ চালু করা যায়। Archive থেকে "restore" করতে সময় লাগে এবং আগে-মোছার ন্যূনতম মেয়াদ আছে।</p>
+</div>
+</div>
+</div>
+<hr />
+<h2 id="৯-network-ও-egress-data-transfer-খরচ">৯. Network ও egress (data transfer) খরচ<a class="headerlink" href="#৯-network-ও-egress-data-transfer-খরচ" title="Permanent link">&para;</a></h2>
+<p>Cloud-এর "লুকোনো" খরচ — ডেটা <strong>ঢোকা প্রায় ফ্রি</strong>, কিন্তু <strong>বেরোনো (egress)</strong> টাকার।</p>
+<table>
+<thead>
+<tr>
+<th>ট্রাফিক</th>
+<th>সাধারণ নিয়ম (সব cloud-এ মোটামুটি)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Internet → cloud (ingress)</td>
+<td>সাধারণত ফ্রি</td>
+</tr>
+<tr>
+<td>Cloud → Internet (egress)</td>
+<td>প্রতি GB চার্জ (মাসে কিছু ফ্রি অংশ থাকে)</td>
+</tr>
+<tr>
+<td>একই zone/AZ-এর ভেতর (private IP)</td>
+<td>সাধারণত ফ্রি</td>
+</tr>
+<tr>
+<td>এক AZ/zone থেকে আরেক zone (একই region)</td>
+<td>কিছু cloud চার্জ করে — pricing দেখুন</td>
+</tr>
+<tr>
+<td>এক region থেকে আরেক region</td>
+<td>চার্জ</td>
+</tr>
+<tr>
+<td>Cloud-এর নিজস্ব সেবার সাথে (যেমন S3 থেকে একই region-এ EC2)</td>
+<td>প্রায়ই ফ্রি</td>
+</tr>
+<tr>
+<td>NAT gateway/Load balancer পেরোলে</td>
+<td><strong>processing চার্জ</strong> আলাদা</td>
+</tr>
+</tbody>
+</table>
+<p><strong>shopbd-র বাস্তব উদাহরণ:</strong> ছবি-ভরা ওয়েবসাইট — ব্যবহারকারী প্রতিবার product image ডাউনলোড করলে সেটা egress। হাজার হাজার ভিজিটর = বড় egress বিল।</p>
+<h3 id="egress-কমনর-উপয">egress কমানোর উপায়<a class="headerlink" href="#egress-কমনর-উপয" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>CDN ব্যবহার</strong> — ছবি edge থেকে যায়; CDN-এর egress দর সাধারণত সস্তা এবং origin-এ আঘাত কমে (<a href="../10-load-balancing-scaling-dns-cdn/">10 · Load Balancing, DNS ও CDN</a>)।</li>
+<li><strong>Compression ও আকার</strong> — WebP/AVIF ছবি, gzip/brotli।</li>
+<li><strong>Compute ও ডেটা একই region-এ</strong> — cross-region traffic এড়ান।</li>
+<li><strong>Private/Gateway endpoint</strong> — S3/GCS/Storage-এ যাওয়া NAT-এর ভেতর দিয়ে নয় (<a href="../05-networking/">05 · Networking</a>)।</li>
+<li><strong>NAT gateway-র ব্যবহার কমান</strong> — প্রতি-GB processing চার্জ; AWS-এ S3-এর জন্য Gateway endpoint ফ্রি।</li>
+<li><strong>Caching</strong> — browser/CDN cache header।</li>
+<li><strong>ডেটা-ভারী কাজ ডেটার কাছে চালান</strong> — বড় ডেটা বের করে এনে প্রসেস নয়।</li>
+</ol>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:4"><input checked="checked" id="aws_6" name="__tabbed_7" type="radio" /><input id="gcp_6" name="__tabbed_7" type="radio" /><input id="azure_6" name="__tabbed_7" type="radio" /><input id="oci_6" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="aws_6">AWS</label><label for="gcp_6">GCP</label><label for="azure_6">Azure</label><label for="oci_6">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>Egress internet-এ প্রতি-GB; মাসে অল্প একটা ফ্রি অংশ আছে। CloudFront থেকে ডেলিভারি সাধারণত origin-থেকে-সরাসরির চেয়ে সস্তা, এবং <strong>origin → CloudFront ট্রান্সফার ফ্রি</strong>।</li>
+<li><strong>Cross-AZ</strong> ট্রাফিক চার্জযোগ্য — multi-AZ architecture-এ বিবেচনা করুন।</li>
+<li><strong>NAT Gateway</strong>: ঘণ্টা + প্রতি-GB — বড় অপ্রত্যাশিত বিলের পরিচিত কারণ।</li>
+<li>S3 <strong>Gateway VPC endpoint</strong> ফ্রি; Interface endpoint-এ ঘণ্টা ও প্রতি-GB।</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>Network Service Tiers</strong>: Premium (Google-এর backbone, দ্রুত, দামি) বনাম Standard (সস্তা)।</li>
+<li>Internet egress প্রতি-GB; একই region-এ zone-এর মধ্যে ট্রাফিক চার্জ হতে পারে; Cloud CDN/Media CDN edge-egress কমায়।</li>
+<li><strong>Cloud NAT</strong>: ঘণ্টা ও প্রতি-GB processing।</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>Egress internet-এ প্রতি-GB; মাসে প্রথম কিছু GB ফ্রি (সর্বশেষ নিয়ম pricing পাতায়)।</li>
+<li><strong>Azure Front Door/CDN</strong> edge delivery।</li>
+<li><strong>NAT Gateway</strong>/<strong>Azure Firewall</strong>-এ ঘণ্টা ও প্রতি-GB; Private Endpoint-এও ডেটা-প্রসেসিং চার্জ আছে।</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>OCI-এর egress নীতি তুলনামূলক উদার — প্রতি মাসে একটা বড় পরিমাণ outbound ডেটা ফ্রি (সঠিক পরিমাণ ও শর্ত <a href="https://www.oracle.com/cloud/networking/pricing/">oracle.com/cloud/networking/pricing</a>-এ দেখুন), তারপর প্রতি-GB।</li>
+<li>Region-এর মধ্যে/internal ট্রাফিকের নিয়ম আলাদা; <strong>FastConnect</strong> ও <strong>Service Gateway</strong> (Object Storage-এ নিরাপদ, NAT ছাড়া রুট) ব্যবহার করুন।</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Cloud ছাড়ার সময় egress</p>
+<p>ইউরোপের Data Act ও প্রতিযোগিতার চাপে কয়েকটি বড় cloud provider cloud ছেড়ে যাওয়া গ্রাহকদের জন্য নির্দিষ্ট শর্তে ডেটা-ট্রান্সফার ফি মওকুফের কর্মসূচি চালু করেছে — শর্ত ও প্রযোজ্যতা সংশ্লিষ্ট provider-এর ডকুমেন্টেশনে দেখুন।</p>
+</div>
+<hr />
+<h2 id="১০-free-tier-ও-trial">১০. Free tier ও trial<a class="headerlink" href="#১০-free-tier-ও-trial" title="Permanent link">&para;</a></h2>
+<p>প্রতিটি cloud নতুন ব্যবহারকারীকে কিছু ফ্রি সুযোগ দেয় — শেখা ও ছোট প্রজেক্টের জন্য দারুণ। কিন্তু <strong>শর্ত বদলায়</strong>; সবসময় অফিশিয়াল পাতা দেখুন।</p>
+<table>
+<thead>
+<tr>
+<th>ধরন</th>
+<th>অর্থ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Free trial credit</strong></td>
+<td>নির্দিষ্ট মেয়াদে (যেমন ৩০/৯০ দিন বা কয়েক মাস) credit; শেষ হলে বন্ধ বা paid-এ যেতে হবে</td>
+</tr>
+<tr>
+<td><strong>Always free</strong></td>
+<td>শর্তসাপেক্ষে সীমার ভেতরে চিরকাল ফ্রি (ছোট VM, কিছু GB storage, কিছু function call)</td>
+</tr>
+<tr>
+<td><strong>12-month free</strong></td>
+<td>প্রথম ১২ মাস নির্দিষ্ট সীমা পর্যন্ত ফ্রি (কিছু cloud)</td>
+</tr>
+</tbody>
+</table>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:4"><input checked="checked" id="aws_7" name="__tabbed_8" type="radio" /><input id="gcp_7" name="__tabbed_8" type="radio" /><input id="azure_7" name="__tabbed_8" type="radio" /><input id="oci_7" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="aws_7">AWS</label><label for="gcp_7">GCP</label><label for="azure_7">Azure</label><label for="oci_7">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>AWS Free Tier</strong>: নতুন account-এ credit-ভিত্তিক free plan ও কিছু service-এর "always free" সীমা (যেমন Lambda, DynamoDB-র অংশ) এবং কয়েকটি short-term trial। Free plan-এর নিয়ম, মেয়াদ ও কোন service অন্তর্ভুক্ত — সময়ের সাথে বদলেছে; <a href="https://aws.amazon.com/free/">aws.amazon.com/free</a> দেখুন। Billing console-এর <strong>Free Tier</strong> পাতায় বর্তমান ব্যবহার দেখা যায়, আর budget alert সেট করুন।</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Free Trial</strong> (নতুন গ্রাহকের credit, নির্দিষ্ট মেয়াদ) + <strong>Always Free</strong> (নির্দিষ্ট region ও সীমায় — যেমন ছোট VM, কিছু storage, Cloud Run/Functions-এর request, BigQuery-র মাসিক query সীমা)। Trial-এ billing account যুক্ত হলেও পরীক্ষামূলক account সীমিত — paid-এ upgrade না করলে খরচ হয় না। <a href="https://cloud.google.com/free">cloud.google.com/free</a>।</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Azure free account</strong>: নতুন গ্রাহকের জন্য একটা credit (নির্দিষ্ট দিনের জন্য), কিছু service ১২ মাস ফ্রি, আর অনেক service <strong>always free</strong> সীমায়। Credit শেষ বা সময় শেষ হলে paid-এ upgrade না করলে resource বন্ধ হয়ে যায়। <a href="https://azure.microsoft.com/free/">azure.microsoft.com/free</a>।</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Free Trial</strong> (credit, নির্দিষ্ট মেয়াদ) + <strong>Always Free</strong> — Ampere A1 (Arm) compute-এর সীমিত OCPU/memory, ছোট AMD VM, Autonomous Database, block ও object storage-এর কিছু অংশ, ও load balancer/ডেটা ট্রান্সফারের নির্দিষ্ট ভাতা। Always Free resource সাধারণত <strong>home region</strong>-এ। <a href="https://www.oracle.com/cloud/free/">oracle.com/cloud/free</a>।</p>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Free tier-এর ফাঁদ</p>
+<ul>
+<li>Free সীমা পেরোলে নিঃশব্দে বিল শুরু — <strong>প্রথম দিনেই budget alert</strong>।</li>
+<li>Free tier-এর resource ভুলে গেলে (বিশেষ করে trial শেষে paid-এ রূপান্তর) বিল আসে।</li>
+<li>এক ধরনের ফ্রি সীমা অন্য সেবায় প্রযোজ্য নয়; মেয়াদ ও শর্ত আলাদা।</li>
+<li>শিখতে গিয়ে বানানো resource কাজ শেষে <strong>মুছে দিন</strong> (<code>terraform destroy</code>)।</li>
+</ul>
+</div>
+<hr />
+<h2 id="১১-সথপতযগত-খরচ-সদধনত">১১. স্থাপত্যগত খরচ-সিদ্ধান্ত<a class="headerlink" href="#১১-সথপতযগত-খরচ-সদধনত" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Autoscaling</strong> — রাতে/কম লোডে ছোট, peak-এ বড় (<a href="../10-load-balancing-scaling-dns-cdn/">10 · Load Balancing ও Scaling</a>)। ২৪×৭ peak-এর আকারে চালানো অপচয়।</li>
+<li><strong>Serverless</strong> — কম/অনিয়মিত ট্রাফিকে সস্তা (ব্যবহারে-টাকা); স্থির, ভারী, ২৪×৭ কাজে VM/container কখনো সস্তা। দুই দিকেই হিসাব করুন (<a href="../09-serverless/">09 · Serverless</a>)।</li>
+<li><strong>Managed বনাম self-managed</strong> — Managed database বাড়তি খরচ, কিন্তু আপনার সময় ও ঝুঁকি বাঁচায়। শুধু "সস্তা" দেখে নিজে চালানো প্রায়ই ভুল।</li>
+<li><strong>Multi-AZ/HA সবখানে নয়</strong> — prod-এ HA দরকার, dev-এ নয়।</li>
+<li><strong>Arm-ভিত্তিক instance</strong> (AWS Graviton, GCP Axion/Tau T2A, Azure Cobalt/Ampere, OCI Ampere A1) — সাধারণত একই কাজে কম খরচ; আপনার সফটওয়্যার Arm-এ চলে কিনা যাচাই করুন।</li>
+<li><strong>Log ও metric</strong> — সব log চিরকাল নয়; sampling, retention, কোন log কোথায় (<a href="../12-observability/">12 · Monitoring</a>)।</li>
+<li><strong>Region নির্বাচন</strong> — একই service-এর দাম region-ভেদে আলাদা; কিন্তু latency ও data-residency আগে।</li>
+</ul>
+<hr />
+<h2 id="১২-cost-checklist">১২. Cost checklist<a class="headerlink" href="#১২-cost-checklist" title="Permanent link">&para;</a></h2>
+<p>প্রতি মাসে/ত্রৈমাসিকে এই তালিকা ধরে এগোন:</p>
+<p><strong>Visibility</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Billing export চালু (CUR / BigQuery / Azure export / OCI cost report)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> সব resource-এ আবশ্যিক tag/label (project, environment, owner, cost-center) এবং enforce</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> AWS-এ cost allocation tag activated; Azure-এ tag inheritance; OCI-তে cost-tracking tag</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dashboard: service অনুযায়ী ও environment অনুযায়ী খরচ</li>
+</ul>
+<p><strong>Control</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Budget ও alert (৫০/৮০/১০০% + forecast) — alert-এর ঠিকানা কেউ দেখে</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Anomaly detection চালু</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Quota/limit ও permission দিয়ে "কে বড় resource বানাতে পারে" সীমিত</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dev/test-এর মেয়াদ ও auto-shutdown</li>
+</ul>
+<p><strong>Optimize</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Rightsizing recommendation পর্যালোচনা</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Idle resource ক্লিনআপ (disk, IP, snapshot, LB, NAT)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Storage lifecycle ও retention</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Commitment কভারেজ ও utilization (৩০–৯০ দিন ডেটা)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Spot/Preemptible কাজে লাগানো যায় এমন workload</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> CDN ও caching, egress কমানো</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Log retention ও ingestion</li>
+</ul>
+<p><strong>Operate</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> মাসিক cost review মিটিং (১৫ মিনিট), সিদ্ধান্ত লিখে রাখা</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Unit economics (প্রতি অর্ডার/ব্যবহারকারী খরচ) ট্র্যাক</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Free tier সীমা ও trial-এর মেয়াদ ক্যালেন্ডারে</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> নতুন service-এর আগে আনুমানিক খরচ (pricing calculator / Infracost)</li>
+</ul>
+<hr />
+<h2 id="মল-ও-অমল">মিল ও অমিল<a class="headerlink" href="#মল-ও-অমল" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>খরচের প্রাকৃতিক একক</td>
+<td>Account</td>
+<td><strong>Project</strong></td>
+<td>Subscription / Resource group</td>
+<td><strong>Compartment</strong></td>
+</tr>
+<tr>
+<td>Tag-এ খরচ দেখতে</td>
+<td>Cost allocation tag <strong>activate</strong> করতে হয়</td>
+<td>Label billing export-এ আসে</td>
+<td>Tag নিজে inherit হয় না</td>
+<td>Cost-tracking defined tag</td>
+</tr>
+<tr>
+<td>Billing export (বিস্তারিত)</td>
+<td>CUR → S3</td>
+<td>→ BigQuery</td>
+<td>→ Storage (CSV)</td>
+<td>Cost reports (Oracle-এর bucket) / Usage API</td>
+</tr>
+<tr>
+<td>Commitment ধরন</td>
+<td>Savings Plans / RI</td>
+<td>CUD (resource ও spend)</td>
+<td>Reservations / Savings plan</td>
+<td>Universal Credits</td>
+</tr>
+<tr>
+<td>Automatic ছাড়</td>
+<td>(নেই)</td>
+<td>Sustained Use (পুরনো family)</td>
+<td>(নেই)</td>
+<td>(নেই)</td>
+</tr>
+<tr>
+<td>সস্তা spare capacity</td>
+<td>Spot</td>
+<td>Spot VM</td>
+<td>Spot VM</td>
+<td>Preemptible</td>
+</tr>
+<tr>
+<td>Budget কোথায় থাকে</td>
+<td>Account (বা org-এ)</td>
+<td>Billing account</td>
+<td>Subscription/RG scope</td>
+<td><strong>Tenancy</strong> (compartment/tag target)</td>
+</tr>
+<tr>
+<td>Egress</td>
+<td>প্রতি-GB, cross-AZ চার্জ</td>
+<td>Network tier (Premium/Standard)</td>
+<td>প্রতি-GB</td>
+<td>উদার মাসিক ফ্রি অংশ</td>
+</tr>
+<tr>
+<td>Rightsizing</td>
+<td>Compute Optimizer</td>
+<td>Recommender</td>
+<td>Advisor</td>
+<td>Cloud Advisor</td>
+</tr>
+</tbody>
+</table>
+<p><strong>যেখানে সবাই আটকায়:</strong></p>
+<ul>
+<li><strong>AWS tag activate না করা</strong> — tag দিলাম, Cost Explorer-এ কিছু নেই।</li>
+<li><strong>Azure tag inherit</strong> — resource group-এ tag আছে, ভেতরের resource-এ নেই; Cost analysis-এ "untagged" বিশাল।</li>
+<li><strong>GCP billing export দেরিতে চালু</strong> — পেছনের মাসের ডেটা আর পাওয়া যায় না।</li>
+<li><strong>OCI budget-এর <code>compartment-id</code> = tenancy</strong> — compartment ভেবে ভুল OCID দিলে error।</li>
+<li><strong>Commitment পরিবর্তন কঠিন</strong> — ভুল family/region কিনলে ফেরত বা বদল সীমিত।</li>
+<li><strong>শুধু compute দেখা</strong> — আসল বিল প্রায়ই NAT, egress, logging, snapshot থেকে।</li>
+</ul>
+<hr />
+<h2 id="real-world-shopbd">Real-world: shopbd<a class="headerlink" href="#real-world-shopbd" title="Permanent link">&para;</a></h2>
+<p><code>shopbd</code>-র মাসিক cloud খরচ-পর্যালোচনা (প্রতি মাসের ৫ তারিখ, ১৫ মিনিট):</p>
+<p><strong>১. দেখা (Inform):</strong> service অনুযায়ী top ৫ খরচ — সাধারণত compute (<code>shopbd-api</code>), database (<code>shopbd-db</code>), network (egress + NAT), storage (<code>shopbd-images</code>), logging। Environment অনুযায়ী ভাগ: prod বনাম staging বনাম dev।</p>
+<p><strong>২. প্রশ্ন (Optimize):</strong></p>
+<ul>
+<li>Staging/dev রাতে বন্ধ আছে?</li>
+<li>API VM-এর CPU গড়ে কত? ছোট করা যায়?</li>
+<li>ছবির egress CDN দিয়ে যাচ্ছে?</li>
+<li>পুরনো snapshot ও log কেটে ফেলা হয়েছে?</li>
+<li>Baseline compute-এর ওপর commitment কেনার সময় হয়েছে?</li>
+</ul>
+<p><strong>৩. সিদ্ধান্ত (Operate):</strong> কী বদলানো হবে, কে করবে, কবে — লিখে রাখা। প্রতি অর্ডারে cloud খরচ আগের মাসের সাথে তুলনা।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:4"><input checked="checked" id="aws_8" name="__tabbed_9" type="radio" /><input id="gcp_8" name="__tabbed_9" type="radio" /><input id="azure_8" name="__tabbed_9" type="radio" /><input id="oci_8" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="aws_8">AWS</label><label for="gcp_8">GCP</label><label for="azure_8">Azure</label><label for="oci_8">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Budget <code>shopbd-monthly</code> ৫০/৮০/১০০% + forecast → <code>ops@example.com</code>। <code>project/environment</code> tag activated। ছবি CloudFront-এর পেছনে, S3 Gateway endpoint (NAT এড়াতে)। EC2-র স্থির অংশে Compute Savings Plan (১ বছর, no upfront, baseline-এর ~৬০%)। nightly report Spot-এ। Dev instance EventBridge Scheduler দিয়ে রাতে বন্ধ। CloudWatch Logs retention ৩০ দিন।</p>
+</div>
+<div class="tabbed-block">
+<p>Prod আর dev আলাদা <strong>project</strong> — project ধরেই খরচ। BigQuery billing export প্রথম দিন থেকে চালু; Looker Studio-তে ড্যাশবোর্ড। Cloud CDN দিয়ে ছবি, Cloud Storage Autoclass। Cloud Run-এ ছোট <code>min-instances</code>। স্থির অংশে flexible CUD। Dev VM instance schedule দিয়ে রাতে বন্ধ। Recommender-এর idle VM সুপারিশ প্রতি মাসে দেখা।</p>
+</div>
+<div class="tabbed-block">
+<p>Subscription আলাদা (prod/non-prod), Policy দিয়ে tag inherit ও আবশ্যিক। Cost Management budget + action group। ছবি Azure Front Door/CDN-এর পেছনে, Storage lifecycle (Hot → Cool)। স্থির অংশে Savings plan for compute বা Reservation; নিজস্ব license থাকলে Hybrid Benefit। Dev VM-এ Auto-shutdown। Advisor Cost সুপারিশ মাসিক।</p>
+</div>
+<div class="tabbed-block">
+<p>Compartment <code>shopbd-prod</code> / <code>shopbd-dev</code> — খরচ compartment ধরেই। Tenancy-তে budget + alert rule। Cost-tracking tag <code>shopbd.environment</code>। Flex shape-এ ঠিক-আকার OCPU/memory, nightly কাজ preemptible-এ। Object Storage lifecycle। উদার egress ভাতা, তবু CDN। Cloud Advisor সুপারিশ দেখা।</p>
+</div>
+</div>
+</div>
+<hr />
+<h2 id="best-practices">Best practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>প্রথম দিনেই budget ও alert</strong> — আর alert দেখার মানুষ ঠিক করুন।</li>
+<li><strong>প্রথম দিনেই billing export</strong> (CUR/BigQuery/exports) — পেছনের ডেটা পাওয়া যায় না।</li>
+<li><strong>Tag/label কোডে বাধ্যতামূলক</strong> (<code>default_tags</code>) এবং policy দিয়ে enforce।</li>
+<li><strong>Environment আলাদা account/project/subscription/compartment</strong> — খরচ ও ঝুঁকি দুটোই পরিষ্কার।</li>
+<li><strong>আগে rightsizing, তারপর commitment</strong>; commitment শুধু baseline-এ, ছোট থেকে বাড়িয়ে।</li>
+<li><strong>Spot/Preemptible শুধু stateless/ফল্ট-সহনশীল কাজে।</strong></li>
+<li><strong>Dev/staging schedule করে বন্ধ</strong>।</li>
+<li><strong>Storage lifecycle ও retention</strong> — storage, snapshot, log।</li>
+<li><strong>Egress নিয়ে ভাবুন architecture-এর সময়</strong> — CDN, একই region, private endpoint।</li>
+<li><strong>Unit economics</strong> মাপুন — প্রতি অর্ডার/user খরচ।</li>
+<li><strong>নিয়মিত review</strong> — মাসে একবার ছোট, ত্রৈমাসিকে commitment পর্যালোচনা।</li>
+<li><strong>খরচ engineering-এর দায়িত্ব</strong> — প্রতিটি টিম নিজের খরচ দেখে (showback)।</li>
+<li><strong>নতুন resource বানানোর আগে কত খরচ ভাবুন</strong> — pricing calculator, Infracost PR-এ।</li>
+<li><strong>Learning/PoC resource মুছুন</strong> (<code>terraform destroy</code>)।</li>
+</ul>
+<hr />
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ভুল</th>
+<th>সমস্যা</th>
+<th>সমাধান</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Budget/alert নেই</td>
+<td>মাসের শেষে চমক</td>
+<td>প্রথম দিনেই budget + forecast alert</td>
+</tr>
+<tr>
+<td>Alert যায় এমন ইনবক্সে যা কেউ দেখে না</td>
+<td>alert অকার্যকর</td>
+<td>টিমের ইনবক্স/chat, নির্দিষ্ট মালিক</td>
+</tr>
+<tr>
+<td>Tag নেই</td>
+<td>"কে এত খরচ করল" জানা যায় না</td>
+<td><code>default_tags</code> + policy</td>
+</tr>
+<tr>
+<td>AWS-এ tag লাগিয়ে activate না করা</td>
+<td>Cost Explorer-এ দেখা যায় না</td>
+<td>cost allocation tag activate</td>
+</tr>
+<tr>
+<td>Billing export দেরিতে চালু</td>
+<td>পুরনো ডেটা হারানো</td>
+<td>অ্যাকাউন্ট খোলার দিনই</td>
+</tr>
+<tr>
+<td>rightsizing ছাড়াই commitment</td>
+<td>অপচয় আটকে যায়</td>
+<td>আগে অপ্টিমাইজ, তারপর commit</td>
+</tr>
+<tr>
+<td>Commitment বেশি কেনা (১০০%+)</td>
+<td>ব্যবহার কমলে ক্ষতি</td>
+<td>baseline-এর ৫০–৭০% থেকে শুরু</td>
+</tr>
+<tr>
+<td>Spot-এ database/একমাত্র server</td>
+<td>হঠাৎ বন্ধ হয়ে outage</td>
+<td>Spot শুধু stateless কাজে</td>
+</tr>
+<tr>
+<td>Dev/test ২৪×৭ চালু</td>
+<td>সহজ সাশ্রয় হাতছাড়া</td>
+<td>auto-shutdown schedule</td>
+</tr>
+<tr>
+<td>আনঅ্যাটাচড disk, পুরনো snapshot, ব্যবহারহীন IP</td>
+<td>নীরবে বিল বাড়ে</td>
+<td>নিয়মিত ক্লিনআপ ও recommendation</td>
+</tr>
+<tr>
+<td>NAT gateway দিয়ে S3/Storage ট্রাফিক</td>
+<td>অপ্রত্যাশিত processing খরচ</td>
+<td>Gateway/Service endpoint</td>
+</tr>
+<tr>
+<td>CDN ছাড়া ছবি সরাসরি origin থেকে</td>
+<td>বড় egress বিল</td>
+<td>CDN + caching</td>
+</tr>
+<tr>
+<td>Log অনির্দিষ্টকাল জমা</td>
+<td>logging খরচ বিশাল</td>
+<td>retention সীমা, কম verbose</td>
+</tr>
+<tr>
+<td>Free tier সীমার কথা ভুলে যাওয়া</td>
+<td>trial শেষে বিল</td>
+<td>calendar + budget</td>
+</tr>
+<tr>
+<td>শেখা শেষে resource না মোছা</td>
+<td>চলতেই থাকে</td>
+<td><code>terraform destroy</code>, ownership tag</td>
+</tr>
+<tr>
+<td>শুধু compute-এ নজর</td>
+<td>আসল খরচ NAT/egress/DB/logs-এ</td>
+<td>পুরো service-breakdown দেখুন</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ইনটরভউ--সরটফকশন-টপস">ইন্টারভিউ / সার্টিফিকেশন টিপস<a class="headerlink" href="#ইনটরভউ--সরটফকশন-টপস" title="Permanent link">&para;</a></h2>
+<details class="question">
+<summary>FinOps কী? তিন ধাপ কী কী?</summary>
+<p>Cloud খরচ ইঞ্জিনিয়ারিং, ফাইন্যান্স ও ব্যবসার যৌথ দায়িত্বে আনার অনুশীলন। ধাপ: <strong>Inform</strong> (দৃশ্যমানতা, tag, report), <strong>Optimize</strong> (rightsizing, commitment, ক্লিনআপ), <strong>Operate</strong> (budget, policy, নিয়মিত review)।</p>
+</details>
+<details class="question">
+<summary>On-demand, Reserved/Savings Plan ও Spot-এর পার্থক্য? কোনটা কখন?</summary>
+<p>On-demand: নমনীয়, ছাড় নেই। Commitment: ১/৩ বছরের প্রতিশ্রুতিতে বড় ছাড়, স্থির baseline-এর জন্য। Spot/Preemptible: সবচেয়ে সস্তা কিন্তু যেকোনো সময় কেড়ে নেওয়া যায় — stateless ও ফল্ট-সহনশীল কাজে।</p>
+</details>
+<details class="question">
+<summary>AWS Savings Plans বনাম Reserved Instances?</summary>
+<p>Savings Plan: ঘণ্টাপ্রতি খরচের প্রতিশ্রুতি, Compute SP খুব নমনীয় (EC2/Fargate/Lambda, যেকোনো family/region)। RI: নির্দিষ্ট instance type-এর প্রতিশ্রুতি; Convertible RI কিছুটা নমনীয়। (RDS ইত্যাদিতে RI এখনো প্রচলিত।)</p>
+</details>
+<details class="question">
+<summary>GCP-র CUD আর Sustained Use Discount-এর পার্থক্য?</summary>
+<p>CUD: ১/৩ বছরের প্রতিশ্রুতি, আপনি কেনেন। SUD: মাসে বেশি সময় চালালে নিজে নিজে ছাড় (শুধু কিছু পুরনো machine family-তে)।</p>
+</details>
+<details class="question">
+<summary>Budget কি খরচ থামায়?</summary>
+<p>না — ডিফল্টে শুধু alert। সীমিত স্বয়ংক্রিয় ব্যবস্থা (AWS Budgets Actions, Azure action group, GCP Pub/Sub + automation) বানানো যায়, কিন্তু production বন্ধ করার ঝুঁকি আছে।</p>
+</details>
+<details class="question">
+<summary>AWS-এ tag দিলাম কিন্তু Cost Explorer-এ দেখা যাচ্ছে না — কেন?</summary>
+<p>Cost allocation tag <strong>activate</strong> করতে হয় Billing console-এ (বা <code>ce update-cost-allocation-tags-status</code>)। Activate-এর পর থেকে ডেটা আসে, পেছনের নয়।</p>
+</details>
+<details class="question">
+<summary>Egress খরচ কেন বেশি আসে, কীভাবে কমাবেন?</summary>
+<p>ডেটা বাইরে (internet/অন্য region) গেলে প্রতি-GB চার্জ। CDN, compression, একই region-এ compute+data, private endpoint, caching দিয়ে কমে।</p>
+</details>
+<details class="question">
+<summary>NAT gateway-র বিল হঠাৎ বেড়েছে — কারণ কী হতে পারে?</summary>
+<p>প্রতি-GB processing চার্জ — প্রাইভেট subnet-এর VM যদি S3/Storage/Container registry থেকে বিপুল ডেটা NAT-এর মধ্য দিয়ে নামায়। সমাধান: Gateway/Interface/Service endpoint।</p>
+</details>
+<details class="question">
+<summary>Azure-এ tag resource group থেকে ভেতরের resource-এ যায় কি?</summary>
+<p>না, নিজে যায় না। Azure Policy-র "Inherit a tag from the resource group" বা Cost Management-এর tag inheritance সেটিং দিয়ে করতে হয়।</p>
+</details>
+<details class="question">
+<summary>OCI-তে খরচ ভাগ করার সেরা উপায়?</summary>
+<p>Compartment ও cost-tracking defined tag; budget tenancy-তে বসে compartment/tag টার্গেট করে।</p>
+</details>
+<details class="question">
+<summary>Commitment কেনার আগে কী করবেন?</summary>
+<p>Rightsizing, ৩০–৯০ দিনের ব্যবহার বিশ্লেষণ, baseline-এর অংশ (৫০–৭০%) দিয়ে ছোট শুরু, ১ বছর, নমনীয় ধরন।</p>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">পরীক্ষা</p>
+<p><strong>FinOps Certified Practitioner (FinOps Foundation)</strong> সবচেয়ে সরাসরি। AWS Cloud Practitioner/Solutions Architect, Azure AZ-900/AZ-104, GCP Cloud Digital Leader/Associate, OCI Foundations-এ pricing model, support plan, TCO, budget, tagging আসে।</p>
+</div>
+<hr />
+<h2 id="সরসকষপ">সারসংক্ষেপ<a class="headerlink" href="#সরসকষপ" title="Permanent link">&para;</a></h2>
+<ul>
+<li>খরচ = পরিমাণ × সময় × দর; সবচেয়ে বড় অপচয় — চলতে থাকা কিন্তু অব্যবহৃত resource।</li>
+<li><strong>FinOps</strong> = Inform → Optimize → Operate; মাপুন <strong>unit economics</strong>।</li>
+<li>প্রথম দিনেই: <strong>billing export, budget+alert, tag/label</strong>। চারটি console: Cost Explorer / Billing Reports (+BigQuery) / Cost analysis / Cost Analysis।</li>
+<li><strong>Tag cost allocation</strong>: AWS-এ activate, Azure-এ inherit policy, GCP-তে label/project, OCI-তে compartment + cost-tracking tag।</li>
+<li><strong>Budget শুধু জানায়</strong> — alert কেউ দেখুক; anomaly detection অতিরিক্ত নিরাপত্তা।</li>
+<li><strong>Commitment</strong> (Savings Plans / CUD / Reservations ও Savings plan / Universal Credits) শুধু স্থির baseline-এ, rightsizing-এর পর; <strong>Spot/Preemptible</strong> শুধু stateless কাজে।</li>
+<li><strong>Rightsizing</strong> টুল: Compute Optimizer / Recommender / Advisor / Cloud Advisor; নিয়মিত ক্লিনআপ।</li>
+<li><strong>Egress ও NAT</strong> লুকোনো বড় খরচ — CDN, private endpoint, একই region।</li>
+<li><strong>Free tier</strong>: শর্ত বদলায়, সীমা পেরোলে বিল — budget আগে।</li>
+<li>মাসিক ১৫ মিনিটের cost review আর <strong>cost checklist</strong> — সবচেয়ে কম খরচের সবচেয়ে বড় সাশ্রয়।</li>
+</ul>
+<p>আরও দেখুন: <a href="../06-storage/">06 · Storage</a>, <a href="../10-load-balancing-scaling-dns-cdn/">10 · Load Balancing, DNS ও CDN</a>, <a href="../14-infrastructure-as-code/">14 · IaC</a>, <a href="../19-architecture-ha-dr/">19 · Architecture, HA/DR</a>।</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  উপরে ফিরে যাও
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="ফুটার" >
+        
+          
+          <a href="../17-ai-ml/" class="md-footer__link md-footer__link--prev" aria-label="পূর্ববর্তী: 17 · AI ও Machine Learning">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পূর্ববর্তী
+              </span>
+              <div class="md-ellipsis">
+                17 · AI ও Machine Learning
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../19-architecture-ha-dr/" class="md-footer__link md-footer__link--next" aria-label="পরে: 19 · Architecture ও HA/DR">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পরে
+              </span>
+              <div class="md-ellipsis">
+                19 · Architecture ও HA/DR
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Hasib Ahmed — Cloud বাংলা ডকুমেন্টেশন
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Hasib105/cloud-bangla-docs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u09b9\u09df\u09c7\u099b\u09c7", "clipboard.copy": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u0995\u09b0\u09c1\u09a8", "search.result.more.one": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 \u09e7\u099f\u09bf \u0986\u099b\u09c7", "search.result.more.other": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 #\u099f\u09bf \u0986\u099b\u09c7", "search.result.none": "\u0995\u09bf\u099b\u09c1 \u09aa\u09be\u0993\u09df\u09be \u09af\u09be\u09df\u09a8\u09bf", "search.result.one": "\u09e7 \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.other": "# \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.placeholder": "\u09b8\u09be\u09b0\u09cd\u099a \u099f\u09be\u0987\u09aa \u0995\u09b0\u09c1\u09a8", "search.result.term.missing": "\u0985\u09a8\u09c1\u09aa\u09b8\u09cd\u09a5\u09bf\u09a4", "select.version": "\u09b8\u0982\u09b8\u09cd\u0995\u09b0\u09a3 \u09a8\u09bf\u09b0\u09cd\u09ac\u09be\u099a\u09a8 \u0995\u09b0\u09c1\u09a3"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

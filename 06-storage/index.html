@@ -1,0 +1,3616 @@
+
+<!doctype html>
+<html lang="bn" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="এক টপিক, চার cloud — AWS, Google Cloud, Microsoft Azure ও Oracle Cloud (OCI) শূন্য থেকে অ্যাডভান্স, পাশাপাশি তুলনাসহ সম্পূর্ণ বাংলা ডকুমেন্টেশন।">
+      
+      
+        <meta name="author" content="Hasib Ahmed">
+      
+      
+        <link rel="canonical" href="https://hasib105.github.io/cloud-bangla-docs/06-storage/">
+      
+      
+        <link rel="prev" href="../05-networking/">
+      
+      
+        <link rel="next" href="../07-databases/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>06 · Storage - Cloud বাংলা — AWS · GCP · Azure · OCI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M6.5%2020q-2.28%200-3.89-1.57Q1%2016.85%201%2014.58q0-1.95%201.17-3.48%201.18-1.53%203.08-1.95.63-2.3%202.5-3.72Q9.63%204%2012%204q2.93%200%204.96%202.04Q19%208.07%2019%2011q1.73.2%202.86%201.5%201.14%201.28%201.14%203%200%201.88-1.31%203.19T18.5%2020m-12-2h12q1.05%200%201.77-.73.73-.72.73-1.77t-.73-1.77Q19.55%2013%2018.5%2013H17v-2q0-2.07-1.46-3.54Q14.08%206%2012%206%209.93%206%208.46%207.46%207%208.93%207%2011h-.5q-1.45%200-2.47%201.03Q3%2013.05%203%2014.5T4.03%2017q1.02%201%202.47%201m5.5-6%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind+Siliguri:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Hind Siliguri";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#06--storage" class="md-skip">
+          কনটেন্টে যান
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="হেডার">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-header__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud বাংলা — AWS · GCP · Azure · OCI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              06 · Storage
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="ডার্ক মোড"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ডার্ক মোড" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="লাইট মোড"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="লাইট মোড" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="অনুসন্ধান করুন" placeholder="অনুসন্ধান করুন" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="অনুসন্ধান করুন">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="শেয়ার" aria-label="শেয়ার" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="রিসেট" aria-label="রিসেট" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            অনুসন্ধান শুরু করা হচ্ছে
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="ট্যাব" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  হোম
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01-cloud-fundamentals/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  মূল ধারণা
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../platforms/aws/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  প্ল্যাটফর্ম গাইড
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reference/service-map/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  রেফারেন্স
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ন্যাভিগেশন" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-nav__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    Cloud বাংলা — AWS · GCP · Azure · OCI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    হোম
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    মূল ধারণা
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    মূল ধারণা
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-cloud-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Cloud-এর ভিত্তি
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-accounts-and-hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Account ও Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-identity-and-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Identity ও Access (IAM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-compute-vms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Virtual Machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-networking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Networking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Storage
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-storage-এর-তন-ধরন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. Storage-এর তিন ধরন
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-object-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Object storage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="২. Object storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#naming-এর-পরথকয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Naming-এর পার্থক্য
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bucket-তর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bucket তৈরি
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-upload--download-পরতদনর-কমনড" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File upload / download (প্রতিদিনের কমান্ড)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redundancy-ও-durability--কথয-data-থক" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redundancy ও durability — কোথায় data থাকে
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-storage-class-ও-tier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Storage class ও tier
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Storage class ও tier">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-ঠক-কর-upload-এর-সময" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Class ঠিক করা: upload-এর সময়
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-lifecycle-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. Lifecycle policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-versioning-soft-delete-ও-immutability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. Versioning, soft delete ও immutability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-access-control-public-access-ও-encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Access control, public access ও encryption
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-temporary-access-presigned-url-sas-ও-par" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. Temporary access: Presigned URL, SAS ও PAR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৮-terraform-shopbd-images-bucket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮. Terraform: shopbd-images bucket
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৯-block-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৯. Block storage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৯. Block storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resize-ও-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resize ও performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১০-snapshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১০. Snapshot
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১১-file-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১১. File storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১২-archive-ও-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১২. Archive ও restore
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১৩-data-transfer-cloud-এ-data-আন-ও-সরন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১৩. Data transfer: cloud-এ data আনা ও সরানো
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-containers-kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Container ও Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-serverless/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Serverless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-load-balancing-scaling-dns-cdn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Load Balancing, DNS ও CDN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-messaging-and-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Messaging ও Event
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Monitoring ও Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-infrastructure-as-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 · Infrastructure as Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-cicd-devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 · CI/CD ও DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-data-and-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 · Data ও Analytics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-ai-ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 · AI ও Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-cost-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 · Cost Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-architecture-ha-dr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 · Architecture ও HA/DR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/gcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Cloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/azure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microsoft Azure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/oci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle Cloud (OCI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    রেফারেন্স
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    রেফারেন্স
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/service-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli-cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Cheatsheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-storage-এর-তন-ধরন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. Storage-এর তিন ধরন
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-object-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Object storage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="২. Object storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#naming-এর-পরথকয" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Naming-এর পার্থক্য
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bucket-তর" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bucket তৈরি
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-upload--download-পরতদনর-কমনড" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File upload / download (প্রতিদিনের কমান্ড)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redundancy-ও-durability--কথয-data-থক" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redundancy ও durability — কোথায় data থাকে
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-storage-class-ও-tier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Storage class ও tier
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Storage class ও tier">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-ঠক-কর-upload-এর-সময" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Class ঠিক করা: upload-এর সময়
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-lifecycle-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. Lifecycle policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-versioning-soft-delete-ও-immutability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. Versioning, soft delete ও immutability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-access-control-public-access-ও-encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Access control, public access ও encryption
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-temporary-access-presigned-url-sas-ও-par" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. Temporary access: Presigned URL, SAS ও PAR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৮-terraform-shopbd-images-bucket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৮. Terraform: shopbd-images bucket
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৯-block-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৯. Block storage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৯. Block storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resize-ও-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resize ও performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১০-snapshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১০. Snapshot
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১১-file-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১১. File storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১২-archive-ও-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১২. Archive ও restore
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#১৩-data-transfer-cloud-এ-data-আন-ও-সরন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১৩. Data transfer: cloud-এ data আনা ও সরানো
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Hasib105/cloud-bangla-docs/edit/main/docs/06-storage.md" title="এই পেজ এডিট করুন" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="06--storage">06 · Storage<a class="headerlink" href="#06--storage" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>এই অধ্যায়ে কী শিখবেন</strong></p>
+<ul>
+<li>Object, Block ও File storage — তিনটার পার্থক্য এবং কোন কাজে কোনটা</li>
+<li>Object storage (S3 / Cloud Storage / Blob / Object Storage): bucket, storage class, lifecycle, versioning</li>
+<li>Presigned URL, SAS token ও Pre-Authenticated Request (PAR) দিয়ে নিরাপদে file দেওয়া-নেওয়া</li>
+<li>Block storage (EBS / Persistent Disk ও Hyperdisk / Managed Disks / Block Volume) ও snapshot</li>
+<li>File storage (EFS / Filestore / Azure Files / File Storage) এবং archive tier</li>
+<li>বড় data cloud-এ আনার উপায় — <code>sync</code>, AzCopy, Transfer Service, physical appliance</li>
+</ul>
+</blockquote>
+<div class="admonition abstract">
+<p class="admonition-title">এক নজরে — কোন cloud-এ কী নাম</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object storage</td>
+<td>Amazon S3</td>
+<td>Cloud Storage</td>
+<td>Azure Blob Storage</td>
+<td>OCI Object Storage</td>
+</tr>
+<tr>
+<td>Container-এর নাম</td>
+<td>Bucket</td>
+<td>Bucket</td>
+<td>Storage account → Container</td>
+<td>Bucket (namespace-এর ভেতরে)</td>
+</tr>
+<tr>
+<td>Hot tier</td>
+<td>S3 Standard</td>
+<td>Standard</td>
+<td>Hot</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>Infrequent tier</td>
+<td>Standard-IA / One Zone-IA</td>
+<td>Nearline / Coldline</td>
+<td>Cool / Cold</td>
+<td>Infrequent Access</td>
+</tr>
+<tr>
+<td>Archive tier</td>
+<td>Glacier Instant / Flexible / Deep Archive</td>
+<td>Archive</td>
+<td>Archive</td>
+<td>Archive</td>
+</tr>
+<tr>
+<td>Auto tiering</td>
+<td>Intelligent-Tiering</td>
+<td>Autoclass</td>
+<td>Lifecycle rule (last-access based)</td>
+<td>Auto-Tiering</td>
+</tr>
+<tr>
+<td>Temporary link</td>
+<td>Presigned URL</td>
+<td>Signed URL</td>
+<td>SAS token</td>
+<td>Pre-Authenticated Request (PAR)</td>
+</tr>
+<tr>
+<td>Block storage</td>
+<td>Amazon EBS</td>
+<td>Persistent Disk / Hyperdisk</td>
+<td>Azure Managed Disks</td>
+<td>OCI Block Volume</td>
+</tr>
+<tr>
+<td>Snapshot</td>
+<td>EBS Snapshot</td>
+<td>Disk Snapshot</td>
+<td>Disk Snapshot</td>
+<td>Block Volume Backup</td>
+</tr>
+<tr>
+<td>File storage (NFS/SMB)</td>
+<td>Amazon EFS (+ FSx)</td>
+<td>Filestore</td>
+<td>Azure Files (+ NetApp Files)</td>
+<td>OCI File Storage</td>
+</tr>
+<tr>
+<td>Bulk transfer tool</td>
+<td>DataSync, Snow Family</td>
+<td>Storage Transfer Service, Transfer Appliance</td>
+<td>AzCopy, Storage Mover, Data Box</td>
+<td><code>oci os</code> bulk commands, Data Transfer</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="১-storage-এর-তন-ধরন">১. Storage-এর তিন ধরন<a class="headerlink" href="#১-storage-এর-তন-ধরন" title="Permanent link">&para;</a></h2>
+<p>Cloud-এ data রাখার তিনটা মৌলিক উপায় আছে। কোনটা কখন লাগবে তা বুঝতে পারাই এই অধ্যায়ের মূল কথা।</p>
+<table>
+<thead>
+<tr>
+<th>ধরন</th>
+<th>কেমন লাগে</th>
+<th>কীভাবে access</th>
+<th>কোন কাজে</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Object</strong></td>
+<td>অসীম আকারের গুদামঘর, প্রতিটি জিনিসের একটা ট্যাগ (key)</td>
+<td>HTTP API / SDK</td>
+<td>ছবি, video, backup, log, data lake</td>
+</tr>
+<tr>
+<td><strong>Block</strong></td>
+<td>কম্পিউটারের hard disk / SSD</td>
+<td>VM-এ attach করে format ও mount</td>
+<td>OS disk, database data directory</td>
+</tr>
+<tr>
+<td><strong>File</strong></td>
+<td>অফিসের shared network drive</td>
+<td>NFS / SMB mount</td>
+<td>একাধিক server-এ একই folder, CMS upload</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>flowchart LR
+    APP[shopbd-api VM] -- "block: /dev/sdf" --&gt; BLK[(Block Volume)]
+    APP -- "file: /mnt/shared" --&gt; FILE[(File Share NFS)]
+    APP -- "HTTPS API" --&gt; OBJ[(Object Bucket shopbd-images)]
+    USER[Browser] -- "presigned URL" --&gt; OBJ</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Analogy</p>
+<ul>
+<li><strong>Block</strong> = আপনার নিজের ল্যাপটপের SSD। একজন মালিক, দ্রুত, কিন্তু সবার সাথে ভাগ করা যায় না (সাধারণত)।</li>
+<li><strong>File</strong> = অফিসের shared drive। অনেকে একসাথে খুলে একই folder-এ কাজ করতে পারে।</li>
+<li><strong>Object</strong> = Google Drive-এর মতো অসীম আলমারি, যেখানে file-এর শুধু পুরোটা রাখা বা পুরোটা আনা যায়; মাঝখানের এক লাইন বদলানো যায় না।</li>
+</ul>
+</div>
+<h2 id="২-object-storage">২. Object storage<a class="headerlink" href="#২-object-storage" title="Permanent link">&para;</a></h2>
+<p>Object storage-এ data থাকে <strong>object</strong> হিসেবে: আসল content + metadata + একটা <strong>key</strong> (নাম)। Object রাখার পাত্রের নাম <strong>bucket</strong> (Azure-তে <strong>container</strong>)। এখানে সত্যিকারের folder নেই — <code>products/2026/shirt.jpg</code> পুরোটাই একটা key; <code>products/2026/</code> শুধু prefix, Console সুবিধার জন্য folder-এর মতো দেখায়।</p>
+<p>চার cloud-এই object storage-এর সাধারণ বৈশিষ্ট্য:</p>
+<ul>
+<li>প্রায় অসীম জায়গা, আগে থেকে size ঠিক করতে হয় না</li>
+<li>অত্যন্ত বেশি durability (সব cloud-ই "eleven nines"-এর কাছাকাছি লক্ষ্য রাখে, একাধিক জায়গায় copy রেখে)</li>
+<li>HTTP API দিয়ে access — তাই যেকোনো ভাষা থেকে SDK/CLI দিয়ে কাজ করে</li>
+<li><strong>Strong consistency</strong> — নতুন object লিখলে বা মুছলে পরের read সঙ্গে সঙ্গে সেটাই দেখে (আগে S3 eventually consistent ছিল, এখন চার cloud-এই এটা ঠিক আছে)</li>
+<li>Object <strong>immutable-এর মতো</strong>: আংশিক edit নেই, পুরো object replace করতে হয়</li>
+</ul>
+<h3 id="naming-এর-পরথকয">Naming-এর পার্থক্য<a class="headerlink" href="#naming-এর-পরথকয" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>নামের scope</td>
+<td>সব AWS-এ unique (global)</td>
+<td>সব GCP-তে unique (global)</td>
+<td><strong>Storage account</strong>-এর নাম global unique; container শুধু account-এর ভেতরে unique</td>
+<td><strong>Namespace</strong> (tenancy-র) ভেতরে unique; bucket একটা region-এ থাকে</td>
+</tr>
+<tr>
+<td>নামের নিয়ম</td>
+<td>৩–৬৩ অক্ষর, lowercase</td>
+<td>৩–৬৩ অক্ষর, lowercase</td>
+<td>account: ৩–২৪ অক্ষর, শুধু lowercase + সংখ্যা (hyphen চলে না)</td>
+<td>১–২৫৬ অক্ষর, বিভিন্ন চিহ্ন চলে</td>
+</tr>
+<tr>
+<td>URL</td>
+<td><code>https://shopbd-images.s3.ap-south-1.amazonaws.com/key</code></td>
+<td><code>https://storage.googleapis.com/shopbd-images/key</code></td>
+<td><code>https://shopbdimages.blob.core.windows.net/images/key</code></td>
+<td><code>https://objectstorage.ap-mumbai-1.oraclecloud.com/n/NAMESPACE/b/shopbd-images/o/key</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Azure-এ আগে Storage account</p>
+<p>Azure-তে সরাসরি bucket বানানো যায় না। আগে <strong>Storage account</strong> (redundancy, tier, network rule এখানে ঠিক হয়), তারপর তার ভেতরে <strong>container</strong>। Storage account-এর নামে hyphen চলে না — তাই এই বইয়ে <code>shopbdimages</code> লেখা হয়েছে।</p>
+</div>
+<h3 id="bucket-তর">Bucket তৈরি<a class="headerlink" href="#bucket-তর" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="aws" name="__tabbed_1" type="radio" /><input id="gcp" name="__tabbed_1" type="radio" /><input id="azure" name="__tabbed_1" type="radio" /><input id="oci" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="aws">AWS</label><label for="gcp">GCP</label><label for="azure">Azure</label><label for="oci">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Service: <strong>Amazon S3</strong>। Console: S3 → Create bucket।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># ap-south-1 (Mumbai) ছাড়া অন্য region হলে LocationConstraint লাগে</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>aws<span class="w"> </span>s3api<span class="w"> </span>create-bucket<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>--bucket<span class="w"> </span>shopbd-images<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>--region<span class="w"> </span>ap-south-1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span>--create-bucket-configuration<span class="w"> </span><span class="nv">LocationConstraint</span><span class="o">=</span>ap-south-1
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>aws<span class="w"> </span>s3<span class="w"> </span>ls
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Cloud Storage</strong>। Console: Cloud Storage → Buckets → Create।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>create<span class="w"> </span>gs://shopbd-images<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>--location<span class="o">=</span>asia-south1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>--default-storage-class<span class="o">=</span>STANDARD<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>--uniform-bucket-level-access
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>list
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Azure Blob Storage</strong>। Console: Storage accounts → Create → তারপর Containers।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>az<span class="w"> </span>group<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>shopbd-prod-rg<span class="w"> </span>--location<span class="w"> </span>centralindia
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>az<span class="w"> </span>storage<span class="w"> </span>account<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>--name<span class="w"> </span>shopbdimages<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-prod-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span>--location<span class="w"> </span>centralindia<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span>--sku<span class="w"> </span>Standard_LRS<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span>--kind<span class="w"> </span>StorageV2<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span>--min-tls-version<span class="w"> </span>TLS1_2
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>az<span class="w"> </span>storage<span class="w"> </span>container<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span>--name<span class="w"> </span>images<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">  </span>--account-name<span class="w"> </span>shopbdimages<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">  </span>--auth-mode<span class="w"> </span>login
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>OCI Object Storage</strong>। Console: Storage → Buckets। আগে tenancy-র <strong>namespace</strong> জানতে হয়।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>oci<span class="w"> </span>os<span class="w"> </span>ns<span class="w"> </span>get
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>oci<span class="w"> </span>os<span class="w"> </span>bucket<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span>--namespace-name<span class="w"> </span>my-namespace<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-images<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span>--region<span class="w"> </span>ap-mumbai-1
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="file-upload--download-পরতদনর-কমনড">File upload / download (প্রতিদিনের কমান্ড)<a class="headerlink" href="#file-upload--download-পরতদনর-কমনড" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># AWS</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>aws<span class="w"> </span>s3<span class="w"> </span>cp<span class="w"> </span>./shirt.jpg<span class="w"> </span>s3://shopbd-images/products/original/shirt.jpg
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>aws<span class="w"> </span>s3<span class="w"> </span>ls<span class="w"> </span>s3://shopbd-images/products/<span class="w"> </span>--recursive
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># GCP</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>cp<span class="w"> </span>./shirt.jpg<span class="w"> </span>gs://shopbd-images/products/original/shirt.jpg
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>ls<span class="w"> </span>--recursive<span class="w"> </span>gs://shopbd-images/products/
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># Azure</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>az<span class="w"> </span>storage<span class="w"> </span>blob<span class="w"> </span>upload<span class="w"> </span>--account-name<span class="w"> </span>shopbdimages<span class="w"> </span>--container-name<span class="w"> </span>images<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">  </span>--name<span class="w"> </span>products/original/shirt.jpg<span class="w"> </span>--file<span class="w"> </span>./shirt.jpg<span class="w"> </span>--auth-mode<span class="w"> </span>login
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="c1"># OCI</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>oci<span class="w"> </span>os<span class="w"> </span>object<span class="w"> </span>put<span class="w"> </span>--namespace-name<span class="w"> </span>my-namespace<span class="w"> </span>--bucket-name<span class="w"> </span>shopbd-images<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">  </span>--name<span class="w"> </span>products/original/shirt.jpg<span class="w"> </span>--file<span class="w"> </span>./shirt.jpg
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">বড় file হলে multipart</p>
+<p>কয়েকশ MB-র বেশি file একসাথে না পাঠিয়ে টুকরো (part) করে পাঠানো হয় — মাঝপথে network গেলে শুধু ব্যর্থ টুকরোটা আবার যায়। AWS CLI, <code>gcloud storage</code>, AzCopy ও OCI CLI সবই এটা নিজে থেকে করে। তবে অসম্পূর্ণ multipart upload পড়ে থাকলে সেগুলোর জন্যও টাকা লাগে — lifecycle rule দিয়ে মুছে ফেলুন (নিচে দেখুন)।</p>
+</div>
+<h3 id="redundancy-ও-durability--কথয-data-থক">Redundancy ও durability — কোথায় data থাকে<a class="headerlink" href="#redundancy-ও-durability--কথয-data-থক" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Default</td>
+<td>Region-এর ≥৩ AZ-তে (Standard); One Zone-IA শুধু ১ AZ</td>
+<td>Region / dual-region / multi-region — location type আপনি বাছেন</td>
+<td>Account-এ redundancy বাছতে হয়: LRS, ZRS, GRS, GZRS (+ RA- read access)</td>
+<td>Region-এর ভেতরে একাধিক AD / fault domain-এ replicate</td>
+</tr>
+<tr>
+<td>Cross-region copy</td>
+<td>Cross-Region Replication (CRR)</td>
+<td>Dual/multi-region location বা Turbo replication</td>
+<td>GRS / GZRS</td>
+<td>Cross-region replication policy</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Azure redundancy শব্দগুলো</p>
+<p><strong>LRS</strong> = একই datacenter-এ ৩ copy। <strong>ZRS</strong> = ৩টা availability zone-এ। <strong>GRS</strong> = LRS + দূরের paired region-এ আরেকটা। <strong>GZRS</strong> = ZRS + দূরের region। <code>Standard_LRS</code> সবচেয়ে সস্তা কিন্তু datacenter নষ্ট হলে data যাবে — production image-এর জন্য অন্তত ZRS ভাবুন।</p>
+</div>
+<h2 id="৩-storage-class-ও-tier">৩. Storage class ও tier<a class="headerlink" href="#৩-storage-class-ও-tier" title="Permanent link">&para;</a></h2>
+<p>সব data সমান ঘন ঘন লাগে না। গত সপ্তাহের product image রোজ দেখা হয়, কিন্তু ৩ বছর আগের invoice হয়তো বছরে একবার। <strong>Storage class</strong>-এর নিয়ম: যত "ঠান্ডা" tier, <strong>জমানোর খরচ তত কম, কিন্তু access/retrieval খরচ ও অপেক্ষা তত বেশি</strong>, আর একটা <strong>ন্যূনতম রাখার মেয়াদ</strong> (minimum storage duration) থাকে — আগে মুছলেও পুরো মেয়াদের টাকা কাটে।</p>
+<table>
+<thead>
+<tr>
+<th>ঠান্ডার মাত্রা</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>গরম (ঘন ঘন)</td>
+<td>Standard (+ Express One Zone, খুব low latency)</td>
+<td>Standard</td>
+<td>Hot (+ Premium block blob)</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>মাঝারি</td>
+<td>Standard-IA, One Zone-IA (৩০ দিন min)</td>
+<td>Nearline (৩০ দিন min)</td>
+<td>Cool (৩০ দিন min)</td>
+<td>Infrequent Access (৩১ দিন min)</td>
+</tr>
+<tr>
+<td>ঠান্ডা</td>
+<td>Glacier Instant Retrieval (৯০ দিন min)</td>
+<td>Coldline (৯০ দিন min)</td>
+<td>Cold (৯০ দিন min)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Archive</td>
+<td>Glacier Flexible Retrieval (৯০), Deep Archive (১৮০ দিন min)</td>
+<td>Archive (৩৬৫ দিন min)</td>
+<td>Archive (১৮০ দিন min)</td>
+<td>Archive (৯০ দিন min)</td>
+</tr>
+<tr>
+<td>Auto</td>
+<td>Intelligent-Tiering</td>
+<td>Autoclass</td>
+<td>— (lifecycle দিয়ে)</td>
+<td>Auto-Tiering</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Archive-এর সবচেয়ে বড় পার্থক্য: তাৎক্ষণিক পড়া যায় কি না</p>
+<ul>
+<li><strong>GCP Archive</strong> এবং <strong>AWS Glacier Instant Retrieval</strong>: millisecond-এ পড়া যায় (retrieval fee আছে)।</li>
+<li><strong>AWS Glacier Flexible / Deep Archive</strong>, <strong>Azure Archive</strong>, <strong>OCI Archive</strong>: object আগে <strong>restore / rehydrate</strong> করতে হয় — মিনিট থেকে ঘণ্টা (কখনো ১২ ঘণ্টার বেশি) লাগতে পারে। এর মধ্যে সরাসরি <code>GET</code> করলে error আসে।</li>
+</ul>
+<p>তাই "সস্তা" দেখে সবকিছু archive-এ ফেলবেন না — আগে ভাবুন কত দ্রুত ফেরত লাগতে পারে।</p>
+</div>
+<h3 id="class-ঠক-কর-upload-এর-সময">Class ঠিক করা: upload-এর সময়<a class="headerlink" href="#class-ঠক-কর-upload-এর-সময" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># AWS</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>aws<span class="w"> </span>s3<span class="w"> </span>cp<span class="w"> </span>backup.sql.gz<span class="w"> </span>s3://shopbd-backups/db/2026-11-23.sql.gz<span class="w"> </span>--storage-class<span class="w"> </span>STANDARD_IA
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># GCP (Autoclass চালু করলে object নিজে নিজে tier বদলায়)</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>cp<span class="w"> </span>backup.sql.gz<span class="w"> </span>gs://shopbd-backups/db/2026-11-23.sql.gz<span class="w"> </span>--storage-class<span class="o">=</span>NEARLINE
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>update<span class="w"> </span>gs://shopbd-backups<span class="w"> </span>--enable-autoclass
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1"># Azure</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>az<span class="w"> </span>storage<span class="w"> </span>blob<span class="w"> </span>upload<span class="w"> </span>--account-name<span class="w"> </span>shopbdbackups<span class="w"> </span>--container-name<span class="w"> </span>db<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">  </span>--name<span class="w"> </span><span class="m">2026</span>-11-23.sql.gz<span class="w"> </span>--file<span class="w"> </span>backup.sql.gz<span class="w"> </span>--tier<span class="w"> </span>Cool<span class="w"> </span>--auth-mode<span class="w"> </span>login
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="c1"># OCI</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>oci<span class="w"> </span>os<span class="w"> </span>object<span class="w"> </span>put<span class="w"> </span>--namespace-name<span class="w"> </span>my-namespace<span class="w"> </span>--bucket-name<span class="w"> </span>shopbd-backups<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">  </span>--name<span class="w"> </span>db/2026-11-23.sql.gz<span class="w"> </span>--file<span class="w"> </span>backup.sql.gz<span class="w"> </span>--storage-tier<span class="w"> </span>InfrequentAccess
+</span></code></pre></div>
+<h2 id="৪-lifecycle-policy">৪. Lifecycle policy<a class="headerlink" href="#৪-lifecycle-policy" title="Permanent link">&para;</a></h2>
+<p>Lifecycle মানে একটা <strong>স্বয়ংক্রিয় নিয়ম</strong>: "৩০ দিন পর সস্তা tier-এ যাও, ৩৬৫ দিন পর মুছে যাও, অসম্পূর্ণ upload ৭ দিন পর ফেলে দাও"। কেউ হাতে সরাতে হয় না — এটাই object storage-এ খরচ কমানোর সবচেয়ে সহজ উপায়।</p>
+<pre class="mermaid"><code>flowchart LR
+    A[Upload: Hot / Standard] --&gt;|৩০ দিন| B[Cool / IA]
+    B --&gt;|৯০ দিন| C[Archive]
+    C --&gt;|৩৬৫ দিন| D[Delete]</code></pre>
+<p>shopbd-র নিয়ম: <code>reports/</code> prefix-এর nightly sales report ৩০ দিন পর infrequent tier-এ, ৩৬৫ দিন পর delete।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="aws_1" name="__tabbed_2" type="radio" /><input id="gcp_1" name="__tabbed_2" type="radio" /><input id="azure_1" name="__tabbed_2" type="radio" /><input id="oci_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="aws_1">AWS</label><label for="gcp_1">GCP</label><label for="azure_1">Azure</label><label for="oci_1">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-json highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span><span class="nt">"Rules"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">"ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reports-tiering"</span><span class="p">,</span><span class="w"> </span><span class="nt">"Status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enabled"</span><span class="p">,</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">"Filter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"Prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reports/"</span><span class="p">},</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nt">"Transitions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">"Days"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="nt">"StorageClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDARD_IA"</span><span class="p">}],</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nt">"Expiration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"Days"</span><span class="p">:</span><span class="w"> </span><span class="mi">365</span><span class="p">},</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span><span class="nt">"AbortIncompleteMultipartUpload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"DaysAfterInitiation"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">}</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">}]}</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>aws<span class="w"> </span>s3api<span class="w"> </span>put-bucket-lifecycle-configuration<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>--bucket<span class="w"> </span>shopbd-images<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>--lifecycle-configuration<span class="w"> </span>file://lifecycle.json
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-json highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">{</span><span class="nt">"rule"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="p">{</span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SetStorageClass"</span><span class="p">,</span><span class="w"> </span><span class="nt">"storageClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NEARLINE"</span><span class="p">},</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">   </span><span class="nt">"condition"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="nt">"matchesPrefix"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"reports/"</span><span class="p">]}},</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="p">{</span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Delete"</span><span class="p">},</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">   </span><span class="nt">"condition"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">365</span><span class="p">,</span><span class="w"> </span><span class="nt">"matchesPrefix"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"reports/"</span><span class="p">]}}</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">]}</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>update<span class="w"> </span>gs://shopbd-images<span class="w"> </span>--lifecycle-file<span class="o">=</span>lifecycle.json
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Azure-তে lifecycle নিয়ম <strong>Storage account level</strong>-এ (management policy) থাকে, container-এ নয়।</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">{</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="nt">"rules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">      </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reports-tiering"</span><span class="p">,</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lifecycle"</span><span class="p">,</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">      </span><span class="nt">"definition"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">        </span><span class="nt">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"blobTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"blockBlob"</span><span class="p">],</span><span class="w"> </span><span class="nt">"prefixMatch"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"images/reports/"</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">        </span><span class="nt">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">          </span><span class="nt">"baseBlob"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">            </span><span class="nt">"tierToCool"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"daysAfterModificationGreaterThan"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">            </span><span class="nt">"delete"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"daysAfterModificationGreaterThan"</span><span class="p">:</span><span class="w"> </span><span class="mi">365</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">          </span><span class="p">}</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">  </span><span class="p">]</span>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>az<span class="w"> </span>storage<span class="w"> </span>account<span class="w"> </span>management-policy<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span>--account-name<span class="w"> </span>shopbdimages<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-prod-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span>--policy<span class="w"> </span>@policy.json
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-json highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="p">[</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reports-to-ia"</span><span class="p">,</span><span class="w"> </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INFREQUENT_ACCESS"</span><span class="p">,</span><span class="w"> </span><span class="nt">"timeAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="nt">"timeUnit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DAYS"</span><span class="p">,</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">   </span><span class="nt">"isEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"objectNameFilter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"inclusionPrefixes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"reports/"</span><span class="p">]}},</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reports-delete"</span><span class="p">,</span><span class="w"> </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETE"</span><span class="p">,</span><span class="w"> </span><span class="nt">"timeAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">365</span><span class="p">,</span><span class="w"> </span><span class="nt">"timeUnit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DAYS"</span><span class="p">,</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">   </span><span class="nt">"isEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"objectNameFilter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"inclusionPrefixes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"reports/"</span><span class="p">]}}</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="p">]</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>oci<span class="w"> </span>os<span class="w"> </span>object-lifecycle-policy<span class="w"> </span>put<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span>--namespace-name<span class="w"> </span>my-namespace<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span>--bucket-name<span class="w"> </span>shopbd-images<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span>--items<span class="w"> </span>file://lifecycle.json
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>OCI Object Storage service-কে আপনার compartment-এ object manage করার অনুমতি দিতে একটা IAM policy লাগে (<code>Allow service objectstorage-ap-mumbai-1 to manage object-family in compartment ...</code>)। policy না থাকলে lifecycle কাজ করে না।</p>
+</div>
+</div>
+</div>
+</div>
+<h2 id="৫-versioning-soft-delete-ও-immutability">৫. Versioning, soft delete ও immutability<a class="headerlink" href="#৫-versioning-soft-delete-ও-immutability" title="Permanent link">&para;</a></h2>
+<p>ভুল করে <code>rm</code> করে ফেললে বা ভুল file overwrite করলে ফেরত আনার উপায় লাগে। এর তিনটা স্তর:</p>
+<ol>
+<li><strong>Versioning</strong> — একই key-তে নতুন upload করলে পুরোনোটা noncurrent version হিসেবে থাকে; delete করলে শুধু একটা delete marker বসে।</li>
+<li><strong>Soft delete</strong> — মুছে ফেললেও নির্দিষ্ট দিন (retention) ধরে রিসাইকেল বিনে থাকে।</li>
+<li><strong>Immutability / Object Lock / Retention</strong> — নির্দিষ্ট সময় পর্যন্ত কেউ (এমনকি admin-ও) মুছতে বা বদলাতে পারে না — ransomware ও compliance-এর জন্য।</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Versioning</td>
+<td>Bucket versioning (একবার চালালে শুধু suspend করা যায়)</td>
+<td>Object Versioning</td>
+<td>Blob versioning</td>
+<td>Bucket versioning</td>
+</tr>
+<tr>
+<td>Soft delete</td>
+<td>— (versioning-ই এর কাজ করে)</td>
+<td>Soft delete (নতুন bucket-এ default retention আছে; পরিবর্তনযোগ্য)</td>
+<td>Blob ও container soft delete</td>
+<td>— (versioning)</td>
+</tr>
+<tr>
+<td>Immutability</td>
+<td><strong>S3 Object Lock</strong> (governance / compliance mode, legal hold)</td>
+<td><strong>Retention policy + Bucket Lock</strong>, object hold</td>
+<td><strong>Immutable storage</strong> (time-based, legal hold)</td>
+<td><strong>Retention rules</strong> (time-bound / indefinite)</td>
+</tr>
+</tbody>
+</table>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="aws_2" name="__tabbed_3" type="radio" /><input id="gcp_2" name="__tabbed_3" type="radio" /><input id="azure_2" name="__tabbed_3" type="radio" /><input id="oci_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="aws_2">AWS</label><label for="gcp_2">GCP</label><label for="azure_2">Azure</label><label for="oci_2">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>aws<span class="w"> </span>s3api<span class="w"> </span>put-bucket-versioning<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span>--bucket<span class="w"> </span>shopbd-images<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span>--versioning-configuration<span class="w"> </span><span class="nv">Status</span><span class="o">=</span>Enabled
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>aws<span class="w"> </span>s3api<span class="w"> </span>list-object-versions<span class="w"> </span>--bucket<span class="w"> </span>shopbd-images<span class="w"> </span>--prefix<span class="w"> </span>products/
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>update<span class="w"> </span>gs://shopbd-images<span class="w"> </span>--versioning
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="c1"># সব version-সহ list</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>ls<span class="w"> </span>--all-versions<span class="w"> </span>gs://shopbd-images/products/
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>az<span class="w"> </span>storage<span class="w"> </span>account<span class="w"> </span>blob-service-properties<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span>--account-name<span class="w"> </span>shopbdimages<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-prod-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">  </span>--enable-versioning<span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">  </span>--enable-delete-retention<span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">  </span>--delete-retention-days<span class="w"> </span><span class="m">14</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>oci<span class="w"> </span>os<span class="w"> </span>bucket<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span>--namespace-name<span class="w"> </span>my-namespace<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-images<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span>--versioning<span class="w"> </span>Enabled
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Versioning চালু = পুরোনো version-ও জমানোর টাকা</p>
+<p>প্রতিদিন overwrite হওয়া file-এর সব version storage হিসেবে গোনা হয়। তাই versioning-এর সাথে <strong>noncurrent version expire</strong> lifecycle rule বাধ্যতামূলক (যেমন ৩০ দিন পর পুরোনো version delete)।</p>
+</div>
+<h2 id="৬-access-control-public-access-ও-encryption">৬. Access control, public access ও encryption<a class="headerlink" href="#৬-access-control-public-access-ও-encryption" title="Permanent link">&para;</a></h2>
+<p>Object storage-এ সবচেয়ে বেশি ঘটনা ঘটে "ভুল করে bucket public হয়ে গেছে" — ক্লাসিক data leak। চার cloud-ই এখন এর জন্য আলাদা guard রেখেছে।</p>
+<table>
+<thead>
+<tr>
+<th>নিয়ন্ত্রণ</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Public ঠেকানোর master switch</td>
+<td><strong>Block Public Access</strong></td>
+<td><strong>Public access prevention</strong></td>
+<td>Storage account-এ <code>allowBlobPublicAccess = false</code></td>
+<td>Bucket visibility = <code>NoPublicAccess</code></td>
+</tr>
+<tr>
+<td>কে access পাবে</td>
+<td>IAM policy + bucket policy</td>
+<td>IAM role + (uniform bucket-level access)</td>
+<td>Azure RBAC + SAS/শেয়ার্ড key</td>
+<td>IAM policy</td>
+</tr>
+<tr>
+<td>পুরোনো ACL ব্যবস্থা</td>
+<td>ACL (নতুন bucket-এ default বন্ধ — "bucket owner enforced")</td>
+<td>Fine-grained ACL (uniform access চালু করলে বন্ধ)</td>
+<td>Container access level</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Encryption at rest (default)</td>
+<td>SSE-S3 (সব নতুন object-এ)</td>
+<td>Google-managed key</td>
+<td>Microsoft-managed key</td>
+<td>Oracle-managed key</td>
+</tr>
+<tr>
+<td>নিজের key</td>
+<td>SSE-KMS (AWS KMS)</td>
+<td>CMEK (Cloud KMS)</td>
+<td>Customer-managed key (Key Vault)</td>
+<td>OCI Vault key</td>
+</tr>
+</tbody>
+</table>
+<p>সব cloud-এই transit-এ HTTPS ব্যবহার করুন এবং plain HTTP বন্ধ করুন। Key management নিয়ে বিস্তারিত: <a href="../13-security/">Security</a>; কে কী access পাবে নিয়ে: <a href="../03-identity-and-access/">Identity ও Access</a>।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="aws_3" name="__tabbed_4" type="radio" /><input id="gcp_3" name="__tabbed_4" type="radio" /><input id="azure_3" name="__tabbed_4" type="radio" /><input id="oci_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="aws_3">AWS</label><label for="gcp_3">GCP</label><label for="azure_3">Azure</label><label for="oci_3">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>aws<span class="w"> </span>s3api<span class="w"> </span>put-public-access-block<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span>--bucket<span class="w"> </span>shopbd-images<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span>--public-access-block-configuration<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">  </span><span class="nv">BlockPublicAcls</span><span class="o">=</span>true,IgnorePublicAcls<span class="o">=</span>true,BlockPublicPolicy<span class="o">=</span>true,RestrictPublicBuckets<span class="o">=</span><span class="nb">true</span>
+</span></code></pre></div>
+<p>Account level-এও এটা চালু রাখা যায় (<code>aws s3control put-public-access-block</code>) — এতে ভবিষ্যতের সব bucket সুরক্ষিত।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>update<span class="w"> </span>gs://shopbd-images<span class="w"> </span>--public-access-prevention
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>update<span class="w"> </span>gs://shopbd-images<span class="w"> </span>--uniform-bucket-level-access
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c1"># একটা service account-কে শুধু object পড়ার অনুমতি</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>gs://shopbd-images<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">  </span>--member<span class="o">=</span><span class="s2">"serviceAccount:shopbd-api@my-project-id.iam.gserviceaccount.com"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">  </span>--role<span class="o">=</span><span class="s2">"roles/storage.objectViewer"</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>az<span class="w"> </span>storage<span class="w"> </span>account<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">  </span>--name<span class="w"> </span>shopbdimages<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-prod-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">  </span>--allow-blob-public-access<span class="w"> </span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">  </span>--allow-shared-key-access<span class="w"> </span><span class="nb">false</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>az<span class="w"> </span>role<span class="w"> </span>assignment<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">  </span>--assignee<span class="w"> </span><span class="m">00000000</span>-0000-0000-0000-000000000000<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">  </span>--role<span class="w"> </span><span class="s2">"Storage Blob Data Reader"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="w">  </span>--scope<span class="w"> </span>/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/shopbd-prod-rg/providers/Microsoft.Storage/storageAccounts/shopbdimages
+</span></code></pre></div>
+<p><code>allow-shared-key-access false</code> দিলে account key দিয়ে access বন্ধ হয়ে শুধু Entra ID (ও user delegation SAS) চলে — নিরাপদ, কিন্তু পুরোনো tool ভেঙে যেতে পারে।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>oci<span class="w"> </span>os<span class="w"> </span>bucket<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">  </span>--namespace-name<span class="w"> </span>my-namespace<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-images<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">  </span>--public-access-type<span class="w"> </span>NoPublicAccess
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>Allow group shopbd-api-readers to read objects in compartment shopbd-prod where target.bucket.name = 'shopbd-images'
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="৭-temporary-access-presigned-url-sas-ও-par">৭. Temporary access: Presigned URL, SAS ও PAR<a class="headerlink" href="#৭-temporary-access-presigned-url-sas-ও-par" title="Permanent link">&para;</a></h2>
+<p>Browser থেকে সরাসরি bucket-এ ছবি তুলতে দিতে চান, কিন্তু user-কে আপনার credential দেবেন না। সমাধান: server একটা <strong>সময়সীমাওয়ালা, একটা কাজের জন্য, signed লিংক</strong> বানায়; user সেই লিংক দিয়ে সরাসরি storage-এ upload/download করে। API server-এর ভেতর দিয়ে বড় file যেতে হয় না।</p>
+<div class="admonition note">
+<p class="admonition-title">Analogy</p>
+<p>হোটেলের <strong>কী-কার্ড</strong>: শুধু ৩০২ নম্বর ঘর খোলে, শুধু ৩ দিনের জন্য — মাস্টার চাবি (আপনার credential) কাউকে দিতে হয় না।</p>
+</div>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>নাম</td>
+<td>Presigned URL</td>
+<td>Signed URL (V4)</td>
+<td>SAS (User delegation SAS সবচেয়ে নিরাপদ)</td>
+<td>Pre-Authenticated Request (PAR)</td>
+</tr>
+<tr>
+<td>কে sign করে</td>
+<td>যে IAM identity বানায় তার permission-এর সীমায়</td>
+<td>Service account key বা impersonation</td>
+<td>Account key (Service SAS) অথবা Entra ID key (User delegation)</td>
+<td>OCI নিজেই একটা অনন্য URL বানায়</td>
+</tr>
+<tr>
+<td>Revoke</td>
+<td>URL-এর expiry; signer-এর permission বাতিল করলে অকেজো</td>
+<td>Signer-এর key/permission বাতিল</td>
+<td>Stored access policy বা key rotation</td>
+<td>PAR মুছে দিলে তাৎক্ষণিক বন্ধ</td>
+</tr>
+</tbody>
+</table>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:4"><input checked="checked" id="aws_4" name="__tabbed_5" type="radio" /><input id="gcp_4" name="__tabbed_5" type="radio" /><input id="azure_4" name="__tabbed_5" type="radio" /><input id="oci_4" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="aws_4">AWS</label><label for="gcp_4">GCP</label><label for="azure_4">Azure</label><label for="oci_4">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># ১ ঘণ্টার download link</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>aws<span class="w"> </span>s3<span class="w"> </span>presign<span class="w"> </span>s3://shopbd-images/products/original/shirt.jpg<span class="w"> </span>--expires-in<span class="w"> </span><span class="m">3600</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>sign-url<span class="w"> </span>gs://shopbd-images/products/original/shirt.jpg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">  </span>--duration<span class="o">=</span>1h<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">  </span>--impersonate-service-account<span class="o">=</span>shopbd-signer@my-project-id.iam.gserviceaccount.com
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>az<span class="w"> </span>storage<span class="w"> </span>blob<span class="w"> </span>generate-sas<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">  </span>--account-name<span class="w"> </span>shopbdimages<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">  </span>--container-name<span class="w"> </span>images<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">  </span>--name<span class="w"> </span>products/original/shirt.jpg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="w">  </span>--permissions<span class="w"> </span>r<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">  </span>--expiry<span class="w"> </span><span class="m">2026</span>-12-31T00:00Z<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="w">  </span>--https-only<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="w">  </span>--full-uri<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="w">  </span>--as-user<span class="w"> </span>--auth-mode<span class="w"> </span>login
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>oci<span class="w"> </span>os<span class="w"> </span>preauth-request<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">  </span>--namespace-name<span class="w"> </span>my-namespace<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">  </span>--bucket-name<span class="w"> </span>shopbd-images<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">  </span>--name<span class="w"> </span>shirt-download<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="w">  </span>--access-type<span class="w"> </span>ObjectRead<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="w">  </span>--object-name<span class="w"> </span>products/original/shirt.jpg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="w">  </span>--time-expires<span class="w"> </span><span class="s2">"2026-12-31T00:00:00Z"</span>
+</span></code></pre></div>
+<p>Response-এ <code>access-uri</code> আসে; পুরো URL = <code>https://objectstorage.ap-mumbai-1.oraclecloud.com</code> + সেই <code>access-uri</code>। <strong>এই URL একবারই দেখানো হয়</strong>, হারালে আবার বানাতে হবে।</p>
+</div>
+</div>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Presigned URL = password</p>
+<p>যার কাছে লিংক আছে সে-ই access পাবে। তাই: expiry ছোট রাখুন (মিনিট), শুধু প্রয়োজনীয় method (<code>GET</code> বা <code>PUT</code>) দিন, লিংক log-এ লিখবেন না।</p>
+</div>
+<h2 id="৮-terraform-shopbd-images-bucket">৮. Terraform: shopbd-images bucket<a class="headerlink" href="#৮-terraform-shopbd-images-bucket" title="Permanent link">&para;</a></h2>
+<p>চারটা cloud-এ একই কাজ — private, versioned bucket। Lifecycle-ও Terraform-এ লেখা যায় (<code>aws_s3_bucket_lifecycle_configuration</code>, <code>google_storage_bucket</code>-এর <code>lifecycle_rule</code>, <code>azurerm_storage_management_policy</code>, <code>oci_objectstorage_object_lifecycle_policy</code>)। Terraform-এর বিস্তারিত: <a href="../14-infrastructure-as-code/">Infrastructure as Code</a>।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:4"><input checked="checked" id="aws_5" name="__tabbed_6" type="radio" /><input id="gcp_5" name="__tabbed_6" type="radio" /><input id="azure_5" name="__tabbed_6" type="radio" /><input id="oci_5" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="aws_5">AWS</label><label for="gcp_5">GCP</label><label for="azure_5">Azure</label><label for="oci_5">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_s3_bucket"</span><span class="w"> </span><span class="nv">"images"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">  </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-images"</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="p">}</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_s3_bucket_public_access_block"</span><span class="w"> </span><span class="nv">"images"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="w">  </span><span class="na">bucket</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.images.id</span>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="w">  </span><span class="na">block_public_acls</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="w">  </span><span class="na">block_public_policy</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="w">  </span><span class="na">ignore_public_acls</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a><span class="w">  </span><span class="na">restrict_public_buckets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-27-11"><a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a><span class="p">}</span>
+</span><span id="__span-27-12"><a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a>
+</span><span id="__span-27-13"><a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_s3_bucket_versioning"</span><span class="w"> </span><span class="nv">"images"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-27-14"><a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a><span class="w">  </span><span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_s3_bucket.images.id</span>
+</span><span id="__span-27-15"><a id="__codelineno-27-15" name="__codelineno-27-15" href="#__codelineno-27-15"></a><span class="w">  </span><span class="nb">versioning_configuration</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-27-16"><a id="__codelineno-27-16" name="__codelineno-27-16" href="#__codelineno-27-16"></a><span class="w">    </span><span class="na">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Enabled"</span>
+</span><span id="__span-27-17"><a id="__codelineno-27-17" name="__codelineno-27-17" href="#__codelineno-27-17"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-27-18"><a id="__codelineno-27-18" name="__codelineno-27-18" href="#__codelineno-27-18"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_storage_bucket"</span><span class="w"> </span><span class="nv">"images"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                        </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-images"</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">  </span><span class="na">location</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="s2">"ASIA-SOUTH1"</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">  </span><span class="na">storage_class</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">"STANDARD"</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">  </span><span class="na">uniform_bucket_level_access</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">  </span><span class="na">public_access_prevention</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"enforced"</span>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="w">  </span><span class="nb">versioning</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="w">    </span><span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>
+</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="w">  </span><span class="nb">lifecycle_rule</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a><span class="w">    </span><span class="nb">action</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-28-14"><a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="w">      </span><span class="na">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Delete"</span>
+</span><span id="__span-28-15"><a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-28-16"><a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a><span class="w">    </span><span class="nb">condition</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-28-17"><a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a><span class="w">      </span><span class="na">age</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="m">365</span>
+</span><span id="__span-28-18"><a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a><span class="w">      </span><span class="na">matches_prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"reports/"</span><span class="p">]</span>
+</span><span id="__span-28-19"><a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-28-20"><a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-28-21"><a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_storage_account"</span><span class="w"> </span><span class="nv">"images"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                            </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbdimages"</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-prod-rg"</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">  </span><span class="na">location</span><span class="w">                        </span><span class="o">=</span><span class="w"> </span><span class="s2">"centralindia"</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="w">  </span><span class="na">account_tier</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="s2">"Standard"</span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="w">  </span><span class="na">account_replication_type</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">"ZRS"</span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="w">  </span><span class="na">min_tls_version</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s2">"TLS1_2"</span>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="w">  </span><span class="na">allow_nested_items_to_be_public</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a>
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="w">  </span><span class="nb">blob_properties</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a><span class="w">    </span><span class="na">versioning_enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-29-12"><a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="w">    </span><span class="nb">delete_retention_policy</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-29-13"><a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a><span class="w">      </span><span class="na">days</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span>
+</span><span id="__span-29-14"><a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-29-15"><a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-29-16"><a id="__codelineno-29-16" name="__codelineno-29-16" href="#__codelineno-29-16"></a><span class="p">}</span>
+</span><span id="__span-29-17"><a id="__codelineno-29-17" name="__codelineno-29-17" href="#__codelineno-29-17"></a>
+</span><span id="__span-29-18"><a id="__codelineno-29-18" name="__codelineno-29-18" href="#__codelineno-29-18"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_storage_container"</span><span class="w"> </span><span class="nv">"images"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-29-19"><a id="__codelineno-29-19" name="__codelineno-29-19" href="#__codelineno-29-19"></a><span class="w">  </span><span class="na">name</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="s2">"images"</span>
+</span><span id="__span-29-20"><a id="__codelineno-29-20" name="__codelineno-29-20" href="#__codelineno-29-20"></a><span class="w">  </span><span class="na">storage_account_id</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_storage_account.images.id</span>
+</span><span id="__span-29-21"><a id="__codelineno-29-21" name="__codelineno-29-21" href="#__codelineno-29-21"></a><span class="w">  </span><span class="na">container_access_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"private"</span>
+</span><span id="__span-29-22"><a id="__codelineno-29-22" name="__codelineno-29-22" href="#__codelineno-29-22"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kr">data</span><span class="w"> </span><span class="nc">"oci_objectstorage_namespace"</span><span class="w"> </span><span class="nv">"ns"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">  </span><span class="na">compartment_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.compartment_id</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="p">}</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"oci_objectstorage_bucket"</span><span class="w"> </span><span class="nv">"images"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="w">  </span><span class="na">compartment_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.compartment_id</span>
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="w">  </span><span class="na">namespace</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">data.oci_objectstorage_namespace.ns.namespace</span>
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a><span class="w">  </span><span class="na">name</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-images"</span>
+</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="w">  </span><span class="na">access_type</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">"NoPublicAccess"</span>
+</span><span id="__span-30-10"><a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a><span class="w">  </span><span class="na">storage_tier</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">"Standard"</span>
+</span><span id="__span-30-11"><a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a><span class="w">  </span><span class="na">versioning</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"Enabled"</span>
+</span><span id="__span-30-12"><a id="__codelineno-30-12" name="__codelineno-30-12" href="#__codelineno-30-12"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="৯-block-storage">৯. Block storage<a class="headerlink" href="#৯-block-storage" title="Permanent link">&para;</a></h2>
+<p>Block storage হলো VM-এর "hard disk"। OS-এর কাছে এটা একটা raw device (<code>/dev/sdf</code>, <code>/dev/nvme1n1</code>); আপনি filesystem (ext4, xfs) বানিয়ে mount করেন। Database-এর data directory, OS disk, কম latency-র কাজে এটাই ব্যবহার হয়।</p>
+<p>গুরুত্বপূর্ণ বৈশিষ্ট্য:</p>
+<ul>
+<li><strong>Zonal</strong>: disk একটা নির্দিষ্ট zone/AD-তে থাকে এবং <strong>সেই zone-এর VM-এই</strong> attach হয়। (GCP-তে regional PD-ও আছে, দুই zone-এ replicate হয়।)</li>
+<li>VM বন্ধ বা delete হলেও disk আলাদা resource হিসেবে বেঁচে থাকতে পারে — আলাদা করে মুছতে হয়।</li>
+<li>Performance (IOPS ও throughput) নির্ভর করে disk type ও size-এর ওপর।</li>
+<li>Single-attach সাধারণ; multi-attach সীমিত ও বিশেষ ব্যবহারের।</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>AWS EBS</th>
+<th>GCP</th>
+<th>Azure Managed Disks</th>
+<th>OCI Block Volume</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>সাধারণ SSD</td>
+<td><code>gp3</code> (IOPS/throughput আলাদা ঠিক করা যায়)</td>
+<td><code>pd-balanced</code></td>
+<td>Standard SSD / Premium SSD</td>
+<td>Balanced</td>
+</tr>
+<tr>
+<td>Performance SSD</td>
+<td><code>io2</code> / <code>io2 Block Express</code></td>
+<td><code>pd-ssd</code>, Hyperdisk Balanced</td>
+<td>Premium SSD v2, Ultra Disk</td>
+<td>Higher Performance / Ultra High Performance</td>
+</tr>
+<tr>
+<td>HDD (throughput, সস্তা)</td>
+<td><code>st1</code>, <code>sc1</code></td>
+<td><code>pd-standard</code></td>
+<td>Standard HDD</td>
+<td>Lower Cost</td>
+</tr>
+<tr>
+<td>Provisioning-এর ধরন</td>
+<td>size + (gp3/io2-তে IOPS)</td>
+<td>size (PD) / IOPS সরাসরি (Hyperdisk)</td>
+<td>size বা tier</td>
+<td>size + <strong>VPU/GB</strong> performance বাছা</td>
+</tr>
+</tbody>
+</table>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:4"><input checked="checked" id="aws_6" name="__tabbed_7" type="radio" /><input id="gcp_6" name="__tabbed_7" type="radio" /><input id="azure_6" name="__tabbed_7" type="radio" /><input id="oci_6" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="aws_6">AWS</label><label for="gcp_6">GCP</label><label for="azure_6">Azure</label><label for="oci_6">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>aws<span class="w"> </span>ec2<span class="w"> </span>create-volume<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">  </span>--availability-zone<span class="w"> </span>ap-south-1a<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">  </span>--size<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="w">  </span>--volume-type<span class="w"> </span>gp3<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="w">  </span>--encrypted<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="w">  </span>--tag-specifications<span class="w"> </span><span class="s1">'ResourceType=volume,Tags=[{Key=Name,Value=shopbd-data}]'</span>
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>aws<span class="w"> </span>ec2<span class="w"> </span>attach-volume<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-9"><a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a><span class="w">  </span>--volume-id<span class="w"> </span>vol-0123456789abcdef0<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-10"><a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a><span class="w">  </span>--instance-id<span class="w"> </span>i-0123456789abcdef0<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-31-11"><a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a><span class="w">  </span>--device<span class="w"> </span>/dev/sdf
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>disks<span class="w"> </span>create<span class="w"> </span>shopbd-data<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">  </span>--size<span class="o">=</span>100GB<span class="w"> </span>--type<span class="o">=</span>pd-balanced<span class="w"> </span>--zone<span class="o">=</span>asia-south1-a
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>instances<span class="w"> </span>attach-disk<span class="w"> </span>shopbd-api<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="w">  </span>--disk<span class="o">=</span>shopbd-data<span class="w"> </span>--zone<span class="o">=</span>asia-south1-a
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>az<span class="w"> </span>disk<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-prod-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-data<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="w">  </span>--size-gb<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="w">  </span>--sku<span class="w"> </span>Premium_LRS
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>
+</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>az<span class="w"> </span>vm<span class="w"> </span>disk<span class="w"> </span>attach<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-33-8"><a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-prod-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-33-9"><a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a><span class="w">  </span>--vm-name<span class="w"> </span>shopbd-api<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-33-10"><a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-data
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>oci<span class="w"> </span>bv<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="w">  </span>--availability-domain<span class="w"> </span><span class="s2">"AAAA:AP-MUMBAI-1-AD-1"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="w">  </span>--display-name<span class="w"> </span>shopbd-data<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="w">  </span>--size-in-gbs<span class="w"> </span><span class="m">100</span>
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>oci<span class="w"> </span>compute<span class="w"> </span>volume-attachment<span class="w"> </span>attach<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-34-8"><a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a><span class="w">  </span>--instance-id<span class="w"> </span>ocid1.instance.oc1.ap-mumbai-1.example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-34-9"><a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a><span class="w">  </span>--volume-id<span class="w"> </span>ocid1.volume.oc1.ap-mumbai-1.example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-34-10"><a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a><span class="w">  </span>--type<span class="w"> </span>paravirtualized
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<p>Attach করার পর VM-এর ভেতরে (চার cloud-এই একই, Linux):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>lsblk<span class="w">                                   </span><span class="c1"># নতুন disk খুঁজুন, যেমন nvme1n1 বা sdb</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>sudo<span class="w"> </span>mkfs.ext4<span class="w"> </span>/dev/nvme1n1<span class="w">             </span><span class="c1"># শুধু প্রথমবার! ভুল disk হলে data যাবে</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/data
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>sudo<span class="w"> </span>mount<span class="w"> </span>/dev/nvme1n1<span class="w"> </span>/data
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>sudo<span class="w"> </span>blkid<span class="w"> </span>/dev/nvme1n1<span class="w">                 </span><span class="c1"># UUID নিন</span>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'UUID=&lt;uuid-from-blkid&gt; /data ext4 defaults,nofail 0 2'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/fstab
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title"><code>mkfs</code> শুধু নতুন disk-এ</p>
+<p>snapshot থেকে বানানো disk-এ আগেই filesystem আছে — <code>mkfs</code> চালালে সব data মুছে যাবে। আর <code>/etc/fstab</code>-এ device নাম নয়, <strong>UUID</strong> ব্যবহার করুন, নইলে reboot-এ নাম বদলে boot আটকাতে পারে।</p>
+</div>
+<h3 id="resize-ও-performance">Resize ও performance<a class="headerlink" href="#resize-ও-performance" title="Permanent link">&para;</a></h3>
+<p>চার cloud-ই চালু অবস্থায় disk বড় করা (grow) সমর্থন করে, কিন্তু <strong>ছোট করা যায় না</strong>। বড় করার পর OS-এর ভেতরে <code>growpart</code> ও <code>resize2fs</code> (বা <code>xfs_growfs</code>) চালাতে হয়। AWS-এ একই volume-এ একটা modification-এর পর কিছুক্ষণ আবার বদলানো যায় না (cooldown), আর GCP-তে disk-এর size বাড়ালে IOPS/throughput-ও বাড়ে (PD-র ক্ষেত্রে)।</p>
+<h2 id="১০-snapshot">১০. Snapshot<a class="headerlink" href="#১০-snapshot" title="Permanent link">&para;</a></h2>
+<p><strong>Snapshot</strong> হলো একটা disk-এর নির্দিষ্ট মুহূর্তের backup। প্রথম snapshot পুরো data কপি করে, পরেরগুলো শুধু <strong>পরিবর্তিত block</strong> (incremental) — তাই দ্রুত ও কম খরচের। Snapshot অন্য zone/region-এ নিয়ে disk বানানো যায় — এটাই disk-কে এক zone থেকে আরেক zone-এ সরানোর উপায়।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:4"><input checked="checked" id="aws_7" name="__tabbed_8" type="radio" /><input id="gcp_7" name="__tabbed_8" type="radio" /><input id="azure_7" name="__tabbed_8" type="radio" /><input id="oci_7" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="aws_7">AWS</label><label for="gcp_7">GCP</label><label for="azure_7">Azure</label><label for="oci_7">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>aws<span class="w"> </span>ec2<span class="w"> </span>create-snapshot<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="w">  </span>--volume-id<span class="w"> </span>vol-0123456789abcdef0<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="w">  </span>--description<span class="w"> </span><span class="s2">"shopbd-data nightly"</span>
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="c1"># অন্য region-এ copy (DR-এর জন্য)</span>
+</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>aws<span class="w"> </span>ec2<span class="w"> </span>copy-snapshot<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-36-7"><a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a><span class="w">  </span>--source-region<span class="w"> </span>ap-south-1<span class="w"> </span>--source-snapshot-id<span class="w"> </span>snap-0123456789abcdef0<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a><span class="w">  </span>--region<span class="w"> </span>ap-southeast-1
+</span></code></pre></div>
+<p>স্বয়ংক্রিয় schedule: <strong>Amazon Data Lifecycle Manager</strong> বা <strong>AWS Backup</strong>।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>gcloud<span class="w"> </span>compute<span class="w"> </span>disks<span class="w"> </span>snapshot<span class="w"> </span>shopbd-data<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">  </span>--snapshot-names<span class="o">=</span>shopbd-data-2026-11-23<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="w">  </span>--zone<span class="o">=</span>asia-south1-a
+</span></code></pre></div>
+<p>স্বয়ংক্রিয় schedule: <strong>snapshot schedule</strong> (resource policy) disk-এ attach করে।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>az<span class="w"> </span>snapshot<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-prod-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-data-2026-11-23<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="w">  </span>--source<span class="w"> </span>shopbd-data<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a><span class="w">  </span>--incremental<span class="w"> </span><span class="nb">true</span>
+</span></code></pre></div>
+<p>স্বয়ংক্রিয় schedule: <strong>Azure Backup</strong> (backup vault + policy)।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>oci<span class="w"> </span>bv<span class="w"> </span>backup<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">  </span>--volume-id<span class="w"> </span>ocid1.volume.oc1.ap-mumbai-1.example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="w">  </span>--type<span class="w"> </span>INCREMENTAL<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="w">  </span>--display-name<span class="w"> </span>shopbd-data-2026-11-23
+</span></code></pre></div>
+<p>স্বয়ংক্রিয় schedule: <strong>backup policy</strong> (Bronze / Silver / Gold অথবা custom) volume-এ assign করে।</p>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Database-এর জন্য</p>
+<p>চলমান database-এর disk snapshot "crash-consistent" হয় — ঠিকঠাক restore হয় কিন্তু কিছু in-flight transaction হারাতে পারে। Managed database (<a href="../07-databases/">Database</a>) নিজের backup/PITR দেয়, তাই সেটাই প্রথম পছন্দ।</p>
+</div>
+<h2 id="১১-file-storage">১১. File storage<a class="headerlink" href="#১১-file-storage" title="Permanent link">&para;</a></h2>
+<p>যখন <strong>একাধিক VM একই folder</strong> একসাথে পড়া-লেখা করতে চায় (যেমন CMS-এর upload folder, shared config, legacy app) তখন file storage। এখানে ready-made filesystem — আপনি <code>mount</code> করেন, format করেন না।</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>মূল service</td>
+<td><strong>Amazon EFS</strong> (NFS)</td>
+<td><strong>Filestore</strong> (NFS)</td>
+<td><strong>Azure Files</strong> (SMB ও NFS)</td>
+<td><strong>OCI File Storage</strong> (NFS)</td>
+</tr>
+<tr>
+<td>Windows (SMB)</td>
+<td><strong>FSx for Windows File Server</strong></td>
+<td>Filestore-এ SMB নেই; third-party/NetApp Volumes</td>
+<td>Azure Files SMB</td>
+<td>সরাসরি নেই</td>
+</tr>
+<tr>
+<td>High-performance</td>
+<td>FSx for Lustre / NetApp ONTAP / OpenZFS</td>
+<td>Filestore Enterprise / Google Cloud NetApp Volumes</td>
+<td>Azure NetApp Files / Premium Files</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Scaling</td>
+<td>Elastic — আপনা-আপনি বাড়ে-কমে</td>
+<td>Tier অনুযায়ী capacity ঠিক করতে হয়</td>
+<td>Share quota ঠিক করতে হয়</td>
+<td>Elastic (৮ exabyte পর্যন্ত বাড়ে)</td>
+</tr>
+<tr>
+<td>Network-এ কীভাবে</td>
+<td>VPC-র subnet-এ <strong>mount target</strong></td>
+<td>VPC-তে instance IP</td>
+<td>Storage account-এর private endpoint/service endpoint</td>
+<td>Subnet-এ <strong>mount target</strong> + export</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>flowchart LR
+    V1[shopbd-api VM 1] --&gt; MT[Mount target / endpoint]
+    V2[shopbd-api VM 2] --&gt; MT
+    V3[shopbd-worker VM] --&gt; MT
+    MT --&gt; FS[(Shared file system)]</code></pre>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:4"><input checked="checked" id="aws_8" name="__tabbed_9" type="radio" /><input id="gcp_8" name="__tabbed_9" type="radio" /><input id="azure_8" name="__tabbed_9" type="radio" /><input id="oci_8" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="aws_8">AWS</label><label for="gcp_8">GCP</label><label for="azure_8">Azure</label><label for="oci_8">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>aws<span class="w"> </span>efs<span class="w"> </span>create-file-system<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="w">  </span>--performance-mode<span class="w"> </span>generalPurpose<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="w">  </span>--throughput-mode<span class="w"> </span>elastic<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="w">  </span>--encrypted<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="w">  </span>--tags<span class="w"> </span><span class="nv">Key</span><span class="o">=</span>Name,Value<span class="o">=</span>shopbd-shared
+</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>
+</span><span id="__span-40-7"><a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a>aws<span class="w"> </span>efs<span class="w"> </span>create-mount-target<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-40-8"><a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a><span class="w">  </span>--file-system-id<span class="w"> </span>fs-0123456789abcdef0<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-40-9"><a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a><span class="w">  </span>--subnet-id<span class="w"> </span>subnet-0123456789abcdef0<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-40-10"><a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a><span class="w">  </span>--security-groups<span class="w"> </span>sg-0123456789abcdef0
+</span><span id="__span-40-11"><a id="__codelineno-40-11" name="__codelineno-40-11" href="#__codelineno-40-11"></a>
+</span><span id="__span-40-12"><a id="__codelineno-40-12" name="__codelineno-40-12" href="#__codelineno-40-12"></a><span class="c1"># VM-এ (amazon-efs-utils ইনস্টল থাকলে)</span>
+</span><span id="__span-40-13"><a id="__codelineno-40-13" name="__codelineno-40-13" href="#__codelineno-40-13"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/shared
+</span><span id="__span-40-14"><a id="__codelineno-40-14" name="__codelineno-40-14" href="#__codelineno-40-14"></a>sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>efs<span class="w"> </span>-o<span class="w"> </span>tls<span class="w"> </span>fs-0123456789abcdef0:/<span class="w"> </span>/mnt/shared
+</span></code></pre></div>
+<p>Security group-এ <strong>TCP 2049 (NFS)</strong> খোলা থাকতে হবে।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>gcloud<span class="w"> </span>filestore<span class="w"> </span>instances<span class="w"> </span>create<span class="w"> </span>shopbd-files<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">  </span>--zone<span class="o">=</span>asia-south1-a<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="w">  </span>--tier<span class="o">=</span>ZONAL<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="w">  </span>--file-share<span class="o">=</span><span class="nv">name</span><span class="o">=</span>share,capacity<span class="o">=</span>1TB<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-41-5"><a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="w">  </span>--network<span class="o">=</span><span class="nv">name</span><span class="o">=</span>shopbd-prod-vpc
+</span><span id="__span-41-6"><a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a>
+</span><span id="__span-41-7"><a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a><span class="c1"># VM-এ</span>
+</span><span id="__span-41-8"><a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nfs-common
+</span><span id="__span-41-9"><a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/shared
+</span><span id="__span-41-10"><a id="__codelineno-41-10" name="__codelineno-41-10" href="#__codelineno-41-10"></a>sudo<span class="w"> </span>mount<span class="w"> </span>-o<span class="w"> </span>discard,defaults<span class="w"> </span><span class="m">10</span>.0.0.2:/share<span class="w"> </span>/mnt/shared
+</span></code></pre></div>
+<p>Tier নির্বাচন: Basic HDD/SSD, Zonal, Regional, Enterprise — capacity-র সর্বনিম্ন সীমা tier ভেদে আলাদা, তাই <a href="https://cloud.google.com/filestore/docs">official docs</a> দেখে নিন।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>az<span class="w"> </span>storage<span class="w"> </span>share-rm<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-prod-rg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="w">  </span>--storage-account<span class="w"> </span>shopbdfiles<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-42-4"><a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-share<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-42-5"><a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a><span class="w">  </span>--quota<span class="w"> </span><span class="m">100</span>
+</span><span id="__span-42-6"><a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a>
+</span><span id="__span-42-7"><a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a><span class="c1"># Linux VM-এ SMB mount</span>
+</span><span id="__span-42-8"><a id="__codelineno-42-8" name="__codelineno-42-8" href="#__codelineno-42-8"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/shared
+</span><span id="__span-42-9"><a id="__codelineno-42-9" name="__codelineno-42-9" href="#__codelineno-42-9"></a>sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>cifs<span class="w"> </span>//shopbdfiles.file.core.windows.net/shopbd-share<span class="w"> </span>/mnt/shared<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-42-10"><a id="__codelineno-42-10" name="__codelineno-42-10" href="#__codelineno-42-10"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">vers</span><span class="o">=</span><span class="m">3</span>.1.1,username<span class="o">=</span>shopbdfiles,password<span class="o">=</span>&lt;storage-account-key&gt;,serverino
+</span></code></pre></div>
+<p>Port 445 কিছু ISP/office network-এ বন্ধ থাকে — Azure VM-এর ভেতর থেকে সাধারণত সমস্যা নেই। NFS share চাইলে <strong>Premium</strong> (FileStorage) account লাগে।</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>oci<span class="w"> </span>fs<span class="w"> </span>file-system<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="w">  </span>--availability-domain<span class="w"> </span><span class="s2">"AAAA:AP-MUMBAI-1-AD-1"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-43-4"><a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a><span class="w">  </span>--display-name<span class="w"> </span>shopbd-shared
+</span><span id="__span-43-5"><a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a>
+</span><span id="__span-43-6"><a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a>oci<span class="w"> </span>fs<span class="w"> </span>mount-target<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-43-7"><a id="__codelineno-43-7" name="__codelineno-43-7" href="#__codelineno-43-7"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-43-8"><a id="__codelineno-43-8" name="__codelineno-43-8" href="#__codelineno-43-8"></a><span class="w">  </span>--availability-domain<span class="w"> </span><span class="s2">"AAAA:AP-MUMBAI-1-AD-1"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-43-9"><a id="__codelineno-43-9" name="__codelineno-43-9" href="#__codelineno-43-9"></a><span class="w">  </span>--subnet-id<span class="w"> </span>ocid1.subnet.oc1.ap-mumbai-1.example
+</span></code></pre></div>
+<p>এরপর file system-কে একটা <strong>export path</strong> দিয়ে mount target-এ export করতে হয়, তারপর VM থেকে <code>sudo mount &lt;mount-target-ip&gt;:/shopbd-shared /mnt/shared</code>। Security list/NSG-তে NFS port (2048–2050, 111) খুলতে হয়।</p>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">File storage কখন নয়</p>
+<p>শুধু product image দেখানোর জন্য file storage লাগে না — object storage + CDN সস্তা ও scalable। File storage তখনই যখন app সত্যিই POSIX filesystem আশা করে।</p>
+</div>
+<h2 id="১২-archive-ও-restore">১২. Archive ও restore<a class="headerlink" href="#১২-archive-ও-restore" title="Permanent link">&para;</a></h2>
+<p>Archive মানে সবচেয়ে সস্তা জমানো, কিন্তু ফেরত আনা ধীর/খরচসাপেক্ষ। shopbd-র জন্য: ৩ বছরের পুরোনো invoice, পুরোনো database dump। Tier-এর তুলনা ওপরের "Storage class ও tier" section-এ আছে।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="c1"># AWS — Glacier Flexible/Deep Archive থেকে ৭ দিনের জন্য অস্থায়ী কপি</span>
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>aws<span class="w"> </span>s3api<span class="w"> </span>restore-object<span class="w"> </span>--bucket<span class="w"> </span>shopbd-backups<span class="w"> </span>--key<span class="w"> </span>db/2024-01-01.sql.gz<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="w">  </span>--restore-request<span class="w"> </span><span class="s1">'{"Days":7,"GlacierJobParameters":{"Tier":"Standard"}}'</span>
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>
+</span><span id="__span-44-5"><a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a><span class="c1"># GCP — Archive class-এ আলাদা restore নেই, সরাসরি পড়া যায় (retrieval fee লাগে)</span>
+</span><span id="__span-44-6"><a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>cp<span class="w"> </span>gs://shopbd-backups/db/2024-01-01.sql.gz<span class="w"> </span>.
+</span><span id="__span-44-7"><a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a>
+</span><span id="__span-44-8"><a id="__codelineno-44-8" name="__codelineno-44-8" href="#__codelineno-44-8"></a><span class="c1"># Azure — Archive থেকে Hot-এ rehydrate (ঘণ্টা লাগে)</span>
+</span><span id="__span-44-9"><a id="__codelineno-44-9" name="__codelineno-44-9" href="#__codelineno-44-9"></a>az<span class="w"> </span>storage<span class="w"> </span>blob<span class="w"> </span>set-tier<span class="w"> </span>--account-name<span class="w"> </span>shopbdbackups<span class="w"> </span>--container-name<span class="w"> </span>db<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-44-10"><a id="__codelineno-44-10" name="__codelineno-44-10" href="#__codelineno-44-10"></a><span class="w">  </span>--name<span class="w"> </span><span class="m">2024</span>-01-01.sql.gz<span class="w"> </span>--tier<span class="w"> </span>Hot<span class="w"> </span>--rehydrate-priority<span class="w"> </span>Standard<span class="w"> </span>--auth-mode<span class="w"> </span>login
+</span><span id="__span-44-11"><a id="__codelineno-44-11" name="__codelineno-44-11" href="#__codelineno-44-11"></a>
+</span><span id="__span-44-12"><a id="__codelineno-44-12" name="__codelineno-44-12" href="#__codelineno-44-12"></a><span class="c1"># OCI — ২৪ ঘণ্টার জন্য restore</span>
+</span><span id="__span-44-13"><a id="__codelineno-44-13" name="__codelineno-44-13" href="#__codelineno-44-13"></a>oci<span class="w"> </span>os<span class="w"> </span>object<span class="w"> </span>restore<span class="w"> </span>--namespace-name<span class="w"> </span>my-namespace<span class="w"> </span>--bucket-name<span class="w"> </span>shopbd-backups<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-44-14"><a id="__codelineno-44-14" name="__codelineno-44-14" href="#__codelineno-44-14"></a><span class="w">  </span>--name<span class="w"> </span>db/2024-01-01.sql.gz<span class="w"> </span>--hours<span class="w"> </span><span class="m">24</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Restore-এ শুধু অপেক্ষা নয়, টাকাও</p>
+<p>Restore request, retrieval data ও restore-হওয়া কপির অস্থায়ী storage — সবকিছুর আলাদা চার্জ আছে। হাজার হাজার ছোট file archive করার আগে একটা বড় <code>.tar.gz</code> বানিয়ে নিন; per-object overhead কমবে।</p>
+</div>
+<h2 id="১৩-data-transfer-cloud-এ-data-আন-ও-সরন">১৩. Data transfer: cloud-এ data আনা ও সরানো<a class="headerlink" href="#১৩-data-transfer-cloud-এ-data-আন-ও-সরন" title="Permanent link">&para;</a></h2>
+<p>প্রথম নিয়ম: <strong>data ঢোকানো (ingress) প্রায় সব cloud-এ বিনা পয়সায়; বের করা (egress) টাকার।</strong> Egress-এর দাম cloud ভেদে আলাদা — তুলনা <a href="../18-cost-management/">Cost Management</a>-এ।</p>
+<table>
+<thead>
+<tr>
+<th>পরিমাণ / পরিস্থিতি</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ছোট-মাঝারি, নিজে নিজে</td>
+<td><code>aws s3 sync</code>, S3 Transfer Acceleration</td>
+<td><code>gcloud storage rsync</code></td>
+<td><strong>AzCopy</strong></td>
+<td><code>oci os object bulk-upload</code></td>
+</tr>
+<tr>
+<td>Cloud থেকে cloud / on-prem থেকে schedule</td>
+<td><strong>AWS DataSync</strong></td>
+<td><strong>Storage Transfer Service</strong></td>
+<td><strong>Azure Storage Mover</strong></td>
+<td>rclone, OCI CLI script</td>
+</tr>
+<tr>
+<td>TB–PB, internet ধীর</td>
+<td><strong>Snow Family</strong> (Snowball Edge)</td>
+<td><strong>Transfer Appliance</strong></td>
+<td><strong>Azure Data Box</strong></td>
+<td><strong>OCI Data Transfer</strong> (disk/appliance)</td>
+</tr>
+<tr>
+<td>SFTP সরাসরি bucket-এ</td>
+<td><strong>AWS Transfer Family</strong></td>
+<td>VM + rclone</td>
+<td>Blob SFTP support</td>
+<td>VM + rclone</td>
+</tr>
+<tr>
+<td>Hybrid file gateway</td>
+<td>Storage Gateway</td>
+<td>—</td>
+<td>Azure File Sync</td>
+<td>Storage Gateway</td>
+</tr>
+</tbody>
+</table>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="c1"># AWS — শুধু পরিবর্তিত file যায়; আগে --dryrun দিয়ে দেখুন</span>
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>aws<span class="w"> </span>s3<span class="w"> </span>sync<span class="w"> </span>./images<span class="w"> </span>s3://shopbd-images/products/original/<span class="w"> </span>--dryrun
+</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>
+</span><span id="__span-45-4"><a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="c1"># GCP</span>
+</span><span id="__span-45-5"><a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>rsync<span class="w"> </span>./images<span class="w"> </span>gs://shopbd-images/products/original/<span class="w"> </span>--recursive
+</span><span id="__span-45-6"><a id="__codelineno-45-6" name="__codelineno-45-6" href="#__codelineno-45-6"></a>
+</span><span id="__span-45-7"><a id="__codelineno-45-7" name="__codelineno-45-7" href="#__codelineno-45-7"></a><span class="c1"># Azure — AzCopy আলাদা binary, az CLI নয় (SAS token বা azcopy login লাগে)</span>
+</span><span id="__span-45-8"><a id="__codelineno-45-8" name="__codelineno-45-8" href="#__codelineno-45-8"></a>azcopy<span class="w"> </span>copy<span class="w"> </span><span class="s2">"./images"</span><span class="w"> </span><span class="s2">"https://shopbdimages.blob.core.windows.net/images/products/original?&lt;SAS-token&gt;"</span><span class="w"> </span>--recursive
+</span><span id="__span-45-9"><a id="__codelineno-45-9" name="__codelineno-45-9" href="#__codelineno-45-9"></a>
+</span><span id="__span-45-10"><a id="__codelineno-45-10" name="__codelineno-45-10" href="#__codelineno-45-10"></a><span class="c1"># OCI</span>
+</span><span id="__span-45-11"><a id="__codelineno-45-11" name="__codelineno-45-11" href="#__codelineno-45-11"></a>oci<span class="w"> </span>os<span class="w"> </span>object<span class="w"> </span>bulk-upload<span class="w"> </span>--namespace-name<span class="w"> </span>my-namespace<span class="w"> </span>--bucket-name<span class="w"> </span>shopbd-images<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-45-12"><a id="__codelineno-45-12" name="__codelineno-45-12" href="#__codelineno-45-12"></a><span class="w">  </span>--src-dir<span class="w"> </span>./images<span class="w"> </span>--object-prefix<span class="w"> </span>products/original/
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">rclone — চার cloud-এর সাধারণ ছুরি</p>
+<p><code>rclone</code> একই কমান্ডে S3, GCS, Azure Blob ও OCI (এবং S3-compatible endpoint) সমর্থন করে। এক cloud থেকে আরেক cloud-এ bucket সরানো বা migration-এর সময় এটা খুবই কাজে লাগে।</p>
+</div>
+<p><strong>Internet না Direct link?</strong> বড় নিয়মিত transfer-এ private link (Direct Connect / Interconnect / ExpressRoute / FastConnect) বসালে latency ও egress খরচ কমতে পারে — <a href="../05-networking/">Networking</a> দেখুন।</p>
+<h2 id="মল-ও-অমল">মিল ও অমিল<a class="headerlink" href="#মল-ও-অমল" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bucket scope</td>
+<td>Global নাম, region-এ থাকে</td>
+<td>Global নাম, region/dual/multi-region</td>
+<td>Storage account (global নাম) → container</td>
+<td>Tenancy namespace → regional bucket</td>
+</tr>
+<tr>
+<td>Redundancy কে ঠিক করে</td>
+<td>AWS (class অনুযায়ী)</td>
+<td>Location type</td>
+<td><strong>আপনি</strong> (LRS/ZRS/GRS…)</td>
+<td>OCI (region-এর ভেতর)</td>
+</tr>
+<tr>
+<td>Public block</td>
+<td>Block Public Access</td>
+<td>Public access prevention</td>
+<td>Account-এ public access off</td>
+<td>Bucket-এ NoPublicAccess</td>
+</tr>
+<tr>
+<td>Temporary link</td>
+<td>Presigned</td>
+<td>Signed URL</td>
+<td>SAS</td>
+<td>PAR (সার্ভারে তৈরি হয় ও মোছা যায়)</td>
+</tr>
+<tr>
+<td>Auto tiering</td>
+<td>Intelligent-Tiering</td>
+<td>Autoclass</td>
+<td>Lifecycle last-access rule</td>
+<td>Auto-Tiering</td>
+</tr>
+<tr>
+<td>Archive তাৎক্ষণিক?</td>
+<td>Glacier Instant: হ্যাঁ; Deep: না</td>
+<td><strong>Archive: হ্যাঁ</strong></td>
+<td>না (rehydrate)</td>
+<td>না (restore)</td>
+</tr>
+<tr>
+<td>Block disk scope</td>
+<td>Zonal (AZ)</td>
+<td>Zonal বা Regional PD</td>
+<td>Zonal বা zone-redundant (ZRS) option</td>
+<td>AD-level</td>
+</tr>
+<tr>
+<td>File storage protocol</td>
+<td>NFS (EFS), SMB (FSx)</td>
+<td>NFS</td>
+<td>SMB + NFS</td>
+<td>NFS</td>
+</tr>
+<tr>
+<td>Strong consistency</td>
+<td>হ্যাঁ</td>
+<td>হ্যাঁ</td>
+<td>হ্যাঁ</td>
+<td>হ্যাঁ</td>
+</tr>
+</tbody>
+</table>
+<p><strong>যে ভুলগুলো মানুষ সবচেয়ে বেশি করে</strong></p>
+<ul>
+<li><strong>Azure-তে Storage account-এর নামে hyphen</strong> দিতে গিয়ে error। নাম ৩–২৪, lowercase ও সংখ্যা।</li>
+<li><strong>GCP bucket-এর নাম ছেড়ে দেওয়া:</strong> bucket delete করলে সেই নাম অন্য কেউ নিয়ে নিতে পারে (সব cloud-এই কম বা বেশি) — production domain-এর নামে bucket রাখলে সাবধান।</li>
+<li><strong>OCI-তে region ভুলে যাওয়া:</strong> bucket regional; এক region-এর bucket অন্য region-এর Console-এ দেখা যায় না।</li>
+<li><strong>OCI PAR-এর URL হারানো:</strong> একবারই দেখায়।</li>
+<li><strong>AWS-এ presigned URL-এর expiry ≠ credential expiry:</strong> সাময়িক role/SSO credential দিয়ে sign করলে credential শেষ হলে URL-ও আগেই অকেজো হয়।</li>
+<li><strong>GCP signed URL-এর জন্য service account key ডাউনলোড:</strong> key-এর বদলে impersonation (<code>--impersonate-service-account</code>) ভালো।</li>
+<li><strong>Disk zone-এ আটকা:</strong> <code>asia-south1-a</code>-র disk <code>-b</code>-র VM-এ attach হয় না; snapshot নিয়ে নতুন zone-এ disk বানাতে হয়।</li>
+</ul>
+<h2 id="real-world-shopbd">Real-world: shopbd<a class="headerlink" href="#real-world-shopbd" title="Permanent link">&para;</a></h2>
+<p>shopbd-র storage ব্যবহার:</p>
+<table>
+<thead>
+<tr>
+<th>কী</th>
+<th>কোথায়</th>
+<th>কেন</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Product image (original + thumbnail)</td>
+<td>Object storage <code>shopbd-images</code> (private) + CDN</td>
+<td>সস্তা, অসীম, CDN-এ cache হয়</td>
+</tr>
+<tr>
+<td>Customer-এর upload (রিভিউ-র ছবি)</td>
+<td>Presigned <strong>PUT</strong> URL দিয়ে সরাসরি bucket-এ</td>
+<td>API server-এর bandwidth বাঁচে</td>
+</tr>
+<tr>
+<td>Nightly sales report (CSV)</td>
+<td><code>reports/</code> prefix, ৩০ দিন পর infrequent tier</td>
+<td>কেউ বেশি দেখে না, কিন্তু অডিটে লাগতে পারে</td>
+</tr>
+<tr>
+<td>Database dump</td>
+<td>আলাদা bucket <code>shopbd-backups</code>, versioning + lifecycle→archive</td>
+<td>নিরাপদ, বহুদিন রাখা যায়</td>
+</tr>
+<tr>
+<td>PostgreSQL data (self-managed হলে)</td>
+<td>Block volume + রাতের snapshot</td>
+<td>Managed DB নিলে এটা লাগে না</td>
+</tr>
+<tr>
+<td>Admin-দের shared CSV import folder</td>
+<td>File storage (ঐচ্ছিক)</td>
+<td>একাধিক worker VM একই ফোল্ডার দেখে</td>
+</tr>
+</tbody>
+</table>
+<p>Browser থেকে সরাসরি ছবি আপলোডের flow (চার cloud-এই একই):</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant B as Browser
+    participant A as shopbd-api
+    participant S as Object storage
+    B-&gt;&gt;A: ছবি আপলোড করতে চাই (name, type)
+    A-&gt;&gt;A: ১০ মিনিটের signed URL (PUT) বানায়
+    A--&gt;&gt;B: signed URL
+    B-&gt;&gt;S: PUT ছবি (সরাসরি)
+    S--&gt;&gt;B: 200 OK
+    B-&gt;&gt;A: আপলোড শেষ, key = uploads/review-1234.jpg</code></pre>
+<p>Server-side কোডে এটা একটা SDK কল: boto3-এ <code>generate_presigned_url("put_object", ...)</code>, Python GCS-এ <code>blob.generate_signed_url(version="v4", method="PUT", ...)</code>, Azure-এ <code>generate_blob_sas(..., user_delegation_key=...)</code>, OCI SDK-তে <code>create_preauthenticated_request(...)</code> (<code>access_type="ObjectWrite"</code>)।</p>
+<p>ফ্রন্টএন্ড এরপর <code>fetch(url, {method: "PUT", body: file})</code> করে। (Azure-তে PUT-এর সময় header <code>x-ms-blob-type: BlockBlob</code> লাগে; আর browser থেকে সরাসরি আপলোডে bucket-এ <strong>CORS</strong> নিয়ম দিতে হয় — যাতে <code>https://shopbd.example.com</code> origin অনুমোদিত থাকে।)</p>
+<h2 id="best-practices">Best practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Default private</strong>: public access block/prevention সব bucket/account-এ চালু; public লাগলে CDN-এর মাধ্যমে দিন (<a href="../10-load-balancing-scaling-dns-cdn/">Load Balancing, DNS ও CDN</a>)।</li>
+<li><strong>Lifecycle প্রথম দিন থেকে</strong>: অসম্পূর্ণ multipart upload, পুরোনো version, ও পুরোনো report-এর জন্য rule।</li>
+<li><strong>আলাদা bucket আলাদা কাজে</strong>: images, backups, logs — policy, lifecycle ও access আলাদা রাখা সহজ হয়।</li>
+<li><strong>Versioning + immutability (অথবা অন্তত soft delete)</strong> গুরুত্বপূর্ণ backup bucket-এ।</li>
+<li><strong>Encryption</strong>: default চালু থাকে; compliance চাইলে নিজের key (KMS/Key Vault/Vault)।</li>
+<li><strong>Tag/label</strong> দিন (<code>app=shopbd</code>, <code>env=prod</code>) — খরচ ভাগ করা সহজ হয়।</li>
+<li><strong>Short-lived credential</strong>: Presigned/SAS/PAR-এ ছোট expiry, ন্যূনতম permission।</li>
+<li><strong>Disk-এ automated snapshot schedule</strong> এবং বছরে অন্তত একবার restore-test।</li>
+<li><strong>Egress মাথায় রাখুন</strong>: বড় download সরাসরি bucket থেকে না দিয়ে CDN থেকে।</li>
+<li><strong>নামের convention</strong>: <code>shopbd-&lt;purpose&gt;-&lt;env&gt;</code>; Azure-তে hyphen ছাড়া <code>shopbd&lt;purpose&gt;&lt;env&gt;</code>।</li>
+</ul>
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ভুল</th>
+<th>ফল</th>
+<th>সমাধান</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bucket public করে ফেলা</td>
+<td>Customer data leak</td>
+<td>Block Public Access / Public access prevention সব স্তরে</td>
+</tr>
+<tr>
+<td>Lifecycle ছাড়া versioning</td>
+<td>Storage bill বাড়তেই থাকে</td>
+<td>Noncurrent version expire rule</td>
+</tr>
+<tr>
+<td>সব data Standard/Hot-এ</td>
+<td>অকারণে বেশি খরচ</td>
+<td>৩০/৯০ দিনের tiering rule বা auto tiering</td>
+</tr>
+<tr>
+<td>Archive-এ ঢুকিয়ে আবার ঘন ঘন পড়া</td>
+<td>Retrieval fee ও early-deletion fee</td>
+<td>Access pattern আগে মাপুন; মাঝামাঝি tier ব্যবহার</td>
+</tr>
+<tr>
+<td>Account key / long-lived key হার্ডকোড করা</td>
+<td>Key leak হলে সবকিছু খোলা</td>
+<td>Managed identity / IAM role / workload identity</td>
+</tr>
+<tr>
+<td>Disk attach করে <code>mkfs</code> আবার চালানো</td>
+<td>Data মুছে যায়</td>
+<td><code>lsblk -f</code> দিয়ে আগে filesystem আছে কি না দেখুন</td>
+</tr>
+<tr>
+<td><code>/etc/fstab</code>-এ <code>/dev/sdf</code> লেখা</td>
+<td>Reboot-এ boot আটকে যেতে পারে</td>
+<td>UUID + <code>nofail</code></td>
+</tr>
+<tr>
+<td>Snapshot নেওয়া কিন্তু restore কখনো না করা</td>
+<td>বিপদে দেখা যায় backup কাজ করে না</td>
+<td>নিয়মিত restore drill</td>
+</tr>
+<tr>
+<td>Single-zone / LRS-এ গুরুত্বপূর্ণ data</td>
+<td>Zone নষ্টে data হারানো</td>
+<td>ZRS / multi-AZ / dual-region</td>
+</tr>
+<tr>
+<td>Instance মুছেও disk/snapshot না মোছা</td>
+<td>নীরবে টাকা কাটতে থাকে</td>
+<td>নিয়মিত অব্যবহৃত disk/snapshot audit</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ইনটরভউ--সরটফকশন-টপস">ইন্টারভিউ / সার্টিফিকেশন টিপস<a class="headerlink" href="#ইনটরভউ--সরটফকশন-টপস" title="Permanent link">&para;</a></h2>
+<details class="question">
+<summary>Object, block ও file storage-এর পার্থক্য কী?</summary>
+<p>Object: flat namespace, HTTP API, বিশাল ও সস্তা, শুধু পুরো object replace হয় (media, backup, data lake)। Block: VM-এ attach করা raw disk, কম latency, একটি VM-এর জন্য (OS/database)। File: shared filesystem, NFS/SMB, একাধিক VM একসাথে mount করে।</p>
+</details>
+<details class="question">
+<summary>Bucket-এ ভুল করে delete হলে কীভাবে ফেরত আনবেন?</summary>
+<p>Versioning চালু থাকলে delete marker সরিয়ে বা আগের version restore করে। GCP/Azure-এ soft delete থাকলে retention-এর মধ্যে undelete। Critical data-তে object lock/retention policy দিয়ে আগেই delete ঠেকানো ভালো।</p>
+</details>
+<details class="question">
+<summary>Presigned URL / SAS / PAR কী এবং কেন নিরাপদ?</summary>
+<p>সময়সীমা ও নির্দিষ্ট কাজ (read/write) সহ signed লিংক। Client সরাসরি storage-এ যায়, আপনার credential পায় না। ঝুঁকি: লিংক যার কাছে আছে সে-ই ব্যবহার করতে পারে — তাই expiry ছোট ও scope সীমিত রাখতে হয়। Azure-তে user delegation SAS (Entra ID-ভিত্তিক) সবচেয়ে ভালো।</p>
+</details>
+<details class="question">
+<summary>Archive tier কখন বাছবেন এবং কী সাবধানতা?</summary>
+<p>বছরে এক-দুইবার লাগে এমন data (compliance, পুরোনো backup)। সাবধানতা: minimum storage duration, retrieval fee, restore-এর অপেক্ষা (GCP Archive ও AWS Glacier Instant ছাড়া)।</p>
+</details>
+<details class="question">
+<summary>Azure Storage account-এর ZRS ও GRS-এর পার্থক্য?</summary>
+<p>ZRS = একই region-এর ৩টা zone-এ (zone ব্যর্থতা সহ্য করে)। GRS = LRS-এর কপি + দূরের paired region-এ (পুরো region ব্যর্থতা সহ্য করে)। GZRS = দুটোই।</p>
+</details>
+<details class="question">
+<summary>সবচেয়ে বেশি খরচ কমানোর সহজ উপায় object storage-এ?</summary>
+<p>Lifecycle/auto tiering, অসম্পূর্ণ multipart ও পুরোনো version মোছা, CDN দিয়ে egress কমানো, ছোট ছোট object জড় করে বড় file বানানো।</p>
+</details>
+<h2 id="সরসকষপ">সারসংক্ষেপ<a class="headerlink" href="#সরসকষপ" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Object</strong> (S3 / Cloud Storage / Blob / Object Storage) — বিশাল, সস্তা, HTTP; image, backup, log, data lake-এর জন্য। <strong>Block</strong> — VM-এর disk। <strong>File</strong> — shared NFS/SMB।</li>
+<li>Object storage-এ <strong>storage class + lifecycle</strong> দিয়ে খরচ কমান; <strong>versioning/soft delete/immutability</strong> দিয়ে data বাঁচান।</li>
+<li><strong>Default private</strong> রাখুন; বাইরে দিতে হলে <strong>presigned URL / SAS / PAR</strong> এবং CDN।</li>
+<li><strong>Block disk zonal</strong>; backup = <strong>snapshot</strong> (incremental), schedule ও restore-test করুন।</li>
+<li><strong>Archive</strong> সস্তা কিন্তু ধীর বা খরচসাপেক্ষ restore — access pattern না জেনে ব্যবহার নয়।</li>
+<li>Ingress ফ্রি, <strong>egress টাকার</strong>; বড় data-র জন্য sync tool বা physical appliance।</li>
+<li>Azure-এর বিশেষত্ব: Storage account ও redundancy আপনার বাছাই; OCI-র বিশেষত্ব: namespace ও PAR; GCP-র বিশেষত্ব: Archive-ও তাৎক্ষণিক; AWS-এর বিশেষত্ব: সবচেয়ে বিস্তৃত class ও Object Lock।</li>
+</ul>
+<p>পরের অধ্যায়: <a href="../07-databases/">07 · Database</a> — যেখানে structured data ও transaction-এর জায়গা।</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  উপরে ফিরে যাও
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="ফুটার" >
+        
+          
+          <a href="../05-networking/" class="md-footer__link md-footer__link--prev" aria-label="পূর্ববর্তী: 05 · Networking">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পূর্ববর্তী
+              </span>
+              <div class="md-ellipsis">
+                05 · Networking
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../07-databases/" class="md-footer__link md-footer__link--next" aria-label="পরে: 07 · Database">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পরে
+              </span>
+              <div class="md-ellipsis">
+                07 · Database
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Hasib Ahmed — Cloud বাংলা ডকুমেন্টেশন
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Hasib105/cloud-bangla-docs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u09b9\u09df\u09c7\u099b\u09c7", "clipboard.copy": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u0995\u09b0\u09c1\u09a8", "search.result.more.one": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 \u09e7\u099f\u09bf \u0986\u099b\u09c7", "search.result.more.other": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 #\u099f\u09bf \u0986\u099b\u09c7", "search.result.none": "\u0995\u09bf\u099b\u09c1 \u09aa\u09be\u0993\u09df\u09be \u09af\u09be\u09df\u09a8\u09bf", "search.result.one": "\u09e7 \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.other": "# \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.placeholder": "\u09b8\u09be\u09b0\u09cd\u099a \u099f\u09be\u0987\u09aa \u0995\u09b0\u09c1\u09a8", "search.result.term.missing": "\u0985\u09a8\u09c1\u09aa\u09b8\u09cd\u09a5\u09bf\u09a4", "select.version": "\u09b8\u0982\u09b8\u09cd\u0995\u09b0\u09a3 \u09a8\u09bf\u09b0\u09cd\u09ac\u09be\u099a\u09a8 \u0995\u09b0\u09c1\u09a3"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

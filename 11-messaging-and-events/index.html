@@ -1,0 +1,3364 @@
+
+<!doctype html>
+<html lang="bn" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="এক টপিক, চার cloud — AWS, Google Cloud, Microsoft Azure ও Oracle Cloud (OCI) শূন্য থেকে অ্যাডভান্স, পাশাপাশি তুলনাসহ সম্পূর্ণ বাংলা ডকুমেন্টেশন।">
+      
+      
+        <meta name="author" content="Hasib Ahmed">
+      
+      
+        <link rel="canonical" href="https://hasib105.github.io/cloud-bangla-docs/11-messaging-and-events/">
+      
+      
+        <link rel="prev" href="../10-load-balancing-scaling-dns-cdn/">
+      
+      
+        <link rel="next" href="../12-observability/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>11 · Messaging ও Event - Cloud বাংলা — AWS · GCP · Azure · OCI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M6.5%2020q-2.28%200-3.89-1.57Q1%2016.85%201%2014.58q0-1.95%201.17-3.48%201.18-1.53%203.08-1.95.63-2.3%202.5-3.72Q9.63%204%2012%204q2.93%200%204.96%202.04Q19%208.07%2019%2011q1.73.2%202.86%201.5%201.14%201.28%201.14%203%200%201.88-1.31%203.19T18.5%2020m-12-2h12q1.05%200%201.77-.73.73-.72.73-1.77t-.73-1.77Q19.55%2013%2018.5%2013H17v-2q0-2.07-1.46-3.54Q14.08%206%2012%206%209.93%206%208.46%207.46%207%208.93%207%2011h-.5q-1.45%200-2.47%201.03Q3%2013.05%203%2014.5T4.03%2017q1.02%201%202.47%201m5.5-6%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind+Siliguri:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Hind Siliguri";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#11--messaging-ও-event" class="md-skip">
+          কনটেন্টে যান
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="হেডার">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-header__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud বাংলা — AWS · GCP · Azure · OCI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              11 · Messaging ও Event
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="ডার্ক মোড"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ডার্ক মোড" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="লাইট মোড"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="লাইট মোড" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="অনুসন্ধান করুন" placeholder="অনুসন্ধান করুন" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="অনুসন্ধান করুন">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="শেয়ার" aria-label="শেয়ার" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="রিসেট" aria-label="রিসেট" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            অনুসন্ধান শুরু করা হচ্ছে
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="ট্যাব" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  হোম
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01-cloud-fundamentals/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  মূল ধারণা
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../platforms/aws/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  প্ল্যাটফর্ম গাইড
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reference/service-map/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  রেফারেন্স
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ন্যাভিগেশন" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cloud বাংলা — AWS · GCP · Azure · OCI" class="md-nav__button md-logo" aria-label="Cloud বাংলা — AWS · GCP · Azure · OCI" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    Cloud বাংলা — AWS · GCP · Azure · OCI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Hasib105/cloud-bangla-docs" title="রিপোজিটরিতে যান" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hasib105/cloud-bangla-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    হোম
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    মূল ধারণা
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    মূল ধারণা
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-cloud-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Cloud-এর ভিত্তি
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-accounts-and-hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Account ও Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-identity-and-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Identity ও Access (IAM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-compute-vms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Virtual Machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-networking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Networking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-containers-kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Container ও Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-serverless/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Serverless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-load-balancing-scaling-dns-cdn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Load Balancing, DNS ও CDN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Messaging ও Event
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · Messaging ও Event
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-কন-messaging--synchronous-বনম-asynchronous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. কেন Messaging? — Synchronous বনাম Asynchronous
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. কেন Messaging? — Synchronous বনাম Asynchronous">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#চরট-মলক-ধরন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        চারটি মৌলিক ধরন
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delivery-guarantee--ন-বঝল-পর-কষট" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delivery guarantee — না বুঝলে পরে কষ্ট
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-queue--কজর-লইন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Queue — কাজের লাইন
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="২. Queue — কাজের লাইন">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visibility-timeout--সবচয-বশ-ভল-হওয-সট" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visibility timeout — সবচেয়ে বেশি ভুল হওয়া সেটিং
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-polling--খল-লইন-cpu-পডবন-ন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Long polling — খালি লাইনে CPU পোড়াবেন না
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terraform--queue--dlq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terraform — queue + DLQ
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-pubsub-ও-fan-out--একট-ঘটন-অনক-শরত" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Pub/Sub ও Fan-out — একটি ঘটনা, অনেক শ্রোতা
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Pub/Sub ও Fan-out — একটি ঘটনা, অনেক শ্রোতা">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terraform--topic--subscription" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terraform — topic + subscription
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-event-bus--ঘটন-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. Event Bus — ঘটনা routing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. Event Bus — ঘটনা routing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terraform--ছব-upload-হল-কজ-চলও" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terraform — "ছবি upload হলে কাজ চালাও"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-streaming--ordered-log-ও-replay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. Streaming — ordered log ও replay
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-workflow-orchestration--ধপ-ধপ-লমব-কজ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Workflow Orchestration — ধাপে ধাপে লম্বা কাজ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-অপরহরয-pattern--fan-out-dlq-idempotency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. অপরিহার্য Pattern — Fan-out, DLQ, Idempotency
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৭. অপরিহার্য Pattern — Fan-out, DLQ, Idempotency">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ক-fan-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ক) Fan-out
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#খ-dead-letter-queue-dlq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        খ) Dead-Letter Queue (DLQ)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#গ-idempotency--একই-message-দবর-এলও-কষত-নই" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        গ) Idempotency — একই message দুবার এলেও ক্ষতি নেই
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ঘ-আরও-কছ-জরর-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ঘ) আরও কিছু জরুরি pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Monitoring ও Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 · Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-infrastructure-as-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 · Infrastructure as Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-cicd-devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 · CI/CD ও DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-data-and-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 · Data ও Analytics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-ai-ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 · AI ও Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-cost-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 · Cost Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-architecture-ha-dr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 · Architecture ও HA/DR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    প্ল্যাটফর্ম গাইড
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/gcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Cloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/azure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microsoft Azure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platforms/oci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle Cloud (OCI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    রেফারেন্স
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    রেফারেন্স
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/service-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli-cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Cheatsheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="সূচি তালিকা">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      সূচি তালিকা
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#১-কন-messaging--synchronous-বনম-asynchronous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ১. কেন Messaging? — Synchronous বনাম Asynchronous
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="১. কেন Messaging? — Synchronous বনাম Asynchronous">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#চরট-মলক-ধরন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        চারটি মৌলিক ধরন
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delivery-guarantee--ন-বঝল-পর-কষট" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delivery guarantee — না বুঝলে পরে কষ্ট
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#২-queue--কজর-লইন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ২. Queue — কাজের লাইন
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="২. Queue — কাজের লাইন">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visibility-timeout--সবচয-বশ-ভল-হওয-সট" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visibility timeout — সবচেয়ে বেশি ভুল হওয়া সেটিং
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-polling--খল-লইন-cpu-পডবন-ন" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Long polling — খালি লাইনে CPU পোড়াবেন না
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terraform--queue--dlq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terraform — queue + DLQ
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৩-pubsub-ও-fan-out--একট-ঘটন-অনক-শরত" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৩. Pub/Sub ও Fan-out — একটি ঘটনা, অনেক শ্রোতা
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৩. Pub/Sub ও Fan-out — একটি ঘটনা, অনেক শ্রোতা">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terraform--topic--subscription" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terraform — topic + subscription
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৪-event-bus--ঘটন-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৪. Event Bus — ঘটনা routing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৪. Event Bus — ঘটনা routing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terraform--ছব-upload-হল-কজ-চলও" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terraform — "ছবি upload হলে কাজ চালাও"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৫-streaming--ordered-log-ও-replay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৫. Streaming — ordered log ও replay
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৬-workflow-orchestration--ধপ-ধপ-লমব-কজ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৬. Workflow Orchestration — ধাপে ধাপে লম্বা কাজ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#৭-অপরহরয-pattern--fan-out-dlq-idempotency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ৭. অপরিহার্য Pattern — Fan-out, DLQ, Idempotency
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="৭. অপরিহার্য Pattern — Fan-out, DLQ, Idempotency">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ক-fan-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ক) Fan-out
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#খ-dead-letter-queue-dlq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        খ) Dead-Letter Queue (DLQ)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#গ-idempotency--একই-message-দবর-এলও-কষত-নই" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        গ) Idempotency — একই message দুবার এলেও ক্ষতি নেই
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ঘ-আরও-কছ-জরর-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ঘ) আরও কিছু জরুরি pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#মল-ও-অমল" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        মিল ও অমিল
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-shopbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-world: shopbd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ইনটরভউ--সরটফকশন-টপস" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ইন্টারভিউ / সার্টিফিকেশন টিপস
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#সরসকষপ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        সারসংক্ষেপ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Hasib105/cloud-bangla-docs/edit/main/docs/11-messaging-and-events.md" title="এই পেজ এডিট করুন" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="11--messaging-ও-event">11 · Messaging ও Event<a class="headerlink" href="#11--messaging-ও-event" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>এই অধ্যায়ে কী শিখবেন</strong></p>
+<ul>
+<li>কেন synchronous call-এর বদলে <strong>asynchronous messaging</strong> দরকার, আর queue / topic / event bus / stream — এই চারটার পার্থক্য কী</li>
+<li>AWS, GCP, Azure ও OCI-এ queue, pub/sub, event routing ও streaming service-গুলোর নাম, মিল ও অমিল</li>
+<li><strong>Visibility timeout, ack, retry, Dead-Letter Queue (DLQ)</strong> — message হারানো ছাড়া কীভাবে process করবেন</li>
+<li>Workflow orchestration: Step Functions, Workflows, Logic Apps / Durable Functions</li>
+<li><strong>Fan-out, DLQ, idempotency</strong> pattern — এবং <code>shopbd</code>-র order flow-তে এগুলোর বাস্তব ব্যবহার</li>
+<li>CLI ও Terraform দিয়ে প্রতিটি cloud-এ queue + DLQ + topic বানানো</li>
+</ul>
+</blockquote>
+<div class="admonition abstract">
+<p class="admonition-title">এক নজরে — কোন cloud-এ কী নাম</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Queue (একজন consumer message নেয়)</td>
+<td>Amazon SQS (Standard / FIFO)</td>
+<td>Pub/Sub (pull subscription), Cloud Tasks</td>
+<td>Service Bus queue, Storage Queue</td>
+<td>OCI Queue</td>
+</tr>
+<tr>
+<td>Pub/Sub (fan-out)</td>
+<td>Amazon SNS</td>
+<td>Pub/Sub topic + একাধিক subscription</td>
+<td>Service Bus topic + subscription, Event Grid</td>
+<td>OCI Notifications</td>
+</tr>
+<tr>
+<td>Event bus / event routing</td>
+<td>Amazon EventBridge</td>
+<td>Eventarc</td>
+<td>Azure Event Grid</td>
+<td>OCI Events</td>
+</tr>
+<tr>
+<td>Streaming (ordered log, replay)</td>
+<td>Kinesis Data Streams, Amazon MSK</td>
+<td>Pub/Sub, Managed Service for Apache Kafka</td>
+<td>Event Hubs</td>
+<td>OCI Streaming</td>
+</tr>
+<tr>
+<td>Workflow orchestration</td>
+<td>AWS Step Functions</td>
+<td>Workflows</td>
+<td>Logic Apps, Durable Functions</td>
+<td>সরাসরি সমতুল্য নেই (Functions + Queue, বা Oracle Integration)</td>
+</tr>
+<tr>
+<td>Scheduler (সময় ধরে trigger)</td>
+<td>EventBridge Scheduler</td>
+<td>Cloud Scheduler</td>
+<td>Logic Apps / Functions timer trigger</td>
+<td>OCI Functions + Events / Resource Scheduler</td>
+</tr>
+<tr>
+<td>Dead-letter</td>
+<td>SQS DLQ (redrive policy)</td>
+<td>Dead letter topic</td>
+<td>Dead-letter sub-queue (built-in)</td>
+<td>OCI Queue DLQ</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="১-কন-messaging--synchronous-বনম-asynchronous">১. কেন Messaging? — Synchronous বনাম Asynchronous<a class="headerlink" href="#১-কন-messaging--synchronous-বনম-asynchronous" title="Permanent link">&para;</a></h2>
+<p><code>shopbd</code>-তে একজন customer "Place order" চাপলে কী কী হওয়া দরকার? Order DB-তে সেভ, stock কমানো, confirmation
+e-mail, invoice PDF, ওয়ারহাউজকে জানানো, nightly report-এর জন্য data। সবকিছু API-র ভেতরে এক request-এ করলে:</p>
+<ul>
+<li>Customer-কে সব কাজ শেষ হওয়া পর্যন্ত অপেক্ষা করতে হয় (e-mail server ধীর হলে checkout-ও ধীর)।</li>
+<li>একটা ধাপ ফেল করলে পুরো request ফেল।</li>
+<li>Traffic হঠাৎ বাড়লে (ঈদের আগে sale) সব service একসাথে চাপে পড়ে।</li>
+</ul>
+<p>সমাধান: API শুধু <strong>order সেভ করে একটা message পাঠিয়ে দেয়</strong>, তারপর সাথে সাথে customer-কে "অর্ডার পেয়েছি" বলে দেয়।
+বাকি কাজ আলাদা worker ধীরেসুস্থে করে।</p>
+<div class="admonition example">
+<p class="admonition-title">Analogy — রেস্টুরেন্টের অর্ডার স্লিপ</p>
+<p>ওয়েটার (API) আপনার অর্ডার নিয়ে রান্নাঘরে (worker) দাঁড়িয়ে থাকে না। সে <strong>অর্ডার স্লিপ</strong> একটা র‍্যাকে (queue) গুঁজে
+দিয়ে চলে যায়। রান্নাঘর নিজের গতিতে স্লিপ তুলে রান্না করে। Rush hour-এ স্লিপ জমে — কিন্তু হারায় না। আর
+যদি একই স্লিপ দেখে বাবুর্চি তিনবার ব্যর্থ হয়, স্লিপটা আলাদা "সমস্যার ট্রে"-তে (DLQ) রাখা হয়।</p>
+</div>
+<pre class="mermaid"><code>flowchart LR
+    A["shopbd-api"] --&gt;|"1. save order"| D[("shopbd-db")]
+    A --&gt;|"2. publish message"| Q["Queue / Topic"]
+    Q --&gt; W1["email worker"]
+    Q --&gt; W2["invoice worker"]
+    Q --&gt; W3["stock worker"]
+    A --&gt;|"3. 202 Accepted"| C["Customer"]</code></pre>
+<h3 id="চরট-মলক-ধরন">চারটি মৌলিক ধরন<a class="headerlink" href="#চরট-মলক-ধরন" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>ধরন</th>
+<th>মূল ধারণা</th>
+<th>একটি message কয়জন পায়?</th>
+<th>কখন</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Queue</strong></td>
+<td>কাজের তালিকা; consumer নিয়ে process করে delete করে</td>
+<td><strong>একজন</strong> (competing consumers)</td>
+<td>কাজ ভাগ করা — e-mail পাঠানো, ছবি resize</td>
+</tr>
+<tr>
+<td><strong>Pub/Sub topic</strong></td>
+<td>publisher একবার পাঠায়, প্রতি subscription নিজের কপি পায়</td>
+<td><strong>প্রতিটি subscriber</strong> (fan-out)</td>
+<td>একটি ঘটনা অনেকে জানবে</td>
+</tr>
+<tr>
+<td><strong>Event bus</strong></td>
+<td>ঘটনা (event) ও rule/filter দিয়ে routing; source ও target ঢিলেঢালা</td>
+<td>যে rule মেলে সে</td>
+<td>AWS/SaaS/নিজের app-এর ঘটনা routing</td>
+</tr>
+<tr>
+<td><strong>Stream</strong></td>
+<td>ordered, append-only log; consumer নিজের offset ধরে পড়ে, আবার replay করা যায়</td>
+<td>প্রতিটি consumer group</td>
+<td>click-stream, log, IoT, বিপুল ডেটা</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Message বনাম Event</p>
+<p><strong>Message</strong> মানে "এই কাজটা করো" (command) — প্রেরক চায় কেউ নিক। <strong>Event</strong> মানে "এটা ঘটে গেছে" (<code>OrderPlaced</code>) —
+প্রেরক জানে না কে শুনছে। Queue সাধারণত command-এর জন্য, event bus/pub-sub event-এর জন্য — তবে বাস্তবে দুটো মিশে যায়।</p>
+</div>
+<h3 id="delivery-guarantee--ন-বঝল-পর-কষট">Delivery guarantee — না বুঝলে পরে কষ্ট<a class="headerlink" href="#delivery-guarantee--ন-বঝল-পর-কষট" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>At-most-once</strong> — একবার চেষ্টা, হারাতে পারে। (প্রায় ব্যবহার হয় না।)</li>
+<li><strong>At-least-once</strong> — হারায় না, কিন্তু <strong>একই message দুবার আসতে পারে</strong>। প্রায় সব managed service-এর default।</li>
+<li><strong>Exactly-once (processing)</strong> — কিছু service নির্দিষ্ট শর্তে দেয় (SQS FIFO, Pub/Sub exactly-once delivery, Service Bus duplicate
+  detection)। তবুও আপনার নিজের code-কে idempotent রাখাই নিরাপদ — নিচে ৭ নম্বর সেকশন দেখুন।</li>
+</ul>
+<h2 id="২-queue--কজর-লইন">২. Queue — কাজের লাইন<a class="headerlink" href="#২-queue--কজর-লইন" title="Permanent link">&para;</a></h2>
+<p>Queue-র জীবনচক্র সব cloud-এ প্রায় একই:</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant P as Producer
+    participant Q as Queue
+    participant C as Consumer
+    P-&gt;&gt;Q: send(message)
+    C-&gt;&gt;Q: receive()
+    Q--&gt;&gt;C: message (এখন অন্যদের কাছে লুকানো)
+    Note over Q,C: visibility timeout / ack deadline / lock চলছে
+    C-&gt;&gt;C: process
+    C-&gt;&gt;Q: delete / ack
+    Note over Q: ack না এলে timeout শেষে message আবার দৃশ্যমান</code></pre>
+<p>মূল শব্দগুলো (নাম আলাদা, কাজ এক):</p>
+<table>
+<thead>
+<tr>
+<th>ধারণা</th>
+<th>মানে</th>
+<th>AWS SQS</th>
+<th>GCP Pub/Sub</th>
+<th>Azure Service Bus</th>
+<th>OCI Queue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hide-while-processing</td>
+<td>Consumer নেওয়ার পর কিছুক্ষণ অন্যরা দেখে না</td>
+<td>visibility timeout</td>
+<td>ack deadline</td>
+<td>lock duration (peek-lock)</td>
+<td>visibility timeout</td>
+</tr>
+<tr>
+<td>সম্পন্ন বলা</td>
+<td>Message মুছে ফেলা</td>
+<td><code>DeleteMessage</code></td>
+<td><code>ack</code></td>
+<td><code>complete</code></td>
+<td><code>DeleteMessage</code></td>
+</tr>
+<tr>
+<td>ব্যর্থ হলে</td>
+<td>আবার দিতে দেওয়া</td>
+<td>timeout শেষ / visibility 0</td>
+<td><code>nack</code> / deadline শেষ</td>
+<td><code>abandon</code></td>
+<td>timeout শেষ / update</td>
+</tr>
+<tr>
+<td>বারবার ব্যর্থ</td>
+<td>Poison message আলাদা করা</td>
+<td>redrive policy → DLQ</td>
+<td>dead letter topic</td>
+<td>max delivery count → DLQ</td>
+<td>dead letter queue</td>
+</tr>
+</tbody>
+</table>
+<h3 id="visibility-timeout--সবচয-বশ-ভল-হওয-সট">Visibility timeout — সবচেয়ে বেশি ভুল হওয়া সেটিং<a class="headerlink" href="#visibility-timeout--সবচয-বশ-ভল-হওয-সট" title="Permanent link">&para;</a></h3>
+<p>Consumer message নিলে সেটা <code>visibility timeout</code> সময়ের জন্য লুকিয়ে যায়। এই সময়ের মধ্যে <code>delete</code> না করলে message আবার
+অন্যজনের কাছে যায়। <strong>নিয়ম:</strong> timeout = আপনার সবচেয়ে ধীর processing-এর সময়ের চেয়ে বেশি (সাধারণত ৬ গুণ নিরাপদ)।
+কম রাখলে একই order-এর e-mail দুবার যাবে; অনেক বেশি রাখলে ব্যর্থ message আবার চেষ্টা হতে দেরি হবে।</p>
+<h3 id="long-polling--খল-লইন-cpu-পডবন-ন">Long polling — খালি লাইনে CPU পোড়াবেন না<a class="headerlink" href="#long-polling--খল-লইন-cpu-পডবন-ন" title="Permanent link">&para;</a></h3>
+<p>Queue খালি থাকলে বারবার <code>receive</code> দিলে খরচ ও CPU দুটোই নষ্ট। Long polling-এ request কিছুক্ষণ (সাধারণত ২০ সেকেন্ড পর্যন্ত)
+ঝুলে থাকে যতক্ষণ message না আসে। SQS-এ <code>WaitTimeSeconds</code>, OCI Queue-তে <code>timeoutInSeconds</code>; Pub/Sub-এর streaming pull ও Service
+Bus-এর client library নিজেই এটা সামলায়।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="aws" name="__tabbed_1" type="radio" /><input id="gcp" name="__tabbed_1" type="radio" /><input id="azure" name="__tabbed_1" type="radio" /><input id="oci" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="aws">AWS</label><label for="gcp">GCP</label><label for="azure">Azure</label><label for="oci">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Service: <strong>Amazon SQS</strong> — দুই ধরন: <strong>Standard</strong> (প্রায় সীমাহীন throughput, at-least-once, order নিশ্চিত নয়) ও <strong>FIFO</strong>
+(order ঠিক থাকে <code>MessageGroupId</code>-র ভেতরে, deduplication আছে, queue নাম <code>.fifo</code> দিয়ে শেষ হতে হয়, throughput কম)।
+Message retention default ৪ দিন, সর্বোচ্চ ১৪ দিন। Message-এর size সীমা আছে (সম্প্রতি বেড়েছে) — বড় payload S3-তে রেখে
+শুধু key পাঠানোই রীতি।</p>
+<p>Console: <strong>SQS → Queues → Create queue</strong>।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 1) DLQ আগে বানান</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>aws<span class="w"> </span>sqs<span class="w"> </span>create-queue<span class="w"> </span>--queue-name<span class="w"> </span>shopbd-orders-dlq<span class="w"> </span>--region<span class="w"> </span>ap-south-1
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 2) Main queue: visibility 60s, long polling 20s, 5 বার ব্যর্থ হলে DLQ</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>attrs.json<span class="w"> </span><span class="s">&lt;&lt;'EOF'</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="s">{</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="s">  "VisibilityTimeout": "60",</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="s">  "ReceiveMessageWaitTimeSeconds": "20",</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="s">  "MessageRetentionPeriod": "345600",</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="s">  "RedrivePolicy": "{\"deadLetterTargetArn\":\"arn:aws:sqs:ap-south-1:123456789012:shopbd-orders-dlq\",\"maxReceiveCount\":\"5\"}"</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="s">}</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="s">EOF</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>aws<span class="w"> </span>sqs<span class="w"> </span>create-queue<span class="w"> </span>--queue-name<span class="w"> </span>shopbd-orders<span class="w"> </span>--attributes<span class="w"> </span>file://attrs.json<span class="w"> </span>--region<span class="w"> </span>ap-south-1
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1"># 3) পাঠানো, নেওয়া, মোছা</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="nv">QURL</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>sqs<span class="w"> </span>get-queue-url<span class="w"> </span>--queue-name<span class="w"> </span>shopbd-orders<span class="w"> </span>--query<span class="w"> </span>QueueUrl<span class="w"> </span>--output<span class="w"> </span>text<span class="k">)</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>aws<span class="w"> </span>sqs<span class="w"> </span>send-message<span class="w"> </span>--queue-url<span class="w"> </span><span class="s2">"</span><span class="nv">$QURL</span><span class="s2">"</span><span class="w"> </span>--message-body<span class="w"> </span><span class="s1">'{"order_id":"ORD-1001","type":"OrderPlaced"}'</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>aws<span class="w"> </span>sqs<span class="w"> </span>receive-message<span class="w"> </span>--queue-url<span class="w"> </span><span class="s2">"</span><span class="nv">$QURL</span><span class="s2">"</span><span class="w"> </span>--wait-time-seconds<span class="w"> </span><span class="m">10</span><span class="w"> </span>--max-number-of-messages<span class="w"> </span><span class="m">5</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>aws<span class="w"> </span>sqs<span class="w"> </span>delete-message<span class="w"> </span>--queue-url<span class="w"> </span><span class="s2">"</span><span class="nv">$QURL</span><span class="s2">"</span><span class="w"> </span>--receipt-handle<span class="w"> </span><span class="s2">"&lt;receipt-handle&gt;"</span>
+</span></code></pre></div>
+<p>DLQ-র message ঠিক করার পর ফেরত পাঠাতে: Console-এ DLQ → <strong>Start DLQ redrive</strong>।</p>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Pub/Sub</strong> — GCP-তে আলাদা "queue" product নেই; <strong>pull subscription</strong> দিয়ে queue-এর কাজ হয়। একটি subscription
+= একটি আলাদা "লাইন"। একাধিক worker একই subscription থেকে pull করলে তারা কাজ ভাগ করে নেয়। Message acknowledge করতে হয়
+<strong>ack deadline</strong>-এর (১০–৬০০ সেকেন্ড) ভেতরে। Subscription-এ retention সীমা আছে (default ৭ দিন)। (পুরনো <strong>Pub/Sub Lite</strong> deprecated — নতুন কাজে নয়।)</p>
+<p><strong>Cloud Tasks</strong> আলাদা: এটি <em>নির্দিষ্ট HTTP endpoint</em>-এ rate-limited ও scheduled task পাঠানোর জন্য (যেমন "এই URL-কে সেকেন্ডে
+৫টির বেশি call করো না")। Publisher জানে কোন target-এ যাবে — Pub/Sub-এর মতো ঢিলেঢালা নয়।</p>
+<p>Console: <strong>Pub/Sub → Topics → Create topic</strong>।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Pub/Sub topic global — region flag লাগে না</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>gcloud<span class="w"> </span>pubsub<span class="w"> </span>topics<span class="w"> </span>create<span class="w"> </span>shopbd-orders
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>gcloud<span class="w"> </span>pubsub<span class="w"> </span>topics<span class="w"> </span>create<span class="w"> </span>shopbd-orders-dlq
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>gcloud<span class="w"> </span>pubsub<span class="w"> </span>subscriptions<span class="w"> </span>create<span class="w"> </span>shopbd-orders-dlq-sub<span class="w"> </span>--topic<span class="o">=</span>shopbd-orders-dlq
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1"># Pull subscription + dead letter (5 attempt)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>gcloud<span class="w"> </span>pubsub<span class="w"> </span>subscriptions<span class="w"> </span>create<span class="w"> </span>shopbd-orders-email<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span>--topic<span class="o">=</span>shopbd-orders<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span>--ack-deadline<span class="o">=</span><span class="m">60</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span>--dead-letter-topic<span class="o">=</span>shopbd-orders-dlq<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span>--max-delivery-attempts<span class="o">=</span><span class="m">5</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>gcloud<span class="w"> </span>pubsub<span class="w"> </span>topics<span class="w"> </span>publish<span class="w"> </span>shopbd-orders<span class="w"> </span>--message<span class="o">=</span><span class="s1">'{"order_id":"ORD-1001","type":"OrderPlaced"}'</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>gcloud<span class="w"> </span>pubsub<span class="w"> </span>subscriptions<span class="w"> </span>pull<span class="w"> </span>shopbd-orders-email<span class="w"> </span>--limit<span class="o">=</span><span class="m">5</span><span class="w"> </span>--auto-ack
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Dead letter-এর permission</p>
+<p>Pub/Sub service agent-কে DLQ topic-এ <strong>publisher</strong> আর main subscription-এ <strong>subscriber</strong> role দিতে হয়, নইলে
+message DLQ-তে যায় না। Console দিয়ে বানালে এটা প্রায়ই নিজে নিজে হয়ে যায়; CLI/Terraform-এ নিজে দিন।</p>
+</div>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Azure Service Bus</strong> (enterprise messaging, সবচেয়ে ফিচার-সমৃদ্ধ) ও <strong>Azure Queue Storage</strong> (Storage account-এর
+ভেতরের সহজ, সস্তা, বিশাল-scale queue; ফিচার কম — DLQ বা ordering built-in নেই)।</p>
+<p>Service Bus-এ <strong>peek-lock</strong> মোড: message নিলে <em>lock</em> পড়ে (default ১ মিনিট), শেষে <code>complete</code>। <code>Max delivery count</code> পার হলে
+message নিজে থেকে queue-র <strong>dead-letter sub-queue</strong>-তে যায় — আলাদা DLQ বানাতে হয় না। আরও আছে <strong>sessions</strong> (একই
+session-id-র message ক্রমানুসারে, একজন consumer-এর কাছে), <strong>duplicate detection</strong>, scheduled message, transaction।
+Tier: Basic (topic নেই), Standard, Premium (isolated, বড় message, VNet/private endpoint)।</p>
+<p>Portal: <strong>Service Bus → Queues → + Queue</strong>।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>az<span class="w"> </span>group<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>shopbd-rg<span class="w"> </span>--location<span class="w"> </span>centralindia
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>az<span class="w"> </span>servicebus<span class="w"> </span>namespace<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span>--name<span class="w"> </span>shopbd-sb-ns<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>--location<span class="w"> </span>centralindia<span class="w"> </span>--sku<span class="w"> </span>Standard
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>az<span class="w"> </span>servicebus<span class="w"> </span>queue<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span>--namespace-name<span class="w"> </span>shopbd-sb-ns<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span>--name<span class="w"> </span>orders<span class="w"> </span>--max-delivery-count<span class="w"> </span><span class="m">5</span><span class="w"> </span>--lock-duration<span class="w"> </span>PT1M
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1"># সহজ বিকল্প: Queue Storage</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>az<span class="w"> </span>storage<span class="w"> </span>queue<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>shopbd-emails<span class="w"> </span>--account-name<span class="w"> </span>shopbdstorage<span class="w"> </span>--auth-mode<span class="w"> </span>login
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>az<span class="w"> </span>storage<span class="w"> </span>message<span class="w"> </span>put<span class="w"> </span>--queue-name<span class="w"> </span>shopbd-emails<span class="w"> </span>--account-name<span class="w"> </span>shopbdstorage<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">  </span>--content<span class="w"> </span><span class="s2">"ORD-1001"</span><span class="w"> </span>--auth-mode<span class="w"> </span>login
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>OCI Queue</strong> — fully managed, at-least-once, visibility timeout, long polling, <strong>dead letter queue</strong> ও
+<em>channels</em> (একটি queue-র ভেতরে আলাদা লাইন, যেমন per-tenant) আছে। প্রতিটি queue-র নিজস্ব <strong>messages endpoint</strong> থাকে —
+message পাঠানো/নেওয়ার সময় সেটা দিতে হয়।</p>
+<p>Console: <strong>Developer Services → Application Integration → Queue → Create queue</strong>।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>oci<span class="w"> </span>queue<span class="w"> </span>queue-admin<span class="w"> </span>queue<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>--display-name<span class="w"> </span>shopbd-orders<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span>--dead-letter-queue-delivery-count<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span>--visibility-in-seconds<span class="w"> </span><span class="m">60</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Data plane (messages endpoint queue details থেকে পাবেন)</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>oci<span class="w"> </span>queue<span class="w"> </span>messages<span class="w"> </span>put-messages<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span>--queue-id<span class="w"> </span>ocid1.queue.oc1.ap-mumbai-1.example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span>--endpoint<span class="w"> </span>https://cell-1.queue.messaging.ap-mumbai-1.oci.oraclecloud.com<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span>--messages<span class="w"> </span><span class="s1">'[{"content":"{\"order_id\":\"ORD-1001\"}"}]'</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="terraform--queue--dlq">Terraform — queue + DLQ<a class="headerlink" href="#terraform--queue--dlq" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="aws_1" name="__tabbed_2" type="radio" /><input id="gcp_1" name="__tabbed_2" type="radio" /><input id="azure_1" name="__tabbed_2" type="radio" /><input id="oci_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="aws_1">AWS</label><label for="gcp_1">GCP</label><label for="azure_1">Azure</label><label for="oci_1">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_sqs_queue"</span><span class="w"> </span><span class="nv">"orders_dlq"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                      </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-orders-dlq"</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="na">message_retention_seconds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1209600</span><span class="c1"> # 14 days</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">}</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_sqs_queue"</span><span class="w"> </span><span class="nv">"orders"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="na">name</span><span class="w">                       </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-orders"</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="na">visibility_timeout_seconds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">60</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="na">receive_wait_time_seconds</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="m">20</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span><span class="na">redrive_policy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">jsonencode</span><span class="p">({</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="na">deadLetterTargetArn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_sqs_queue.orders_dlq.arn</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span><span class="na">maxReceiveCount</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">  </span><span class="p">})</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_pubsub_topic"</span><span class="w"> </span><span class="nv">"orders"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-orders"</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">}</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_pubsub_topic"</span><span class="w"> </span><span class="nv">"orders_dlq"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-orders-dlq"</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">}</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_pubsub_subscription"</span><span class="w"> </span><span class="nv">"orders_email"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">  </span><span class="na">name</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-orders-email"</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">  </span><span class="na">topic</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="nv">google_pubsub_topic.orders.id</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">  </span><span class="na">ack_deadline_seconds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">60</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">  </span><span class="nb">dead_letter_policy</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">    </span><span class="na">dead_letter_topic</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">google_pubsub_topic.orders_dlq.id</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">    </span><span class="na">max_delivery_attempts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">  </span><span class="nb">retry_policy</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">    </span><span class="na">minimum_backoff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"10s"</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">    </span><span class="na">maximum_backoff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"300s"</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_servicebus_namespace"</span><span class="w"> </span><span class="nv">"main"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-sb-ns"</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="na">location</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.main.location</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.main.name</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="na">sku</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s2">"Standard"</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">}</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_servicebus_queue"</span><span class="w"> </span><span class="nv">"orders"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">"orders"</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">  </span><span class="na">namespace_id</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_servicebus_namespace.main.id</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">  </span><span class="na">max_delivery_count</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">  </span><span class="na">lock_duration</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s2">"PT1M"</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">  </span><span class="na">dead_lettering_on_message_expiration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"oci_queue_queue"</span><span class="w"> </span><span class="nv">"orders"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="na">compartment_id</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="nv">var.compartment_id</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="na">display_name</span><span class="w">                     </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-orders"</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="na">visibility_in_seconds</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="m">60</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="na">dead_letter_queue_delivery_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span><span class="na">retention_in_seconds</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="m">345600</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="৩-pubsub-ও-fan-out--একট-ঘটন-অনক-শরত">৩. Pub/Sub ও Fan-out — একটি ঘটনা, অনেক শ্রোতা<a class="headerlink" href="#৩-pubsub-ও-fan-out--একট-ঘটন-অনক-শরত" title="Permanent link">&para;</a></h2>
+<p>Queue-তে একটি message একজনই পায়। কিন্তু <code>OrderPlaced</code> ঘটনা তো email, invoice, stock, analytics — সবার জানা দরকার। এখানে
+<strong>topic</strong> আসে: publisher শুধু topic-কে বলে; প্রতিটি subscriber নিজের কপি পায়।</p>
+<pre class="mermaid"><code>flowchart LR
+    P["shopbd-api"] --&gt;|"OrderPlaced"| T(("Topic"))
+    T --&gt; Q1["email queue"]
+    T --&gt; Q2["invoice queue"]
+    T --&gt; Q3["analytics queue"]
+    T --&gt; H["webhook"]</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">সেরা pattern: Topic → প্রতি consumer-এর নিজস্ব Queue</p>
+<p>Topic সরাসরি worker-কে call করলে worker ডাউন থাকলে message হারাতে পারে। তাই <strong>প্রতিটি subscriber-এর জন্য আলাদা
+durable queue</strong> রাখুন (SNS → SQS, Pub/Sub topic → আলাদা subscription, Service Bus topic → আলাদা subscription)। এতে
+প্রতিটি consumer নিজের গতিতে চলে, নিজের DLQ পায়, আর একজনের সমস্যা অন্যকে আটকায় না।</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="aws_2" name="__tabbed_3" type="radio" /><input id="gcp_2" name="__tabbed_3" type="radio" /><input id="azure_2" name="__tabbed_3" type="radio" /><input id="oci_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="aws_2">AWS</label><label for="gcp_2">GCP</label><label for="azure_2">Azure</label><label for="oci_2">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Service: <strong>Amazon SNS</strong> — topic (Standard / FIFO), subscriber হতে পারে SQS, Lambda, HTTP(S), e-mail, SMS, mobile push,
+Firehose। <strong>Message filtering</strong> — subscription-এ filter policy দিলে শুধু মেলানো message যায়। Fan-out-এর জন্য SQS queue-র
+<em>access policy</em>-তে SNS topic-কে <code>sqs:SendMessage</code> অনুমতি দিতে হয়।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">TOPIC_ARN</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>sns<span class="w"> </span>create-topic<span class="w"> </span>--name<span class="w"> </span>shopbd-order-events<span class="w"> </span>--query<span class="w"> </span>TopicArn<span class="w"> </span>--output<span class="w"> </span>text<span class="k">)</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>aws<span class="w"> </span>sns<span class="w"> </span>subscribe<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span>--topic-arn<span class="w"> </span><span class="s2">"</span><span class="nv">$TOPIC_ARN</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span>--protocol<span class="w"> </span>sqs<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span>--notification-endpoint<span class="w"> </span>arn:aws:sqs:ap-south-1:123456789012:shopbd-orders<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">  </span>--attributes<span class="w"> </span><span class="s1">'{"FilterPolicy":"{\"type\":[\"OrderPlaced\"]}","RawMessageDelivery":"true"}'</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>aws<span class="w"> </span>sns<span class="w"> </span>subscribe<span class="w"> </span>--topic-arn<span class="w"> </span><span class="s2">"</span><span class="nv">$TOPIC_ARN</span><span class="s2">"</span><span class="w"> </span>--protocol<span class="w"> </span>email<span class="w"> </span>--notification-endpoint<span class="w"> </span>ops@example.com
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>aws<span class="w"> </span>sns<span class="w"> </span>publish<span class="w"> </span>--topic-arn<span class="w"> </span><span class="s2">"</span><span class="nv">$TOPIC_ARN</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">  </span>--message<span class="w"> </span><span class="s1">'{"order_id":"ORD-1001"}'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">  </span>--message-attributes<span class="w"> </span><span class="s1">'{"type":{"DataType":"String","StringValue":"OrderPlaced"}}'</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Pub/Sub</strong> নিজেই topic + subscription মডেল। একটি topic-এ অনেক subscription; প্রতিটি আলাদা কপি পায়। Subscription-এর ধরন:
+<strong>pull</strong>, <strong>push</strong> (HTTPS endpoint-এ POST), <strong>BigQuery subscription</strong> (সরাসরি table-এ), <strong>Cloud Storage subscription</strong>
+(ফাইলে)। Filter: subscription তৈরির সময় attribute-ভিত্তিক filter। Ordering: publish-এ <strong>ordering key</strong> + subscription-এ
+<code>--enable-message-ordering</code>। Exactly-once delivery: pull subscription-এ <code>--enable-exactly-once-delivery</code>।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>gcloud<span class="w"> </span>pubsub<span class="w"> </span>topics<span class="w"> </span>create<span class="w"> </span>shopbd-order-events
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>gcloud<span class="w"> </span>pubsub<span class="w"> </span>subscriptions<span class="w"> </span>create<span class="w"> </span>shopbd-invoice-sub<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span>--topic<span class="o">=</span>shopbd-order-events<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span>--message-filter<span class="o">=</span><span class="s1">'attributes.type = "OrderPlaced"'</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>gcloud<span class="w"> </span>pubsub<span class="w"> </span>subscriptions<span class="w"> </span>create<span class="w"> </span>shopbd-analytics-sub<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">  </span>--topic<span class="o">=</span>shopbd-order-events<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">  </span>--push-endpoint<span class="o">=</span>https://shopbd-analytics-example.a.run.app/pubsub
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>gcloud<span class="w"> </span>pubsub<span class="w"> </span>topics<span class="w"> </span>publish<span class="w"> </span>shopbd-order-events<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">  </span>--message<span class="o">=</span><span class="s1">'{"order_id":"ORD-1001"}'</span><span class="w"> </span>--attribute<span class="o">=</span><span class="nv">type</span><span class="o">=</span>OrderPlaced
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>দুটি আলাদা মডেল — গুলিয়ে ফেলবেন না:</p>
+<ul>
+<li><strong>Service Bus topic + subscription</strong>: <em>message</em> (command/ business data) পাঠানোর জন্য; প্রতি subscription-এ নিজস্ব queue,
+  DLQ, filter <strong>rule</strong> (SQL filter বা correlation filter)। Basic tier-এ topic নেই।</li>
+<li><strong>Event Grid</strong>: <em>event</em> (ঘটে-যাওয়া ঘটনা) routing — হালকা, push-ভিত্তিক, Azure resource-এর system event (Blob created
+  ইত্যাদি) থেকে Function/Logic App/webhook/queue-তে। বিস্তারিত ৪ নম্বরে।</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>az<span class="w"> </span>servicebus<span class="w"> </span>topic<span class="w"> </span>create<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span>--namespace-name<span class="w"> </span>shopbd-sb-ns<span class="w"> </span>--name<span class="w"> </span>order-events
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>az<span class="w"> </span>servicebus<span class="w"> </span>topic<span class="w"> </span>subscription<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span>--namespace-name<span class="w"> </span>shopbd-sb-ns<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">  </span>--topic-name<span class="w"> </span>order-events<span class="w"> </span>--name<span class="w"> </span>invoice<span class="w"> </span>--max-delivery-count<span class="w"> </span><span class="m">5</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>OCI Notifications</strong> (CLI-তে <code>ons</code>) — topic + subscription। Subscription
+protocol: Email, HTTPS (custom URL), Slack, PagerDuty, SMS, <strong>OCI Functions</strong>। Notifications "queue" নয় — message জমিয়ে রাখে
+না; delivery fail করলে retry করে কিছু সময় পর্যন্ত। তাই durable fan-out দরকার হলে Notifications → Functions → Queue, কিংবা
+Events → Queue-র মতো সাজান।</p>
+<p>OCI-র alarm, budget ও অনেক service-এর event আসলে Notifications topic-এ গিয়েই e-mail/Slack হয় — এই service-টি OCI-তে
+সর্বব্যাপী।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>oci<span class="w"> </span>ons<span class="w"> </span>topic<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-order-events
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>oci<span class="w"> </span>ons<span class="w"> </span>subscription<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">  </span>--topic-id<span class="w"> </span>ocid1.onstopic.oc1.ap-mumbai-1.example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">  </span>--protocol<span class="w"> </span>EMAIL<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">  </span>--subscription-endpoint<span class="w"> </span>ops@example.com
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>oci<span class="w"> </span>ons<span class="w"> </span>message<span class="w"> </span>publish<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">  </span>--topic-id<span class="w"> </span>ocid1.onstopic.oc1.ap-mumbai-1.example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">  </span>--body<span class="w"> </span><span class="s1">'{"order_id":"ORD-1001"}'</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="terraform--topic--subscription">Terraform — topic + subscription<a class="headerlink" href="#terraform--topic--subscription" title="Permanent link">&para;</a></h3>
+<p>Topic ও subscription-এর resource নাম: AWS <code>aws_sns_topic</code> + <code>aws_sns_topic_subscription</code> (protocol <code>sqs</code>/<code>email</code>, <code>raw_message_delivery = true</code>);
+GCP <code>google_pubsub_topic</code> + <code>google_pubsub_subscription</code> (<code>filter = "attributes.type = \"OrderPlaced\""</code>); Azure <code>azurerm_servicebus_topic</code> +
+<code>azurerm_servicebus_subscription</code> (<code>max_delivery_count</code> বাধ্যতামূলক); OCI <code>oci_ons_notification_topic</code> + <code>oci_ons_subscription</code>
+(<code>protocol = "EMAIL"</code>, <code>endpoint = "ops@example.com"</code>)। গঠন ২ নম্বরের queue উদাহরণের মতোই।</p>
+<h2 id="৪-event-bus--ঘটন-routing">৪. Event Bus — ঘটনা routing<a class="headerlink" href="#৪-event-bus--ঘটন-routing" title="Permanent link">&para;</a></h2>
+<p>Pub/Sub topic-এ আপনি নিজে message বানিয়ে পাঠান। <strong>Event bus</strong> অন্যরকম: cloud-এর নিজের service আর আপনার app <strong>event</strong> বের করে,
+আর আপনি <strong>rule</strong> লেখেন — "যদি event-টা এমন হয় তাহলে এই target-কে call করো"। যেমন: "<code>shopbd-images</code> bucket-এ নতুন ছবি এলে
+thumbnail function চালাও", "কোনো EC2/VM বন্ধ হলে ops-কে জানাও"।</p>
+<pre class="mermaid"><code>flowchart LR
+    S1["Object storage: image uploaded"] --&gt; B{{"Event bus + rules"}}
+    S2["VM state change"] --&gt; B
+    S3["shopbd-api custom event"] --&gt; B
+    B --&gt;|"rule 1"| T1["Thumbnail function"]
+    B --&gt;|"rule 2"| T2["Notification topic"]
+    B --&gt;|"rule 3"| T3["Queue"]</code></pre>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="aws_3" name="__tabbed_4" type="radio" /><input id="gcp_3" name="__tabbed_4" type="radio" /><input id="azure_3" name="__tabbed_4" type="radio" /><input id="oci_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="aws_3">AWS</label><label for="gcp_3">GCP</label><label for="azure_3">Azure</label><label for="oci_3">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Service: <strong>Amazon EventBridge</strong> — <strong>event bus</strong> (default bus-এ AWS service-এর event আসে; custom bus আপনার app-এর জন্য),
+<strong>rule</strong> + <strong>event pattern</strong> (JSON filter), target (Lambda, SQS, SNS, Step Functions, API destination ইত্যাদি), <strong>archive &amp;
+replay</strong>, <strong>schema registry</strong>। সংশ্লিষ্ট: <strong>EventBridge Scheduler</strong> (cron/one-time schedule — পুরনো "CloudWatch Events
+scheduled rule"-এর আধুনিক রূপ) ও <strong>EventBridge Pipes</strong> (source → filter → enrich → target পাইপলাইন)।</p>
+<p>S3-এর event EventBridge-এ পেতে bucket-এ EventBridge notification চালু করতে হয়।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>aws<span class="w"> </span>events<span class="w"> </span>put-rule<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-image-uploaded<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span>--event-pattern<span class="w"> </span><span class="s1">'{"source":["aws.s3"],"detail-type":["Object Created"],"detail":{"bucket":{"name":["shopbd-images"]}}}'</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>aws<span class="w"> </span>events<span class="w"> </span>put-targets<span class="w"> </span>--rule<span class="w"> </span>shopbd-image-uploaded<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">  </span>--targets<span class="w"> </span><span class="s1">'Id=1,Arn=arn:aws:lambda:ap-south-1:123456789012:function:shopbd-thumbnailer'</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="c1"># নিজের app থেকে custom event</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>aws<span class="w"> </span>events<span class="w"> </span>put-events<span class="w"> </span>--entries<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">  </span><span class="s1">'[{"Source":"shopbd.api","DetailType":"OrderPlaced","Detail":"{\"order_id\":\"ORD-1001\"}"}]'</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="c1"># Nightly report: Scheduler</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>aws<span class="w"> </span>scheduler<span class="w"> </span>create-schedule<span class="w"> </span>--name<span class="w"> </span>shopbd-nightly-report<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="w">  </span>--schedule-expression<span class="w"> </span><span class="s2">"cron(0 18 * * ? *)"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="w">  </span>--flexible-time-window<span class="w"> </span><span class="nv">Mode</span><span class="o">=</span>OFF<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="w">  </span>--target<span class="w"> </span><span class="s1">'{"Arn":"arn:aws:lambda:ap-south-1:123456789012:function:shopbd-report","RoleArn":"arn:aws:iam::123456789012:role/shopbd-scheduler-role"}'</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Eventarc</strong> — Google Cloud service-এর event (Cloud Storage object finalized, Audit Log-ভিত্তিক event, Pub/Sub message,
+custom) থেকে <strong>Cloud Run</strong>, Cloud Run functions, GKE, Workflows-এ পাঠায়। Event <strong>CloudEvents</strong> ফরম্যাটে আসে। Eventarc
+ভেতরে Pub/Sub ব্যবহার করে। Schedule-এর জন্য আলাদা: <strong>Cloud Scheduler</strong> (cron → Pub/Sub / HTTP / Workflows)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>gcloud<span class="w"> </span>eventarc<span class="w"> </span>triggers<span class="w"> </span>create<span class="w"> </span>shopbd-image-trigger<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span>--location<span class="o">=</span>asia-south1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span>--destination-run-service<span class="o">=</span>shopbd-thumbnailer<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span>--destination-run-region<span class="o">=</span>asia-south1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span>--event-filters<span class="o">=</span><span class="s2">"type=google.cloud.storage.object.v1.finalized"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span>--event-filters<span class="o">=</span><span class="s2">"bucket=shopbd-images"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">  </span>--service-account<span class="o">=</span>shopbd-eventarc@my-project-id.iam.gserviceaccount.com
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>gcloud<span class="w"> </span>scheduler<span class="w"> </span><span class="nb">jobs</span><span class="w"> </span>create<span class="w"> </span>pubsub<span class="w"> </span>shopbd-nightly-report<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">  </span>--location<span class="o">=</span>asia-south1<span class="w"> </span>--schedule<span class="o">=</span><span class="s2">"0 18 * * *"</span><span class="w"> </span>--time-zone<span class="o">=</span><span class="s2">"UTC"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">  </span>--topic<span class="o">=</span>shopbd-report-trigger<span class="w"> </span>--message-body<span class="o">=</span><span class="s1">'run'</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Cloud Storage trigger-এর শর্ত</p>
+<p>Cloud Storage trigger-এর জন্য bucket ও trigger একই location-এ থাকা দরকার, আর Cloud Storage service agent-কে Pub/Sub
+publisher role দিতে হয়।</p>
+</div>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Azure Event Grid</strong> — <em>system topic</em> (Azure resource-এর event, যেমন Blob Storage, Resource Group), <em>custom topic</em>
+(নিজের app-এর event), <em>partner events</em> (Auth0 ইত্যাদি)। Handler: Functions, Logic Apps, webhook, Service Bus, Storage Queue,
+Event Hubs। Delivery retry + dead-lettering (blob container-এ) আছে। নতুন <strong>Event Grid namespaces</strong> pull delivery ও MQTT
+broker দেয় — IoT/ডিভাইস কাজে উপযোগী।</p>
+<p>Schedule: আলাদা service নেই — Function-এর <strong>timer trigger</strong> বা Logic Apps-এর recurrence।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nv">SA_ID</span><span class="o">=</span><span class="k">$(</span>az<span class="w"> </span>storage<span class="w"> </span>account<span class="w"> </span>show<span class="w"> </span>--name<span class="w"> </span>shopbdstorage<span class="w"> </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span>--query<span class="w"> </span>id<span class="w"> </span>-o<span class="w"> </span>tsv<span class="k">)</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>az<span class="w"> </span>eventgrid<span class="w"> </span>event-subscription<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-image-uploaded<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">  </span>--source-resource-id<span class="w"> </span><span class="s2">"</span><span class="nv">$SA_ID</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">  </span>--endpoint-type<span class="w"> </span>storagequeue<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">  </span>--endpoint<span class="w"> </span><span class="s2">"</span><span class="nv">$SA_ID</span><span class="s2">/queueservices/default/queues/shopbd-emails"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">  </span>--included-event-types<span class="w"> </span>Microsoft.Storage.BlobCreated
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>OCI Events</strong> — OCI service-এর resource event (যেমন <code>com.oraclecloud.objectstorage.createobject</code>) এর উপর <strong>rule</strong>;
+action হিসেবে <strong>Notifications</strong>, <strong>Functions</strong> বা <strong>Streaming</strong>। Custom app event নেই — Events মূলত OCI resource-এর
+জন্য। Event <strong>CloudEvents</strong> ফরম্যাটে। Object Storage bucket-এ event emit চালু করতে হয় (bucket-এর <code>Emit Object Events</code>)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>condition.json<span class="w"> </span><span class="s">&lt;&lt;'EOF'</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="s">{"eventType":["com.oraclecloud.objectstorage.createobject"],</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="s"> "data":{"additionalDetails":{"bucketName":["shopbd-images"]}}}</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="s">EOF</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>actions.json<span class="w"> </span><span class="s">&lt;&lt;'EOF'</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="s">{"actions":[{"actionType":"FAAS","isEnabled":true,</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="s">  "functionId":"ocid1.fnfunc.oc1.ap-mumbai-1.example"}]}</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="s">EOF</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>oci<span class="w"> </span>events<span class="w"> </span>rule<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">  </span>--display-name<span class="w"> </span>shopbd-image-uploaded<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">  </span>--is-enabled<span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">  </span>--condition<span class="w"> </span>file://condition.json<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">  </span>--actions<span class="w"> </span>file://actions.json
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="terraform--ছব-upload-হল-কজ-চলও">Terraform — "ছবি upload হলে কাজ চালাও"<a class="headerlink" href="#terraform--ছব-upload-হল-কজ-চলও" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:4"><input checked="checked" id="aws_4" name="__tabbed_5" type="radio" /><input id="gcp_4" name="__tabbed_5" type="radio" /><input id="azure_4" name="__tabbed_5" type="radio" /><input id="oci_4" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="aws_4">AWS</label><label for="gcp_4">GCP</label><label for="azure_4">Azure</label><label for="oci_4">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_cloudwatch_event_rule"</span><span class="w"> </span><span class="nv">"image_uploaded"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-image-uploaded"</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span><span class="na">event_pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">jsonencode</span><span class="p">({</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="na">source</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"aws.s3"</span><span class="p">]</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="s2">"detail-type"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"Object Created"</span><span class="p">]</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span><span class="nb">detail</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"shopbd-images"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">  </span><span class="p">})</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="p">}</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"aws_cloudwatch_event_target"</span><span class="w"> </span><span class="nv">"thumbnailer"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">  </span><span class="na">rule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_cloudwatch_event_rule.image_uploaded.name</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w">  </span><span class="na">arn</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_lambda_function.thumbnailer.arn</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>(Terraform-এ EventBridge resource-এর নাম এখনো <code>aws_cloudwatch_event_*</code>।)</p>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"google_eventarc_trigger"</span><span class="w"> </span><span class="nv">"image_uploaded"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span><span class="na">name</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-image-trigger"</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span><span class="na">location</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">"asia-south1"</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span><span class="na">service_account</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">google_service_account.eventarc.email</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">  </span><span class="nb">matching_criteria</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">    </span><span class="na">attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"type"</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">    </span><span class="na">value</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"google.cloud.storage.object.v1.finalized"</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">  </span><span class="nb">matching_criteria</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">    </span><span class="na">attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bucket"</span>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">    </span><span class="na">value</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-images"</span>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="w">  </span><span class="nb">destination</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="w">    </span><span class="nb">cloud_run_service</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="w">      </span><span class="na">service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">google_cloud_run_v2_service.thumbnailer.name</span>
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="w">      </span><span class="na">region</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"asia-south1"</span>
+</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_eventgrid_system_topic"</span><span class="w"> </span><span class="nv">"storage"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-storage-events"</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.main.name</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">  </span><span class="na">location</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.main.location</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">  </span><span class="na">source_arm_resource_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_storage_account.main.id</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">  </span><span class="na">topic_type</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s2">"Microsoft.Storage.StorageAccounts"</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="p">}</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"azurerm_eventgrid_system_topic_event_subscription"</span><span class="w"> </span><span class="nv">"image_uploaded"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-image-uploaded"</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="w">  </span><span class="na">system_topic</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_eventgrid_system_topic.storage.name</span>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.main.name</span>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="w">  </span><span class="na">included_event_types</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"Microsoft.Storage.BlobCreated"</span><span class="p">]</span>
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="w">  </span><span class="nb">storage_queue_endpoint</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="w">    </span><span class="na">storage_account_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_storage_account.main.id</span>
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="w">    </span><span class="na">queue_name</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-emails"</span>
+</span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">"oci_events_rule"</span><span class="w"> </span><span class="nv">"image_uploaded"</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">  </span><span class="na">compartment_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.compartment_id</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">  </span><span class="na">display_name</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">"shopbd-image-uploaded"</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span><span class="na">is_enabled</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">  </span><span class="na">condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">jsonencode</span><span class="p">({</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="na">eventType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"com.oraclecloud.objectstorage.createobject"</span><span class="p">]</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">    </span><span class="nb">data</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">additionalDetails</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="na">bucketName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"shopbd-images"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">  </span><span class="p">})</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">  </span><span class="nb">actions</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="w">    </span><span class="nb">actions</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="w">      </span><span class="na">action_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"FAAS"</span>
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="w">      </span><span class="na">is_enabled</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="w">      </span><span class="na">function_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">oci_functions_function.thumbnailer.id</span>
+</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="৫-streaming--ordered-log-ও-replay">৫. Streaming — ordered log ও replay<a class="headerlink" href="#৫-streaming--ordered-log-ও-replay" title="Permanent link">&para;</a></h2>
+<p>Queue-তে message process হয়ে গেলে <strong>মুছে যায়</strong>। Stream-এ message একটা <strong>log</strong>-এ থাকে নির্দিষ্ট retention পর্যন্ত; consumer
+নিজের <strong>offset</strong> (কোথা পর্যন্ত পড়েছে) মনে রাখে। ফলে:</p>
+<ul>
+<li>একই ডেটা <strong>একাধিক consumer group</strong> আলাদাভাবে পড়তে পারে</li>
+<li>বাগ ঠিক করে <strong>অতীত থেকে replay</strong> করা যায়</li>
+<li><strong>Partition/shard</strong> key-এর ভিত্তিতে ordering থাকে (একই key সবসময় একই partition-এ)</li>
+<li>Throughput বাড়াতে partition বাড়াতে হয়</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Queue না Stream?</p>
+<ul>
+<li>"এই কাজ একবার করো, তারপর ভুলে যাও" → <strong>Queue</strong></li>
+<li>"এই ঘটনার ধারা অনেকে পড়বে, আবার পড়তে হতে পারে, order জরুরি, ভলিউম বিশাল" → <strong>Stream</strong>
+<code>shopbd</code>-র মতো ছোট শপের order flow-তে Queue যথেষ্ট; click-stream বা দিনে লক্ষ লক্ষ event হলে Stream।</li>
+</ul>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:4"><input checked="checked" id="aws_5" name="__tabbed_6" type="radio" /><input id="gcp_5" name="__tabbed_6" type="radio" /><input id="azure_5" name="__tabbed_6" type="radio" /><input id="oci_5" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="aws_5">AWS</label><label for="gcp_5">GCP</label><label for="azure_5">Azure</label><label for="oci_5">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Service: <strong>Kinesis Data Streams</strong> (AWS-native; <strong>shard</strong> = ১ MB/s write, ২ MB/s read-এর একক; <strong>on-demand</strong> mode-এ capacity
+নিজে বাড়ে; retention default ২৪ ঘণ্টা, বাড়ানো যায়) এবং <strong>Amazon MSK</strong> (managed Apache Kafka; MSK Serverless-ও আছে —
+Kafka ecosystem/tool দরকার হলে)। Delivery টার্গেটে ঢালতে <strong>Amazon Data Firehose</strong> (S3, Redshift ইত্যাদি)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>aws<span class="w"> </span>kinesis<span class="w"> </span>create-stream<span class="w"> </span>--stream-name<span class="w"> </span>shopbd-clicks<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">  </span>--stream-mode-details<span class="w"> </span><span class="nv">StreamMode</span><span class="o">=</span>ON_DEMAND<span class="w"> </span>--region<span class="w"> </span>ap-south-1
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>aws<span class="w"> </span>kinesis<span class="w"> </span>put-record<span class="w"> </span>--stream-name<span class="w"> </span>shopbd-clicks<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">  </span>--partition-key<span class="w"> </span>user-42<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">  </span>--cli-binary-format<span class="w"> </span>raw-in-base64-out<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">  </span>--data<span class="w"> </span><span class="s1">'{"page":"/product/17"}'</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Pub/Sub</strong> নিজেই high-throughput ingestion-এর জন্য ব্যবহৃত হয় (global, autoscaling, partition নিয়ে ভাবতে হয়
+না) — আলাদা stream service সাধারণত লাগে না। Retention-এ বাড়তি সময় ও <strong>seek/replay</strong> (subscription অতীত snapshot/timestamp-এ
+ফেরানো) পাওয়া যায়। Kafka ফরম্যাট/ecosystem দরকার হলে <strong>Google Cloud Managed Service for Apache Kafka</strong>। Stream processing:
+<strong>Dataflow</strong> (Apache Beam)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># এক ঘণ্টা আগের থেকে আবার পড়তে চাইলে (topic-এ retention/ acked retain থাকা দরকার)</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>gcloud<span class="w"> </span>pubsub<span class="w"> </span>subscriptions<span class="w"> </span>seek<span class="w"> </span>shopbd-clicks-sub<span class="w"> </span>--time<span class="o">=</span><span class="m">2026</span>-11-24T10:00:00Z
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Azure Event Hubs</strong> — partition + <strong>consumer group</strong>; <strong>Capture</strong> দিয়ে স্বয়ংক্রিয়ভাবে Blob/Data Lake-এ জমা; <strong>Kafka
+protocol endpoint</strong> (Standard tier বা উপরে) — Kafka client কোড বদলে শুধু connection string দিলেই চলে। Retention tier ভেদে
+আলাদা। Processing: Stream Analytics, Functions, Databricks।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>az<span class="w"> </span>eventhubs<span class="w"> </span>namespace<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span>--name<span class="w"> </span>shopbd-eh-ns<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">  </span>--location<span class="w"> </span>centralindia<span class="w"> </span>--sku<span class="w"> </span>Standard
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>az<span class="w"> </span>eventhubs<span class="w"> </span>eventhub<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">  </span>--resource-group<span class="w"> </span>shopbd-rg<span class="w"> </span>--namespace-name<span class="w"> </span>shopbd-eh-ns<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-clicks<span class="w"> </span>--partition-count<span class="w"> </span><span class="m">2</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>OCI Streaming</strong> — partition-ভিত্তিক, <strong>Apache Kafka compatible API</strong>, stream pool দিয়ে group ও private
+endpoint। Retention সীমিত (ঘণ্টা থেকে কয়েক দিন — docs-এ সীমা দেখুন)। Processing: Functions, Data Flow (Spark),
+Service Connector Hub (stream → Object Storage ইত্যাদি)।</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>oci<span class="w"> </span>streaming<span class="w"> </span>admin<span class="w"> </span>stream<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">  </span>--compartment-id<span class="w"> </span>ocid1.compartment.oc1..example<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">  </span>--name<span class="w"> </span>shopbd-clicks<span class="w"> </span>--partitions<span class="w"> </span><span class="m">1</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="৬-workflow-orchestration--ধপ-ধপ-লমব-কজ">৬. Workflow Orchestration — ধাপে ধাপে লম্বা কাজ<a class="headerlink" href="#৬-workflow-orchestration--ধপ-ধপ-লমব-কজ" title="Permanent link">&para;</a></h2>
+<p>কিছু কাজ একাধিক ধাপের: "payment নিশ্চিত → stock কমাও → যদি stock না থাকে refund → নইলে courier book → e-mail"। প্রতিটি
+ধাপে retry, timeout, শর্ত (if/else), সমান্তরাল কাজ, ব্যর্থ হলে <strong>compensation</strong> (আগের ধাপ ফেরত নেওয়া) দরকার। এগুলো queue দিয়ে
+নিজে হাতে বানালে জটিল হয়ে যায়। তাই <strong>workflow / state machine</strong> service।</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:4"><input checked="checked" id="aws_6" name="__tabbed_7" type="radio" /><input id="gcp_6" name="__tabbed_7" type="radio" /><input id="azure_6" name="__tabbed_7" type="radio" /><input id="oci_6" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="aws_6">AWS</label><label for="gcp_6">GCP</label><label for="azure_6">Azure</label><label for="oci_6">OCI</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Service: <strong>AWS Step Functions</strong> — <strong>Amazon States Language (ASL)</strong> JSON-এ state machine। Task, Choice, Parallel, Map, Wait,
+Retry/Catch। দুই ধরন: <strong>Standard</strong> (দীর্ঘ-চলমান, exactly-once workflow execution, history থাকে) ও <strong>Express</strong> (স্বল্প,
+বেশি volume, at-least-once)। AWS service-কে সরাসরি call (SDK integration) করা যায় — Lambda ছাড়াই।</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="p">{</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">  </span><span class="nt">"StartAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChargePayment"</span><span class="p">,</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">  </span><span class="nt">"States"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">    </span><span class="nt">"ChargePayment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="w">      </span><span class="nt">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Task"</span><span class="p">,</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="w">      </span><span class="nt">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:states:::lambda:invoke"</span><span class="p">,</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="w">      </span><span class="nt">"Parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"FunctionName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shopbd-charge"</span><span class="p">,</span><span class="w"> </span><span class="nt">"Payload.$"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$"</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="w">      </span><span class="nt">"Retry"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">"ErrorEquals"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"States.TaskFailed"</span><span class="p">],</span><span class="w"> </span><span class="nt">"MaxAttempts"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">"BackoffRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="p">}],</span>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="w">      </span><span class="nt">"Catch"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">"ErrorEquals"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"States.ALL"</span><span class="p">],</span><span class="w"> </span><span class="nt">"Next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Refund"</span><span class="w"> </span><span class="p">}],</span>
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="w">      </span><span class="nt">"Next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Done"</span>
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="w">    </span><span class="nt">"Refund"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Task"</span><span class="p">,</span><span class="w"> </span><span class="nt">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:states:::lambda:invoke"</span><span class="p">,</span>
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a><span class="w">                </span><span class="nt">"Parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"FunctionName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shopbd-refund"</span><span class="p">,</span><span class="w"> </span><span class="nt">"Payload.$"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$"</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nt">"End"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a><span class="w">    </span><span class="nt">"Done"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Succeed"</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-24-16"><a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>aws<span class="w"> </span>stepfunctions<span class="w"> </span>create-state-machine<span class="w"> </span>--name<span class="w"> </span>shopbd-order-flow<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">  </span>--definition<span class="w"> </span>file://order-flow.json<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">  </span>--role-arn<span class="w"> </span>arn:aws:iam::123456789012:role/shopbd-stepfunctions-role
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>aws<span class="w"> </span>stepfunctions<span class="w"> </span>start-execution<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">  </span>--state-machine-arn<span class="w"> </span>arn:aws:states:ap-south-1:123456789012:stateMachine:shopbd-order-flow<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="w">  </span>--input<span class="w"> </span><span class="s1">'{"order_id":"ORD-1001"}'</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Service: <strong>Workflows</strong> — YAML (বা JSON) এ ধাপ; HTTP call, Google API connector, <code>try/except/retry</code>, <code>switch</code>, parallel,
+subworkflow। Serverless — ব্যবহার অনুযায়ী খরচ। Eventarc / Cloud Scheduler দিয়ে trigger।</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nt">main</span><span class="p">:</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">  </span><span class="nt">params</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">args</span><span class="p p-Indicator">]</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">  </span><span class="nt">steps</span><span class="p">:</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">charge</span><span class="p">:</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="w">        </span><span class="nt">call</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http.post</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="w">        </span><span class="nt">args</span><span class="p">:</span>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="w">          </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://shopbd-api.example.com/internal/charge</span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="w">          </span><span class="nt">body</span><span class="p">:</span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="w">            </span><span class="nt">order_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${args.order_id}</span>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="w">        </span><span class="nt">result</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">charge_result</span>
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">check_stock</span><span class="p">:</span>
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a><span class="w">        </span><span class="nt">switch</span><span class="p">:</span>
+</span><span id="__span-26-13"><a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${charge_result.body.in_stock}</span>
+</span><span id="__span-26-14"><a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a><span class="w">            </span><span class="nt">next</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">done</span>
+</span><span id="__span-26-15"><a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a><span class="w">        </span><span class="nt">next</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">refund</span>
+</span><span id="__span-26-16"><a id="__codelineno-26-16" name="__codelineno-26-16" href="#__codelineno-26-16"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">refund</span><span class="p">:</span>
+</span><span id="__span-26-17"><a id="__codelineno-26-17" name="__codelineno-26-17" href="#__codelineno-26-17"></a><span class="w">        </span><span class="nt">call</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http.post</span>
+</span><span id="__span-26-18"><a id="__codelineno-26-18" name="__codelineno-26-18" href="#__codelineno-26-18"></a><span class="w">        </span><span class="nt">args</span><span class="p">:</span>
+</span><span id="__span-26-19"><a id="__codelineno-26-19" name="__codelineno-26-19" href="#__codelineno-26-19"></a><span class="w">          </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://shopbd-api.example.com/internal/refund</span>
+</span><span id="__span-26-20"><a id="__codelineno-26-20" name="__codelineno-26-20" href="#__codelineno-26-20"></a><span class="w">          </span><span class="nt">body</span><span class="p">:</span>
+</span><span id="__span-26-21"><a id="__codelineno-26-21" name="__codelineno-26-21" href="#__codelineno-26-21"></a><span class="w">            </span><span class="nt">order_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${args.order_id}</span>
+</span><span id="__span-26-22"><a id="__codelineno-26-22" name="__codelineno-26-22" href="#__codelineno-26-22"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">done</span><span class="p">:</span>
+</span><span id="__span-26-23"><a id="__codelineno-26-23" name="__codelineno-26-23" href="#__codelineno-26-23"></a><span class="w">        </span><span class="nt">return</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${args.order_id}</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>gcloud<span class="w"> </span>workflows<span class="w"> </span>deploy<span class="w"> </span>shopbd-order-flow<span class="w"> </span>--location<span class="o">=</span>asia-south1<span class="w"> </span>--source<span class="o">=</span>order-flow.yaml
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>gcloud<span class="w"> </span>workflows<span class="w"> </span>run<span class="w"> </span>shopbd-order-flow<span class="w"> </span>--location<span class="o">=</span>asia-south1<span class="w"> </span>--data<span class="o">=</span><span class="s1">'{"order_id":"ORD-1001"}'</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>দুটি পথ:</p>
+<ul>
+<li><strong>Logic Apps</strong> — low-code/visual designer; ১০০০+ connector (Office 365, SAP, Salesforce…)। Business integration ও
+  non-developer-দের জন্য ভালো। Consumption (per-run) ও Standard (workflow engine, নিজস্ব hosting) plan।</li>
+<li><strong>Durable Functions</strong> — <strong>code-first</strong> (C#, Python, JS…); Azure Functions-এর extension। <em>Orchestrator function</em> সাধারণ
+  code-এ লেখা, ভেতরে <code>call_activity</code>। Pattern: function chaining, <strong>fan-out/fan-in</strong>, async HTTP API, human interaction
+  (অনুমোদনের অপেক্ষা), monitor।</li>
+</ul>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">azure.durable_functions</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">df</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="n">my_app</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">DFApp</span><span class="p">()</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="nd">@my_app</span><span class="o">.</span><span class="n">orchestration_trigger</span><span class="p">(</span><span class="n">context_name</span><span class="o">=</span><span class="s2">"context"</span><span class="p">)</span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">order_flow</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">DurableOrchestrationContext</span><span class="p">):</span>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>    <span class="n">order</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">get_input</span><span class="p">()</span>
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>    <span class="n">charged</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">context</span><span class="o">.</span><span class="n">call_activity</span><span class="p">(</span><span class="s2">"charge_payment"</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>    <span class="k">if</span> <span class="n">charged</span><span class="p">[</span><span class="s2">"in_stock"</span><span class="p">]:</span>
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>        <span class="k">yield</span> <span class="n">context</span><span class="o">.</span><span class="n">call_activity</span><span class="p">(</span><span class="s2">"book_courier"</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>        <span class="k">yield</span> <span class="n">context</span><span class="o">.</span><span class="n">call_activity</span><span class="p">(</span><span class="s2">"refund_payment"</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>    <span class="k">return</span> <span class="n">order</span><span class="p">[</span><span class="s2">"order_id"</span><span class="p">]</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>OCI-তে Step Functions/Workflows-এর মতো <strong>সাধারণ-উদ্দেশ্যের state-machine service core catalog-এ নেই</strong> (Nov 2026-এও
+docs দেখে নিশ্চিত হয়ে নিন)। বিকল্প:</p>
+<ul>
+<li><strong>OCI Functions + Queue + Events</strong> দিয়ে নিজে saga/orchestrator code (state DB-তে রেখে)</li>
+<li><strong>Oracle Integration</strong> (আলাদা product) — visual process automation ও connector</li>
+<li>ডেটা pipeline-এর জন্য <strong>Data Integration</strong> ও Data Flow-র নিজস্ব scheduling</li>
+</ul>
+<p>শেখার জন্য সবচেয়ে সহজ: Events → Functions → Queue চেইন, আর state <code>shopbd-db</code>-র <code>orders.status</code> কলামে রাখা।</p>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Orchestration বনাম Choreography</p>
+<p><strong>Orchestration</strong>: একজন "কন্ডাক্টর" (workflow) সব ধাপ ঠিক করে — flow দেখা ও debug সহজ। <strong>Choreography</strong>: প্রতিটি service event
+শুনে নিজের কাজ করে পরবর্তী event ছাড়ে — ঢিলেঢালা, কিন্তু "পুরো flow কোথায় আটকেছে" বোঝা কঠিন। ছোট flow-তে choreography,
+ধাপ বেশি/compensation লাগলে orchestration।</p>
+</div>
+<h2 id="৭-অপরহরয-pattern--fan-out-dlq-idempotency">৭. অপরিহার্য Pattern — Fan-out, DLQ, Idempotency<a class="headerlink" href="#৭-অপরহরয-pattern--fan-out-dlq-idempotency" title="Permanent link">&para;</a></h2>
+<h3 id="ক-fan-out">ক) Fan-out<a class="headerlink" href="#ক-fan-out" title="Permanent link">&para;</a></h3>
+<p>একটি event → অনেক consumer। উপরের ৩ নম্বরে দেখেছেন (topic → প্রতি consumer-এর নিজস্ব queue)। <strong>Fan-out/fan-in</strong> (workflow-এ)
+মানে একটি বড় কাজ ভেঙে সমান্তরালে চালিয়ে শেষে ফলাফল জোড়া — যেমন ১০০০ product-এর ছবি ভেঙে ১০০০ thumbnail job, শেষে "সব শেষ" রিপোর্ট
+(Step Functions <code>Map</code>, Durable Functions fan-out/fan-in)।</p>
+<h3 id="খ-dead-letter-queue-dlq">খ) Dead-Letter Queue (DLQ)<a class="headerlink" href="#খ-dead-letter-queue-dlq" title="Permanent link">&para;</a></h3>
+<p>কিছু message <strong>কখনোই সফল হবে না</strong> (ভুল JSON, ডিলিট হয়ে যাওয়া user)। এটা বারবার চেষ্টা হলে queue আটকে যায় ও খরচ বাড়ে।
+<strong>Poison message</strong> আলাদা DLQ-তে সরানোই সমাধান।</p>
+<pre class="mermaid"><code>flowchart LR
+    Q["shopbd-orders queue"] --&gt; W["worker"]
+    W --&gt;|"fail x5"| D["DLQ"]
+    D --&gt; A["alarm: DLQ depth &gt; 0"]
+    A --&gt; H["engineer inspects, fixes, redrives"]</code></pre>
+<table>
+<thead>
+<tr>
+<th>ধাপ</th>
+<th>করণীয়</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>১</td>
+<td>প্রতিটি queue/subscription-এর জন্য DLQ বানান; max attempts ৩–৫</td>
+</tr>
+<tr>
+<td>২</td>
+<td><strong>DLQ-তে message জমলেই alarm</strong> (ops@example.com-এ) — নীরব DLQ মানে নীরবে হারানো কাজ</td>
+</tr>
+<tr>
+<td>৩</td>
+<td>DLQ-র retention main queue-র চেয়ে <strong>বেশি</strong> রাখুন (SQS-এ আসল enqueue সময় ধরে retention গোনা হয়)</td>
+</tr>
+<tr>
+<td>৪</td>
+<td>বাগ ঠিক করার পর <strong>redrive</strong> (SQS redrive, Pub/Sub: DLQ subscription থেকে নিয়ে republish, Service Bus: DLQ sub-queue থেকে resubmit)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="গ-idempotency--একই-message-দবর-এলও-কষত-নই">গ) Idempotency — একই message দুবার এলেও ক্ষতি নেই<a class="headerlink" href="#গ-idempotency--একই-message-দবর-এলও-কষত-নই" title="Permanent link">&para;</a></h3>
+<p>At-least-once মানে duplicate <strong>হবেই</strong>। Consumer এমনভাবে লিখুন যাতে একই message একবার বা দশবার process করলে ফল এক।</p>
+<p><strong>উপায়:</strong> প্রতিটি message-এ একটা অনন্য <strong>idempotency key</strong> (যেমন <code>order_id + event_type</code>); process করার আগে "আগে দেখেছি?" চেক
+— একটা DB table-এর <strong>unique constraint</strong> সবচেয়ে নির্ভরযোগ্য।</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">psycopg</span>  <span class="c1"># PostgreSQL driver</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">handle_message</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>    <span class="n">key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">msg</span><span class="p">[</span><span class="s1">'order_id'</span><span class="p">]</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">msg</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>    <span class="k">with</span> <span class="n">conn</span><span class="o">.</span><span class="n">transaction</span><span class="p">():</span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>        <span class="c1"># first writer wins; a duplicate delivery inserts 0 rows</span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>        <span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>            <span class="s2">"INSERT INTO processed_messages (idempotency_key) VALUES (</span><span class="si">%s</span><span class="s2">) "</span>
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a>            <span class="s2">"ON CONFLICT (idempotency_key) DO NOTHING"</span><span class="p">,</span>
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a>            <span class="p">(</span><span class="n">key</span><span class="p">,),</span>
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a>        <span class="p">)</span>
+</span><span id="__span-29-12"><a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a>        <span class="k">if</span> <span class="n">cur</span><span class="o">.</span><span class="n">rowcount</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-29-13"><a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a>            <span class="k">return</span>  <span class="c1"># already handled, safe to ack</span>
+</span><span id="__span-29-14"><a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a>        <span class="n">send_confirmation_email</span><span class="p">(</span><span class="n">msg</span><span class="p">[</span><span class="s2">"order_id"</span><span class="p">])</span>
+</span></code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">Side-effect যা DB transaction-এ রোলব্যাক হয় না</p>
+<p>E-mail পাঠানো বা payment gateway call DB transaction-এর বাইরে। তাই ছোট flow-তে প্রথমে "processing" চিহ্ন বসান, তারপর
+কাজ, তারপর "done"; আর বাইরের API-কে (payment) তাদের <strong>নিজস্ব idempotency key</strong> দিন (অনেক gateway এটা সমর্থন করে)।</p>
+</div>
+<h3 id="ঘ-আরও-কছ-জরর-pattern">ঘ) আরও কিছু জরুরি pattern<a class="headerlink" href="#ঘ-আরও-কছ-জরর-pattern" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Retry with exponential backoff + jitter</strong> — ব্যর্থ হলে ১s, ২s, ৪s… (সাথে সামান্য random) অপেক্ষা; সবাই একসাথে retry করে downstream
+  ভেঙে ফেলা ("thundering herd") এড়াতে।</li>
+<li><strong>Backpressure / autoscaling by queue depth</strong> — queue-র দৈর্ঘ্য (SQS <code>ApproximateNumberOfMessagesVisible</code>) ধরে worker autoscale করুন।</li>
+<li><strong>Claim-check</strong> — বড় ফাইল message-এ না ঢুকিয়ে object storage-এ রেখে শুধু <code>s3://…</code>/<code>gs://…</code> পথ পাঠান।</li>
+<li><strong>Transactional outbox</strong> — DB-তে order সেভ ও message পাঠানো দুটো আলাদা সিস্টেম; একটা সফল, অন্যটা ফেল হলে অসঙ্গতি। সমাধান: একই DB
+  transaction-এ <code>outbox</code> table-এ message লিখুন, আলাদা একটি relay সেটা queue-তে পাঠায়।</li>
+<li><strong>Ordering</strong> — শুধু যেখানে দরকার (SQS FIFO <code>MessageGroupId</code>, Pub/Sub ordering key, Service Bus session, Kafka partition key)। Order
+  চাইলে সমান্তরালতা কমে।</li>
+</ul>
+<h2 id="মল-ও-অমল">মিল ও অমিল<a class="headerlink" href="#মল-ও-অমল" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>বিষয়</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Queue" আলাদা product?</td>
+<td>হ্যাঁ (SQS)</td>
+<td>না — Pub/Sub pull subscription (+ Cloud Tasks)</td>
+<td>হ্যাঁ (Service Bus / Storage Queue)</td>
+<td>হ্যাঁ (Queue)</td>
+</tr>
+<tr>
+<td>Fan-out ইউনিট</td>
+<td>SNS topic → SQS</td>
+<td>topic → subscription</td>
+<td>Service Bus topic → subscription</td>
+<td>Notifications topic (non-durable)</td>
+</tr>
+<tr>
+<td>DLQ</td>
+<td>আলাদা queue + redrive policy</td>
+<td>আলাদা topic + subscription</td>
+<td><strong>built-in sub-queue</strong></td>
+<td>আলাদা (queue-র ভেতরে ব্যবস্থা)</td>
+</tr>
+<tr>
+<td>Exactly-once</td>
+<td>FIFO (৫ মিনিট dedupe window)</td>
+<td>exactly-once delivery (pull)</td>
+<td>duplicate detection</td>
+<td>নেই — idempotent লিখুন</td>
+</tr>
+<tr>
+<td>Ordering</td>
+<td>FIFO group id</td>
+<td>ordering key</td>
+<td>sessions</td>
+<td>partition (Streaming)</td>
+</tr>
+<tr>
+<td>Event routing</td>
+<td>EventBridge</td>
+<td>Eventarc</td>
+<td>Event Grid</td>
+<td>Events (OCI resource-ভিত্তিক)</td>
+</tr>
+<tr>
+<td>Schedule</td>
+<td>EventBridge Scheduler</td>
+<td>Cloud Scheduler</td>
+<td>Functions timer / Logic Apps</td>
+<td>Functions + Events / Resource Scheduler</td>
+</tr>
+<tr>
+<td>Kafka-compatible</td>
+<td>MSK</td>
+<td>Managed Kafka</td>
+<td>Event Hubs (Kafka endpoint)</td>
+<td>Streaming (Kafka API)</td>
+</tr>
+<tr>
+<td>Workflow</td>
+<td>Step Functions</td>
+<td>Workflows</td>
+<td>Logic Apps / Durable Functions</td>
+<td>সরাসরি নেই</td>
+</tr>
+</tbody>
+</table>
+<p><strong>যে gotcha-গুলোতে মানুষ আটকায়:</strong></p>
+<ul>
+<li><strong>GCP-তে "SQS" খুঁজবেন না।</strong> Pub/Sub একই সাথে queue ও topic; আলাদা subscription মানেই আলাদা "queue"। একই subscription-এ অনেক
+  worker = কাজ ভাগ; ভিন্ন subscription = প্রত্যেকে সব message।</li>
+<li><strong>Azure-এ তিনটি "event/message" service:</strong> Service Bus (business message), Event Grid (reactive event), Event Hubs (stream)।
+  ভুল পছন্দের সবচেয়ে সাধারণ উদাহরণ — Event Hubs দিয়ে ordinary queue বানানো।</li>
+<li><strong>SNS ≠ queue.</strong> SNS-এ message জমা থাকে না; subscriber ডাউন থাকলে retry/DLQ ছাড়া হারাতে পারে — তাই SQS বসান।</li>
+<li><strong>OCI Notifications-ও durable queue নয়।</strong> Durability দরকার হলে OCI Queue বা Streaming।</li>
+<li><strong>Pub/Sub topic global</strong>, কিন্তু message storage policy দিয়ে region সীমাবদ্ধ করা যায় (compliance-এ লাগে)। SQS/Service Bus/OCI Queue
+  region-bound।</li>
+<li><strong>Ack deadline/visibility/lock</strong> — তিন cloud-এ তিন নাম, ভুল সেট করলে duplicate processing।</li>
+</ul>
+<h2 id="real-world-shopbd">Real-world: shopbd<a class="headerlink" href="#real-world-shopbd" title="Permanent link">&para;</a></h2>
+<p><strong>Requirement:</strong> order এলে (১) confirmation e-mail, (২) invoice PDF, (৩) stock আপডেট; ছবি upload হলে thumbnail; প্রতি রাতে
+sales report।</p>
+<pre class="mermaid"><code>flowchart TB
+    API["shopbd-api"] --&gt;|"OrderPlaced"| T(("order-events topic"))
+    T --&gt; QE["email queue + DLQ"]
+    T --&gt; QI["invoice queue + DLQ"]
+    T --&gt; QS["stock queue + DLQ"]
+    QE --&gt; WE["email worker"]
+    QI --&gt; WI["invoice worker"]
+    QS --&gt; WS["stock worker"]
+    IMG["shopbd-images bucket"] --&gt;|"object created event"| EV{{"event rule"}}
+    EV --&gt; TH["thumbnail function"]
+    SCH["nightly schedule"] --&gt; RP["report function"]</code></pre>
+<table>
+<thead>
+<tr>
+<th>কাজ</th>
+<th>AWS</th>
+<th>GCP</th>
+<th>Azure</th>
+<th>OCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>order-events topic</td>
+<td>SNS <code>shopbd-order-events</code></td>
+<td>Pub/Sub topic <code>shopbd-order-events</code></td>
+<td>Service Bus topic <code>order-events</code></td>
+<td>Notifications topic (+ Queue consumer)</td>
+</tr>
+<tr>
+<td>প্রতি consumer queue + DLQ</td>
+<td>SQS ×৩ + DLQ</td>
+<td>৩টি subscription + dead letter topic</td>
+<td>৩টি topic subscription (DLQ built-in)</td>
+<td>OCI Queue ×৩ (DLQ সহ)</td>
+</tr>
+<tr>
+<td>ছবি → thumbnail</td>
+<td>S3 → EventBridge → Lambda</td>
+<td>Cloud Storage → Eventarc → Cloud Run</td>
+<td>Blob → Event Grid → Function</td>
+<td>Object Storage → Events → Functions</td>
+</tr>
+<tr>
+<td>nightly report</td>
+<td>EventBridge Scheduler → Lambda</td>
+<td>Cloud Scheduler → Pub/Sub → Cloud Run job</td>
+<td>Function timer trigger</td>
+<td>Functions + scheduled trigger</td>
+</tr>
+<tr>
+<td>ops alert (DLQ &gt; 0)</td>
+<td>CloudWatch alarm → SNS → ops@example.com</td>
+<td>Monitoring alert → ops@example.com</td>
+<td>Azure Monitor alert → Action group</td>
+<td>Monitoring alarm → Notifications → ops@example.com</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Design সিদ্ধান্ত:</strong></p>
+<ul>
+<li>API শুধু DB-তে order সেভ + একটি <code>OrderPlaced</code> event; বাকি সব async। Checkout দ্রুত থাকে।</li>
+<li>প্রতি consumer-এর নিজস্ব queue ও DLQ; "email worker ডাউন" হলে invoice থেমে যায় না।</li>
+<li>Worker-এ idempotency key = <code>order_id:OrderPlaced</code>; unique constraint সহ <code>processed_messages</code> table (<code>shopbd-db</code>)।</li>
+<li>DLQ-তে ১টি message হলেই <code>ops@example.com</code>-এ alert।</li>
+<li>Click-stream-এ আপাতত Stream দরকার নেই — যখন দৈনিক লক্ষ event হবে তখন Kinesis / Pub/Sub / Event Hubs / OCI Streaming।</li>
+<li>Payment→stock→courier flow ধাপ বেড়ে গেলে Step Functions / Workflows / Durable Functions-এ সরানো।</li>
+</ul>
+<h2 id="best-practices">Best practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>প্রতিটি queue-র সাথে DLQ</strong> — এবং DLQ-র জন্য alarm।</li>
+<li><strong>Consumer idempotent</strong> — duplicate delivery ধরে নিন।</li>
+<li><strong>Visibility timeout / ack deadline = processing time-এর চেয়ে বেশি</strong>; দীর্ঘ কাজে লম্বা-কাজের মাঝখানে timeout বাড়ান (extend)।</li>
+<li><strong>Message ছোট রাখুন</strong> — বড় data object storage-এ, message-এ reference।</li>
+<li><strong>Message-এ schema version</strong> রাখুন (<code>"v":1</code>), যাতে পুরনো ও নতুন consumer একসাথে চলে।</li>
+<li><strong>Least-privilege</strong> — producer শুধু send, consumer শুধু receive/delete (<a href="../03-identity-and-access/">IAM</a>)।</li>
+<li><strong>Encryption</strong> — SQS SSE, Pub/Sub CMEK, Service Bus (Premium CMEK), OCI Queue Vault key; বিস্তারিত <a href="../13-security/">Security</a>-তে।</li>
+<li><strong>Monitoring</strong>: queue depth, oldest message age, DLQ depth, consumer error rate (<a href="../12-observability/">Observability</a>)।</li>
+<li><strong>Retry-তে exponential backoff + jitter</strong>, আর downstream-এর সক্ষমতার চেয়ে বেশি concurrency দেবেন না।</li>
+<li><strong>IaC দিয়ে বানান</strong> — queue/topic/DLQ/permissions একসাথে (<a href="../14-infrastructure-as-code/">Terraform</a>); private connectivity: <a href="../05-networking/">Networking</a>।</li>
+</ul>
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ভুল</th>
+<th>সমস্যা</th>
+<th>সমাধান</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Visibility timeout খুব কম</td>
+<td>একই order-এর e-mail দুবার</td>
+<td>সবচেয়ে ধীর processing × ৬ রাখুন; দরকারে extend</td>
+</tr>
+<tr>
+<td>DLQ নেই</td>
+<td>Poison message চিরকাল retry, খরচ ও latency</td>
+<td>DLQ + max attempts ৩–৫</td>
+</tr>
+<tr>
+<td>DLQ আছে কিন্তু alarm নেই</td>
+<td>মাসের পর মাস ব্যর্থ order কেউ জানে না</td>
+<td>DLQ depth &gt; 0 হলে alert</td>
+</tr>
+<tr>
+<td>Idempotency নেই</td>
+<td>Duplicate invoice, double stock কমানো</td>
+<td>unique key + <code>ON CONFLICT DO NOTHING</code></td>
+</tr>
+<tr>
+<td>SNS-কে সরাসরি Lambda/HTTP-তে, queue ছাড়া</td>
+<td>Consumer ডাউন থাকলে message হারায়</td>
+<td>SNS → SQS → worker</td>
+</tr>
+<tr>
+<td>Pub/Sub dead letter-এ permission না দেওয়া</td>
+<td>Message DLQ-তে যায় না</td>
+<td>Pub/Sub service agent-কে role দিন</td>
+</tr>
+<tr>
+<td>বড় payload message-এ</td>
+<td>Size সীমা, ধীর, ব্যয়বহুল</td>
+<td>Claim-check: object storage-এ রেখে reference</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ইনটরভউ--সরটফকশন-টপস">ইন্টারভিউ / সার্টিফিকেশন টিপস<a class="headerlink" href="#ইনটরভউ--সরটফকশন-টপস" title="Permanent link">&para;</a></h2>
+<details class="question">
+<summary>Queue আর Topic (pub/sub)-এর মূল পার্থক্য কী?</summary>
+<p>Queue-তে প্রতিটি message <strong>একজন</strong> consumer পায় (কাজ ভাগ হয়)। Topic-এ প্রতিটি subscriber <strong>নিজের কপি</strong> পায় (fan-out)।
+বাস্তবে দুটো মিলিয়ে ব্যবহার হয়: topic → প্রতি consumer-এর queue।</p>
+</details>
+<details class="question">
+<summary>At-least-once delivery হলে কীভাবে duplicate সামলাবেন?</summary>
+<p>Consumer-কে <strong>idempotent</strong> বানাবো: প্রতি message-এ idempotency key, প্রক্রিয়ার আগে DB unique constraint দিয়ে "আগে হয়েছে কি না"
+চেক। বাইরের API (payment)-কে তাদের নিজস্ব idempotency key দেব।</p>
+</details>
+<details class="question">
+<summary>Visibility timeout কী? কম রাখলে কী হয়?</summary>
+<p>Consumer message নেওয়ার পর কিছুক্ষণ সেটা অন্য consumer-দের কাছে লুকানো থাকে। এর মধ্যে delete না হলে আবার দৃশ্যমান হয়। কম হলে
+processing শেষ হওয়ার আগেই অন্য worker একই message নেবে → duplicate।</p>
+</details>
+<details class="question">
+<summary>DLQ কেন দরকার? ব্যবহার কীভাবে করবেন?</summary>
+<p>"Poison message" যা কখনো সফল হবে না, তা আলাদা queue-তে সরাতে। Max receive/delivery count দিন, DLQ-তে message জমলে alarm,
+কারণ খুঁজে ঠিক করে redrive।</p>
+</details>
+<details class="question">
+<summary>Azure-এ Service Bus, Event Grid ও Event Hubs কখন কোনটা?</summary>
+<p>Service Bus: business message (order, payment) — queue/topic, DLQ, session। Event Grid: reactive event routing (blob তৈরি হলো)।
+Event Hubs: বিশাল ভলিউম stream/telemetry, Kafka-compatible।</p>
+</details>
+<h2 id="সরসকষপ">সারসংক্ষেপ<a class="headerlink" href="#সরসকষপ" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Messaging দিয়ে API ও worker আলাদা করুন — দ্রুত response, ব্যর্থতায় retry, traffic spike সহনীয়।</li>
+<li><strong>Queue</strong> = একজন নেয়; <strong>Topic</strong> = সবাই পায়; <strong>Event bus</strong> = rule দিয়ে routing; <strong>Stream</strong> = ordered log + replay।</li>
+<li>নাম: SQS/SNS/EventBridge/Kinesis ↔ Pub/Sub/Eventarc ↔ Service Bus/Storage Queue/Event Grid/Event Hubs ↔ OCI Queue/Notifications/Events/Streaming।</li>
+<li>Workflow: Step Functions, Workflows, Logic Apps/Durable Functions; OCI-তে সরাসরি সমতুল্য নেই।</li>
+<li>তিন অপরিহার্য pattern: <strong>fan-out (topic → queue), DLQ + alarm, idempotency key</strong>।</li>
+<li>Visibility timeout / ack deadline / lock সঠিক রাখুন; ছোট message, schema version, least-privilege, encryption।</li>
+<li>পরবর্তী: <a href="../12-observability/">12 · Monitoring, Logging ও Tracing</a> — queue depth ও DLQ-র alarm কীভাবে বানাবেন।</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  উপরে ফিরে যাও
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="ফুটার" >
+        
+          
+          <a href="../10-load-balancing-scaling-dns-cdn/" class="md-footer__link md-footer__link--prev" aria-label="পূর্ববর্তী: 10 · Load Balancing, DNS ও CDN">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পূর্ববর্তী
+              </span>
+              <div class="md-ellipsis">
+                10 · Load Balancing, DNS ও CDN
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../12-observability/" class="md-footer__link md-footer__link--next" aria-label="পরে: 12 · Monitoring ও Logging">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                পরে
+              </span>
+              <div class="md-ellipsis">
+                12 · Monitoring ও Logging
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Hasib Ahmed — Cloud বাংলা ডকুমেন্টেশন
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Hasib105/cloud-bangla-docs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u09b9\u09df\u09c7\u099b\u09c7", "clipboard.copy": "\u0995\u09cd\u09b2\u09bf\u09aa\u09ac\u09cb\u09b0\u09cd\u09a1\u09c7 \u0995\u09aa\u09bf \u0995\u09b0\u09c1\u09a8", "search.result.more.one": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 \u09e7\u099f\u09bf \u0986\u099b\u09c7", "search.result.more.other": "\u098f\u0987 \u09aa\u09c3\u09b7\u09cd\u09a0\u09be\u09af\u09bc \u0986\u09b0\u0993 #\u099f\u09bf \u0986\u099b\u09c7", "search.result.none": "\u0995\u09bf\u099b\u09c1 \u09aa\u09be\u0993\u09df\u09be \u09af\u09be\u09df\u09a8\u09bf", "search.result.one": "\u09e7 \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.other": "# \u099f\u09be \u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f", "search.result.placeholder": "\u09b8\u09be\u09b0\u09cd\u099a \u099f\u09be\u0987\u09aa \u0995\u09b0\u09c1\u09a8", "search.result.term.missing": "\u0985\u09a8\u09c1\u09aa\u09b8\u09cd\u09a5\u09bf\u09a4", "select.version": "\u09b8\u0982\u09b8\u09cd\u0995\u09b0\u09a3 \u09a8\u09bf\u09b0\u09cd\u09ac\u09be\u099a\u09a8 \u0995\u09b0\u09c1\u09a3"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>
