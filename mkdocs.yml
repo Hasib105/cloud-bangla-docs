@@ -1,0 +1,136 @@
+site_name: Cloud বাংলা — AWS · GCP · Azure · OCI
+site_description: এক টপিক, চার cloud — AWS, Google Cloud, Microsoft Azure ও Oracle Cloud (OCI) শূন্য থেকে অ্যাডভান্স, পাশাপাশি তুলনাসহ সম্পূর্ণ বাংলা ডকুমেন্টেশন।
+site_author: Hasib Ahmed
+site_url: https://hasib105.github.io/cloud-bangla-docs/
+repo_url: https://github.com/Hasib105/cloud-bangla-docs
+repo_name: Hasib105/cloud-bangla-docs
+edit_uri: edit/main/docs/
+copyright: © Hasib Ahmed — Cloud বাংলা ডকুমেন্টেশন
+
+docs_dir: docs
+
+theme:
+  name: material
+  language: bn
+  font:
+    text: Hind Siliguri
+    code: JetBrains Mono
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: ডার্ক মোড
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: লাইট মোড
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+    - content.action.edit
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+    admonition:
+      abstract: material/cloud-outline
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+  - search:
+      lang:
+        - en
+
+nav:
+  - হোম: index.md
+  - মূল ধারণা:
+      - "01 · Cloud-এর ভিত্তি": 01-cloud-fundamentals.md
+      - "02 · Account ও Hierarchy": 02-accounts-and-hierarchy.md
+      - "03 · Identity ও Access (IAM)": 03-identity-and-access.md
+      - "04 · Virtual Machine": 04-compute-vms.md
+      - "05 · Networking": 05-networking.md
+      - "06 · Storage": 06-storage.md
+      - "07 · Database": 07-databases.md
+      - "08 · Container ও Kubernetes": 08-containers-kubernetes.md
+      - "09 · Serverless": 09-serverless.md
+      - "10 · Load Balancing, DNS ও CDN": 10-load-balancing-scaling-dns-cdn.md
+      - "11 · Messaging ও Event": 11-messaging-and-events.md
+      - "12 · Monitoring ও Logging": 12-observability.md
+      - "13 · Security": 13-security.md
+      - "14 · Infrastructure as Code": 14-infrastructure-as-code.md
+      - "15 · CI/CD ও DevOps": 15-cicd-devops.md
+      - "16 · Data ও Analytics": 16-data-and-analytics.md
+      - "17 · AI ও Machine Learning": 17-ai-ml.md
+      - "18 · Cost Management": 18-cost-management.md
+      - "19 · Architecture ও HA/DR": 19-architecture-ha-dr.md
+  - প্ল্যাটফর্ম গাইড:
+      - AWS: platforms/aws.md
+      - Google Cloud: platforms/gcp.md
+      - Microsoft Azure: platforms/azure.md
+      - Oracle Cloud (OCI): platforms/oci.md
+  - রেফারেন্স:
+      - Service Map: reference/service-map.md
+      - CLI Cheatsheet: reference/cli-cheatsheet.md
+      - Glossary: reference/glossary.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Hasib105/cloud-bangla-docs
